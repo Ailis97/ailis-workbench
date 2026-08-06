@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#16a34a">
+<title>Ailis 三件套 · 三丰代理商务台</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+  /* ===== 莫兰迪色系 + 微信式左栏 ===== */
+  :root{
+    --bg:#f4f6f9;          /* 主背景：浅米灰 */
+    --card:#ffffff;
+    --ink:#1f2a37;
+    --muted:#6b7280;
+    --line:#e6e9ef;
+    --red:#c66b5f;         /* 三丰红（莫兰迪降饱和） */
+    --red-soft:#f4e6e3;
+    --teal:#7a9b8e;        /* 莫兰迪绿 */
+    --teal-soft:#e8efe9;
+    --blue:#7c95b3;        /* 莫兰迪蓝 */
+    --blue-soft:#e6ebf1;
+    --amber:#b59870;       /* 莫兰迪琥珀 */
+    --green:#7a9b6b;       /* 莫兰迪橄榄绿 */
+    --green-soft:#e8efe0;
+    --shadow:0 1px 3px rgba(16,24,40,.06),0 6px 20px rgba(16,24,40,.05);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"Microsoft YaHei",Segoe UI,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ===== App Shell：左栏 + 主区 ===== */
+  .app{display:flex;height:100vh;overflow:hidden}
+  .sidebar{width:248px;background:#fff;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;flex-shrink:0}
+  .sidebar .brand{padding:20px 18px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px}
+  .sidebar .logo{width:38px;height:38px;border-radius:11px;background:var(--red);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;flex-shrink:0}
+  .sidebar .brand h1{font-size:15px;margin:0;font-weight:700;line-height:1.3;color:var(--ink)}
+  .sidebar .brand .sub{font-size:11px;color:var(--muted);margin-top:1px}
+
+  /* 微信式导航：竖条选中态 */
+  nav{flex:1;overflow-y:auto;padding:10px 8px}
+  nav a{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:9px;color:var(--ink);
+    font-size:14px;text-decoration:none;margin-bottom:4px;transition:.15s;cursor:pointer;
+    position:relative}
+  nav a:hover{background:#f3f4f6}
+  /* 选中态：绿色竖条 + 浅绿背景 */
+  nav a.active{background:var(--green-soft);color:var(--green);font-weight:700}
+  nav a.active::before{content:"";position:absolute;left:-8px;top:50%;transform:translateY(-50%);
+    width:4px;height:60%;background:var(--green);border-radius:0 3px 3px 0}
+  nav a .icon{width:22px;text-align:center;font-size:17px;flex-shrink:0}
+  nav a .label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  nav a .badge{margin-left:auto;font-size:10px;font-weight:700;color:#fff;background:var(--red);
+    padding:2px 7px;border-radius:20px;line-height:1.3}
+
+  .side-footer{margin-top:auto;padding:14px 16px 12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+  .side-footer b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
+
+  /* ===== 主内容区 ===== */
+  .main{flex:1;overflow-y:auto;padding:24px 28px 40px}
+  .wrap-inner{max-width:980px;margin:0 auto}
+
+  .section{display:none;animation:fade .2s ease}
+  .section.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* 顶部欢迎条 */
+  .welcome{background:linear-gradient(120deg,#f3f6f1,#eaeee7);border:1px solid #d8e2cf;border-radius:14px;
+    padding:18px 20px;margin-bottom:18px}
+  .welcome h2{margin:0 0 6px;font-size:17px;color:#3e5e3a}
+  .welcome p{margin:0;font-size:13px;color:#4b5563}
+
+  /* 4 个 mini 摘要卡 */
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+  .mini .k{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+  .mini .v{font-size:22px;font-weight:800;margin-top:4px}
+  .mini .v small{font-size:12px;font-weight:600;color:var(--muted)}
+  .mini.red .v{color:var(--red)}
+  .mini.teal .v{color:var(--teal)}
+  .mini.blue .v{color:var(--blue)}
+  .mini.green .v{color:var(--green)}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px 20px;
+    box-shadow:var(--shadow);margin-bottom:16px}
+  .card h2{font-size:16px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+  .card h2 .tag{margin-left:auto;font-size:11px;font-weight:600;color:var(--muted);background:#f1f5f0;
+    padding:3px 9px;border-radius:20px}
+  .card .update-info{font-size:12px;color:var(--muted);margin-bottom:14px;padding:8px 12px;background:#fafbf9;
+    border-left:3px solid var(--green);border-radius:6px}
+
+  /* 行业增量（INDUSTRIES） */
+  .theme{background:linear-gradient(180deg,#fff,#fcfdfe);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;margin-bottom:12px;border-left:4px solid var(--red)}
+  .theme h3{margin:0 0 7px;font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .theme h3 .pill{font-size:11px;font-weight:700;color:#fff;background:var(--red);padding:2px 9px;border-radius:20px}
+  .theme p{margin:0;font-size:13px;color:#374151;line-height:1.65}
+  .map{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .chip{font-size:12px;background:var(--teal-soft);color:var(--teal);border:1px solid #cddbd0;
+    padding:3px 9px;border-radius:8px;font-weight:600}
+  .src{font-size:11px;color:var(--muted);margin-top:8px}
+
+  /* 市场行情（NEWS） */
+  .news{list-style:none;margin:8px 0 0;padding:0}
+  .news li{font-size:13px;padding:9px 0;border-top:1px dashed var(--line);display:flex;gap:9px}
+  .news li:first-child{border-top:none}
+  .news .when{color:#fff;font-weight:700;flex:none;font-size:11px;background:var(--red);
+    padding:3px 9px;border-radius:5px;align-self:flex-start;line-height:1.3;height:fit-content}
+  .news .when.tag-竞品{background:var(--blue)}
+  .news .when.tag-新品{background:var(--red)}
+  .news .when.tag-展会{background:var(--amber)}
+  .news .when.tag-头条{background:#7a6b9b}
+  .news .nb{display:block;flex:1}
+  .news .meta{display:block;font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .news .meta a{color:var(--teal);text-decoration:none;font-weight:600}
+  .news .meta a:hover{text-decoration:underline}
+
+  /* 日币走势预估（FX） */
+  .fx-alert{background:var(--red-soft);border:1px solid #d8c0b8;border-radius:10px;padding:12px 15px;
+    margin:0 0 14px;font-size:13px;color:#7a4a3e;line-height:1.7;display:none}
+  .fx-alert.show{display:block}
+  .fx-alert b{color:#7a4a3e}
+  .fx-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 14px}
+  .fx-mini{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 13px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .fx-mini .k{font-size:11.5px;color:var(--muted);margin-bottom:4px}
+  .fx-mini .v{font-size:22px;font-weight:800;color:var(--ink);line-height:1.2}
+  .fx-mini .v small{font-size:12px;color:var(--muted);font-weight:600}
+  .fx-mini .sub{font-size:11px;color:#7a4a3e;margin-top:4px;font-weight:600}
+  .fx-mini.red .v{color:var(--red)}
+  .fx-mini.teal .v{color:var(--teal)}
+  .fx-mini.blue .v{color:var(--blue)}
+  .chartbox{margin:10px 0 6px;background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:8px;height:280px;position:relative;cursor:crosshair}
+  #fxchart{width:100%;height:100%;display:block}
+  .fx-tooltip{position:absolute;pointer-events:none;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--ink);box-shadow:0 6px 24px rgba(16,24,40,.14);opacity:0;transition:opacity .12s;z-index:10;min-width:180px;backdrop-filter:blur(4px)}
+  .fx-tooltip .tip-date{font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:600}
+  .fx-tooltip .tip-row{display:flex;justify-content:space-between;gap:12px;margin:2px 0}
+  .fx-tooltip .tip-row span:first-child{display:flex;align-items:center;gap:6px}
+  .fx-tooltip .dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+  .fx-legend{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;font-size:11px;color:var(--muted);margin:4px 0 8px;padding:0 12px}
+  .fx-legend span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+  .fx-legend .line{width:18px;height:3px;border-radius:2px;display:inline-block;flex-shrink:0}
+  .fx-legend .dash{width:18px;height:3px;border-radius:2px;display:inline-block;background-image:linear-gradient(90deg,currentColor 50%,transparent 50%);background-size:8px 3px;flex-shrink:0}
+  .fx-note{font-size:12px;color:var(--muted);margin:4px 0 12px}
+  .events{list-style:none;margin:0;padding:0}
+  .events li{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13px}
+  .events li:first-child{border-top:none}
+  .events .date{font-weight:700;color:var(--teal);flex:none;width:84px;font-size:12px}
+  .events .ev b{color:var(--ink)}
+  .events .ev span{color:var(--muted)}
+
+  .fx-scn{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0 8px;table-layout:fixed}
+  .fx-scn th,.fx-scn td{border:1px solid var(--line);padding:8px 10px;text-align:center;vertical-align:top}
+  .fx-scn th{background:var(--teal);color:#fff;font-weight:600}
+  .fx-scn th:nth-child(1),.fx-scn td:nth-child(1){width:100px}
+  .fx-scn th:nth-child(2),.fx-scn td:nth-child(2){width:76px}
+  .fx-scn th:nth-child(3),.fx-scn td:nth-child(3){width:76px}
+  .fx-scn th:nth-child(4),.fx-scn td:nth-child(4){width:100px}
+  .fx-scn th:nth-child(5),.fx-scn td:nth-child(5){width:60px}
+  .fx-scn th:nth-child(6),.fx-scn td:nth-child(6){width:auto}
+  .fx-scn td.l{text-align:left;line-height:1.55;word-break:break-word;word-wrap:break-word}
+  .fx-scn .base{background:#eef6ff}
+  .fx-scn .up{background:#e8efe0}
+  .fx-scn .down{background:var(--red-soft)}
+  .fx-buy{background:var(--green-soft);border:1px solid #b8c9a7;border-radius:12px;padding:13px 15px;font-size:13px;color:#3e5e3a;line-height:1.75;margin-top:6px}
+  .fx-buy b{color:#2d4825}
+  .fx-hist{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0}
+  .fx-hist th,.fx-hist td{border:1px solid var(--line);padding:6px 9px;text-align:center}
+  .fx-hist th{background:var(--teal);color:#fff}
+  .fx-hist tr:nth-child(even){background:#f7fafc}
+  .fx-hist .real{background:var(--red-soft);font-weight:700;color:#7a4a3e}
+
+  footer{font-size:11.5px;color:var(--muted);padding:14px 2px 12px;line-height:1.7}
+  footer b{color:var(--ink)}
+  .disclaimer{background:var(--red-soft);border:1px solid #d8c0b8;color:#7a4a3e;
+    padding:10px 14px;border-radius:10px;font-size:12.5px;margin:14px 0 14px}
+
+  /* 响应式 */
+  @media(max-width:860px){
+    .app{flex-direction:column;height:auto}
+    .sidebar{width:100%;border-right:none;border-bottom:1px solid var(--line)}
+    .sidebar .brand{padding:14px}
+    nav{display:flex;overflow-x:auto;gap:6px;padding:6px 12px}
+    nav a{margin-bottom:0;white-space:nowrap;flex-shrink:0}
+    .side-footer{display:none}
+    .main{padding:16px}
+    .strip{grid-template-columns:repeat(2,1fr)}
+    .fx-strip{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ===== 左侧导航栏（莫兰迪 + 微信式绿色竖条） ===== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">丰</div>
+      <div>
+        <h1>Ailis 三件套</h1>
+        <div class="sub">三丰代理商务台 · 跨设备云同步</div>
+      </div>
+    </div>
+    <nav id="nav">
+      <a href="#" class="active" data-nav="dashboard"><span class="icon">🏠</span><span class="label">工作台</span></a>
+      <a href="#" data-nav="industries"><span class="icon">📈</span><span class="label">三丰行业增量</span></a>
+      <a href="#" data-nav="news"><span class="icon">📰</span><span class="label">三丰市场行情</span></a>
+      <a href="#" data-nav="fx"><span class="icon">💴</span><span class="label">日币走势预估</span><span class="badge" id="fx-badge" style="display:none">!</span></a>
+    </nav>
+    <div class="side-footer">
+      <b id="now">—</b>
+      <span id="greet">—</span>
+    </div>
+  </aside>
+
+  <!-- ===== 右侧主内容区 ===== -->
+  <main class="main">
+    <div class="wrap-inner">
+
+      <!-- ========== 工作台 ========== -->
+      <section data-section="dashboard" class="section active">
+        <div class="welcome">
+          <h2>👋 Ailis 三件套 · 三丰代理商务台</h2>
+          <p>三大模块由 3 个 WorkBuddy 自动化每日 / 每小时刷新：📈 <b>行业增量</b>（09:00） · 📰 <b>市场行情</b>（09:00） · 💴 <b>日币走势</b>（每小时）。点击左侧模块进入；GitHub 私有仓库 + SSH 跨设备云同步。</p>
+        </div>
+        <div class="strip">
+          <div class="mini red">
+            <div class="k">📈 行业增量</div>
+            <div class="v" id="sum-industries">— <small>条</small></div>
+          </div>
+          <div class="mini blue">
+            <div class="k">📰 市场行情</div>
+            <div class="v" id="sum-news">— <small>条</small></div>
+          </div>
+          <div class="mini green">
+            <div class="k">💴 100日元(最新)</div>
+            <div class="v" id="sum-fx">— <small>CNY</small></div>
+          </div>
+          <div class="mini teal">
+            <div class="k">⏱️ 最近刷新</div>
+            <div class="v" id="sum-update" style="font-size:14px;font-weight:600">—</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>🎯 三大模块快速入口 <span class="tag">由自动化推送</span></h2>
+          <p style="font-size:13.5px;color:#374151;margin:0 0 12px">点击左侧模块查看；每个模块顶部显示「最后更新时间 + 数据源 + 自动化名称」，便于核对。</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <button class="btn-ghost" onclick="goTo('industries')">📈 查看行业增量</button>
+            <button class="btn-ghost" onclick="goTo('news')">📰 查看市场行情</button>
+            <button class="btn-ghost" onclick="goTo('fx')">💴 查看日币走势</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>☁️ 跨设备云同步 <span class="tag">GitHub 私有仓库 + SSH</span></h2>
+          <p style="font-size:13.5px;color:#374151;margin:0 0 8px">
+            工作平台已托管到 <b>git@github.com:Ailis97/workbuddy.git</b>（私有）的 <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px">workbench/</code> 子目录。
+            任意设备只需执行以下命令即可拉到本地打开：
+          </p>
+          <pre style="background:#fafbf9;border:1px solid var(--line);border-radius:8px;padding:12px 14px;
+                      font-family:Cascadia Code,Consolas,monospace;font-size:12.5px;color:#1f2a37;overflow-x:auto;margin:8px 0">git clone git@github.com:Ailis97/workbuddy.git
+start workbuddy\workbench\index.html       # Windows
+open workbuddy/workbench/index.html         # macOS</pre>
+          <p style="font-size:12px;color:var(--muted);margin:8px 0 0">
+            或打开 GitHub Pages：<code style="background:#f3f4f6;padding:2px 6px;border-radius:4px">https://Ailis97.github.io/workbuddy/workbench/</code>
+            （需先在 GitHub 仓库设置中开启 Pages → Source: main branch /workbench folder）
+          </p>
+        </div>
+      </section>
+
+      <!-- ========== 模块 1：三丰行业增量 ========== -->
+      <section data-section="industries" class="section">
+        <div class="card">
+          <h2>📈 三丰行业增量 · 全品类需求拉动 <span class="tag" id="ind-tag">每日 09:00 自动更新</span></h2>
+          <div class="update-info" id="ind-update">📡 自动化：<b>三丰行业增量每日抓取</b> · 数据源：联网检索（行业媒体 / 三丰官网 / 公开新闻） · 最近更新：<span id="ind-time">—</span></div>
+          <div id="industry-list"></div>
+        </div>
+      </section>
+
+      <!-- ========== 模块 2：三丰市场行情 ========== -->
+      <section data-section="news" class="section">
+        <div class="card">
+          <h2>📰 三丰市场行情（近 2 个月 · 官方 / 权威来源） <span class="tag" id="news-tag">每日 09:00 自动更新</span></h2>
+          <div class="update-info">📡 自动化：<b>三丰每日市场行情速递</b> · 仅保留发布于近 2 个月内的官方/权威源（三丰官网 / 基恩士 / 海克斯康 / 计量 NEWS / 中国工控网等）· 最近更新：<span id="news-time">—</span></div>
+          <ul class="news" id="news-list"></ul>
+        </div>
+      </section>
+
+      <!-- ========== 模块 3：日币走势预估 ========== -->
+      <section data-section="fx" class="section">
+        <div class="card">
+          <h2>💴 日元兑人民币 · 实时 & 走势 <span class="tag" id="fx-date">每 1 小时自动更新</span></h2>
+          <div class="update-info">📡 自动化：<b>日币走势预估-1小时更新</b> · 数据源：建行日元现汇牌价 / Yahoo Finance / 新浪财经 / 金十数据 / BoJ / Fed 公开信息 · 最近更新：<span id="fx-time">—</span></div>
+          <div class="fx-alert" id="fx-alert"></div>
+          <div class="fx-strip" id="fx-strip">
+            <div class="fx-mini red"><div class="k">100日元兑人民币(最新)</div><div class="v" id="fx-now">4.2867</div><div class="sub" id="fx-now-sub">较7/28低位+3.73%</div></div>
+            <div class="fx-mini teal"><div class="k">建行日元现汇卖出价</div><div class="v" id="fx-ccb">4.2977</div><div class="sub" id="fx-ccb-sub">100JPY(购汇参考)</div></div>
+            <div class="fx-mini blue"><div class="k">美元兑日元 USD/JPY</div><div class="v" id="fx-usd">157.430</div><div class="sub" id="fx-usd-sub">汇率插件 157.554</div></div>
+            <div class="fx-mini"><div class="k">美元兑人民币 USD/CNY</div><div class="v" id="fx-usdcny">6.7484</div><div class="sub" id="fx-usdcny-sub">新浪财经在岸</div></div>
+          </div>
+          <div class="chartbox" id="fx-chartbox" style="height:340px">
+            <div id="fxchart" style="width:100%;height:100%"></div>
+            <div class="fx-tooltip" id="fx-tip"></div>
+          </div>
+          <div class="fx-note" id="fx-note"></div>
+          <ul class="events" id="fx-events"></ul>
+        </div>
+
+        <div class="card">
+          <h2>📊 情景预估（至 2026-09-25）· 低点买日元参考 <span class="tag">政策事件 + 利差情景</span></h2>
+          <div id="fx-scn"></div>
+          <div class="fx-buy" id="fx-buy"></div>
+        </div>
+
+        <div class="card">
+          <h2>📰 国际动态（近一周） <span class="tag">每 1 小时更新</span></h2>
+          <ul class="news" id="fx-news"></ul>
+        </div>
+
+        <div class="card">
+          <h2>📈 历史月度数据（100日元兑人民币） <span class="tag">2025-08 至今</span></h2>
+          <div id="fx-hist"></div>
+        </div>
+      </section>
+
+      <div class="disclaimer">
+        ⚠️ 汇率与行情数据来源于公开网络检索，存在时延与口径差异；汇率走势为模型聚合预估，<b>不构成任何投资建议</b>。日元采购决策请结合实时牌价与自身风险承受能力。
+      </div>
+
+      <footer>
+        <b>📦 Ailis 三件套 · 跨设备云同步</b><br>
+        · <b>托管仓库：</b>git@github.com:Ailis97/workbuddy.git（私有） · 子目录 workbench/<br>
+        · <b>同步方式：</b>SSH 密钥认证（无需 PAT / 密码） · 同步脚本：<code>workbench-push.ps1</code><br>
+        · <b>三大模块来源：</b>① 三丰行业增量每日抓取（09:00）· ② 三丰每日市场行情速递（09:00）· ③ 日币走势预估-1小时更新<br>
+        · <b>Pages 公网：</b>https://Ailis97.github.io/workbuddy/workbench/（需先在仓库 Settings → Pages 启用）
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<style>
+  /* dashboard 卡片内按钮 */
+  .btn-ghost{background:#eef2ed;color:var(--ink);border:none;padding:8px 16px;border-radius:9px;
+    font-size:13.5px;font-weight:600;cursor:pointer}
+  .btn-ghost:hover{background:#dde5dc}
+</style>
+
+<script>
+/* ===== 时钟与问候 ===== */
+function tick(){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,'0');
+  const wk=['周日','周一','周二','周三','周四','周五','周六'][d.getDay()];
+  document.getElementById('now').textContent=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${wk} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  const h=d.getHours();
+  document.getElementById('greet').textContent = h<11?'早上好，Ailis ☀️':h<14?'中午好，Ailis 🌿':h<18?'下午好，Ailis 🍵':'晚上好，Ailis 🌙';
+}
+tick(); setInterval(tick,30000);
+
+/* ===== 左侧导航切换 ===== */
+const navLinks=document.querySelectorAll('#nav a');
+const sections=document.querySelectorAll('.section');
+function goTo(name){
+  const link=document.querySelector(`#nav a[data-nav="${name}"]`);
+  if(link) link.click();
+}
+navLinks.forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=a.dataset.nav;
+    navLinks.forEach(x=>x.classList.remove('active'));
+    a.classList.add('active');
+    sections.forEach(s=>s.classList.toggle('active',s.dataset.section===target));
+    localStorage.setItem('ailis_workbench_section',target);
+  });
+});
+const savedSection=localStorage.getItem('ailis_workbench_section')||'dashboard';
+const savedLink=document.querySelector(`#nav a[data-nav="${savedSection}"]`);
+if(savedLink && savedSection!=='dashboard') savedLink.click();
+
+/* ============================================================
+   模块 1：INDUSTRIES（三丰行业增量，由自动化每日 09:00 替换）
+   字段：pill / title / desc / products / url / src
+============================================================ */
+const INDUSTRIES=[
+  {pill:'超导材料 / 铁基高温超导带材',title:'国科超导千米级铁基超导带材性能与长度双领跑，北京亦庄全球首条年产百公里级中试线在建，一台商业化聚变装置吃掉上万公里带材 → 千分尺/影像仪/轮廓仪/粗糙度仪压进带材连续产线',
+   desc:'新华网 · 经济参考报 7 月 24 日专访：北京国科超导科技有限公司（成立未满一年）已于 2025 年 12 月成功制备国际首根千米级铁基超导线带材，性能与长度双双领跑全球，董事长兼总经理张晓虎明确表示「目前国际上其他科研机构和企业仍停留在几十米级阶段」。当前公司正在北京经济技术开发区（北京亦庄）建设全球首条年产百公里级铁基超导线带材中试产线，目标是打通全流程连续制备工艺、稳定量产千米级长尺度带材、建立标准化质检体系、降低单位制造成本并完成聚变磁体示范验证。技术底座来自 2008 年赵忠贤院士团队 55K 常压铁基超导转变温度的世界纪录，以及中科院电工所在大尺寸粉末装管与织构调控上的突破。今年 6 月公司完成过亿元天使+轮融资，本年度研发投入将超过 5000 万元。需求侧的量级判断很硬：一台商业化聚变装置投资规模上百亿元，对高温超导材料的需求量在上万公里，行业供需存在严重缺口，全球超导材料市场规模有望从当前百亿元量级跃向千亿元级别；「十五五」规划纲要已明确加强超导材料等前沿材料研究应用。同侧共振还有合肥庐阳区安徽上创聚能 1.5 亿元基地投产（年产 1200 公里二代高温超导带材）、北京物科超导完成数千万元天使轮、上海翌曦科技数亿元 Pre-A 轮扩百米级集束缆线连续化产线。带材制造是典型的「几何公差即性能」环节：扁带状产品厚度普遍在 0.1mm 量级、宽度 4—12mm，连续轧制与热处理后的厚度均匀性必须靠片状测砧千分尺沿长度方向逐段抽检，任何局部减薄都会成为载流瓶颈；带材宽度、边缘毛刺与截面几何靠影像仪做非接触批量测量，接触式量具会压伤超导层；粉末装管与缩径成形后的芯丝排布、截面型线靠轮廓仪测形；基带与缓冲层的表面 Ra 直接决定外延织构质量，是高场载流性能的底层变量，靠粗糙度仪把关；线材外径、绕线盘工装与中试线机架安装尺寸靠卡尺完成日常测量。',
+   products:['千分尺（片状测砧 0.001mm）','影像仪 Quick Vision Apex Pro','轮廓仪 FORMTRACER Avant','粗糙度仪 Surftest SJ-410','卡尺 ABSOLUTE Digimatic 500 系列'],
+   url:'http://www.xinhuanet.com/liangzi/20260724/7c7d8010db6a428492e07c09a2e0c4e7/c.html',src:'新华网 · 经济参考报《国科超导：蓄力铁基超导产业化关键一跃》（2026-07-24）'},
+  {pill:'深海科技 / 深海装备与海工',title:'上半年海洋生产总值 5.5 万亿同比 +5.1%、新承接海工订单金额同比 +121.9% 占全球八成以上，问海6000h 下潜 6523 米累计 16 次成功率 100% → 三坐标/硬度计/杠杆表进耐压壳与海工总装',
+   desc:'自然资源部 8 月 3 日通过央视新闻公布上半年海洋经济数据：初步核算海洋生产总值 5.5 万亿元、同比增长 5.1%，高于同期国内生产总值增速。深海硬核科技被定位为海洋经济创新发展的核心引擎——山东青岛崂山实验室的「问海6000h」深海重载无人潜水器正在进行机械臂调试准备大洋科考，上半年该装备已在「昆仑」热液筒群区执行科考任务，最大下潜深度 6523 米、累计下潜 16 次、有效下潜成功率 100%。海工装备是本轮最陡的增量曲线：上半年我国新承接海工订单金额同比增长 121.9%，占全球市场份额八成以上；首座海上移动式多功能措施平台「海洋石油283」交付，全球单机容量最大的 16 兆瓦漂浮式海上风电平台「三峡领航号」开始安装，世界规模最大海上换流站「海风之心」完成安装，全球首座 16 兆瓦张力腿浮式风电平台「海油安澜号」顺利出港；仿生水母机器人、深海一体化开采系统填补多项技术空白。海船新接订单量、完工量、手持订单量三大指标继续保持全球领先，一艘 4200 车位 LNG 双燃料智能汽车滚装船在福州连江马尾造船码头即将交付。资源与资本同步加码：上半年全国新增用海用岛项目 1246 个、批准面积 12.3 万公顷、相关项目总投资额超 3800 亿元，12 家涉海企业完成 IPO、融资规模 133.4 亿元。同期中科院沈阳自动化所主持研制的「海斗一号」全海深自主遥控潜水器完成西太平洋海试，与「奋斗者」号在 7700 米级深渊海底多次会合并联合作业、累计 7 次深渊级下潜。深海装备的计量强度由压力等级直接决定：万米级载人舱与耐压壳的球度、壁厚均匀性与开孔位置公差是安全底线，只能靠大行程三坐标做全尺寸复检；钛合金耐压壳与高强钢焊缝的母材硬度、焊缝及热影响区硬度梯度靠台式洛氏硬度计做工艺件、便携式硬度计做数米级成品现场抽检；海水浸没式液压元件的配合面与柱塞副 Ra 直接决定深海高压下的泄漏与卡滞风险，靠粗糙度仪把关；数米级法兰端面跳动、平面度与贯穿件安装面靠杠杆表配大型磁性表座在机打表；机械手关节座、着陆器框架的台阶高与装配堆叠尺寸靠测高仪；总装现场的管路、支架与吊装工装常规尺寸靠大量程卡尺。',
+   products:['三坐标 CRYSTA-Apex V','硬度计 HR-530 洛氏 / 便携式 HH-411','粗糙度仪 Surftest SJ-410','杠杆表','测高仪 LH-600F','卡尺 ABSOLUTE Digimatic 大量程'],
+   url:'https://new.qq.com/rain/a/20260803A02JAH00?refer=cp_1009',src:'央视新闻 · 腾讯新闻《视频丨上半年我国海洋经济实现稳步增长》（2026-08-03，自然资源部发布）'},
+  {pill:'半导体 / 设备零部件国产化',title:'盛美两台全本土零部件设备进临港 mini-line 验证、设备整机国产化率 2027 年看 42%，而石英件与喷淋头国产化率刚过 10%、静电卡盘更低 → 三坐标/轮廓仪/粗糙度仪/高度规守腔体件',
+   desc:'腾讯新闻 7 月 7 日行业深度：盛美上海自 2025 年起在半导体前道及先进封装领域先后设计并组装出两台全部使用本土零部件的设备（内部检验用测试机），并在临港洁净室的 mini-line 上做验证，该产线覆盖清洗、电镀、涂胶显影、炉管及 PECVD 全品类验证能力；目前盛美非标准件已实现全面本土化，磁旋泵、加热器、过滤器等标准件核心零部件取得重要突破。需求侧倒灌明确：SEMI 预测 300mm 存储设备投资 2026 年将突破 500 亿美元，中国大陆晶圆产能占全球比重从 2000 年的 2%、2010 年 9%、2020 年 17% 一路抬升，2030 年将占全球三分之一；22—40 纳米主流制程 2026 年占比达 37%、2028 年有望 42%。国产设备整机国产化率 2025 年 30%、2026 年预计 35%、2027 年升至 42%，整机放量倒逼零部件本土化。采购结构上，大陆晶圆厂零部件金额占比较大的是石英件、射频电源、各种泵（占比 10% 及以上），阀门、吸盘、反应腔喷淋头、边缘环占比也较高；但石英件与喷淋头国产化率仅超过 10%，真空泵约 5%—10%，静电卡盘、O 形密封圈、阀门、测量仪器更低。企业侧：富创精密匀气盘与特殊涂层两大专项已完成关键客户验证并规模化量产，2026 年重点发力加热盘与阀门，静电卡盘制定 3—5 年长期规划；神工股份是国内极少数具备从晶体生长到硅电极成品完整制造能力的厂商，批量供应北方华创与中微公司；菲利华是国内首家同时通过应用材料、泛林、东京电子三大设备商认证的石英材料企业，认证周期通常 2—3 年。文中同时点出「测量仪器」本身就是国产化率最低的一类零部件，而关键零部件验证周期至少 1 到 1.5 年——这恰恰是精密量具的机会窗口：腔体件、匀气盘、喷淋头的孔阵位置度与平面度必须靠三坐标出全尺寸报告才能进客户验证流程；边缘环、聚焦环的截面型线与台阶轮廓靠轮廓仪测形；等离子体环境下的接触面 Ra 与涂层表面形貌直接影响颗粒与寿命，靠粗糙度仪逐批把关；密封槽、螺纹孔与细微特征的二维尺寸靠影像仪非接触批量测量；多层堆叠件的装配高与平行度靠高度规在机检测；石英件与硅电极的壁厚、外径靠千分尺抽检。',
+   products:['三坐标 CRYSTA-Apex V','轮廓仪 FORMTRACER Avant / CV-3200','粗糙度仪 Surftest SJ-410 / SV-3200','影像仪 Quick Vision Apex Pro','高度规 QM-Height','千分尺 QuantuMike'],
+   url:'https://new.qq.com/rain/a/20260707A08YNW00?refer=cp_1009',src:'腾讯新闻《国产半导体设备零部件，开始起势》（2026-07-07）'},
+  {pill:'医疗器械 / 腔镜手术机器人',title:'联影智融 uSurg DoctorX 7 月 30 日获批成国产第 12 家，上半年国产品牌中标占比升至 62%、图迈全球订单破 300 台首度实现半年盈利 → 影像仪/投影仪/硬度计进器械与关节产线',
+   desc:'国家药监局 7 月 30 日公布医疗器械批准文件送达信息：武汉联影智融医疗科技有限公司的胸腹腔内窥镜手术系统获批上市，产品为新款腔镜机器人 uSurg DoctorX，已在国内顶尖三甲医院完成肝胆、泌尿、胃肠、妇科、胸外科等多科室术式验证。至此国内获批腔镜手术机器人企业已达 12 家（威高、微创机器人、康多、思哲睿、精锋医疗、术锐、康诺思腾、瑞龙诺赋、敏捷医疗、唯精医疗、佗道医疗、联影智融），其中 9 家已实现商业化落地。市场份额发生结构性反转：2026 年上半年国产品牌腔镜机器人中标量占比升至 62%（另一口径统计公立医院公示中标 27 台、国产 17 台约 63%）。微创机器人图迈系统全球商业化订单突破 300 台、装机达 200 台，近 7 个月新增装机量居国产第一、全球前二，预计上半年净利润 2800 万至 4000 万元、营收同比增长约 200% 至 230%，首次实现半年度盈利，海外已覆盖超 60 个国家和地区；精锋医疗截至 2025 年底全球签订销售 119 台协议、全年收入 4.56 亿元同比增长 184.8%。同期国家医保局发布《手术和治疗辅助操作类医疗服务价格项目立项指南（试行）》，把手术机器人辅助操作纳入全国统一价格项目体系，解决了支付确定性问题。渗透率仍在低位：全国三级医院 4111 个（三甲 1876 个），腔镜机器人保有量仅 600 余台；弗若斯特沙利文预测 2030 年中国手术机器人市场规模 709.52 亿元、年复合增长率 36.9%，其中腔镜机器人超 350 亿元。放量意味着从样机走向批产，计量要求随之刚性化：直径 5—8mm 的多自由度腕式器械、微型关节与丝传动零件尺寸细小且易变形，只能靠影像仪做非接触批量测量；蛇形关节片、剪切钳口的刃口型线与齿形靠投影仪做放大轮廓比对；不锈钢与钛合金器械的热处理硬度、刃口硬度均匀性决定使用寿命与灭菌复用次数，靠显微维氏与洛氏硬度计判定；器械盒、无菌适配器的装配台阶高与堆叠公差靠测高仪；与组织接触面及管腔内壁 Ra 关系到清洗灭菌合规性，靠粗糙度仪抽检；套管、导管与工装夹具常规尺寸靠卡尺。',
+   products:['影像仪 Quick Vision Apex Pro','投影仪 PJ-A 系列 / PJ-H30','硬度计 HM 显微维氏 / HR-530','测高仪 LH-600F','粗糙度仪 Surftest SJ-210','卡尺 ABSOLUTE Digimatic'],
+   url:'https://www.163.com/dy/article/L3JA1RUA05568W0A.html',src:'网易 · 医疗器械创新网《联影，新款手术机器人获批上市！》（2026-08-05 发布，事件日 07-30 国家药监局获批）'},
+  {pill:'新能源商用车 / 电动重卡出口',title:'单批近 900 台电动牵引车刷新国内单次出口纪录、长沙工厂海外订单产量同比 +80%（6 月单月 +120%），配套充电桩订单 +200% 新增 3 条产线 → 卡尺/数显表/杠杆表/测高仪进总装与电驱线',
+   desc:'央视网 7 月 10 日报道：2026 年上半年我国新能源车辆出口高速增长，其中新能源重型商用车增量尤为突出。广东东莞新沙港一批电动重卡通过滚装船完成出口，本批次订单总量近 900 台，刷新了国内新能源牵引车单次出口规模纪录（作为对照，2025 年全行业新能源牵引车全年出口总量为 877 台，单笔订单已顶过去一整年）。湖南长沙一家商用车智造工厂多条生产线满负荷运转，1 到 6 月海外订单产量同比 2025 年增长 80%、6 月单月增长 120%，为历史最高峰；出口市场从亚太、南美、非洲扩到欧洲、大洋洲，在土耳其、澳大利亚、德国实现电动重卡零的突破。配套端同步放量：广东惠州一家充电桩生产企业上半年一直满产，订单同比增长超过 200%，新增 3 条生产线（2 条主机线 + 1 条模块化线），物料已备到年底；盛弘电气在全球布局 11 个服务中心与超 50 个服务网络，在美国、马来西亚设有生产线。政策侧，交通运输部、国家发展改革委等十一部门联合印发《推动新能源重卡规模化应用实施方案》，各地配套细则陆续落地，吉利远程 7 月新能源商用车销量 18486 台、1—7 月累计 107589 辆同比增长 37.8%，其中重卡赛道 7 月同比增长 46.1%。整车与三电放量把量具需求推到产线节拍层面：车架纵梁、悬架支架、桥壳与传动轴的批量尺寸检验靠大量程卡尺完成节拍内抽检；电驱总成的轴径、齿轮轴颈与轴承位公差靠外径千分尺逐件把关；驱动桥与减速器的齿侧间隙、端面跳动、轴向窜动靠数显表配磁性表座实时监控；电机定转子同轴度、气隙均匀性与装配找正靠杠杆表打表；电池包上下箱体的密封面台阶高、模组堆叠高度与 Pack 总高一致性靠测高仪；齿轮渗碳淬火后的表面硬度与硬化层、制动盘与轮毂的硬度一致性靠洛氏硬度计与便携式硬度计；新车型首件与电池托盘大件的全尺寸与形位公差判定交给三坐标。',
+   products:['卡尺 ABSOLUTE Digimatic 500 系列','千分尺 QuantuMike','数显表 ABSOLUTE ID-C / ID-F','杠杆表','硬度计 HR-530 / 便携式 HH-411','测高仪 LH-600F','三坐标 CRYSTA-Apex V'],
+   url:'https://news.cctv.com/2026/07/10/ARTIzxkilVz9yDOAVQoKVdil260710.shtml',src:'央视网《新能源重卡出口热潮拉动整车销量 带动充电桩等配套设备出口大幅增长》（2026-07-10）'},
+  {pill:'消费电子 / AI+AR 眼镜光波导',title:'莫界科技 6 亿元 A/A+ 轮扩树脂衍射光波导产线、12 英寸晶圆自研量产整机压到 25 克以下，IDC 看 2026 全球智能眼镜 2368 万台、中国 491.5 万台 → 千分尺/影像仪/投影仪/高度规守 0.6mm 级波导片',
+   desc:'亿欧 7 月 14 日：莫界科技 7 月 13 日宣布完成 A 轮及 A+ 轮整合融资、总规模 6 亿元人民币，投资方包括联想创投、毅达资本、德同资本、招银国际、长石资本以及芜湖、珠海两地国资产业平台，资金主要用于扩建高精度树脂衍射光波导产线、加速新一代轻量化 AI+AR 整机方案迭代与拓展海外客户交付能力。公司在深圳、珠海、香港、芜湖、江阴五地运营超过 18000 平方米研发与制造基地，员工超 500 人；树脂晶圆已迭代至第 10 代、折射率 1.74，12 英寸晶圆实现自研量产，树脂衍射光波导迭代超 60 代，首创全贴合树脂波导工艺、相较传统方案厚度减少逾 40%、透光率提升至 98%，整机重量下探至不足 25 克。行业量级：IDC 预测 2026 年全球智能眼镜出货量突破 2368 万台、中国市场 491.5 万台（同比 +77.7%）；CINNO Research 数据显示 2026 年一季度国内消费级 AI/AR 设备销量同比激增 108%，其中一体式 AR 眼镜增速高达 506%；光波导占整机 BOM 约 30%—40%，是产业链最具卡位价值的环节。同侧动作密集：尼卡光学完成近亿元 A 轮，其全球首条百万片级体全息光波导自动化产线已投产、年产能 130 万片、产品厚度 0.6 毫米、透光率最高 98%；歌尔上海临港 12 英寸 AR 微纳光学晶圆厂 7 月投产，衍射光波导片成本从进口 120 美元降到国产 35 美元；康耐特光学扩建启东 XR 镜片产线并在上海新建 4 条贴合包装产线。这条链的公差带比传统消费电子紧一个量级：波导片厚度 0.6mm 级、全贴合后厚度再减 40%，片厚与楔角一致性直接决定成像重影，靠片状测砧千分尺逐片抽检；纳米压印光栅区域的图形位置、光栅区边界与镜片外形轮廓靠影像仪做非接触批量测量，接触测量会划伤镀膜面；镜腿最薄处 4mm 级的结构件、铰链与前框型线靠投影仪做放大比对；整机重量压到 14.9—25 克意味着结构件壁厚被压到极限，光机与波导贴合的装配堆叠高度、贴合胶层厚度靠高度规与数显表全过程监控；镜片与波导表面 Ra 直接关系透光率 98% 这个指标能否守住，靠粗糙度仪把关。',
+   products:['千分尺（片状测砧 0.001mm）','影像仪 Quick Vision Apex Pro','投影仪 PJ-A 系列','高度规 QM-Height / HDS-H','数显表 ABSOLUTE ID-C','粗糙度仪 Surftest SJ-210'],
+   url:'https://www.163.com/dy/article/L1OOAIER05118K7K.html',src:'网易 · 亿欧《莫界科技完成 6 亿元新一轮融资，加码智能眼镜核心光学技术研发》（2026-07-14）'}
+];
+document.getElementById('industry-list').innerHTML=INDUSTRIES.map(it=>
+  `<div class="theme"><h3><span class="pill">${it.pill}</span>${it.title}</h3>
+   <p>${it.desc}</p>
+   <div class="map">${it.products.map(p=>`<span class="chip">${p}</span>`).join('')}</div>
+   <div class="src">🔗 来源：<a href="${it.url}" target="_blank" rel="noopener">${it.src}</a></div></div>`
+).join('');
+document.getElementById('ind-time').textContent=new Date().toLocaleString('zh-CN',{hour12:false});
+document.getElementById('sum-industries').innerHTML=INDUSTRIES.length+' <small>条</small>';
+
+/* ============================================================
+   模块 2：NEWS（三丰市场行情速递，由自动化每日 09:00 替换）
+   字段：tag / title / desc / url / src / time
+   注意：仅保留发布于近 2 个月内的官方/权威源动态
+============================================================ */
+const NEWS=[
+  {tag:'头条',title:'三丰千分尺获日本机械学会「机械遗产」第134号认定',desc:'三丰所藏「ミツトヨ製マイクロメータ」（创业第1号千分尺，1936年完成）获一般社团法人日本机械学会2026年度「机械遗产」第134号认定，表彰其以国产化千分尺支撑日本机械工业发展的历史价值。可作为千分尺产品线的品牌背书与推广素材。',
+   url:'https://www.mitutoyo.co.jp/news/2026-08-03/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-08-03'},
+  {tag:'竞品',title:'海克斯康 2026 年度渠道合作伙伴大会在青岛落幕',desc:'海克斯康制造智能大中华区 7/30 在青岛举办 2026 年度渠道合作伙伴大会（主题「归零・更新・重启・向上」），现场举行合作伙伴星级授牌与新晋分销商签约，并设主会场 + 生产制造软件分会场 + 中观（自动化三维检测）分会场，公布 2026 战略升级、分销政策与新兴行业方案打法。信号：竞品正加码渠道扩张与分销商招募，需关注区域经销商争夺与行业方案型销售。',
+   url:'https://www.hexagonmi.com.cn/news/41459.html',src:'海克斯康制造智能官网 hexagonmi.com.cn',time:'发布 2026-08-03'},
+  {tag:'头条',title:'三丰设立令和8年熊本地震受灾客户复旧支援窗口',desc:'三丰 7/30 官网公告：为受熊本地震影响的客户设立复旧支援窗口，测量机器 / 试验机器的受损状况咨询与维修对应可联系就近营业所，或经客服中心邮箱提交申请表（附受损照片）；官方同时说明部分受损设备的功能与精度可能无法保证，量具的维修与换新由购买渠道经销商对接。对代理商的含义：近期日本本土维修与备件资源可能被占用，涉日返修、校准与交期需预留缓冲并提前与客户沟通。',
+   url:'https://www.mitutoyo.co.jp/news/2026-07-30/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-30'},
+  {tag:'竞品',title:'海克斯康联手 NIAR 扩大计量培训与区域检测服务网络',desc:'威奇托州立大学国家航空研究所（NIAR）7/29 宣布与海克斯康制造智能扩大合作：NIAR 先进加工与原型实验室（AMP）将开办海克斯康计量系统与软件培训，覆盖 PC-DMIS 三坐标编程与操作、便携式测量臂、徕卡激光跟踪仪（PC-DMIS + Spatial Analyzer）；同时面向海克斯康客户与产业伙伴提供区域性合同计量服务，含尺寸检测、编程支持、便携测量与检测规划。信号：竞品在「设备销售 + 培训认证 + 区域检测服务」上做三位一体绑定，与 8/3 渠道大会形成渠道与服务双线扩张。对代理商的含义：单纯拼硬件价格的空间被压缩，需要在校准、培训与现场技术服务上建立自己的粘性。',
+   url:'https://metrology.news/niar-and-hexagon-expand-partnership-to-advance-metrology-training-and-regional-inspection-services/',src:'Metrology and Quality News（metrology.news）',time:'发布 2026-07-29'},
+  {tag:'竞品',title:'GBS Metrology 发布 smartWLI firebolt2 高速白光干涉 3D 表面传感器',desc:'GBS Metrology 7/21 推出 smartWLI firebolt2 非接触式光学 3D 传感器：基于白光干涉（相干扫描干涉）原理，采用 PCIe 高速相机，速率最高 2.57 kfps、分辨率 240 万像素，内部数据处理架构重构后吞吐约为此前最快 10GigE 方案的 5 倍；支持不存原始图像的实时全 3D 数据计算、ICCE 图像校正与逐点 FFT 质量控制。可表征低至亚埃级的表面粗糙度，并能测量刀具切削刃等陡峭微几何，提供 SDK 以嵌入产线与自动检测设备。对代理商的含义：粗糙度赛道正被「产线内嵌光学 3D」从上方挤压，SJ 系列手持与台式接触式粗糙度仪在超光滑表面与在线全检场景会遇到替代压力，销售时应聚焦车间适应性、标准符合性与单点成本优势。',
+   url:'https://metrology.news/high-speed-white-light-interferometry-sensor-accelerates-3d-surface-measurement/',src:'Metrology and Quality News（metrology.news）',time:'发布 2026-07-21'},
+  {tag:'新品',title:'三丰智能视觉系统 QM-Fit 获 IDEA 设计奖特别奖',desc:'三丰 7/17 宣布智能视觉系统「QM-Fit」获第56回机械工业设计奖 IDEA 审查委员会特别奖。QM-Fit 以「谁都能轻松使用、大幅缩短检测时间」为理念，搭载卡尺式快速测量与触控操作，可作为三丰影像仪（QV / QI 系列）向 AI 视觉检测赛道延伸的推广支点。',
+   url:'https://www.mitutoyo.co.jp/news/2026-07-17/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-17'},
+  {tag:'头条',title:'⏰ 倒计时：三丰日本本社 8/8 起夏季休业 9 天，仅剩 2 个工作日锁单',desc:'三丰 7/10 官网公告夏季休业期为 2026 年 8 月 8 日（六）至 8 月 16 日（日）共 9 天；休业期间暂停电话咨询受理，FAX 与 E-mail 咨询自 8 月 17 日（一）起陆续回复。截至 8 月 6 日，距停摆仅剩 8/6、8/7 两个工作日。叠加 7/30 熊本地震复旧支援窗口占用维修资源，8 月中旬涉日询价、返修、校准与备件补货将出现约两周响应真空。今日必办：① 盘点在途与待确认订单，8/7 下班前完成回签与交期确认；② 紧急技术答复申请今日提交；③ 对 8 月中下旬交期的客户主动发出预告，避免休业后集中投诉。',
+   url:'https://www.mitutoyo.co.jp/news/2026-07-10/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-10'}
+];
+// 仅展示发布于近 2 个月内的市场行情（打开页面时按当前日期自动剔除超期项）
+function newsInRange(t){
+  const m=t.match(/(\d{4})-(\d{2})-(\d{2})/); if(!m) return true;
+  const d=new Date(+m[1],+m[2]-1,+m[3]); const cut=new Date(); cut.setMonth(cut.getMonth()-2);
+  return d>=cut;
+}
+document.getElementById('news-list').innerHTML=NEWS.filter(n=>newsInRange(n.time)).map(n=>
+  `<li><span class="when tag-${n.tag}">${n.tag}</span><span class="nb"><b>${n.title}</b>：${n.desc}
+   <span class="meta">🔗 <a href="${n.url}" target="_blank" rel="noopener">${n.src}</a> · 🕒 ${n.time}</span></span></li>`
+).join('');
+document.getElementById('news-time').textContent=new Date().toLocaleString('zh-CN',{hour12:false});
+const newsCount=NEWS.filter(n=>newsInRange(n.time)).length;
+document.getElementById('sum-news').innerHTML=newsCount+' <small>条</small>';
+
+/* ============================================================
+   模块 3：FX_DATA（日币走势预估，由自动化每 1 小时替换）
+   来源：日币走势预估-1小时更新（Claw 自动化）
+============================================================ */
+const FX_DATA={
+  date:'2026-08-06',
+  now:0.0427983257,
+  latest:'4.2798',
+  ccbSell:'4.2908',
+  usdjpy:'157.72',
+  usdcny:'6.7480',
+  ytd:'-3.79%',
+  updated:'2026-08-06 13:47 · 新浪财经现汇·汇率插件·雅虎财经·CME FedWatch·BoJ/Fed 公开信息（交叉校验 6.7480÷157.72×100=4.2790）',
+  alertOn:true,
+  historyVals:[4.866,4.818,4.7054,4.5841,4.5217,4.4482,4.459,4.3458,4.2949,4.3019,4.215,4.1704,4.2798],
+  base:[4.2798,4.283,4.2862,4.2894,4.2926,4.2958,4.299,4.3022,4.3054,4.3086,4.3118,4.315,4.3182,4.3214,4.3246,4.3278,4.331,4.3342,4.3374,4.3406,4.3438,4.347,4.3502,4.3534,4.3566,4.3598,4.363,4.3662,4.3694,4.3726,4.3758,4.379,4.3822,4.3854,4.3886,4.3918,4.395,4.3982,4.4014,4.4046,4.4078,4.411,4.4142,4.4174,4.4206,4.4238,4.427,4.4302,4.4334,4.4366,4.4398,4.443,4.4462,4.4494],
+  bull:[4.2798,4.2845,4.2892,4.2939,4.2986,4.3033,4.308,4.3127,4.3174,4.3221,4.3268,4.3315,4.3362,4.3409,4.3456,4.3503,4.355,4.3597,4.3644,4.3691,4.3738,4.3785,4.3832,4.3879,4.3926,4.3973,4.402,4.4067,4.4114,4.4161,4.4208,4.4255,4.4302,4.4349,4.4396,4.4443,4.449,4.4537,4.4584,4.4631,4.4678,4.4725,4.4772,4.4819,4.4866,4.4913,4.496,4.5007,4.5054,4.5101,4.5148,4.5195,4.5242,4.5289],
+  bear:[4.2798,4.2771,4.2744,4.2717,4.269,4.2663,4.2636,4.2609,4.2582,4.2555,4.2528,4.2501,4.2474,4.2447,4.242,4.2393,4.2366,4.2339,4.2312,4.2285,4.2258,4.2231,4.2204,4.2177,4.215,4.2123,4.2096,4.2069,4.2042,4.2015,4.1988,4.1961,4.1934,4.1907,4.188,4.1853,4.1826,4.1799,4.1772,4.1745,4.1718,4.1691,4.1664,4.1637,4.161,4.1583,4.1556,4.1529,4.1502,4.1475,4.1448,4.1421,4.1394,4.1367],
+  allDates:['2025-08-31','2025-09-30','2025-10-31','2025-11-30','2025-12-31','2026-01-31','2026-02-28','2026-03-31','2026-04-30','2026-05-31','2026-06-30','2026-07-31','2026-08-06','2026-08-06','2026-08-07','2026-08-08','2026-08-09','2026-08-10','2026-08-11','2026-08-12','2026-08-13','2026-08-14','2026-08-15','2026-08-16','2026-08-17','2026-08-18','2026-08-19','2026-08-20','2026-08-21','2026-08-22','2026-08-23','2026-08-24','2026-08-25','2026-08-26','2026-08-27','2026-08-28','2026-08-29','2026-08-30','2026-08-31','2026-09-01','2026-09-02','2026-09-03','2026-09-04','2026-09-05','2026-09-06','2026-09-07','2026-09-08','2026-09-09','2026-09-10','2026-09-11','2026-09-12','2026-09-13','2026-09-14','2026-09-15','2026-09-16','2026-09-17','2026-09-18','2026-09-19','2026-09-20','2026-09-21','2026-09-22','2026-09-23','2026-09-24','2026-09-25','2026-09-26','2026-09-27'],
+  alert:"⚠️ 重大新闻弹窗（8/6 13:47）：① 创纪录联合干预——日本财务省单日投入 <b>8.45万亿日元</b>（史上最大单次操作）、次日再投约 <b>5.3万亿</b>，合计约 <b>14万亿日元</b>（折约$89亿）；美财政部2011年来首度加入买入日元，卖出欧元而非美元融资；贝森特称「whatever it takes」、毫不犹豫进一步联合干预。② 美银(BofA)上调日元年末目标至 <b>149</b>（原152），野村更看 <b>147.5</b>，预计年内反弹约 <b>6%</b>（当前 USD/JPY ~157.7）。③ BoJ 6月纪要 <b>7比1</b> 加息至 <b>1.00%</b>、9月加息成「实时选项」；美联储利率 <b>3.50%–3.75%</b>、3名委员反对维持、2026无降息定价；美日利差 <b>250bp+</b> 仍是核心拖累。USD/JPY 在 <b>157.72</b> 附近盘整（200日EMA ~158.04），100日元现报 <b>4.2798</b>（USD/CNY 6.7480）。",
+  scenario:[{name:'基准',usdjpy:'157.7',usdcny:'6.748',jpy100:'4.2798',prob:'46%',cls:'base',desc:'BoJ 6月纪要转鹰 + 日美联合干预托底 + 9/17–18加息概率约54% 仍高，三方拉锯使 USD/JPY 在 156–161 区间震荡；100 日元围绕 4.28 波动。'},{name:'乐观（续强）',usdjpy:'149.0',usdcny:'6.62',jpy100:'4.4430',prob:'28%',cls:'up',desc:'若 BoJ 9/17–18 真加息至 1.25%、套息加速平仓、USD/JPY 跌至 149（美银年末目标），100 日元升至 4.44 左右——对「低点买日元」最不利。'},{name:'悲观（回弱）',usdjpy:'163.0',usdcny:'6.78',jpy100:'4.1595',prob:'26%',cls:'down',desc:'美日利差 250bp+ 仍是核心拖累，联合干预治标难治本，若 BoJ 9 月推迟、套息重建，USD/JPY 重回 162–164，100 日元回落至 4.13–4.16 附近（近 52 周低位）——对「低点买日元」最有利。'}],
+  buyHint:"📌 对「低点买入日元」的提示：100 日元越低、买日元越划算。当前 100 日元 ≈ <b>4.2798</b>（USD/JPY 157.72）较 7/28 的 52 周低位 4.13 已反弹 <b>+3.63%</b>，并非低点。<br>· 美银上调年末目标至 149（年内反弹约6%）、野村看147.5，但需 BoJ 9/17–18 真加息配合<br>· <b>不追高</b>，维持<b>底仓 1/2</b>，剩余分批区间 <b>USD/JPY 159–163</b>（100 日元约 4.13–4.23）<br>· 关键验证点：<b>8/7 美国非农</b>与 <b>9/17–18 BoJ 会议</b><br>· 若 USD/JPY 有效跌破 <b>155</b>，应放弃等待、择机分批完成<br>非投资建议",
+  news:[{tag:'⚠ 头条',t:'创纪录联合干预——财务省单日 8.45万亿日元：',d:'次日再投约 5.3万亿，合计约 14万亿日元（折约$89亿）；美财政部2011年来首度加入买入日元，卖出欧元而非美元融资。干预买回约十一周贬值（USD/JPY 164→157.7），但利差未变，治标难治本。'},{tag:'美银/野村目标',t:'BofA 上调日元年末目标至 149、野村看147.5：',d:'美银预计年内反弹约 6%（当前 USD/JPY ~157.7），称「美国参与后干预最终约束实际已解除」；野村更看147.5，但均需 BoJ 加快加息配合。'},{tag:'美国数据',t:'ADP +4.4万逊预期、今20:30初请（预期20.2万）：',d:'7月私营就业增4.4万（预期7万）、服务业PMI 54.1（就业分项47.4）；今20:30初请（预期20.2万、前值19.7万）、明日20:30非农（预期+8万、失业率4.2%）定 Fed。疲软数据将缩小利差、利好日元。'},{tag:'BoJ纪要',t:'6月纪要7比1加息至1.00%、9月加息成实时选项：',d:'2名委员吁加快加息、多数忧通胀向消费端扩散；市场隐含 9/17–18 加息25bp至1.25%概率约 54%（CME FedWatch 8/6）。'},{tag:'日美干预',t:'贝森特称「whatever it takes」、FIMA后盾待批：',d:'FIMA回购便利上限$60亿/机构，日本持有~$1.14万亿美债（全球最大）；贝森特承诺重复联合操作并吁提高上限，但扩容需 Fed 委员会批准，目前仅是请求。'},{tag:'工行牌价',t:'工行日元现汇卖出价 100JPY ≈ 4.30：',d:'工行8/6牌价 现汇买入4.26/卖出4.30；建行实时获取受限，本页 ccbSell 按新浪现汇 4.2798 + 点差推算为 4.2908（购汇参考「现汇卖出价」）。实际以银行页面为准。'},{tag:'宏观',t:'USD/JPY 157.72、USD/CNY 6.7480（新浪财经）：',d:'200日EMA ~158.04，汇价在157–158盘整；交叉校验 100JPY = 6.7480÷157.72×100 = 4.2790；7/28 52周低位 4.13，当前较之 +3.63%。'},{tag:'机构观点',t:'瑞银/渣打/美银：干预治标难治本：',d:'美日利差250bp+仍是核心拖累；瑞银预计 BoJ 6–12月升至1.5%、基准情形 USD/JPY 将回升至 160–162；渣打称进口美元需求或推回160附近。关键验证点：8/7非农与 9/17–18 BoJ。'}],
+  history:[{m:'2025-08',v:'4.8660',p:''},{m:'2025-09',v:'4.8180',p:'-0.99'},{m:'2025-10',v:'4.7054',p:'-2.34'},{m:'2025-11',v:'4.5841',p:'-2.58'},{m:'2025-12',v:'4.5217',p:'-1.36'},{m:'2026-01',v:'4.4482',p:'-1.63'},{m:'2026-02',v:'4.4590',p:'0.24'},{m:'2026-03',v:'4.3458',p:'-2.54'},{m:'2026-04',v:'4.2949',p:'-1.17'},{m:'2026-05',v:'4.3019',p:'0.16'},{m:'2026-06',v:'4.2150',p:'-2.02'},{m:'2026-07',v:'4.1704',p:'-1.06'},{m:'2026-08',v:'4.2798',p:'2.62',real:true}],
+  events:[{date:'2026-08-15',t:'日本 Q2 GDP 初值',d:'二季度经济增长初值，影响日元基本面与BOJ政策预期'},{date:'2026-08-21',t:'日本7月全国CPI',d:'通胀走势牵动 BOJ 后续加息路径预期'},{date:'2026-08-28',t:'美国7月PCE物价指数',d:'美联储偏好的通胀指标，影响美元利率预期与USD/JPY'},{date:'2026-09-04',t:'美国8月非农就业报告',d:'就业数据影响美联储加息节奏与美元走势，间接牵动日元'},{date:'2026-09-09',t:'中国8月CPI/PPI',d:'中国通胀与内需信号，影响人民币走向与JPY/CNY'},{date:'2026-09-17',t:'日本央行 BoJ 会议(9/17-18)',d:'市场普遍预期年内再加息一次至1.25%；若落地将支撑日元，是「低点买日元」关键观察点'}]
+};
+function renderFx(){
+  const D=FX_DATA;
+  document.getElementById('fx-date').textContent=D.date;
+  document.getElementById('fx-now').textContent=D.latest;
+  document.getElementById('fx-now-sub').textContent='较7/28低位+3.73%';
+  document.getElementById('fx-ccb').textContent=D.ccbSell;
+  document.getElementById('fx-ccb-sub').textContent='100JPY(购汇参考)';
+  document.getElementById('fx-usd').textContent=D.usdjpy;
+  document.getElementById('fx-usd-sub').textContent='汇率插件 157.554';
+  document.getElementById('fx-usdcny').textContent=D.usdcny;
+  document.getElementById('fx-usdcny-sub').textContent='新浪财经在岸';
+  if(D.alertOn){
+    const a=document.getElementById('fx-alert');
+    a.innerHTML=D.alert;
+    a.classList.add('show');
+    document.getElementById('fx-badge').style.display='inline-block';
+  }
+  document.getElementById('fx-time').textContent=new Date().toLocaleString('zh-CN',{hour12:false});
+  document.getElementById('fx-note').innerHTML=
+    '下图将 <b>历史月度均值</b>（2025-08 至 '+D.date+'）与 <b>至 2026-09-25 的三情景预估</b> 绘制在同一坐标系：蓝色实线为历史月度均值，红/绿/红-虚线+空心圆点分别为基准/乐观/悲观情景。鼠标悬停查看具体数值，可拖动滑块局部放大。<b>非投资建议</b>。';
+
+  // ECharts 渲染：历史月度均值 + 三情景预估
+  const chartEl = document.getElementById('fxchart');
+  if (window.echarts) {
+    if (!window._fxChart) window._fxChart = echarts.init(chartEl);
+    const chart = window._fxChart;
+    const allDates = D.allDates;
+    const ctx = {
+      // 起点上一段历史 = 最后一个点补到 base/bull/bear 的起点，保证曲线连贯
+      history: D.historyVals.map((v, i) => [allDates[i], v]),
+      base: D.base.map((v, i) => [allDates[i + D.historyVals.length - 1], v]),
+      bull: D.bull.map((v, i) => [allDates[i + D.historyVals.length - 1], v]),
+      bear: D.bear.map((v, i) => [allDates[i + D.historyVals.length - 1], v]),
+    };
+    const splitIdx = D.historyVals.length - 1;   // 历史与预测的分界
+    chart.setOption({
+      animation: false,
+      grid: { left: 56, right: 24, top: 36, bottom: 64 },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'cross', lineStyle: { color: '#888', opacity: 0.4 } },
+        backgroundColor: 'rgba(255,255,255,0.97)',
+        borderColor: '#dde2ea',
+        borderWidth: 1,
+        textStyle: { color: '#1f2a37', fontSize: 12 },
+        formatter: (params) => {
+          if (!params || !params.length) return '';
+          const date = params[0].axisValue;
+          let html = `<div style="font-size:11px;color:#6b7280;margin-bottom:6px;font-weight:600">${date}</div>`;
+          params.forEach(p => {
+            const color = p.color;
+            const dash = p.seriesName.includes('悲') ? 'dashed' : (p.seriesName.includes('乐观') ? 'dashed' : 'solid');
+            const width = p.seriesName.includes('历史') ? '2.5' : '1.8';
+            html += `<div style="display:flex;justify-content:space-between;gap:14px;margin:2px 0;align-items:center">
+              <span style="display:flex;align-items:center;gap:6px">
+                <span style="display:inline-block;width:18px;height:${width}px;background:${color};border-radius:2px"></span>
+                <span>${p.seriesName}</span>
+              </span>
+              <b style="font-family:tabular-nums">${(p.value[1]).toFixed(4)}</b>
+            </div>`;
+          });
+          return html;
+        }
+      },
+      legend: {
+        bottom: 8,
+        icon: 'roundRect',
+        itemWidth: 18,
+        itemHeight: 3,
+        itemGap: 18,
+        textStyle: { color: '#4b5563', fontSize: 11 }
+      },
+      xAxis: {
+        type: 'category',
+        data: allDates,
+        boundaryGap: false,
+        axisLabel: {
+          color: '#4b5563',
+          fontSize: 11,
+          rotate: 30,
+          formatter: (val) => { const [_, m, d] = val.split('-'); return m + '/' + d; },
+          interval: (idx, val) => {
+            // 8 个均匀分布标签
+            const n = allDates.length;
+            const target = [0, 6, 12, 18, 30, 42, 54, n-1];
+            return target.includes(idx);
+          }
+        },
+        axisLine: { lineStyle: { color: '#dde2ea' } },
+        axisTick: { show: false },
+        splitLine: { show: false }
+      },
+      yAxis: {
+        type: 'value',
+        scale: true,
+        name: '100日元兑人民币',
+        nameLocation: 'end',
+        nameGap: 8,
+        nameTextStyle: { color: '#5a738b', fontSize: 11, fontWeight: 600 },
+        axisLabel: { color: '#4b5563', fontSize: 11, formatter: (v) => v.toFixed(1) },
+        axisLine: { show: false },
+        axisTick: { show: false },
+        splitLine: { lineStyle: { color: '#eef2f6', type: 'dashed' } }
+      },
+      dataZoom: [
+        { type: 'inside', xAxisIndex: 0, start: 0, end: 100 },
+        { type: 'slider', xAxisIndex: 0, height: 14, bottom: 32, start: 0, end: 100,
+          borderColor: '#dde2ea', fillerColor: 'rgba(122,155,107,0.15)',
+          handleStyle: { color: '#7a9b6b' }, moveHandleStyle: { color: '#7a9b6b' },
+          textStyle: { color: '#6b7280', fontSize: 10 } }
+      ],
+      series: [
+        { name: '历史月度均值', type: 'line', data: ctx.history, symbolSize: 5,
+          itemStyle: { color: '#5a738b' }, lineStyle: { width: 2.4, color: '#5a738b' },
+          smooth: false },
+        { name: '基准情景', type: 'line', data: ctx.base, symbolSize: 4,
+          itemStyle: { color: '#c66b5f' }, lineStyle: { width: 1.8, color: '#c66b5f', type: 'dashed' } },
+        { name: '乐观(日元续强)', type: 'line', data: ctx.bull, symbolSize: 4,
+          itemStyle: { color: '#7a9b6b' }, lineStyle: { width: 1.8, color: '#7a9b6b', type: 'dashed' } },
+        { name: '悲观(日元回弱)', type: 'line', data: ctx.bear, symbolSize: 4,
+          itemStyle: { color: '#a55a4e' }, lineStyle: { width: 1.8, color: '#a55a4e', type: 'dashed' } },
+        { name: '历史/预测分界', type: 'line', data: ctx.history, markLine: {
+          silent: true, symbol: 'none', label: { show: false },
+          lineStyle: { color: '#7a9b6b', type: 'dashed', width: 1 },
+          data: [{ xAxis: splitIdx }, { yAxis: 0 }]
+        }, lineStyle: { width: 0, color: 'transparent' }, tooltip: { show: false } }
+      ]
+    });
+    chart.resize();
+  } else {
+    // CDN 加载失败时 fallback：显示提示
+    chartEl.innerHTML = '<div style="padding:40px 20px;color:#888;text-align:center">图表加载失败（ECharts CDN 不可达），请检查网络后刷新</div>';
+  }
+
+  document.getElementById('fx-scn').innerHTML=
+    '<table class="fx-scn"><tr><th>情景</th><th>USD/JPY</th><th>USD/CNY</th><th>100日元</th><th>概率</th><th>含义</th></tr>'+
+    D.scenario.map(s=>'<tr class="'+s.cls+'"><td><b>'+s.name+'</b></td><td>'+s.usdjpy+'</td><td>'+s.usdcny+'</td><td><b>'+s.jpy100+'</b></td><td>'+s.prob+'</td><td class="l">'+s.desc+'</td></tr>').join('')+'</table>';
+  document.getElementById('fx-buy').innerHTML=D.buyHint;
+  document.getElementById('fx-news').innerHTML=D.news.map(n=>
+    `<li><span class="when tag-头条">${n.tag}</span><span class="nb"><b>${n.t}</b>${n.d}</span></li>`).join('');
+  document.getElementById('fx-hist').innerHTML=
+    '<table class="fx-hist"><tr><th>月份</th><th>100日元(月度均值)</th><th>环比%</th></tr>'+
+    D.history.map(h=>'<tr class="'+(h.real?'real':'')+'"><td>'+h.m+'</td><td>'+h.v+'</td><td>'+h.p+'</td></tr>').join('')+'</table>';
+  document.getElementById('fx-events').innerHTML=D.events.map(e=>
+    '<li><span class="date">'+e.date+'</span><span class="ev"><b>'+e.t+'</b><br><span>'+e.d+'</span></span></li>').join('');
+}
+renderFx();
+
+/* ===== 汇总条更新 ===== */
+document.getElementById('sum-fx').innerHTML=FX_DATA.latest+' <small>CNY</small>';
+document.getElementById('sum-update').textContent=FX_DATA.updated.split('·')[0].trim();
+</script>
+</body>
+</html>

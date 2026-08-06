@@ -1,0 +1,22 @@
+name: Deploy to CloudBase
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Tencent CloudBase
+        uses: TencentCloudBase/cloudbase-action@v2
+        with:
+          secretId: ${{ secrets.TC_SECRET_ID }}
+          secretKey: ${{ secrets.TC_SECRET_KEY }}
+          envId: ${{ secrets.TCB_ENV_ID }}
+          static: true
+          staticDir: .
+          force: true

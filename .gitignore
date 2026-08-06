@@ -1,0 +1,20 @@
+# 临时文件（自动化任务中间产物，禁止入库）
+.tmp*
+.tmpfetch/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.orig
+*~
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+*.log
+
+# Windows NUL 设备文件
+NUL
+null
