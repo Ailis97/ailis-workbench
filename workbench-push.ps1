@@ -147,8 +147,8 @@ try {
 
         $ts = Get-Date -Format "yyyy-MM-dd HH:mm"
 
-        # --- 1. 暂存全部（index.html + reports/ 等） ---
-        Invoke-Git -Params @("-C",$RepoDir,"add","-A") | Out-Null
+        # --- 1. 只暂存白名单文件（绝不 add -A，防止临时脚本/隐私文件混入公开仓库） ---
+        Invoke-Git -Params @("-C",$RepoDir,"add","--","index.html","README.md",".gitignore","workbench-push.ps1",".github","reports/fx","reports/news","reports/industries") | Out-Null
 
         # --- 2. 有改动则 commit，无改动则跳过（幂等） ---
         $diff = Invoke-Git -Params @("-C",$RepoDir,"diff","--cached","--stat")
