@@ -18,3 +18,20 @@ node_modules/
 # Windows NUL 设备文件
 NUL
 null
+
+# ===== 自动化任务工作目录隔离（防止中间产物/隐私混入公开仓库） =====
+# 自动化任务的分析文档、爬虫脚本、浏览器缓存等一律写入 automation-workspace，
+# 本仓库只保留平台白名单文件（index.html / reports/fx / reports/news / reports/industries）
+.workbuddy/
+_*.py
+_*.js
+_*.html
+_*.json
+_*.png
+gen_*.py
+gen_*.js
+cos_upload*.py
+cdp_helper.py
+prices-summary.json
+jd_*.json
+*.pma
