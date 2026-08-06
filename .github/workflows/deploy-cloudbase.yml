@@ -11,12 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to Tencent CloudBase
-        uses: TencentCloudBase/cloudbase-action@v2
-        with:
-          secretId: ${{ secrets.TC_SECRET_ID }}
-          secretKey: ${{ secrets.TC_SECRET_KEY }}
-          envId: ${{ secrets.TCB_ENV_ID }}
-          static: true
-          staticDir: .
-          force: true
+      - name: Install CloudBase CLI
+        run: npm install -g @cloudbase/cli
+
+      - name: Login CloudBase CLI
+        run: tcb login --apiKeyId ${{ secrets.TC_SECRET_ID }} --apiKey ${{ secrets.TC_SECRET_KEY }}
+
+      - name: Deploy to CloudBase Static Hosting
+        run: tcb hosting deploy . / -e ${{ secrets.TCB_ENV_ID }}
+
+      - name: Deploy success
+        if: success()
+        run: echo "✅ 部署成功！已发布到 CloudBase 静态托管"
