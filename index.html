@@ -426,20 +426,13 @@ document.getElementById('sum-industries').innerHTML=INDUSTRIES.length+' <small>�
    注意：仅保留发布于近 2 个月内的官方/权威源动态
 ============================================================ */
 const NEWS=[
-  {tag:'竞品',title:'FARO CREAFORM 推出 MetraSCAN BLACK2 计量级便携光学 3D 扫描仪',desc:'FARO CREAFORM（AMETEK 旗下）8/4 发布新一代计量级便携式光学三维扫描仪 MetraSCAN BLACK2，面向车间现场尺寸检测。采用三合一架构，一套设备集成 C-Track 扫描、单机扫描与接触式探测（搭配 HandyPROBE 光笔）；搭载 46 束蓝色激光线，最高 280 万次测量/秒，采集速度较前代提升约 56%；C-Track 灵活测量范围达 46.7 m³（前代 3 倍），大型件检测设站更少。经 ISO/IEC 17025 认可实验室验证，验收依据 ISO 10360 与 VDI/VDE 2634 Part 3。信号：便携光学 3D 扫描在大型件、现场检测上持续加码，对三丰 CMM / 便携测量方案形成替代与补位竞争，销售中可突出三丰在标准体系、校准网络与本地服务上的粘性。',
-   url:'http://www.creaform3d.com/en/pressroom/7699',src:'FARO CREAFORM 官网 creaform3d.com',time:'发布 2026-08-04'},
-  {tag:'头条',title:'三丰千分尺获日本机械学会「机械遗产」第134号认定',desc:'三丰所藏「ミツトヨ製マイクロメータ」（创业第1号千分尺，1936年完成）获一般社团法人日本机械学会2026年度「机械遗产」第134号认定，表彰其以国产化千分尺支撑日本机械工业发展的历史价值。可作为千分尺产品线的品牌背书与推广素材。',
-   url:'https://www.mitutoyo.co.jp/news/2026-08-03/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-08-03'},
-  {tag:'竞品',title:'海克斯康 2026 年度渠道合作伙伴大会在青岛落幕',desc:'海克斯康制造智能大中华区 7/30 在青岛举办 2026 年度渠道合作伙伴大会（主题「归零・更新・重启・向上」），现场举行合作伙伴星级授牌与新晋分销商签约，并设主会场 + 生产制造软件分会场 + 中观（自动化三维检测）分会场，公布 2026 战略升级、分销政策与新兴行业方案打法。信号：竞品正加码渠道扩张与分销商招募，需关注区域经销商争夺与行业方案型销售。',
-   url:'https://www.hexagonmi.com.cn/news/41459.html',src:'海克斯康制造智能官网 hexagonmi.com.cn',time:'发布 2026-08-03'},
-  {tag:'头条',title:'三丰设立令和8年熊本地震受灾客户复旧支援窗口',desc:'三丰 7/30 官网公告：为受熊本地震影响的客户设立复旧支援窗口，测量机器 / 试验机器的受损状况咨询与维修对应可联系就近营业所，或经客服中心邮箱提交申请表（附受损照片）；官方同时说明部分受损设备的功能与精度可能无法保证，量具的维修与换新由购买渠道经销商对接。对代理商的含义：近期日本本土维修与备件资源可能被占用，涉日返修、校准与交期需预留缓冲并提前与客户沟通。叠加 8/8 起本社夏季休业，8 月中旬涉日询价、返修、校准与备件补货将出现约两周响应真空。',
-   url:'https://www.mitutoyo.co.jp/news/2026-07-30/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-30'},
-  {tag:'新品',title:'三丰发布 MeasurLink 11 数据管理软件：史上最易用的版本',desc:'三丰美国 7/16 发布 MeasurLink 11 质量检测数据管理软件，主打「史上最易用」。改版亮点：现代化 UI（直观导航、欢迎页、适配车间环境的暗色模式）；统一的「零件与检测计划库」简化配置、提升效率；上下文敏感动态帮助降低培训与上手门槛；安装选项精简、部署更快；授权结构简化为仅两种许可，便于报价、下单与软件管理。对代理商的含义：MeasurLink 是三丰量具 / 量仪数据联网与 SPC 的核心软件层，新版降低客户部署门槛，有利于推动 U-WAVE、QM-Data200 等数据输出设备与三丰硬件的捆绑销售与软件续费。',
-   url:'https://www.mitutoyo.com/news/introducing-measurlink-11/',src:'三丰美国官网 mitutoyo.com',time:'发布 2026-07-16'},
-  {tag:'竞品',title:'OGP 推出 StarLite S1 半自动三轴视频测量系统',desc:'OGP（Optical Gaging Products）7 月发布 StarLite S1 半自动三轴（X/Y/Z）视频测量系统：台式一体构型，融合全自动影像测量与手动平台操作；搭载全新 IntelliCentric-S 光学系统（定焦光学 + VIRTUAL ZOOM 虚拟变焦），配合同轴 LED 顶光、底投轮廓光与 SmartRing 智能环光，可程序化控制光向与入射角以检测复杂特征；由 Measure-X 测量软件驱动，可生成自动检测流程。定位紧凑、高性价比，面向车间现场与计量实验室的快速高精度尺寸检测。信号：影像测量赛道竞争者持续推出紧凑型、易用型新品，与三丰 QV / QI 影像仪在中小尺寸、快检场景直接竞争，需关注其性价比与本地渠道。',
-   url:'https://www.ogpnet.com/news/ogp-launches-new-starlite-s1-semi-automatic-3-axis-video-measurement-system-featuring-all-new-high-performance-optical-system',src:'OGP 官网 ogpnet.com',time:'发布 2026-07'},
-  {tag:'新品',title:'三丰公开测定导航 App「Simple Navi」（测定ナビゲーションアプリ）',desc:'三丰日本 7/2 公开测定导航 App「Simple Navi」下载页。该 App 可基于图纸或照片设定测量部位、生成测量步骤；通过引导式操作让任何人都能不迷路地完成测量，并与 U-WAVE、输入工具等测量数据输入输出设备联动：测量数据可直接传送 / 输入到指定栏位、自动进行公差判定，助力检验业务效率与可靠性提升；测量结果可输出 CSV / PDF 供质量管理与分析使用。对代理商的含义：Simple Navi 是三丰「软件 + 无线数采（U-WAVE）+ 量具」生态的延伸，可作为数显量具（卡尺 / 千分尺 / 指示表）向数字化、无纸化检验推广的抓手，建议纳入中小企业数字化质检方案演示。',
-   url:'https://www.mitutoyo.co.jp/news/2026-07-02/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-02'}
+  {tag:'竞品',title:'海克斯康苏州无损检测创新大会：工业CT技术布道',desc:'海克斯康8/10在苏州举办无损检测创新大会，聚焦工业CT在精密检测、内部缺陷与尺寸一体化评定中的应用。信号：竞品把CT+尺寸检测作为高端非接触场景卖点，与三丰在常规量具/量仪上的标准完备性、校准网络与本地服务形成错位竞争；销售中可突出三丰在中小尺寸接触/光学测量的体系优势与响应速度。',url:'https://www.hexagonmi.com.cn/news/41524.html',src:'海克斯康官网 hexagonmi.com.cn',time:'发布 2026-08-10'},
+  {tag:'竞品',title:'LK Metrology 发布 CAMIO 2026 R1，集成雷尼绍 REVO 五轴测头',desc:'LK Metrology 8/7 推出 CAMIO 2026 R1 测量软件，原生集成雷尼绍 REVO 五轴测头，强化三坐标编程效率与高速扫描。信号：三坐标软件+五轴测头生态持续迭代，间接挤压三丰CMM高端市场软件体验；三丰优势在量具—量仪—数据软件(MeasurLink)全栈一致性与SPC联动。',url:'https://metrologynews.cn/lk-metrology-camio-2026-revo-integration/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-07'},
+  {tag:'头条',title:'三丰创业第1号千分尺获日本机械学会「机械遗产」第134号认定',desc:'三丰所藏1936年完成的创业第1号千分尺获日本机械学会2026年度「机械遗产」第134号认定，表彰其以国产化千分尺支撑日本机械工业发展的历史价值。可直接作为千分尺产品线的品牌背书与推广素材。',url:'https://www.mitutoyo.co.jp/news/2026-08-03/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-08-03'},
+  {tag:'竞品',title:'海克斯康2026年度渠道合作伙伴大会在青岛落幕',desc:'海克斯康大中华区7/30在青岛举办2026渠道合作伙伴大会(主题「归零·更新·重启·向上」)，现场星级授牌+新晋分销商签约，设主会场+生产制造软件+中观(自动化三维检测)分会场。信号：竞品加码渠道扩张与分销商招募，需关注区域经销商争夺与行业方案型销售。',url:'https://www.hexagonmi.com.cn/news/41459.html',src:'海克斯康官网 hexagonmi.com.cn',time:'发布 2026-08-03'},
+  {tag:'竞品',title:'巴西航空工业携手海克斯康推进预测性质量',desc:'Embraer(巴西航空工业)与海克斯康合作推进航空航天制造中的预测性质量(数据驱动过程控制与缺陷预防)。信号：高端制造客户从单点检测走向全流程质量数据平台，与三丰MeasurLink 11主推的易用数据管理方向一致；可借势向航空/精密制造客户强调MeasurLink+U-WAVE无线数采的轻量化落地。',url:'https://metrologynews.cn/embraer-hexagon-predictive-quality-aerospace-manufacturing/',src:'计量NEWS metrologynews.cn',time:'发布 2026-07-30'},
+  {tag:'新品',title:'三丰 QM-Fit 获机械工业设计奖 IDEA 认定',desc:'三丰 QM-Fit(量具/测量相关解决方案)获机械工业设计奖 IDEA 认定，体现三丰在测量+软件UX上的设计投入，可作产品线品牌技术形象素材。',url:'https://www.mitutoyo.co.jp/news/2026-07-17/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-17'},
+  {tag:'活动',title:'三丰台湾预告台北自动化展 + 3D CAD PMI 发表会',desc:'三丰台湾7/15预告参加台北自动化展并举办3D CAD PMI发表会(基于模型的定义/公差标注直接驱动测量编程)，展期2026-08-19~08-22。信号：三丰在推CAD→测量程序的MBQ工作流，可与QV/QI影像仪、MIC/MI三坐标编程提效联动推广。',url:'https://www.mitutoyo.com.tw/web/news/news_in.jsp?dm_no=DM1589971253425&np_no=NP1784099418402',src:'三丰台湾官网 mitutoyo.com.tw',time:'发布 2026-07-15'}
 ];
 // 仅展示发布于近 2 个月内的市场行情（打开页面时按当前日期自动剔除超期项）
 function newsInRange(t){
