@@ -118,6 +118,40 @@
   .news .meta a{color:var(--teal);text-decoration:none;font-weight:600}
   .news .meta a:hover{text-decoration:underline}
 
+  /* 电商行情快照（EC） */
+  .ec-stat{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 6px}
+  .ec-stat .s{background:#fbfdff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-width:96px}
+  .ec-stat .s .k{font-size:11px;color:var(--muted)}
+  .ec-stat .s .v{font-size:17px;font-weight:800;color:var(--ink);font-family:tabular-nums}
+  .ec-stat .s .v small{font-size:11px;color:var(--muted);font-weight:600}
+  .ec-stat .s.r .v{color:var(--red)}
+  .ec-stat .s.g .v{color:var(--green)}
+  .ec-warn{background:var(--amber-soft,#f6efe6);border:1px solid #e3d6c2;color:#7a6237;
+    border-radius:9px;padding:8px 12px;font-size:12px;line-height:1.6;margin:0 0 10px}
+  .ec{list-style:none;margin:4px 0 0;padding:0}
+  .ec li{font-size:12.5px;padding:9px 0;border-top:1px dashed var(--line);display:flex;gap:10px;align-items:flex-start}
+  .ec li:first-child{border-top:none}
+  .ec .p{flex:none;font-weight:800;color:var(--red);font-size:15px;min-width:74px;text-align:right;font-family:tabular-nums}
+  .ec .p small{display:block;font-size:10px;color:var(--muted);font-weight:600}
+  .ec .eb{flex:1}
+  .ec .eb b{color:var(--ink)}
+  .ec .eb .meta{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+  .ec .eb .meta a{color:var(--teal);text-decoration:none;font-weight:600}
+  .ec .eb .meta a:hover{text-decoration:underline}
+
+  /* 招标动态（BID） */
+  .bid{list-style:none;margin:6px 0 0;padding:0}
+  .bid li{font-size:12.5px;padding:9px 0;border-top:1px dashed var(--line)}
+  .bid li:first-child{border-top:none}
+  .bid .bt{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:3px}
+  .bid .bt .kw{background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:10.5px;padding:2px 8px;border-radius:5px}
+  .bid .bt .ty{background:var(--teal-soft);color:var(--teal);font-weight:700;font-size:10.5px;padding:2px 8px;border-radius:5px}
+  .bid .bt .dt{color:var(--muted);font-size:11px;margin-left:auto;font-family:tabular-nums}
+  .bid .bb{display:block;color:var(--ink);font-weight:600;line-height:1.5}
+  .bid .bm{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+  .bid .bm a{color:var(--teal);text-decoration:none;font-weight:600}
+  .bid .bm a:hover{text-decoration:underline}
+
   /* 日币走势预估（FX） */
   .fx-alert{background:var(--red-soft);border:1px solid #d8c0b8;border-radius:10px;padding:12px 15px;
     margin:0 0 14px;font-size:13px;color:#7a4a3e;line-height:1.7;display:none}
@@ -241,6 +275,14 @@
             <div class="k">⏱️ 最近刷新</div>
             <div class="v" id="sum-update" style="font-size:14px;font-weight:600">—</div>
           </div>
+          <div class="mini teal">
+            <div class="k">🛒 电商在售(正品)</div>
+            <div class="v" id="sum-ec">— <small>件</small></div>
+          </div>
+          <div class="mini blue">
+            <div class="k">📑 招标动态</div>
+            <div class="v" id="sum-bid">— <small>条</small></div>
+          </div>
         </div>
 
         <div class="card">
@@ -285,6 +327,20 @@ open workbuddy/workbench/index.html         # macOS</pre>
           <h2>📰 三丰市场行情（近 2 个月 · 官方 / 权威来源） <span class="tag" id="news-tag">每日 09:00 自动更新</span></h2>
           <div class="update-info">📡 自动化：<b>三丰每日市场行情速递</b> · 仅保留发布于近 2 个月内的官方/权威源（三丰官网 / 基恩士 / 海克斯康 / 计量 NEWS / 中国工控网等）· 最近更新：<span id="news-time">—</span></div>
           <ul class="news" id="news-list"></ul>
+        </div>
+
+        <div class="card">
+          <h2>🛒 电商行情快照（1688 平台） <span class="tag" id="ec-tag">每日 09:00 自动更新</span></h2>
+          <div class="update-info">📡 数据源：1688.com 检索「三丰卡尺/千分尺」等关键词 · 最近更新：<span id="ec-time">—</span></div>
+          <div class="ec-stat" id="ec-stat"></div>
+          <div class="ec-warn" id="ec-warn"></div>
+          <ul class="ec" id="ec-list"></ul>
+        </div>
+
+        <div class="card">
+          <h2>📑 招标动态（中国政府采购网 · 近 2 个月） <span class="tag" id="bid-tag">每日 09:00 自动更新</span></h2>
+          <div class="update-info">📡 数据源：ccgp.gov.cn 检索三丰/量具相关品类 · 最近更新：<span id="bid-time">—</span></div>
+          <ul class="bid" id="bid-list"></ul>
         </div>
       </section>
 
@@ -434,6 +490,52 @@ const NEWS=[
   {tag:'新品',title:'三丰 QM-Fit 获机械工业设计奖 IDEA 认定',desc:'三丰 QM-Fit(量具/测量相关解决方案)获机械工业设计奖 IDEA 认定，体现三丰在测量+软件UX上的设计投入，可作产品线品牌技术形象素材。',url:'https://www.mitutoyo.co.jp/news/2026-07-17/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-17'},
   {tag:'活动',title:'三丰台湾预告台北自动化展 + 3D CAD PMI 发表会',desc:'三丰台湾7/15预告参加台北自动化展并举办3D CAD PMI发表会(基于模型的定义/公差标注直接驱动测量编程)，展期2026-08-19~08-22。信号：三丰在推CAD→测量程序的MBQ工作流，可与QV/QI影像仪、MIC/MI三坐标编程提效联动推广。',url:'https://www.mitutoyo.com.tw/web/news/news_in.jsp?dm_no=DM1589971253425&np_no=NP1784099418402',src:'三丰台湾官网 mitutoyo.com.tw',time:'发布 2026-07-15'}
 ];
+/* ============================================================
+   模块 2b：EC_NEWS（1688 电商行情快照，每日 09:00 由自动化替换）
+   字段：updated / src / note / stat{count,pmin,pmax,pmedian,authMin,authMax,authCount} / items[{title,price,vol,city,shopYears,url}]
+   注意：平台公开检索结果，含非官方店铺与疑似仿品，价格/销量仅供参考，非三丰官方指导价
+============================================================ */
+const EC_NEWS={
+  updated:"2026-08-10",
+  src:"1688.com 检索「三丰卡尺/千分尺」等关键词",
+  note:"平台公开检索结果，含非官方店铺与疑似仿品（低价位多为蹭流量），价格/销量仅供参考，非三丰官方指导价",
+  stat:{count:21,pmin:8.3,pmax:3850.0,pmedian:228.0,authMin:200.0,authMax:3850.0,authCount:13},
+  items:[
+  {title:"三丰不锈钢游标卡尺0-150公英制高精度工业级游标量具尺530-312",price:200.0,vol:"成交100+笔",city:"昆山市",shopYears:14,url:"https://detail.1688.com/offer/585461126213.html"},
+  {title:"通用三丰量具SPC数据输入装置数显卡尺无线数据采集系统JST-W1-RM",price:450.0,vol:"成交8笔",city:"昆山市",shopYears:16,url:"https://detail.1688.com/offer/610896589983.html"},
+  {title:"日本三丰数显深度尺 0-150/200/300 高精度电子游标卡尺571-201",price:595.0,vol:"成交7笔",city:"东莞市",shopYears:3,url:"https://detail.1688.com/offer/776289585806.html"},
+  {title:"日本进口三丰Mitutoyo数显游标卡尺 500-714-20防冷却液量程0-300",price:1750.0,vol:"成交1笔",city:"苏州市",shopYears:8,url:"https://detail.1688.com/offer/848805039094.html"},
+  {title:"日本三丰 高精度电子游标卡尺0-150 硬质合金量爪 数显卡尺测量",price:210.0,vol:"成交1笔",city:"淮北市",shopYears:3,url:"https://detail.1688.com/offer/752080751019.html"},
+  {title:"日本三丰571-100-20数显高精度 微型深度尺",price:1650.0,vol:"成交1笔",city:"深圳市",shopYears:3,url:"https://detail.1688.com/offer/762968973843.html"},
+  {title:"三丰薄片型千分尺 422-230-30 原装现货 可开税票",price:2800.0,vol:"成交0笔",city:"福州市",shopYears:5,url:"https://detail.1688.com/offer/772934068714.html"},
+  {title:"三丰大量程数显游标卡尺0-450/600/1000mm原装正品500501 502 506",price:3850.0,vol:"成交0笔",city:"成都市",shopYears:13,url:"https://detail.1688.com/offer/761991719503.html"},
+  {title:"批发日本三丰数显游标卡尺500-197-30 0-200精密测量量具卡尺",price:1330.0,vol:"成交0笔",city:"无锡市",shopYears:17,url:"https://detail.1688.com/offer/45137352665.html"},
+  {title:"日本三丰游标卡尺 划线尺刻度尺530系列四用带表线卡尺150/200/30",price:228.0,vol:"成交0笔",city:"深圳市",shopYears:3,url:"https://detail.1688.com/offer/769994680222.html"}
+  ]
+};
+/* ============================================================
+   模块 2c：BID_NEWS（中国政府采购网招标动态，每日 09:00 由自动化替换）
+   字段：kw / title / date / buyer / type / prov / url
+   注意：仅保留近 2 个月内、与三丰/量具/计量直接相关条目（已过滤地名误命中与搜索页噪声）
+============================================================ */
+const BID_NEWS=[
+  {kw:"三坐标测量机",title:"关于浙江理工大学三坐标测量机采购项目（第三次）公开招标公告",date:"2026.08.08",buyer:"浙江理工大学",type:"公开招标公告",prov:"浙江",url:"http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260808_27099132.htm"},
+  {kw:"三坐标测量机",title:"中山大学天琴中心高精度三坐标测量机采购项目（中大招（货）[2026]058号/CLF26KF01ZC74）中标结果公告",date:"2026.08.07",buyer:"中山大学",type:"中标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260807_27096004.htm"},
+  {kw:"轮廓仪",title:"中国科学院合肥物质科学研究院高精度非接触三维轮廓仪采购项目公开招标公告",date:"2026.07.28",buyer:"中国科学院合肥物质科学研究院",type:"公开招标公告",prov:"安徽",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260728_27021451.htm"},
+  {kw:"三坐标测量机",title:"中国科学院理化技术研究所高速高精度五轴三坐标测量机采购项目中标公告",date:"2026.07.20",buyer:"中国科学院理化技术研究所",type:"中标公告",prov:"北京",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260720_26964556.htm"},
+  {kw:"三坐标测量机",title:"中山大学天琴中心高精度三坐标测量机采购项目招标公告",date:"2026.07.16",buyer:"中山大学",type:"公开招标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260716_26948677.htm"},
+  {kw:"影像测量仪",title:"陕西国防工业职业技术学院复合式影像测量仪项目竞争性谈判公告",date:"2026.07.14",buyer:"陕西国防工业职业技术学院",type:"竞争性谈判公告",prov:"陕西",url:"http://www.ccgp.gov.cn/cggg/dfgg/jzxtpgg/202607/t20260714_26931885.htm"},
+  {kw:"三坐标测量机",title:"中国海洋大学激光测振器系统、三坐标测量机等设备采购项目中标公告",date:"2026.07.14",buyer:"中国海洋大学",type:"中标公告",prov:"山东",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260714_26929848.htm"},
+  {kw:"影像测量仪",title:"中冠工程管理咨询有限公司关于台州市计量技术研究院圆度圆柱形状测量仪、影像测量仪、手持式充电桩检定装置等仪器设备采购项目中标(成交)结果公告",date:"2026.07.10",buyer:"台州市计量技术研究院",type:"中标公告",prov:"浙江",url:"http://www.ccgp.gov.cn/cggg/dfgg/zbgg/202607/t20260710_26913651.htm"},
+  {kw:"三坐标测量机",title:"成都航空职业技术大学三坐标测量机采购项目中标（成交）结果公告",date:"2026.06.29",buyer:"成都航空职业技术大学",type:"中标公告",prov:"四川",url:"http://www.ccgp.gov.cn/cggg/dfgg/zbgg/202606/t20260629_26837291.htm"},
+  {kw:"轮廓仪",title:"三维光学轮廓仪招标公告",date:"2026.06.26",buyer:"深圳大学",type:"公开招标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202606/t20260626_26827119.htm"},
+  {kw:"硬度计",title:"中国科学院福建物质结构研究所全自动显微硬度计采购项目终止公告",date:"2026.06.26",buyer:"中国科学院福建物质结构研究所",type:"终止公告",prov:"福建",url:"http://www.ccgp.gov.cn/cggg/zygg/fblbgg/202606/t20260626_26822183.htm"},
+  {kw:"三坐标测量机",title:"中国科学院理化技术研究所高速高精度五轴三坐标测量机采购项目公开招标公告",date:"2026.06.26",buyer:"中国科学院理化技术研究所",type:"公开招标公告",prov:"北京",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202606/t20260626_26824328.htm"},
+  {kw:"影像测量仪",title:"中冠工程管理咨询有限公司关于台州市计量技术研究院圆度圆柱形状测量仪、影像测量仪、手持式充电桩检定装置等仪器设备采购项目的公开招标公告",date:"2026.06.18",buyer:"台州市计量技术研究院",type:"公开招标公告",prov:"浙江",url:"http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202606/t20260618_26778068.htm"},
+  {kw:"三坐标测量机",title:"中国海洋大学激光测振器系统、三坐标测量机等设备采购项目公开招标公告",date:"2026.06.18",buyer:"中国海洋大学",type:"公开招标公告",prov:"山东",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202606/t20260618_26773864.htm"},
+  {kw:"轮廓仪",title:"中国科学院金属研究所表面微观三维轮廓仪采购项目中标公告",date:"2026.06.10",buyer:"中国科学院金属研究所",type:"中标公告",prov:"辽宁",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202606/t20260610_26724683.htm"},
+  {kw:"三坐标测量机",title:"中国科学院金属研究所三坐标测量机采购项目废标公告",date:"2026.06.10",buyer:"中国科学院金属研究所",type:"其他公告",prov:"辽宁",url:"http://www.ccgp.gov.cn/cggg/zygg/qtgg/202606/t20260610_26724630.htm"}
+];
 // 仅展示发布于近 2 个月内的市场行情（打开页面时按当前日期自动剔除超期项）
 function newsInRange(t){
   const m=t.match(/(\d{4})-(\d{2})-(\d{2})/); if(!m) return true;
@@ -447,6 +549,38 @@ document.getElementById('news-list').innerHTML=NEWS.filter(n=>newsInRange(n.time
 document.getElementById('news-time').textContent=new Date().toLocaleString('zh-CN',{hour12:false});
 const newsCount=NEWS.filter(n=>newsInRange(n.time)).length;
 document.getElementById('sum-news').innerHTML=newsCount+' <small>条</small>';
+
+/* 电商行情快照渲染 */
+(function(){
+  const E=EC_NEWS;
+  document.getElementById('ec-time').textContent=E.updated;
+  const s=E.stat;
+  document.getElementById('ec-stat').innerHTML=
+    `<div class="s"><div class="k">在售商品</div><div class="v">${s.count}<small> 件</small></div></div>`+
+    `<div class="s"><div class="k">价格区间(全量)</div><div class="v">¥${s.pmin}<small>~${s.pmax}</small></div></div>`+
+    `<div class="s r"><div class="k">正品区间</div><div class="v">¥${s.authMin}<small>~${s.authMax}</small></div></div>`+
+    `<div class="s g"><div class="k">正品在售</div><div class="v">${s.authCount}<small> 件</small></div></div>`;
+  document.getElementById('ec-warn').textContent='⚠️ '+E.note;
+  document.getElementById('ec-list').innerHTML=E.items.map(x=>
+    `<li><span class="p">¥${x.price}<small>${x.vol}</small></span><span class="eb"><b>${x.title}</b>`+
+    `<span class="meta">📍 ${x.city} · 开店 ${x.shopYears} 年 · 🔗 <a href="${x.url}" target="_blank" rel="noopener">1688 商品页</a></span></span></li>`
+  ).join('');
+})();
+
+/* 招标动态渲染 */
+(function(){
+  const B=BID_NEWS;
+  document.getElementById('bid-time').textContent=B.length?B[0].date:'—';
+  document.getElementById('bid-list').innerHTML=B.map(x=>
+    `<li><span class="bt"><span class="kw">${x.kw}</span><span class="ty">${x.type}</span><span class="dt">${x.date}</span></span>`+
+    `<span class="bb">${x.title}</span>`+
+    `<span class="bm">🏛️ ${x.buyer}（${x.prov}）· 🔗 <a href="${x.url}" target="_blank" rel="noopener">公告原文</a></span></li>`
+  ).join('');
+})();
+
+/* dashboard 首页统计 */
+document.getElementById('sum-ec').innerHTML=EC_NEWS.stat.authCount+' <small>件</small>';
+document.getElementById('sum-bid').innerHTML=BID_NEWS.length+' <small>条</small>';
 
 /* ============================================================
    模块 3：FX_DATA（日币走势预估，由自动化每 1 小时替换）
