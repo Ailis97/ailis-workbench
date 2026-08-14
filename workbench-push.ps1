@@ -42,6 +42,10 @@ if ($pathGit) { $GitPath = $pathGit }
 $candidates = @(
     "$env:USERPROFILE\.workbuddy\vendor\PortableGit\mingw64\bin\git.exe",
     "$env:USERPROFILE\.workbuddy\vendor\PortableGit\bin\git.exe",
+    # 2026-08-12: WorkBuddy 把 PortableGit 从 vendor\ 迁到 binaries\PortableGit\versions\<ver>\，加通配兜底
+    "$env:USERPROFILE\.workbuddy\binaries\PortableGit\versions\*\mingw64\bin\git.exe",
+    "$env:USERPROFILE\.workbuddy\binaries\PortableGit\versions\*\bin\git.exe",
+    "$env:USERPROFILE\.workbuddy\binaries\PortableGit\mingw64\bin\git.exe",
     "$env:ProgramFiles\Git\mingw64\bin\git.exe",
     "$env:ProgramFiles\Git\bin\git.exe",
     "$env:ProgramFiles\Git\cmd\git.exe",
@@ -50,7 +54,10 @@ $candidates = @(
     "${env:ProgramFiles(x86)}\Git\cmd\git.exe"
 )
 foreach ($c in $candidates) {
-    if (-not $GitPath -and (Test-Path $c)) { $GitPath = $c; break }
+    if ($GitPath) { break }
+    # 支持通配路径（binaries\PortableGit\versions\<ver>\...），取版本号最大的一个
+    $hit = Get-Item -Path $c -ErrorAction SilentlyContinue | Sort-Object FullName -Descending | Select-Object -First 1
+    if ($hit) { $GitPath = $hit.FullName }
 }
 
 if (-not $GitPath) {
