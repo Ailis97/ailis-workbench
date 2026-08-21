@@ -1,0 +1,22 @@
+{
+  "name": "marketing-agent",
+  "version": "1.0.0",
+  "description": "市场宣传与内容营销 Agent - 建立产品→内容→发布→传播→线索→商机→成交的完整增长闭环",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "demo": "node src/demo.js",
+    "daily": "node -e \"const Agent = require('./src/main'); const agent = new Agent(); agent.dailyWorkflow().then(r => console.log(JSON.stringify(r, null, 2)))\"",
+    "weekly": "node -e \"const Agent = require('./src/main'); const agent = new Agent(); agent.weeklyProductionWorkflow(process.argv[1] || new Date().toISOString().split('T')[0]).then(r => console.log(JSON.stringify(r, null, 2)))\""
+  },
+  "keywords": [
+    "marketing",
+    "content",
+    "mitutoyo",
+    "short-video",
+    "social-media"
+  ],
+  "author": "Ailis",
+  "license": "UNLICENSED",
+  "private": true
+}
