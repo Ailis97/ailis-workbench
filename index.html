@@ -464,13 +464,13 @@ document.getElementById('sum-industries').innerHTML=INDUSTRIES.length+' <small>�
    注意：仅保留发布于近 2 个月内的官方/权威源动态
 ============================================================ */
 const NEWS=[
-  {tag:'竞品',title:'海克斯康破解 AI 液冷分歧管量产检测瓶颈：单件 25 分钟→7 分钟',desc:'8/21 海克斯康（计量NEWS 报道）针对 AI 算力液冷冷板分歧管的量产检测，以三坐标测量方案将单件检测从 25 分钟压缩至 7 分钟，解决齿形／齿深／位置度等形位特征的高效批量检测难题。信号：竞品把计量能力直接嵌入新能源与算力产线节拍，与 Ailis 行业增量中「液冷冷板→三坐标／轮廓仪／粗糙度仪」需求高度重合；三丰应强化车间级三坐标 CRYSTA-Apex V 与在机数显表／轮廓仪的「检测即生产」方案话术。',url:'https://metrologynews.cn/haikesikang-ai-yeleng-fenqiguan-sanzuobiao-jiance/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-21'},
-  {tag:'展会',title:'三丰亮相 2026 台北国际自动化工业大展，发表「3D CAD PMI」产品发表会',desc:'8/19~22 台湾三丰仪器参展 2026 台北国际自动化工业大展（南港展览馆 L1018），并于 8/20 举办产品发表会，主题「三丰以 3D CAD PMI 为制造与品保流程创造最高效益（Mitutoyo Transforming Production with Automated 3D PMI）」。信号：三丰在华人市场持续推 MBD／QM 数字化测量与 PMI 自动编程，可与 MeasurLink 11、U-WAVE 无线数采组合，作为对国内数显／投影仪存量客户的升级切入点。',url:'https://www.mitutoyo.com.tw/web/news/news_in.jsp?np_no=NP1784099418402&dm_no=DM1589971253425',src:'三丰台湾官网 mitutoyo.com.tw',time:'活动 2026-08-19~22'},
-  {tag:'竞品',title:'徕卡 RTC 三维激光扫描仪助力大型高铁站异形穹顶施工',desc:'8/17 海克斯康旗下徕卡（Leica）RTC 系列三维激光扫描仪应用于西南某大型高铁枢纽异形双曲面钢网壳穹顶施工：单站扫描 43 秒、点位精度 1.5mm@10m、270m 测程、VIS 视觉追踪简化搬站，配合 Cyclone 3DR 与 Rhino＋Grasshopper 实现「现场实测-三维建模-构件加工」全流程误差可控。信号：海克斯康把大空间三维扫描向基建与工程现场纵深推进，三丰应以 MiSTAR 555 车间型 CMM、U-WAVE 无线数采与 MeasurLink 守住车间在线测量与可溯源校准的差异化。',url:'https://metrologynews.cn/leica-rtc-yixing-qiongding-gaotiezhan-jianzhu-saomiao/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-17'},
-  {tag:'竞品',title:'海克斯康原位 CT 技术实现材料动态演化无损观测',desc:'8/15 海克斯康推出原位 CT（in-situ CT）检测技术：在常规工业 CT 基础上集成原位试验模块，可在 X 射线断层扫描同时施加真实工况载荷（高温／低温／拉伸／压缩／剪切／烧结／腐蚀／充放电），实现材料内部微孔隙萌生到裂纹贯通的全流程三维动态观测（微米级）。信号：竞品把计量从「尺寸检测」延伸到「材料演化机理研究」，进一步拉开与通用量具的代差；三丰可强调「车间即用、全尺寸链覆盖、校准溯源」的务实定位，对研发端客户以粗糙度／轮廓／硬度等表面与形状计量组合应对。',url:'https://metrologynews.cn/haikesikang-yuanshi-ct-dongtai-wusun-guance/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-15'},
-  {tag:'竞品',title:'三菱电机与索尼合资成立 Advanced Vision Solutions，主攻 AI 视觉传感器',desc:'8/6 三菱电机与索尼半导体解决方案签署最终协议，成立合资公司 Advanced Vision Solutions（计划 2026 年 10 月运营），在图像传感器上直接完成 AI 视觉分析，服务制造设备自动化与无人化。信号：这是对基恩士视觉传感器基本盘的正面挑战，在线视觉检测赛道继续内卷；三丰应强化「可溯源尺寸计量」定位，用 U-WAVE 无线数采＋MeasurLink 把车间量具数据接进客户自动化体系。',url:'https://metrologynews.cn/mitsubishi-sony-ai-vision-sensor-jv/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-06'},
-  {tag:'头条',title:'三丰创业第 1 号千分尺获日本机械学会「机械遗产」第 134 号认定',desc:'8/3 三丰所藏 1936 年完成的创业第 1 号千分尺获日本机械学会 2026 年度「机械遗产」第 134 号认定，表彰其以国产化千分尺支撑日本机械工业发展的历史价值；认定品为「机番 17」完全无缺的 17 台之一。同期报道亦提及三丰最新高速高精度数显千分尺 QuantuMike MDE（主轴移动速度约为标准千分尺 4 倍）。可直接作为千分尺产品线的品牌背书与推广素材。',url:'https://www.mitutoyo.co.jp/news/2026-08-03/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-08-03'},
-  {tag:'新品',title:'三丰 QM-Fit 获第 56 届机械工业设计奖 IDEA（审查委员会特别奖）',desc:'7/17 三丰 QM-Fit（智能全自动数字影像测量系统）获第 56 届机械工业设计奖 IDEA（主办：日刊工业新闻社）审查委员会特别奖，为三丰该奖项第 7 件获奖产品。QM-Fit 定位「谁都能轻松使用、大幅缩短检测时间」，以 Calipersnap 卡尺式快速测量与触控操作著称，对国内投影仪存量替换客户是有效的升级话术（替代传统投影仪人工比对流程）。',url:'https://www.mitutoyo.co.jp/news/2026-07-17/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-17'}
+  {tag:'展会',title:'台湾三丰宣布参展 SEMICON Taiwan 2026 国际半导体展，主打 AI 世代智能量测',desc:'8/25 台湾三丰仪器发布展览资讯：将于 SEMICON Taiwan 2026 国际半导体展（台北南港展览馆 1 馆 4F，摊位 N0270，9/2~9/4）展出 Mitutoyo 精密量测仪器与技术，现场设「自动化智慧量测区／光学部品区／精密量测设备区」三大展区，主打「最精密的量测机台＋AI 智能化量测软体」，透过自动化设定实现全方位量测需求，并对客户提供折扣码 N0270 免费参观。信号：三丰把半导体前道／后道量测与 AI 软体作为主攻方向，对国内半导体、光学部品、精密结构件客户是明确的高端机台切入窗口；可同步对接 QM-Fit／QV Apex 影像系统与 MeasurLink 数据链话术。',url:'https://www.mitutoyo.com.tw/web/news/news_in.jsp?np_no=NP1787622139881&dm_no=DM1589971253425',src:'三丰台湾官网 mitutoyo.com.tw',time:'发布 2026-08-25'},
+  {tag:'竞品',title:'尼康干涉物镜支撑德国 GBS metrology 亚纳米级表面／粗糙度测量',desc:'8/24 计量NEWS 报道：德国 GBS metrology 的相干扫描（白光）干涉三维传感器与轮廓仪，长期采用尼康工业计量事业部 CF IC EPI Plan DI（Mirau 型）与 TI（Michelson 型）干涉物镜；旗舰 smartWLI nimbus8 配 10× 物镜可达 0.5μm 测点间距，满足 ISO 21920 合规粗糙度测量，并用 10GigE＋800 万像素相机与 NVIDIA GPU 并行计算提升产线内实时质控吞吐。信号：光学非接触粗糙度／轮廓测量正从实验室下沉到产线，直接冲击三丰 SJ-210／SJ-410 接触式粗糙度仪与 SV／CV 轮廓测量机的高端应用；三丰应突出 ISO 21920 合规、JCSS 可溯源校准与「一机多参数（Ra/Rz/轮廓/形状）」的性价比组合。',url:'https://metrologynews.cn/nikon-nikang-gbs-metrology-biaomianceliang/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-24'},
+  {tag:'竞品',title:'天准 CME 三坐标切入 AI 液冷 UQD 快速接头量产检测，直指卡尺／千分尺能力短板',desc:'8/24 天准科技以 CME 系列桥式三坐标＋Vispec Cube 软件＋TR50 旋转测座（5° 分度、1 秒／分度）＋300mm 加长杆＋盘形专用探针，构建 AI 数据中心液冷 UQD 快速接头的密封段圆柱度／同轴度／密封槽尺寸精密测量方案，支持连续螺旋扫描与高斯滤波、GD&T 评价、SPC 报表。原文明确指出「卡尺、千分尺等常规量具主要用于单点或局部尺寸测量，难以完整评价三维形位公差」。信号：国产厂商正用「形位公差＋量产节拍」话术把通用量具挤出液冷等新兴高价值品类；三丰须以 MiSTAR 555／CRYSTA-Apex V 车间型 CMM 与 SurfTest／Contracer 组合承接客户从「量具」向「形位公差」的升级需求，避免只守卡尺千分尺基本盘。',url:'https://metrologynews.cn/sanzuobiao-celiangji-tianzhun-cme-liquid-cooling-quick-disconnect-uqd-jiance/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-24'},
+  {tag:'竞品',title:'海克斯康与舍弗勒推进 AEON 工业人形机器人部署，目标数年内至少 1000 台',desc:'8/24 海克斯康机器人事业部与舍弗勒宣布合作新里程碑：AEON 人形机器人正式进入舍弗勒德国「人形机器人训练场（Humanoid Gym）」，以「训练-验证-部署」一体化模式通过模仿学习掌握工业技能，未来六个月将在舍弗勒多个制造工作流场景部署，双方目标为数年内部署至少 1000 台；舍弗勒同时为 AEON 提供先进执行器技术。信号：海克斯康正把计量能力向「自动化执行体」延伸，抢占车间自动化入口；三丰的应对重心应放在 U-WAVE 无线数采＋MeasurLink 11 把量具数据接入客户 MES／自动化体系，守住「可溯源尺寸数据源」这一不可替代位置。',url:'https://metrologynews.cn/hexagon-schaeffler-aeon-humanoid-deployment/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-24'},
+  {tag:'竞品',title:'国产中图仪器 VT6000 共聚焦显微镜进入高校前沿材料科研，抢占粗糙度表征场景',desc:'8/21 计量NEWS 报道：湖北大学 MOFs 光热防冰材料研究（成果发表于影响因子 52.9 的《eScience》）中，国产中图仪器 VT6000 共聚焦显微镜承担无损三维形貌定量表征核心角色——针对 50μm 超薄铜箔激光刻蚀蜂窝微结构，完整还原三维形貌并测得 Ra／Rz／Rq 及蜂窝壁平均高度，支持批量自动扫描与标准化量化报告。信号：国产光学形貌／粗糙度仪器以「纳米级重复精度＋本地化服务＋交期短」组合切入高校与研发端，这是三丰 SJ 系列与 Formtracer 在科研市场的直接竞争面；三丰应以 JCSS／ISO 17025 校准溯源链、全球统一标准和长期精度稳定性作为差异化答复。',url:'https://metrologynews.cn/zhongtu-chotest-vt6000-gongjujiao-xianweijing/',src:'计量NEWS metrologynews.cn',time:'发布 2026-08-21'},
+  {tag:'头条',title:'三丰创业第 1 号千分尺获日本机械学会「机械遗产」第 134 号认定',desc:'8/3 三丰所藏 1936 年完成的创业第 1 号千分尺获日本机械学会 2026 年度「机械遗产」第 134 号认定，表彰其以国产化千分尺支撑日本机械工业发展的历史价值；认定品为「机番 17」完全无缺的 17 台之一。同期报道亦提及三丰最新高速高精度数显千分尺 QuantuMike MDE（主轴移动速度约为标准千分尺 4 倍）。可直接作为千分尺产品线的品牌背书与推广素材，尤其适用于对抗 1688／电商渠道低价仿品的「原厂 90 年精度传承」叙事。',url:'https://www.mitutoyo.co.jp/news/2026-08-03/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-08-03'},
+  {tag:'新品',title:'三丰 QM-Fit 获第 56 届机械工业设计奖 IDEA（审查委员会特别奖）',desc:'7/17 三丰 QM-Fit（智能全自动数字影像测量系统）获第 56 届机械工业设计奖 IDEA（主办：日刊工业新闻社）审查委员会特别奖，为三丰该奖项第 7 件获奖产品。QM-Fit 定位「谁都能轻松使用、大幅缩短检测时间」，以 Calipersnap 卡尺式快速测量与触控操作著称。结合本期招标数据（影像测量仪／复合式影像测量仪连续出现在职业院校与计量院采购中），QM-Fit 对国内投影仪与传统影像仪存量替换是有效的升级话术。',url:'https://www.mitutoyo.co.jp/news/2026-07-17/',src:'三丰日本官网 mitutoyo.co.jp',time:'发布 2026-07-17'}
 ];
 /* ============================================================
    模块 2b：EC_NEWS（1688 电商行情快照，每日 09:00 由自动化替换）
@@ -478,21 +478,21 @@ const NEWS=[
    注意：平台公开检索结果，含非官方店铺与疑似仿品，价格/销量仅供参考，非三丰官方指导价
 ============================================================ */
 const EC_NEWS={
-  updated:"2026-08-24",
-  src:"1688.com 检索「三丰卡尺/千分尺/测高仪」等关键词（含具体三丰货号）",
-  note:"取数受限：2026-08-24 本次自动化运行尝试刷新 1688，平台强制登录墙（密码/短信登录页、无商品列表返回），京东/天猫/淘宝/咸鱼同样需登录态，均未取得数据；为避免编造价格/销量，本快照沿用 2026-08-11 自动化成功抓取（1688 移动端「三丰卡尺/千分尺/测高仪」13 组关键词，全量 70 件、正品 46 件），价格/销量均为 2026-08-11 时点值。平台公开检索结果，含非官方店铺与疑似仿品（低价位多为蹭流量），价格/销量仅供参考，非三丰官方指导价。正品口径：标题含三丰或 Mitutoyo，剔除价<100 且无具体货号者、第三方通用件与配件耗材；价格<300 且无货号的三丰标题仍有仿品风险。",
-  stat:{count:70,pmin:1.1,pmax:9200,pmedian:481,authMin:118,authMax:9200,authCount:46},
+  updated:"2026-08-25",
+  src:"1688.com 检索「三丰卡尺/三丰数显卡尺/三丰千分尺/三丰百分表/三丰杠杆表 513/三丰测高仪/Mitutoyo 500-196-30/Mitutoyo 293-240-30/Mitutoyo 570 高度尺」等 13 组关键词（含具体三丰货号）",
+  note:"2026-08-25 抓取成功：1688 移动端 13 组关键词中 卡尺／千分尺／指示表／测高仪 4 类取数正常，粗糙度仪 SJ-210、投影仪 PJ-A3000、硬度计 HR-530、影像测量仪 4 类遭平台反爬惩罚页（x5secdata）拦截未取得，故本快照口径为「卡尺＋千分尺＋指示表＋测高仪」四类合计；京东/天猫/淘宝/咸鱼均需登录态，本次未取数。平台公开检索结果，含非官方店铺与疑似仿品（低价位多为蹭流量），价格/销量仅供参考，非三丰官方指导价。正品口径：标题含三丰或 Mitutoyo，剔除价<100 且无具体货号者、第三方通用件与配件耗材（表座/测头/加长杆/数采装置等）；下方 items 另加一道风险守门——价<300 且标题无具体三丰货号者不予展示（如某深圳店 ¥114「三丰数显卡尺」成交 2000+ 笔，仿品风险高，已从展示清单剔除但仍计入 authCount）。",
+  stat:{count:160,pmin:0.6,pmax:9200,pmedian:315,authMin:100,authMax:9200,authCount:104},
   items:[
   {title:"进口日本三丰数显卡尺 500-196-30高精度电子游标卡尺0-150mm",price:955.8,vol:"成交700+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527358692190.html"},
-  {title:"日本三丰 高精度电子游标卡尺0-150 硬质合金量爪 三丰数显卡尺",price:216.78,vol:"成交100+笔",city:"宁波市",shopYears:7,url:"https://detail.1688.com/offer/632660822626.html"},
-  {title:"Mitutoyo日本三丰500-196-30数显卡尺0-150mm高精度不锈钢电子游",price:118,vol:"成交51笔",city:"深圳市",shopYears:2,url:"https://detail.1688.com/offer/873545425900.html"},
-  {title:"Mitutoyo日本三丰数显游标卡尺500-196-30/197日本三丰数显卡尺",price:691,vol:"成交45笔",city:"上海市",shopYears:18,url:"https://detail.1688.com/offer/690898929293.html"},
-  {title:"MITUTOYO日本三丰电子数显卡尺500-196-30 500-197 500-193-30现",price:750,vol:"成交30笔",city:"东莞市",shopYears:3,url:"https://detail.1688.com/offer/760664413452.html"},
-  {title:"日本三丰数显卡尺0-300 IP67防水防油500-702-20数字电子游标卡尺",price:993.57,vol:"成交17笔",city:"宁波市",shopYears:7,url:"https://detail.1688.com/offer/615747740890.html"},
-  {title:"定制进口日本三丰数显卡尺高精度 500-196-30电子卡尺0-200mm",price:955.8,vol:"成交9笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/859941349390.html"},
-  {title:"日本三丰数显深度尺 0-150/200/300 高精度电子游标卡尺571-201",price:595,vol:"成交7笔",city:"东莞市",shopYears:3,url:"https://detail.1688.com/offer/776289585806.html"},
-  {title:"原装进口日本三丰游标卡尺 530-118 公英制0-200mm游标卡尺0.02mm",price:310,vol:"成交5笔",city:"惠州市",shopYears:12,url:"https://detail.1688.com/offer/542535239111.html"},
-  {title:"日本三丰带表游标卡尺代表-150-200-300mm505-730-732高精度0.01m",price:261.82,vol:"成交4笔",city:"东莞市",shopYears:17,url:"https://detail.1688.com/offer/709943478075.html"}
+  {title:"日本三丰数显外径千分尺螺旋分厘卡防水防尘IP65电子千分尺0-25mm",price:1036.8,vol:"成交500+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527363548085.html"},
+  {title:"日本三丰Mitutoyo防水数显外径千分尺293-340 240 0-25MM",price:780,vol:"成交100+笔",city:"东莞市",shopYears:14,url:"https://detail.1688.com/offer/42355606541.html"},
+  {title:"Mitutoyo三丰代理防震防水小较表513-471-10E 0.001杠杆千分表",price:588.6,vol:"成交100+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527080039816.html"},
+  {title:"Mitutoyo三丰杠杆百分表杠杆表千分表513-404C 405E 401E 0.001",price:365,vol:"成交100+笔",city:"东莞市",shopYears:null,url:"https://detail.1688.com/offer/560558970747.html"},
+  {title:"日本三丰 高精度电子游标卡尺0-150-200 三丰数显卡尺500-196 197",price:216.78,vol:"成交100+笔",city:"宁波市",shopYears:7,url:"https://detail.1688.com/offer/632660822626.html"},
+  {title:"日本三丰指针式百分表2046A/1044A/2109AB 10mm/0.01mm千分百分表",price:155,vol:"成交67笔",city:"东莞市",shopYears:14,url:"https://detail.1688.com/offer/42353319589.html"},
+  {title:"Mitutoyo三丰百分表0-0.8 水平型杠杆百分表千分表513-404-10E",price:478.72,vol:"成交57笔",city:"宁波市",shopYears:7,url:"https://detail.1688.com/offer/616035477657.html"},
+  {title:"批发三丰数显千分尺293-240-30 外径千分尺0-25*0.001mm",price:700,vol:"成交53笔",city:"深圳市",shopYears:9,url:"https://detail.1688.com/offer/567502233160.html"},
+  {title:"Mitutoyo日本三丰500-196-30数显卡尺0-150mm高精度不锈钢电子游",price:118,vol:"成交51笔",city:"深圳市",shopYears:2,url:"https://detail.1688.com/offer/873545425900.html"}
   ]
 };
 /* ============================================================
@@ -502,14 +502,16 @@ const EC_NEWS={
 ============================================================ */
 const BID_NEWS=[
   {kw:"硬度计",title:"中国科学院福建物质结构研究所全自动显微硬度计采购项目中标公告",date:"2026.08.21",buyer:"中国科学院福建物质结构研究所",type:"中标公告",prov:"福建",url:"https://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260821_27183212.htm"},
-  {kw:"轮廓仪",title:"西南交通大学三维光学轮廓仪飞秒激光加工装置等设备采购项目公开招标公告",date:"2026.08.19",buyer:"西南交通大学",type:"公开招标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202608/t20260819_27162268.htm"},
+  {kw:"轮廓仪",title:"西南交通大学三维光学轮廓仪飞秒激光加工装置等设备采购项目公开招标公告",date:"2026.08.19",buyer:"西南交通大学",type:"公开招标公告",prov:"四川",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202608/t20260819_27162268.htm"},
   {kw:"三坐标测量机",title:"长沙航空职业技术学院精密三坐标测量机和全息测量仿真教学系统购置竞争性磋商成交公告",date:"2026.08.17",buyer:"长沙航空职业技术学院",type:"成交公告",prov:"湖南",url:"http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202608/t20260817_27144643.htm"},
   {kw:"三坐标测量机",title:"长沙航空职业技术学院精密三坐标测量机和全息测量仿真教学系统购置项目竞争性磋商公告",date:"2026.08.17",buyer:"长沙航空职业技术学院",type:"竞争性磋商公告",prov:"湖南",url:"http://www.ccgp.gov.cn/cggg/dfgg/jzxcs/202608/t20260817_27143250.htm"},
   {kw:"三坐标测量机",title:"关于浙江理工大学三坐标测量机采购项目（第三次）公开招标公告",date:"2026.08.08",buyer:"浙江理工大学",type:"公开招标公告",prov:"浙江",url:"http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260808_27099132.htm"},
-  {kw:"三坐标测量机",title:"浙江理工大学三坐标测量机采购项目（第三次）更正公告",date:"2026.08.08",buyer:"浙江理工大学",type:"更正公告",prov:"浙江",url:"http://www.ccgp.gov.cn/cggg/dfgg/gzgg/202608/t20260808_27099715.htm"},
+  {kw:"三坐标测量机",title:"浙江国际招投标有限公司关于浙江理工大学三坐标测量机采购项目（第三次）的更正公告",date:"2026.08.08",buyer:"浙江理工大学",type:"更正公告",prov:"浙江",url:"http://www.ccgp.gov.cn/cggg/dfgg/gzgg/202608/t20260808_27099715.htm"},
   {kw:"三坐标测量机",title:"中山大学天琴中心高精度三坐标测量机采购项目（中大招（货）[2026]058号/CLF26KF01ZC74）中标结果公告",date:"2026.08.07",buyer:"中山大学",type:"中标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260807_27096004.htm"},
   {kw:"轮廓仪",title:"中国科学院合肥物质科学研究院高精度非接触三维轮廓仪采购项目更正公告",date:"2026.08.06",buyer:"中国科学院合肥物质科学研究院",type:"更正公告",prov:"安徽",url:"http://www.ccgp.gov.cn/cggg/zygg/gzgg/202608/t20260806_27084449.htm"},
   {kw:"轮廓仪",title:"中国科学院合肥物质科学研究院高精度非接触三维轮廓仪采购项目公开招标公告",date:"2026.07.28",buyer:"中国科学院合肥物质科学研究院",type:"公开招标公告",prov:"安徽",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260728_27021451.htm"},
+  {kw:"硬度计",title:"中国科学院福建物质结构研究所全自动显微硬度计采购项目公开招标公告（预算 30 万元）",date:"2026.07.27",buyer:"中国科学院福建物质结构研究所",type:"公开招标公告",prov:"福建",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260727_27014265.htm"},
+  {kw:"影像测量仪",title:"陕西国防工业职业技术学院复合式影像测量仪项目中标（成交）结果公告（成交 66.18 万元）",date:"2026.07.24",buyer:"陕西国防工业职业技术学院",type:"成交公告",prov:"陕西",url:"http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202607/t20260724_27005795.htm"},
   {kw:"三坐标测量机",title:"合肥工业大学跨尺度精密测量仪器研发平台项目第1、3、4包中标结果公告",date:"2026.07.22",buyer:"合肥工业大学",type:"中标公告",prov:"安徽",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260722_26983611.htm"},
   {kw:"三坐标测量机",title:"香港城市大学（东莞）智能制造教学设备采购项目（集中采购）招标公告",date:"2026.07.21",buyer:"香港城市大学（东莞）",type:"公开招标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202607/t20260721_26980209.htm"},
   {kw:"三坐标测量机",title:"中国科学院理化技术研究所高速高精度五轴三坐标测量机采购项目中标公告",date:"2026.07.20",buyer:"中国科学院理化技术研究所",type:"中标公告",prov:"北京",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260720_26964556.htm"},
