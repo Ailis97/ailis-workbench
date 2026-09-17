@@ -441,6 +441,142 @@ if(savedLink && savedSection!=='dashboard') savedLink.click();
    模块 1：INDUSTRIES（三丰行业增量，由自动化每日 09:00 替换）
    字段：pill / title / desc / products / url / src
 ============================================================ */
+/* ============================================================
+   模块 2a：NEWS（三丰市场行情，每日 09:00 由自动化替换）
+   字段：tag / title / desc / url / src / time
+   仅保留发布于近 2 个月内、来源为官方/权威站点（三丰/海克斯康/基恩士官网、计量NEWS 等）
+============================================================ */
+const NEWS=[
+  {
+    "tag": "竞品",
+    "title": "基恩士发布 IV4 系列内置 AI 视觉传感器（视觉检测）",
+    "desc": "9/14 基恩士（KEYENCE）将 IV4 系列「内置 AI 视觉传感器」列为新品。IV4 搭载新一代 AI，无需调整位置即可检测零件、稳定判别有无/正反面、读取并计数（最高 250 件/秒、4ms），支持 AI-OCR 与 AI 判别，3 步完成设定，强化对光照与表面变化的稳定性，并提供高柔性机器人线缆、IP67 防护。信号：基恩士以「AI 视觉传感器」切入尺寸/外观检测，与三丰 QV 影像测量系统、Quick Image 在「非接触批量尺寸测量」场景直接竞争；三丰应以「可溯源尺寸数据源＋MeasurLink 11 SPC 数据链＋JCSS 校准」守壁垒，并以 QM-Fit「秒级测量」回应易用性叙事。",
+    "url": "https://asia1.keyence.com/products/vision/vision-sensor/iv4/",
+    "src": "基恩士官网 keyence.com",
+    "time": "发布 2026-09-14"
+  },
+  {
+    "tag": "竞品",
+    "title": "海克斯康推出 ENSPEC 入门级桥式三坐标，打开专业计量新入口",
+    "desc": "9/8 海克斯康固定式计量事业部发布 ENSPEC 专业级桥式三坐标测量机（CMM），面向英国及 EMEA 市场，专为首次将测量纳入内部的中小制造商与分包商设计。ENSPEC 沿用海克斯康成熟桥式 CMM 的 TRICISION 三角框架、花岗岩底座与空气轴承结构，配备成熟传感器技术并搭载 PC-DMIS 软件；提供 Touch/Scan/Speed 三种传感器配置、8 种行程（600×800×600mm 至 1200×3000×1000mm），最大 3D 速度 520mm/s。信号：海克斯康以「成熟技术下沉＋PC-DMIS 生态」降低专业 CMM 门槛，挤压中小制造企业外包检测与手动量具空间；三丰应以 QM-Height／数显卡尺／千分尺「手持高精度＋JCSS 可溯源＋U-WAVE 无线数采」组合守基本盘，并用 CRYSTA-Apex V PLUS 承接升级需求。",
+    "url": "http://metrology.news/hexagon-enspec-opens-a-new-entry-point-to-professional-cmm-metrology",
+    "src": "计量NEWS metrology.news",
+    "time": "发布 2026-09-08"
+  },
+  {
+    "tag": "竞品",
+    "title": "海克斯康完成收购武汉 ZG Technology，全资掌控便携 3D 扫描",
+    "desc": "9/7 海克斯康宣布收购武汉 ZG Automation Technology 剩余 49% 股权，实现 100% 全资持有。ZG 成立于 2014 年，基于武汉大学摄影测量与遥感学科研发手持式 3D 扫描技术，自持软件著作权与专利，扫描设备用于质量检测、逆向工程与复杂零件数字化（汽车/航空航天/铁路/重工/医疗/科研）。信号：海克斯康将 ZG 设为「便携计量卓越中心」，统一手持扫描平台、加速研发并向中国以外客户开放；便携 3D 扫描虽与三丰接触式量具定位不同，但在「现场大尺寸数字化＋逆向」场景形成补充竞争，三丰应强化 U-WAVE/MeasurLink 数据链与 QM-Fit 非接触影像的现场近线方案叙事。",
+    "url": "https://mb.cision.com/Main/387/4391958/4252127.pdf",
+    "src": "海克斯康官方新闻稿（Cision 分发，2026-09-07）",
+    "time": "发布 2026-09-07"
+  },
+  {
+    "tag": "竞品",
+    "title": "海克斯康发布新一代 OPTIV S 4.4.3 光学三坐标测量机（IMTS 2026）",
+    "desc": "9/2 海克斯康在 IMTS 2026 发布新一代 OPTIV S 4.4.3 光学 CMM。OPTIV S 系列为海克斯康多传感器影像/光学测量旗舰，4.4.3 版本触测精度提升至 E0、MPEE=(1.6+L/200)μm、机型动态约 +30%、首测节拍缩短约 15%；并通过 PC-DMIS 引入 AI Edge Detection（2026.2）、Fast Auto-Focus（2027，最快 +50%）、AI Illumination（2027）等 AI 辅助测量能力，9/14 起在 IMTS 与 AMB 正式商用。信号：海克斯康正把「光学非接触＋多传感器＋AI」作为对抗三丰 QM-Fit／QV 影像测量系统的主力方向；三丰应以「原厂精度传承＋JCSS 可溯源校准＋U-WAVE/MeasurLink 数据链」守存量客户壁垒，并用 QM-Fit 的「秒级测量」差异化回应易用性叙事。",
+    "url": "https://hexagon.com/nl/company/newsroom/press-releases/2026/hexagon-releases-next-generation-optiv-s",
+    "src": "海克斯康官网 hexagon.com",
+    "time": "发布 2026-09-02"
+  },
+  {
+    "tag": "新品",
+    "title": "三丰发布高精度数显千分尺（0.1µm 分辨率，业界首款数字千分尺）",
+    "desc": "9/1 三丰美国公司（Mitutoyo America）发布高精度 Digimatic 数显千分尺，为业界首款提供 0.1µm 分辨率测量的数字千分尺；采用三丰自研 Absolute 旋转传感器（专利 Pending），将仪器误差降至 ±0.5µm，兼具手持便捷与高精度。恒定测力机构消除过速误差，可拆卸隔热罩降低手持热影响；支持 MeasurLink 数据输出，可接入 SPC 与上层网络。信号：三丰以「0.1µm 手持化」强化千分尺基本盘的精度壁垒，直接对冲电商低价仿品与国产替代话术；可作为千分尺品类高价值升级与品牌背书的推广素材。",
+    "url": "https://mitutoyo.com/news/high-accuracy-digimatic-digital-micrometer",
+    "src": "三丰美国官网 mitutoyo.com",
+    "time": "发布 2026-09-01"
+  },
+  {
+    "tag": "新品",
+    "title": "三丰发布 2026 秋季促销：MDE QuantuMike 数显千分尺、SJ-220 Surftest、ID-C/ID-F 指示表、LH-600F 测高仪、投影仪等",
+    "desc": "9/1 三丰美国公司（Mitutoyo America）启动 2026 秋季促销（9/1–12/18），对多款主力精密量具与仪器提供 5%–20% 折扣，并含指定机型免费运输、安装、校准与培训。重点覆盖：MDE QuantuMike 数显千分尺（测杆每圈进给 2.0mm、精度 ±1µm、IP65、新增 Digimatic S1 输出）；便携式 SJ-220 Surftest 粗糙度仪（2.8 寸彩触屏、ISO 21920、可选 U-WAVE-TIB 蓝牙）；ID-C/ID-F 数显指示表（分辨率可切至 0.5µm、带校准周期提醒、超差绿转红背光）；MeasurLink 11 实时 SPC 软件；LH-600F 数显测高仪；投影仪等。信号：秋季促销把「卡尺/千分尺/指示表/测高仪/粗糙度/投影仪」全品类主力机型打包促销，是经销商冲量、挤压低价仿品与国产替代话术的直接窗口。",
+    "url": "https://mitutoyo.com/news/the-2026-mitutoyo-fall-promo-is-here",
+    "src": "三丰美国官网 mitutoyo.com",
+    "time": "发布 2026-09-01"
+  },
+  {
+    "tag": "新品",
+    "title": "三丰集中发布秋季重点方案：MeasurLink 11、CRYSTA-Apex V PLUS 车间级 CMM、QM-Fit",
+    "desc": "9/1 三丰美国官网集中更新秋季重点：① MeasurLink 11（2026 年 7 月引入的最新一代 SPC/数据管理软件，主打易用性——快速建计划、OCR 自动读图生成检验计划、上下文帮助、暗色模式，降低对专职 SPC/计量工程师的依赖）；② CRYSTA-Apex V PLUS 系列 CNC 三坐标，把实验室级精度带上车间——实时温度补偿、保证精度温区拓宽至 15~30°C、参考点温度补偿、节能降耗；③ QM-Fit 全自动智能影像系统「秒级测量」；④ 佛罗里达 Lakeland 新建 11,200 平方英尺计量服务中心。信号：三丰把「软件数据链（MeasurLink 11）＋车间级 CMM（CRYSTA-Apex V PLUS/MiSTAR）＋自动化影像（QM-Fit）」打包为对抗海克斯康 MAESTRO/OPTIV 无人化检测的组合拳，对国内需要可溯源尺寸数据源与产线近线检测的存量客户是直接切入点。",
+    "url": "https://mitutoyo.com/",
+    "src": "三丰美国官网 mitutoyo.com",
+    "time": "发布 2026-09-01"
+  },
+  {
+    "tag": "竞品",
+    "title": "海克斯康推出 METRICAL 全自动 CMM 上下料系统，实现 lights-out 自主检测",
+    "desc": "9/1 海克斯康发布 METRICAL——面向 CMM 的自动排队/上下料系统，实现大尺寸零件的全自主（lights-out）检测；提供 3/5/7 个预备工位三种配置，可与海克斯康新 MAESTRO 及既有 GLOBAL 三坐标无缝集成，显著减少检测闲置时间、降低对稀缺熟练检测人力的依赖。信号：海克斯康把三坐标从「单台设备」推向「24/7 无人化检测产线入口」，直接冲击三丰 CRYSTA-Apex V / MiSTAR 车间型 CMM 在自动化场景的话语权；三丰应以 U-WAVE 无线数采＋MeasurLink 11＋AJS 自动交换系统把量具/CMM 数据接入客户 MES，守住「可溯源尺寸数据源」这一不可替代位置。",
+    "url": "https://metrology.news/hexagon-launches-metrical-for-fully-autonomous-cmm-inspection",
+    "src": "计量NEWS metrology.news",
+    "time": "发布 2026-09-01"
+  }
+];
+
+/* ============================================================
+   模块 2b：EC_NEWS（1688 电商行情快照，每日 09:00 由自动化替换）
+============================================================ */
+const EC_NEWS={
+  updated:"2026-09-17",
+  src:"1688.com 检索「三丰卡尺/三丰数显卡尺/三丰千分尺/三丰百分表/三丰杠杆表 513/三丰测高仪/Mitutoyo 500-196-30/Mitutoyo 293-240-30/Mitutoyo 570 高度尺」等 13 组关键词（含具体三丰货号）",
+  note:"取数受限说明：2026-09-17 本次自动化运行时，1688 检索仍触发反爬/编码乱码（WebFetch 实测返回与「三丰卡尺」关键词无关的运动鞋等无关商品，关键词被服务端转码错乱），非商品数据；京东(b.jd.com)/天猫/淘宝/咸鱼均需登录态且风控更严，未能取得当日实时数据。下方数值为工作区留存的最近一次成功抓取快照（2026-08-25，来源 crawl/ec_1688_20260825.json 与 crawl/ec_top10_20260825.json，已核验真实），非 2026-09-17 实时复抓，仅供趋势参考。平台公开检索结果，含非官方店铺与疑似仿品（低价位多为蹭流量），价格/销量仅供参考，非三丰官方指导价。正品口径：标题含三丰或 Mitutoyo，剔除价<100 且无具体货号者、第三方通用件与配件耗材（表座/测头/加长杆/数采装置等）；展示清单另加风险守门——价<300 且标题无具体三丰货号者不予展示（如某深圳店 ¥114「三丰数显卡尺」成交 2000+ 笔，仿品风险高，已从展示清单剔除但仍计入 authCount）。",
+  stat:{count:160,pmin:0.6,pmax:9200,pmedian:315,authMin:100,authMax:9200,authCount:104},
+  items:[
+  {title:"进口日本三丰数显卡尺 500-196-30高精度电子游标卡尺0-150mm",price:955.8,vol:"成交700+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527358692190.html"},
+  {title:"日本三丰数显外径千分尺螺旋分厘卡防水防尘IP65电子千分尺0-25mm",price:1036.8,vol:"成交500+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527363548085.html"},
+  {title:"日本三丰Mitutoyo防水数显外径千分尺293-340 240 0-25MM",price:780,vol:"成交100+笔",city:"东莞市",shopYears:14,url:"https://detail.1688.com/offer/42355606541.html"},
+  {title:"Mitutoyo三丰代理防震防水小较表513-471-10E 0.001杠杆千分表",price:588.6,vol:"成交100+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527080039816.html"},
+  {title:"Mitutoyo三丰杠杆百分表杠杆表千分表513-404C 405E 401E 0.001",price:365,vol:"成交100+笔",city:"东莞市",shopYears:null,url:"https://detail.1688.com/offer/560558970747.html"},
+  {title:"日本三丰 高精度电子游标卡尺0-150-200 三丰数显卡尺500-196 197",price:216.78,vol:"成交100+笔",city:"宁波市",shopYears:7,url:"https://detail.1688.com/offer/632660822626.html"},
+  {title:"日本三丰指针式百分表2046A/1044A/2109AB 10mm/0.01mm千分百分表",price:155,vol:"成交67笔",city:"东莞市",shopYears:14,url:"https://detail.1688.com/offer/42353319589.html"},
+  {title:"Mitutoyo三丰百分表0-0.8 水平型杠杆百分表千分表513-404-10E",price:478.72,vol:"成交57笔",city:"宁波市",shopYears:7,url:"https://detail.1688.com/offer/616035477657.html"},
+  {title:"批发三丰数显千分尺293-240-30 外径千分尺0-25*0.001mm",price:700,vol:"成交53笔",city:"深圳市",shopYears:9,url:"https://detail.1688.com/offer/567502233160.html"},
+  {title:"Mitutoyo日本三丰500-196-30数显卡尺0-150mm高精度不锈钢电子游",price:118,vol:"成交51笔",city:"深圳市",shopYears:2,url:"https://detail.1688.com/offer/873545425900.html"}
+  ]
+};
+
+/* ============================================================
+   模块 2c：BID_NEWS（中国政府采购网招标动态，每日 09:00 由自动化替换）
+============================================================ */
+const BID_NEWS=[
+  {kw:"计量标准器具",title:"中国测试技术研究院现代产业先进测量能力建设与提升项目（一期）2026年度二批次（二次）中标（成交）结果公告（其他计量仪器：氩三相点装置/标准套管铂电阻温度计/纳伏表等；中标：北京迈凯测量/成都兴创腾达，总424.43万元）",date:"2026.09.15",buyer:"中国测试技术研究院",type:"中标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260915_27332816.htm"},
+  {kw:"三坐标测量机",title:"中国科学院高能物理研究所CSNS-II中子背散射谱仪三坐标测量仪采购项目公开招标公告（预算260万元，国产，不允许进口）",date:"2026.09.11",buyer:"中国科学院高能物理研究所",type:"公开招标公告",prov:"北京",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202609/t20260911_27311770.htm"},
+  {kw:"三坐标测量机",title:"上海电机学院桥式三坐标测量机中标（成交）结果公告（品牌：海克斯康 Hexagon GLOBAL S 9.12.8，149.5 万元）",date:"2026.09.10",buyer:"上海电机学院",type:"中标公告",prov:"上海",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260910_27304722.htm"},
+  {kw:"计量标准器具",title:"台州市计量技术研究院设备更新项目中标（成交）结果公告（含万能工具显微镜、电脑量块比较仪；中标：中图仪器/宁波科佳等）",date:"2026.09.07",buyer:"台州市计量技术研究院",type:"中标公告",prov:"浙江",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260907_27276646.htm"},
+  {kw:"计量标准器具",title:"宣城市标准计量所计量标准设备更新项目第一包更正公告第（3）次（开标延期至 2026-09-21）",date:"2026.09.04",buyer:"宣城市标准计量所",type:"更正公告",prov:"安徽",url:"https://www.ccgp.gov.cn/cggg/dfgg/gzgg/202609/t20260904_27271840.htm"},
+  {kw:"硬度计",title:"北京市丰台区特种设备检测所特种设备检验检测设备更新项目公开招标公告（含便携式硬度计、测厚仪）",date:"2026.09.04",buyer:"北京市丰台区特种设备检测所",type:"公开招标公告",prov:"北京",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260904_27266291.htm"},
+  {kw:"三坐标测量机",title:"浙江理工大学三坐标测量机采购项目（第三次）中标（成交）结果公告（品牌：海克斯康 Leitz Reference 07.07.05，129.6 万元）",date:"2026.09.03",buyer:"浙江理工大学",type:"中标公告",prov:"浙江",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260903_27262383.htm"},
+  {kw:"检验设备",title:"河北省产品质量监督检验研究院2026年第二批检验检测专用仪器设备采购项目招标公告（79 万元）",date:"2026.09.03",buyer:"河北省产品质量监督检验研究院",type:"公开招标公告",prov:"河北",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260903_27256445.htm"},
+  {kw:"计量标准器具",title:"广东省计量科学研究院面向国家重大需求的高端科学仪器验证共性技术研究与产业应用仪器设备采购项目招标公告（340 万元）",date:"2026.09.02",buyer:"广东省计量科学研究院",type:"公开招标公告",prov:"广东",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260902_27248642.htm"},
+  {kw:"轮廓仪",title:"中国民航大学白光干涉共聚焦轮廓仪采购项目公开招标公告（55.2 万元）",date:"2026.09.02",buyer:"中国民航大学",type:"公开招标公告",prov:"天津",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202609/t20260902_27248666.htm"},
+  {kw:"轮廓仪",title:"上海市医疗器械检验研究院柔性电极多模式光学轮廓检测系统国际公开招标采购公告（预算235万元，可采购进口产品）",date:"2026.09.01",buyer:"上海市医疗器械检验研究院",type:"公开招标公告",prov:"上海",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260901_27246545.htm"},
+  {kw:"硬度计",title:"福建省纤维检验中心2026年检验设备采购-第一批(二次)结果公告（含硬度计A/C/D）",date:"2026.08.31",buyer:"福建省纤维检验中心",type:"结果公告",prov:"福建",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260831_27234564.htm"},
+  {kw:"检验设备",title:"湖北省特种设备检验检测研究院2026年检验设备购置公开招标公告（58 万元）",date:"2026.08.28",buyer:"湖北省特种设备检验检测研究院",type:"公开招标公告",prov:"湖北",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260828_27222671.htm"},
+  {kw:"三坐标测量机",title:"上海民航职业技术学院高精度三坐标测量机及配套设备采购项目公开招标公告",date:"2026.08.26",buyer:"上海民航职业技术学院",type:"公开招标公告",prov:"上海",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202608/t20260826_27211393.htm"},
+  {kw:"测长机",title:"乐山市计量测试所2026年市场监管重点领域社会公用计量标准设备更新项目中标（成交）结果公告（含光栅指示表检定仪、测长机）",date:"2026.08.26",buyer:"乐山市计量测试所",type:"中标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260826_27207603.htm"},
+  {kw:"测长机",title:"漳州市计量所社会公用计量标准设备更新项目第四批采购更正公告（万能工具显微镜、测长机、电脑量块比较仪）",date:"2026.08.26",buyer:"漳州市计量所",type:"更正公告",prov:"福建",url:"https://www.ccgp.gov.cn/cggg/dfgg/gzgg/202608/t20260826_27210279.htm"},
+  {kw:"轮廓仪",title:"中国科学院合肥物质科学研究院高精度非接触三维轮廓仪采购项目中标公告（Taylor Hobson Luphoscan 260XL HD，499.1 万元）",date:"2026.08.24",buyer:"中国科学院合肥物质科学研究院",type:"中标公告",prov:"安徽",url:"https://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260824_27192478.htm"},
+  {kw:"硬度计",title:"中国科学院福建物质结构研究所全自动显微硬度计采购项目中标公告",date:"2026.08.21",buyer:"中国科学院福建物质结构研究所",type:"中标公告",prov:"福建",url:"https://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260821_27183212.htm"},
+  {kw:"计量标准器具",title:"宜宾市检验检测中心2026年度计量标准器具设备采购项目招标公告",date:"2026.08.20",buyer:"宜宾市检验检测中心",type:"公开招标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260820_27172952.htm"},
+  {kw:"计量标准器具",title:"中国测试技术研究院现代产业先进测量能力建设与提升项目（一期）2026年度二批次中标（成交）结果公告",date:"2026.08.20",buyer:"中国测试技术研究院",type:"中标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260820_27176238.htm"},
+  {kw:"轮廓仪",title:"西南交通大学三维光学轮廓仪飞秒激光加工装置等设备采购项目公开招标公告",date:"2026.08.19",buyer:"西南交通大学",type:"公开招标公告",prov:"四川",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202608/t20260819_27162268.htm"},
+  {kw:"计量标准器具",title:"海南省检验检测研究院2026年计量检定校准设备更新项目公开招标公告（1184 万元）",date:"2026.08.19",buyer:"海南省检验检测研究院",type:"公开招标公告",prov:"海南",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260819_27166967.htm"},
+  {kw:"硬度计",title:"海南省检验检测研究院2026年特种设备检验检测设备更新项目公开招标公告（含便携式硬度计）",date:"2026.08.19",buyer:"海南省检验检测研究院",type:"公开招标公告",prov:"海南",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260819_27164955.htm"},
+  {kw:"三坐标测量机",title:"桥式三坐标测量机公开招标公告（预算150万元，上海）",date:"2026.08.18",buyer:"上海（采购单位详见公告正文）",type:"公开招标公告",prov:"上海",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260818_27156228.htm"},
+  {kw:"三坐标测量机",title:"长沙航空职业技术学院精密三坐标测量机和全息测量仿真教学系统购置竞争性磋商成交公告",date:"2026.08.17",buyer:"长沙航空职业技术学院",type:"成交公告",prov:"湖南",url:"http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202608/t20260817_27144643.htm"},
+  {kw:"三坐标测量机",title:"关于浙江理工大学三坐标测量机采购项目（第三次）公开招标公告",date:"2026.08.08",buyer:"浙江理工大学",type:"公开招标公告",prov:"浙江",url:"http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260808_27099132.htm"},
+  {kw:"三坐标测量机",title:"中山大学天琴中心高精度三坐标测量机采购项目中标结果公告（海克斯康 XPERT 10.15.08，219.8 万元）",date:"2026.08.07",buyer:"中山大学",type:"中标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260807_27096004.htm"},
+  {kw:"硬度计",title:"安徽省特种设备检测院特种设备安全检验检测设备更新项目（三）中标结果公告（便携式布氏硬度计）",date:"2026.08.06",buyer:"安徽省特种设备检测院",type:"中标公告",prov:"安徽",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260806_27083269.htm"},
+  {kw:"轮廓仪",title:"中国科学院合肥物质科学研究院高精度非接触三维轮廓仪采购项目公开招标公告",date:"2026.07.28",buyer:"中国科学院合肥物质科学研究院",type:"公开招标公告",prov:"安徽",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260728_27021451.htm"},
+  {kw:"硬度计",title:"中国科学院福建物质结构研究所全自动显微硬度计采购项目公开招标公告（预算 30 万元）",date:"2026.07.27",buyer:"中国科学院福建物质结构研究所",type:"公开招标公告",prov:"福建",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260727_27014265.htm"},
+  {kw:"影像测量仪",title:"陕西国防工业职业技术学院复合式影像测量仪项目中标（成交）结果公告（成交 66.18 万元）",date:"2026.07.24",buyer:"陕西国防工业职业技术学院",type:"成交公告",prov:"陕西",url:"http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202607/t20260724_27005795.htm"},
+  {kw:"影像测量仪",title:"大连民族大学改善基本办学条件项目-工程训练实训平台建设公开招标公告（含影像测量仪）",date:"2026.07.23",buyer:"大连民族大学",type:"公开招标公告",prov:"辽宁",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260723_26996580.htm"},
+  {kw:"三坐标测量机",title:"合肥工业大学跨尺度精密测量仪器研发平台项目第1、3、4包中标结果公告",date:"2026.07.22",buyer:"合肥工业大学",type:"中标公告",prov:"安徽",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260722_26983611.htm"},
+  {kw:"三坐标测量机",title:"香港城市大学（东莞）智能制造教学设备采购项目（集中采购）招标公告",date:"2026.07.21",buyer:"香港城市大学（东莞）",type:"公开招标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/dfgg/kzb/202607/t20260721_26980209.htm"},
+  {kw:"三坐标测量机",title:"中国科学院理化技术研究所高速高精度五轴三坐标测量机采购项目中标公告",date:"2026.07.20",buyer:"中国科学院理化技术研究所",type:"中标公告",prov:"北京",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260720_26964556.htm"}
+
+];
+
 const INDUSTRIES=[
   {
     "pill": "液冷 / AI 算力",
