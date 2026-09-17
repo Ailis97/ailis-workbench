@@ -217,6 +217,48 @@
   .disclaimer{background:var(--red-soft);border:1px solid #d8c0b8;color:#7a4a3e;
     padding:10px 14px;border-radius:10px;font-size:12.5px;margin:14px 0 14px}
 
+  /* ===== 周报 / 雷达：通用表格与版式 ===== */
+  .tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top;line-height:1.6}
+  .tbl th{background:#f3f6f2;color:#3e5e3a;font-weight:700;white-space:nowrap}
+  .tbl tr:nth-child(even) td{background:#fbfcfb}
+  .tbl td.c,.tbl th.c{text-align:center}
+  .tbl .num{font-family:tabular-nums;font-weight:800}
+  .tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .sec-h{font-size:13px;font-weight:800;color:#3e5e3a;margin:16px 0 7px;display:flex;align-items:center;gap:7px}
+  .sec-h::before{content:"";width:3px;height:13px;background:var(--green);border-radius:2px;flex:none}
+  .sec-h:first-child{margin-top:4px}
+  .acts{list-style:none;margin:4px 0 0;padding:0}
+  .acts li{font-size:13px;padding:8px 0 8px 22px;border-top:1px dashed var(--line);
+    position:relative;color:#374151;line-height:1.7}
+  .acts li:first-child{border-top:none}
+  .acts li::before{content:"\25B8";position:absolute;left:6px;color:var(--green);font-weight:800}
+  .mini.amber .v{color:var(--amber)}
+
+  /* 周报：TL;DR */
+  .rp-tldr{list-style:none;margin:14px 0 0;padding:0}
+  .rp-tldr li{font-size:13px;padding:9px 13px;border-left:3px solid var(--red);background:#fdfaf9;
+    border-radius:0 8px 8px 0;margin-bottom:8px;color:#374151;line-height:1.7}
+  .rp-tldr li b{color:var(--ink);font-weight:800}
+
+  /* 雷达：评分徽章 */
+  .scr{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--red);
+    padding:1px 8px;border-radius:20px;font-family:tabular-nums;line-height:1.5}
+  .scr.hi{background:#b23a2e}
+  .scr.mid{background:var(--amber)}
+  .scr.lo{background:#a3a9b3}
+  .rd-must{border-left:3px solid var(--red);background:#fdfaf9;border-radius:0 10px 10px 0;
+    padding:11px 14px;margin-bottom:10px}
+  .rd-must h4{margin:0 0 7px;font-size:13.5px;color:var(--ink);line-height:1.5}
+  .rd-must .row{font-size:12.5px;color:#374151;line-height:1.72;margin:3px 0}
+  .rd-must .row i{font-style:normal;font-weight:800;color:#5f7a63;margin-right:5px}
+  .tr-up{color:var(--red);font-weight:800}
+  .tr-fl{color:var(--amber);font-weight:800}
+  .tr-dn{color:#6b7280;font-weight:800}
+  .rd-block{margin-bottom:12px}
+  .rd-block h5{margin:0 0 5px;font-size:12.5px;font-weight:800;color:#3e5e3a}
+  .rd-block ul{margin:0;padding-left:19px}
+  .rd-block li{font-size:12.5px;color:#374151;line-height:1.7;margin:3px 0}
   /* 响应式 */
   @media(max-width:860px){
     .app{flex-direction:column;height:auto}
@@ -247,6 +289,8 @@
       <a href="#" data-nav="industries"><span class="icon">📈</span><span class="label">三丰行业增量</span></a>
       <a href="#" data-nav="news"><span class="icon">📰</span><span class="label">三丰市场行情</span></a>
       <a href="#" data-nav="fx"><span class="icon">💴</span><span class="label">日币走势预估</span><span class="badge" id="fx-badge" style="display:none">!</span></a>
+      <a href="#" data-nav="weekly"><span class="icon">📋</span><span class="label">行业周度报告</span></a>
+      <a href="#" data-nav="radar"><span class="icon">🎯</span><span class="label">市场机会雷达</span></a>
     </nav>
     <div class="side-footer">
       <b id="now">—</b>
@@ -262,7 +306,7 @@
       <section data-section="dashboard" class="section active">
         <div class="welcome">
           <h2>👋 Ailis 三件套 · 三丰代理商务台</h2>
-          <p>三大模块由 3 个 WorkBuddy 自动化每日 / 每小时刷新：📈 <b>行业增量</b>（09:00） · 📰 <b>市场行情</b>（09:00） · 💴 <b>日币走势</b>（每小时）。点击左侧模块进入；GitHub 私有仓库 + SSH 跨设备云同步。</p>
+          <p>五大模块由 6 个 WorkBuddy 自动化定时刷新：📈 <b>行业增量</b>（6 小时） · 📰 <b>市场行情</b>（09:00） · 💴 <b>日币走势</b>（每小时） · 📋 <b>行业周度报告</b>（每周一 08:50） · 🎯 <b>市场机会雷达</b>（每天 09:00）。点击左侧模块进入；GitHub 公开仓库 + GitHub Actions 自动部署到腾讯云 CloudBase。</p>
         </div>
         <div class="strip">
           <div class="mini red">
@@ -289,6 +333,14 @@
             <div class="k">📑 招标动态</div>
             <div class="v" id="sum-bid">— <small>条</small></div>
           </div>
+          <div class="mini red">
+            <div class="k">🎯 高价值机会(≥85分)</div>
+            <div class="v" id="sum-radar">— <small>个</small></div>
+          </div>
+          <div class="mini amber">
+            <div class="k">📋 周报跟进</div>
+            <div class="v" id="sum-weekly">— <small>家</small></div>
+          </div>
         </div>
 
         <div class="card">
@@ -298,6 +350,8 @@
             <button class="btn-ghost" onclick="goTo('industries')">📈 查看行业增量</button>
             <button class="btn-ghost" onclick="goTo('news')">📰 查看市场行情</button>
             <button class="btn-ghost" onclick="goTo('fx')">💴 查看日币走势</button>
+            <button class="btn-ghost" onclick="goTo('weekly')">📋 查看周度报告</button>
+            <button class="btn-ghost" onclick="goTo('radar')">🎯 查看机会雷达</button>
           </div>
         </div>
 
@@ -387,6 +441,109 @@ open workbuddy/workbench/index.html         # macOS</pre>
         </div>
       </section>
 
+      <!-- ========== 模块 4：行业周度报告 ========== -->
+      <section data-section="weekly" class="section">
+        <div class="card">
+          <h2>📋 精密测量行业周度增量市场报告 <span class="tag" id="wk-tag">每周一 08:50 自动更新</span></h2>
+          <div class="update-info">📡 自动化：<b>《精密测量行业周度增量市场报告》</b> · 覆盖周期：<span id="wk-period">—</span> · 数据源：中国政府采购网 / 必联网 / 仪器信息网 / 上市公司公告 等 · 报告时点：<span id="wk-time">—</span></div>
+          <div class="strip" id="wk-stat" style="margin:12px 0 0"></div>
+          <ul class="rp-tldr" id="wk-tldr"></ul>
+        </div>
+
+        <div class="card">
+          <h2>🏆 增长最快的行业 · 项目最多的地区</h2>
+          <div class="sec-h">过去 7 天行业增量信号统计</div>
+          <div class="tbl-scroll" id="wk-ind"></div>
+          <div class="sec-h">过去 7 天新增项目地区分布</div>
+          <div class="tbl-scroll" id="wk-region"></div>
+        </div>
+
+        <div class="card">
+          <h2>🏭 正在扩产 / 新建工厂的企业</h2>
+          <div class="tbl-scroll" id="wk-expand"></div>
+        </div>
+
+        <div class="card">
+          <h2>🎯 可能采购三丰产品的企业</h2>
+          <div class="tbl-scroll" id="wk-buyers"></div>
+          <div class="src" style="margin-top:8px">注：以上判断基于公开项目信息与三丰产品应用经验，具体采购窗口、预算及品牌偏好需进一步商务确认。</div>
+        </div>
+
+        <div class="card">
+          <h2>📦 产品需求增长 · 国产替代影响</h2>
+          <div class="sec-h">各类测量设备需求信号</div>
+          <div class="tbl-scroll" id="wk-demand"></div>
+          <div class="sec-h">国产替代正在影响的产品类别</div>
+          <div class="tbl-scroll" id="wk-subst"></div>
+        </div>
+
+        <div class="card">
+          <h2>📌 下周最值得跟进的 10 家公司</h2>
+          <div class="tbl-scroll" id="wk-follow"></div>
+        </div>
+
+        <div class="card">
+          <h2>🔭 未来 3 个月最值得投入的细分市场</h2>
+          <div id="wk-markets"></div>
+        </div>
+
+        <div class="card">
+          <h2>✅ 行动建议</h2>
+          <ul class="acts" id="wk-actions"></ul>
+          <div class="sec-h">本周重点数据源清单</div>
+          <ul class="acts" id="wk-sources"></ul>
+        </div>
+      </section>
+
+      <!-- ========== 模块 5：市场机会雷达 ========== -->
+      <section data-section="radar" class="section">
+        <div class="card">
+          <h2>🎯 三丰精密测量行业增量市场雷达（机会日报） <span class="tag" id="rd-tag">每天 09:00 自动更新</span></h2>
+          <div class="update-info">📡 自动化：<b>《三丰精密测量行业增量市场雷达》</b> · 信息窗口：<span id="rd-window">—</span> · 数据源：政府采购网 / 上市公司公告 / 企业官网 / 行业媒体 · 数据时点：<span id="rd-time">—</span></div>
+          <div class="strip" id="rd-stat" style="margin:12px 0 0"></div>
+        </div>
+
+        <div class="card">
+          <h2>🔥 今日最值得关注的 5 个机会</h2>
+          <div class="tbl-scroll" id="rd-top5"></div>
+        </div>
+
+        <div class="card">
+          <h2>🚨 今天必须关注</h2>
+          <div id="rd-must"></div>
+        </div>
+
+        <div class="card">
+          <h2>🏭 新工厂 / 扩产</h2>
+          <div class="tbl-scroll" id="rd-plants"></div>
+        </div>
+
+        <div class="card">
+          <h2>📈 增量市场</h2>
+          <div class="tbl-scroll" id="rd-markets"></div>
+        </div>
+
+        <div class="card">
+          <h2>🥊 竞争对手动态</h2>
+          <div class="tbl-scroll" id="rd-comp"></div>
+        </div>
+
+        <div class="card">
+          <h2>💰 潜在客户列表（含评分与采购概率）</h2>
+          <div class="tbl-scroll" id="rd-leads"></div>
+        </div>
+
+        <div class="card">
+          <h2>📊 市场趋势</h2>
+          <div id="rd-trends"></div>
+        </div>
+
+        <div class="card">
+          <h2>🎯 行动建议</h2>
+          <div id="rd-actions"></div>
+        </div>
+      </section>
+
       <div class="disclaimer">
         ⚠️ 汇率与行情数据来源于公开网络检索，存在时延与口径差异；汇率走势为模型聚合预估，<b>不构成任何投资建议</b>。日元采购决策请结合实时牌价与自身风险承受能力。
       </div>
@@ -395,7 +552,7 @@ open workbuddy/workbench/index.html         # macOS</pre>
         <b>📦 Ailis 三件套 · 跨设备云同步</b><br>
         · <b>托管仓库：</b>git@github.com:Ailis97/workbuddy.git（私有） · 子目录 workbench/<br>
         · <b>同步方式：</b>SSH 密钥认证（无需 PAT / 密码） · 同步脚本：<code>workbench-push.ps1</code><br>
-        · <b>三大模块来源：</b>① 三丰行业增量每日抓取（09:00）· ② 三丰每日市场行情速递（09:00）· ③ 日币走势预估-1小时更新<br>
+        · <b>五大模块来源：</b>① 三丰行业增量每日抓取（每 6 小时）· ② 三丰每日市场行情速递（09:00）· ③ 日币走势预估-1小时更新 · ④ 《精密测量行业周度增量市场报告》（每周一 08:50）· ⑤ 《三丰精密测量行业增量市场雷达》（每天 09:00）<br>
         · <b>Pages 公网：</b>https://Ailis97.github.io/workbuddy/workbench/（需先在仓库 Settings → Pages 启用）
       </footer>
 
@@ -652,10 +809,28 @@ const INDUSTRIES=[
   }
 ];
 
+/* ============================================================
+   模块 4：WEEKLY_REPORT（精密测量行业周度增量市场报告，每周一 08:50 由自动化整体替换）
+   字段：period/reportDate/src/tldr/industries/regions/expanding/buyers
+        /demand/substitution/follow10/markets3m/actions/sources
+============================================================ */
+const WEEKLY_REPORT={"period":"2026-09-07 ~ 2026-09-13","reportDate":"2026-09-14","src":"中国政府采购网 · 必联网 · 中招联合 · 仪器信息网 · 上市公司公告 · 政府/开发区官网 · 行业媒体","tldr":["增长最快行业：**半导体/晶圆制造** 与 **新能源动力电池** 在过去 7 天释放的扩产/设备采购信号最密集，双双处于高位；半导体设备采购预期上调、华虹无锡 12 英寸三期增资、中创新航合肥三期投产是三大标志性事件。","新增项目最多地区：**华东地区**（江苏/上海/安徽/浙江）以 12 个可直接识别的增量项目居首，其次是华北地区（北京/天津/山西）和华南地区（广东）。","TOP3 扩产企业：中创新航（合肥三期 25GWh 投产、四期推进）、华虹宏力（无锡 12 英寸三期增资至 41.7 亿美元）、爱思达航天（天津智能制造基地启动，投资超 5 亿元）。","TOP3 可能采购三丰产品的企业：中创新航合肥基地、南京威诺克 / 西安巨浪精密机床基地、欣旺达电白汽车电子基地。","TOP3 产品需求增长：**三坐标测量机（CMM）**、**激光干涉 / 激光位移传感器类精密测量**、**表面粗糙度 / 轮廓 / 圆度仪**。","国产替代影响最大产品：**影像测量仪/二次元** 与 **便携式粗糙度仪/入门级量具** 面临最直接的价格竞争与国产替代压力；中高端 CMM 仍由进口品牌主导。","下周最值得跟进：中创新航合肥研究院/三期产线、南京威诺克智能科技、西安巨浪精密机械华东总部、欣旺达电白基地、华虹宏力无锡三期、爱思达航天天津基地 等。","未来 3 个月最值得投入的细分市场：新能源汽车电驱/PACK 产线配套的现场快速测量与量具方案、半导体晶圆/封装厂配套的精密尺寸/形貌测量、航空航天复合材料/精密结构件的高精度三坐标/粗糙度/轮廓测量。"],"industries":[{"name":"半导体 / 晶圆制造","count":7,"event":"华虹无锡 12 英寸三期增资、SEMI 上调设备销售额、台积电设备采购预期翻倍、长电科技定增、中微/北方华创订单高增","growth":"高速增长"},{"name":"新能源汽车 / 动力电池","count":5,"event":"中创新航合肥三期 25GWh 投产、四期推进；欣旺达电白基地新增 SMT 产线","growth":"高速增长"},{"name":"精密机床 / CNC","count":4,"event":"南京威诺克华东基地 9 月底投产、西安巨浪华东总部封顶、Star Micronics 牧之原工厂竣工","growth":"显著增长"},{"name":"航空航天","count":2,"event":"爱思达航天天津智能制造基地启动（项目金额大）","growth":"高增长"},{"name":"医疗器械","count":3,"event":"西门子医疗 PET 探测器基地扩建完成、强生苏州产业园扩产、瑞奇外科天津项目落地","growth":"稳健增长"},{"name":"汽车及零部件","count":3,"event":"东风轻型发动机粗糙度仪采购、Gestamp 印度第五工厂投产、Audi A2 e-tron 投产","growth":"稳健增长"}],"regions":[{"area":"华东地区","provs":"江苏、上海、安徽、浙江","count":12,"key":"华虹无锡三期、中创新航合肥三期、南京威诺克/西安巨浪基地、上海微系统所晶圆几何量测仪、上海电机学院 CMM"},{"area":"华北地区","provs":"北京、天津、山西","count":6,"key":"爱思达航天天津基地、北京航天计量圆柱度仪、大同市检测中心设备采购、中科院高能物理研究所 CMM"},{"area":"华南地区","provs":"广东","count":4,"key":"欣旺达电白基地、和而泰青岛东北亚基地（关联）、中科院高能所东莞中子源 CMM"},{"area":"西南地区","provs":"四川、云南","count":3,"key":"成都三维光学轮廓仪、云南省计量院光学测速仪"},{"area":"华中地区","provs":"湖南、湖北","count":2,"key":"湖南天创精工 CMM、东风轻型发动机粗糙度仪"},{"area":"东北地区","provs":"—","count":0,"key":"暂无明显信号"}],"expanding":[{"co":"中创新航","ind":"动力电池","loc":"安徽合肥长丰","proj":"合肥基地三期 / 四期","scale":"三期 25GWh 已投产；总产能将达 100GWh","status":"三期已投产，四期年底投产"},{"co":"华虹宏力（无锡华虹）","ind":"半导体","loc":"江苏无锡","proj":"12 英寸特色工艺三期（Fab 9B）","scale":"注册资本增资至 41.7 亿美元；总投资 69.5 亿美元","status":"2026-03 启动建设，预计 2027-12 完工"},{"co":"爱思达航天","ind":"商业航天 / 复合材料","loc":"天津东丽","proj":"智能制造基地二期","scale":"占地 125 亩，建面 6.2 万㎡，投资超 5 亿元","status":"2027-12 竣工，2028 投用"},{"co":"南京威诺克智能科技","ind":"高端数控机床","loc":"江苏南京高淳","proj":"华东工业母机研发制造基地","scale":"总占地 180 亩，一期 48.9 亩","status":"一期 9 月底投产，二期 9 月底开工"},{"co":"西安巨浪精密机械","ind":"精密数控机床","loc":"江苏南京溧水","proj":"华东总部基地","scale":"总投资 5.25 亿元，建面 3 万㎡","status":"主体结构封顶，预计 11 月底竣工"},{"co":"华翌精机","ind":"高端五轴机床","loc":"广州黄埔 / 南京六合 / 重庆","proj":"华南 / 华东 / 总部制造基地","scale":"广州一期计划 2026 年底投产","status":"广州一期 2026 年底投产"},{"co":"欣旺达电白基地","ind":"汽车电子 / SMT","loc":"广东茂名电白","proj":"新增 SMT / DIP 产线","scale":"新增 5 条 SMT、8 条 DIP 产线","status":"2026 年扩产中"},{"co":"和而泰","ind":"智能控制器","loc":"山东青岛城阳","proj":"东北亚智能制造基地一期","scale":"建面超 7 万㎡，17 条自动化产线","status":"已正式投产"},{"co":"Star Micronics","ind":"高端 CNC 车床","loc":"日本静冈牧之原","proj":"牧之原工厂","scale":"投资约 40 亿日元，建面约 9,100㎡","status":"2026-07 已投入运行"},{"co":"西门子医疗","ind":"医疗器械","loc":"美国田纳西 Rockford","proj":"PET 探测器中心扩建","scale":"投资 4,360 万美元（约 3 亿元）","status":"扩建完成"},{"co":"强生医疗科技","ind":"医疗器械","loc":"江苏苏州","proj":"苏州产业园产能扩容","scale":"新增现代化绿色厂房与多条高端智造产线","status":"已完成新一轮扩容"},{"co":"瑞奇外科器械","ind":"医疗器械","loc":"天津经开区","proj":"全链条智能制造协同发展产业项目","scale":"投资数亿元，面积超 7,000㎡","status":"签约落地，建设中"},{"co":"融捷集团","ind":"新能源电池 / 储能","loc":"广州黄埔","proj":"新能源智造基地","scale":"总投资 120 亿元","status":"建设中"}],"buyers":[{"co":"中创新航合肥基地 / 研究院","loc":"安徽合肥","need":"三坐标、影像测量仪、粗糙度仪、卡尺/千分尺、激光位移传感器","why":"动力电池壳体、盖板、电芯尺寸/形位公差检测，产线扩张期量具与 CMM 需求同步放大"},{"co":"南京威诺克智能科技","loc":"江苏南京","need":"三坐标、粗糙度仪、轮廓仪、测高仪、硬度计","why":"高端数控机床床身、导轨、主轴等关键零部件的精密测量与出货前终检"},{"co":"西安巨浪精密机械（华东总部）","loc":"江苏南京溧水","need":"三坐标、圆度/圆柱度仪、粗糙度仪、轮廓仪","why":"年产 3,000 台精密数控机床，主轴、导轨、刀塔等精密部件检测需求刚性"},{"co":"欣旺达电白基地","loc":"广东茂名","need":"影像测量仪、二次元、三坐标、基础量具","why":"新增 5 条 SMT + 8 条 DIP 产线，BMS/BCM 等汽车电子 PCB 与结构件尺寸检测需求增加"},{"co":"华翌精机（南京/广州/重庆）","loc":"江苏 / 广东 / 重庆","need":"三坐标、激光干涉仪、粗糙度/轮廓仪","why":"高端五轴机床研发与量产，对导轨、丝杠、主轴等核心传动件精度要求极高"},{"co":"爱思达航天","loc":"天津东丽","need":"三坐标、粗糙度/轮廓仪、圆度仪、测高仪","why":"碳纤维复合材料火箭整流罩、航空航天结构件批量生产，尺寸与形位公差检测需求大"},{"co":"东风轻型发动机","loc":"湖北十堰","need":"便携式粗糙度仪、轮廓仪、三坐标、量具","why":"ZD 加工线新增 3 个便携式粗糙度仪采购完成，后续产线升级仍有增量"},{"co":"中航飞机起落架","loc":"湖南长沙","need":"高精度粗糙度轮廓测量仪、三坐标、圆度仪","why":"已采购高精度粗糙度轮廓测量仪，航空起落架精密零件检测持续"},{"co":"南京工艺装备制造","loc":"江苏南京","need":"滚珠丝杠行程误差测量仪、激光干涉仪、测长机","why":"已就 4 米/6 米滚珠丝杠行程误差测量仪招标，传动件精密测量需求明确"},{"co":"和而泰青岛基地","loc":"山东青岛","need":"影像测量仪、三坐标、基础量具、AOI/光学检测","why":"17 条智能控制器产线投产，SMT/组装环节尺寸与外观检测需求旺盛"}],"demand":[{"cat":"三坐标测量机（CMM）","n":6,"amount":"¥149.5 万（上海电机学院）；¥260 万（中科院高能所）；湖南天创精工、中车戚墅堰、郑州磨料磨具研究所","strength":"高"},{"cat":"表面粗糙度 / 轮廓 / 圆度 / 圆柱度仪","n":5,"amount":"¥156.6 万（中航飞机起落架）；¥379.5 万（北京航天计量圆柱度仪）；三维光学轮廓仪 2 套；便携式粗糙度仪 3 台","strength":"高"},{"cat":"激光干涉仪 / 激光位移 / 光电传感","n":4,"amount":"¥151 万（芜湖计量院相移式激光干涉仪）；¥83 万（马鞍山计量所）；¥19.479 万（西南交大光电传感器）","strength":"中高"},{"cat":"影像测量仪 / 二次元 / 投影图像测量仪","n":3,"amount":"¥62.8 万（云南省计量院非接触光学测速仪）；合肥波林新材料投影图像测量仪","strength":"中"},{"cat":"硬度计 / 理化检测设备","n":3,"amount":"江苏省特检院理化类检测设备；太原理工大学全自动显微硬度仪（¥65 万）","strength":"中"},{"cat":"晶圆几何量测 / 半导体检测","n":2,"amount":"¥108 万（中科院上海微系统所晶圆几何参数量测仪）；三维光学轮廓仪（半导体相关）","strength":"高"},{"cat":"基础量具（卡尺、千分尺、高度规等）","n":2,"amount":"大同市综合检验检测中心批量采购；东风轻型发动机新增量具需求","strength":"中"}],"substitution":[{"cat":"影像测量仪 / 二次元 / 闪测仪","level":"高","how":"价格竞争激烈，国产厂商以「自研算法+高性价比+快速交付」抢占中低端；进口品牌向高精度/复合式/在线检测收缩","brands":"天准科技、中图仪器、七海检测、梵码电子、德瑞检测"},{"cat":"便携式粗糙度仪 / 入门级量具","level":"中高","how":"计量院所、汽车产线对性价比敏感，国产品牌入围频繁；进口在高端粗糙度轮廓复合仪仍占优","brands":"北京时代、上海泰明、西安威而信"},{"cat":"三坐标测量机（CMM）","level":"中","how":"中高端桥式/龙门仍由海克斯康、蔡司、温泽主导；国产替代目录与「本国产品标准」政策持续加压","brands":"天准 CMZ/CMU/CME、力合精密、雷顿数控、爱德华、智泰柯"},{"cat":"激光干涉仪 / 光学轮廓仪","level":"中","how":"国产激光干涉仪在计量院所批量中标；高端光学轮廓仪仍由 Taylor Hobson 等进口品牌主导","brands":"慧利仪器、中图仪器"},{"cat":"硬度计 / 理化检测设备","level":"中","how":"国产布洛维/显微硬度计在高校、特检院份额提升；高端全自动显微硬度仪仍依赖进口","brands":"上海标卓、新天、华煜众信"}],"follow10":[{"co":"中创新航科技（合肥）有限公司 / 研究院","loc":"安徽合肥","why":"三期 25GWh 刚投产、四期年底投产，研究院新落地，电池壳体/盖板/电芯检测需求爆发","act":"联系质量/设备部门，推介 CMM、粗糙度仪、激光测厚/位移方案；跟进研究院实验室设备招标"},{"co":"南京威诺克智能科技有限公司","loc":"江苏南京高淳","why":"华东工业母机基地一期 9 月底投产、二期 9 月底开工，高端数控机床零部件检测需求明确","act":"9 月下旬拜访，推介三坐标、粗糙度/轮廓仪、测高仪，切入供应商体系"},{"co":"西安巨浪精密机械有限公司（华东总部）","loc":"江苏南京溧水","why":"华东总部基地 11 月底竣工，年产 3,000 台精密数控机床，主轴/导轨/刀塔精密测量需求大","act":"对接采购/品控，推介圆度仪、三坐标、粗糙度仪"},{"co":"欣旺达电白基地","loc":"广东茂名","why":"新增 5 条 SMT + 8 条 DIP 产线，汽车电子 BMS/BCM 尺寸检测需求增加","act":"联系基地质量部门，推介影像测量仪、三坐标、基础量具"},{"co":"华虹宏力半导体（无锡）","loc":"江苏无锡","why":"12 英寸三期巨额投资，Fab 9B 设备采购进行中，晶圆/零部件精密测量需求大","act":"关注 Fab 9B 设备招标，推介晶圆几何量测、激光干涉、三坐标"},{"co":"爱思达航天科技股份有限公司","loc":"天津东丽","why":"智能制造基地二期刚启动，商业航天火箭整流罩/结构件批量生产","act":"联系采购/质量，推介三坐标、粗糙度/轮廓仪、复合材料检测方案"},{"co":"东风轻型发动机有限公司","loc":"湖北十堰","why":"ZD 加工线新增便携式粗糙度仪采购完成，后续产线升级仍有增量","act":"跟进粗糙度仪使用情况，推介更多量具/CMM/轮廓仪"},{"co":"中航飞机起落架有限责任公司","loc":"湖南长沙","why":"已采购高精度粗糙度轮廓测量仪，航空精密零件检测持续","act":"维护现有关系，推介圆度/圆柱度仪、三坐标"},{"co":"南京工艺装备制造股份有限公司","loc":"江苏南京","why":"已就滚珠丝杠行程误差测量仪招标，传动件精密测量需求明确","act":"对接技术/采购，推介激光干涉仪、测长机、三坐标"},{"co":"上海电机学院","loc":"上海","why":"桥式三坐标测量机已中标（海克斯康），后续教学/科研设备仍有更新窗口","act":"关注后续设备采购计划，推介影像仪、粗糙度仪、基础量具"}],"markets3m":[{"title":"新能源汽车电驱 / PACK 产线现场快速测量","driver":"中创新航、宁德时代、欣旺达、比亚迪等电池/电驱产线持续扩产，对电池壳体尺寸、极片毛刺、盖板平面度、电芯高度/直径、PACK 装配间隙等现场快速检测需求爆发","products":"数显卡尺/千分尺、ABSOLUTE 防冷却液卡尺、数显测高仪、便携式粗糙度仪、激光位移传感器、现场型 CMM","clients":"中创新航合肥/厦门/江门、欣旺达电白/南京、宁德时代国内基地、蜂巢能源"},{"title":"半导体晶圆 / 封装厂精密尺寸与形貌测量","driver":"华虹无锡三期、长江存储三期、长电科技先进封装扩产、台积电/中芯设备采购上修，对晶圆几何量测、BGA/CSP 尺寸、引线框架/封装体尺寸、wafer 翘曲、表面粗糙度等检测需求增加","products":"晶圆几何量测方案、激光扫描测量、影像测量仪（QV）、粗糙度/轮廓仪、高精度测高仪、基础量具","clients":"华虹宏力无锡、长电科技、通富微电、盛合晶微、上海微系统所等科研平台"},{"title":"航空航天复合材料与精密结构件高精度测量","driver":"爱思达航天、蓝箭航天、星际荣耀等商业航天企业从研发进入批产，火箭整流罩、舱段、阀体、紧固件等对大尺寸三坐标、形位公差、粗糙度/轮廓、圆度圆柱度检测需求刚性","products":"大型桥式/龙门三坐标、圆度仪、圆柱度仪、粗糙度轮廓复合仪、测高仪、螺纹/齿轮专用量具","clients":"爱思达航天天津、中航飞机起落架、航空发动机主机厂、航天一院/八院配套企业"}],"actions":["销售侧：下周优先拜访南京威诺克、西安巨浪华东总部、中创新航合肥研究院、欣旺达电白基地，携带三坐标/粗糙度/影像仪样册与成功案例，聚焦「扩产期的设备选型窗口」。","市场侧：持续监控华虹无锡三期、台积电/中芯设备采购、商业航天基地扩产的后续招标；建立「计量院所设备更新」专项跟踪清单。","产品侧：针对国产替代压力最大的影像测量仪/二次元/便携式粗糙度仪/基础量具，准备「精度对比+服务响应+数据接口」组合方案；对中高端 CMM/圆度/轮廓仪强化「稳定性+全球服务网络」卖点。","渠道侧：加强与华东（南京、苏州、无锡）、华南（深圳、东莞、茂名）、华北（天津、北京）本地代理商/服务商协同，确保扩产客户能在 24–48 小时内获得现场支持。","数据侧：补充获取 ① 华虹无锡三期设备招标明细；② 中创新航合肥研究院设备采购计划；③ 南京威诺克/西安巨浪已确定的检测设备供应商名单；④ 东风轻型发动机 ZD 线后续投资计划。"],"sources":["中国政府采购网（ccgp.gov.cn）— 上海电机学院、中科院高能物理研究所、云南省计量院、大同市检测中心、太原理工大学、中国测试技术研究院等","必联网（ebnew.com）— 中车戚墅堰 CMM、湖南天创精工 CMM、三维光学轮廓仪、江苏省特检院等","中招联合招标采购平台 — 北京航天计量圆柱度仪","仪器信息网 — 中科院高能所 CMM、海克斯康 OPTIV S 发布","上市公司 / 企业公告 — 华虹宏力、中创新航、长电科技、北方华创、中微公司","政府 / 开发区官网 — 南京高淳区（威诺克）、南京溧水区（西安巨浪）、天津东丽区（爱思达航天）、广州黄埔区（融捷集团）","行业媒体 — 中国电子报/SEMI、中国工业新闻网、盖世汽车、中国新闻周刊","招聘平台 — 猎聘、智通直聘（CMM / 测量工程师岗位热度）"]};
+
+/* ============================================================
+   模块 5：DAILY_RADAR（三丰精密测量行业增量市场雷达·机会日报，每天 09:00 由自动化整体替换）
+   字段：date/window/top5/mustWatch/plants/markets/competitors/leads/trends/actions
+============================================================ */
+const DAILY_RADAR={"date":"2026-09-17","window":"2026-09-14 ~ 2026-09-17","top5":[{"co":"蓝箭航天无锡生产基地","ind":"商业航天 / 火箭","loc":"江苏无锡","opp":"朱雀三号大型可复用液体火箭量产基地建成，总投资 23 亿元，满产后年发射 20 次总装能力","dev":"三坐标测量机、激光跟踪仪、影像测量仪、轮廓仪","when":"2026 Q4 起量产","score":93},{"co":"星河动力廊坊基地","ind":"商业航天 / 火箭","loc":"河北廊坊","opp":"一期投产，年产 30 发谷神星固体火箭 + 20 发智神星液体火箭核心零部件","dev":"三坐标测量机、圆度仪、粗糙度仪、影像测量仪","when":"2026-2027 年","score":89},{"co":"丽水市质量检验检测研究院","ind":"质检 / 计量","loc":"浙江丽水","opp":"检验检测设备更新项目中标，总金额 1463.9 万元","dev":"三坐标、影像测量仪、粗糙度仪、轮廓仪等","when":"已中标，设备进场中","score":86},{"co":"钠美新能源科技（巴中）","ind":"钠离子电池","loc":"四川巴中","opp":"国内首条 GWh 级全极耳大圆柱钠电产线投产，总投资约 5 亿元","dev":"三坐标、影像测量仪、粗糙度仪、测厚仪","when":"已投产，后续扩产 30GWh","score":86},{"co":"苏州华集数控科技","ind":"数控机床 / 精密机械","loc":"江苏南京溧水","opp":"年产 3000 台通用 CNC 加工中心研发生产项目落户，总投资 5 亿元","dev":"三坐标、激光干涉仪、球杆仪、影像测量仪","when":"2028 年建成投产","score":85}],"mustWatch":[{"title":"蓝箭航天无锡基地建成：民营大型可复用火箭进入量产阶段","what":"2026 年 5 月建成的蓝箭航天无锡生产基地将实现朱雀三号大型可复用液体运载火箭量产能力，基地占地约 112 亩，总投资 23 亿元，满产后具备年发射 20 次的总装、总测能力。","why":"中国民营商业航天首次承接大型低轨星座批量组网任务后的关键产能布局，GW 星座、千帆星座等超万颗卫星部署对大运力、低成本火箭提出刚性需求。","need":"火箭贮箱、阀门、发动机零部件、3D 打印件的高精度检测；贮箱总成焊接后的形位公差测量；总装阶段的对接测量。","when":"基地已建成，2026 Q4 进入量产爬坡，测量设备需求在 3-6 个月内集中释放。","todo":"重点接触蓝箭航天无锡基地质量/工艺部门，推荐三丰大型桥式三坐标、激光跟踪仪及配套测头方案。"},{"title":"星河动力「智神星一号」首飞成功，廊坊基地一期投产","what":"星河动力自研中大型可重复使用液体运载火箭「智神星一号」首飞成功；廊坊基地一期 6 月投产，生产火箭用阀门组件，二期建设中，全部建成后具备年产 30 发谷神星固体火箭及 20 发智神星液体火箭核心零部件生产能力。","why":"京津冀协同背景下，北京研发 + 廊坊制造的产业格局形成，航天零部件精密加工需求集中。","need":"阀门、发动机涡轮泵、燃烧室等精密零件的三坐标检测、表面粗糙度/轮廓测量、形位公差检测。","when":"2026 Q4 - 2027 Q2。","todo":"跟进星河动力廊坊基地扩产进度，提供航空航天行业测量解决方案。"},{"title":"钠美新能源 1.5GWh 钠离子电池产线在巴中投产","what":"9 月 16 日，国内首条 GWh 级全极耳大圆柱钠离子电池智能量产线在四川巴中正式投产，钠美新能源 1.5GWh 钠离子电池一期项目总投资约 5 亿元。","why":"2026 年被行业公认为钠电量产元年，巴中市计划 3-5 年内集聚 20 家以上钠电产业链核心企业，形成年产 30GWh 电芯及配套材料产能。","need":"极片、隔膜、电芯壳体、极耳的尺寸测量；电池组装的视觉定位与检测；产线 SPC 用在线测量设备。","when":"已投产，后续扩产设备需求持续 3-6 个月。","todo":"关注巴中经开区钠电产业园后续扩产项目，推荐影像测量仪、粗糙度仪、测高仪等。"},{"title":"苏州华集数控年产 3000 台 CNC 项目落户南京溧水","what":"苏州华集数控科技与南京溧水区签约，总投资 5 亿元建设年产 3000 台通用 CNC 加工中心研发生产项目，预计明年初开工、2028 年建成投产。","why":"企业以五轴机床及半导体新材料加工装备为特色，新工厂建设将带来大量机床精度检测与出厂标定需求。","need":"机床出厂精度标定用的激光干涉仪、球杆仪、三坐标测量机；客户现场验收用测量设备。","when":"2026 年底 - 2027 年设备招标。","todo":"提前接触华集数控采购/技术部门，推介三丰在机床行业测量方案。"},{"title":"海门经开区签约三大高端智造项目","what":"9 月 16 日，海门经开区签约高精度五轴联动数控机床智造（锟仑精密 1.5 亿元）、半导体及大飞机高端智能装备制造（江苏密特科 3 亿元）、空天通信光子器件研发生产三大项目。","why":"项目涵盖高端数控机床、半导体装备、航空航天通信等战略性新兴产业，精密测量需求明确。","need":"五轴机床精度检测、半导体精密装备结构件测量、航空航天零部件形位公差检测。","when":"签约后 6-12 个月。","todo":"跟踪项目开工及设备招标节点，重点跟进江苏密特科半导体/大飞机装备项目。"}],"plants":[{"co":"蓝箭航天无锡生产基地","loc":"江苏无锡","ind":"商业航天火箭","scale":"23 亿元，年发射 20 次总装能力","status":"已建成（5 月）","need":"三坐标、激光跟踪仪、影像测量仪"},{"co":"星河动力廊坊基地","loc":"河北廊坊","ind":"商业航天火箭","scale":"年产 30 发固体 + 20 发液体火箭零部件","status":"一期投产，二期建设","need":"三坐标、圆度仪、粗糙度仪"},{"co":"钠美新能源巴中基地","loc":"四川巴中","ind":"钠离子电池","scale":"5 亿元，1.5GWh","status":"正式投产","need":"影像测量仪、粗糙度仪、测厚仪"},{"co":"苏州华集数控 CNC 项目","loc":"江苏南京溧水","ind":"数控机床","scale":"5 亿元，年产 3000 台","status":"签约落地，2028 年建成","need":"激光干涉仪、球杆仪、三坐标"},{"co":"海门经开区高端智造项目","loc":"江苏南通海门","ind":"高端装备 / 半导体","scale":"合计 4.5 亿元","status":"签约","need":"三坐标、影像测量仪、轮廓仪"},{"co":"强生苏州产业园","loc":"江苏苏州","ind":"医疗器械","scale":"心电生理产线落成 + 外科工厂升级","status":"9 月正式落成","need":"影像测量仪、粗糙度仪、轮廓仪"},{"co":"爱迪特牙科产业园","loc":"河北秦皇岛","ind":"医疗器械（牙科）","scale":"一期设备搬迁调试中","status":"逐步试生产","need":"影像测量仪、三坐标、粗糙度仪"},{"co":"昊志高端装备智造产业园二期","loc":"湖南湘阴","ind":"高端装备 / 数控机床","scale":"251 亩","status":"签约","need":"三坐标、激光干涉仪、影像测量仪"},{"co":"博迈医疗 IPO 募投","loc":"广东东莞 / 湖南","ind":"血管介入医疗器械","scale":"12 亿元","status":"创业板过会","need":"影像测量仪、粗糙度仪、测径仪"},{"co":"鼎泰鑫先进新材料制造基地","loc":"广东东莞厚街","ind":"PCB / 新材料","scale":"7 亿元","status":"签约","need":"影像测量仪、三坐标、厚度测量仪"}],"markets":[{"ind":"汽车 / 新能源汽车","trend":"增长","why":"吉利雷诺巴西工厂本地化投产、十堰新能源转型、比亚迪海外工厂推进；国内动力电池产业链持续扩产"},{"ind":"动力电池","trend":"增长","why":"宁德时代埃及 5GWh 电池厂签约；溧阳电池制造产业 2026 上半年规上产值 637.3 亿元，同比 +51.9%"},{"ind":"储能","trend":"增长","why":"钠美巴中 1.5GWh 投产，巴中规划 30GWh；蓝固新能源万吨级固态电解质产线投产"},{"ind":"半导体 / 晶圆厂","trend":"增长","why":"海门半导体装备项目签约；华集数控布局半导体新材料加工装备；国产替代持续推进"},{"ind":"精密机械 / 数控机床","trend":"增长","why":"华集数控、海德曼、昊志机电、锟仑精密等五轴/复合机床项目密集落地"},{"ind":"电子制造","trend":"增长","why":"昊志机电 PCB 主轴、鼎泰鑫 PCB 新材料项目扩产"},{"ind":"航空航天","trend":"增长","why":"蓝箭、星河动力、东方空间等商业航天火箭量产加速；C919 交付爬坡"},{"ind":"医疗器械","trend":"增长","why":"强生苏州心电生理产线落成、博迈医疗 IPO 扩产、爱迪特牙科产业园试生产"},{"ind":"模具","trend":"稳定","why":"鼎泰高科 PCB 相关材料扩产；连云港眼镜模具国产化项目推进"}],"competitors":[{"brand":"蔡司 ZEISS","news":"9 月发布 VersaXRM 5 Insight 混合 3D X 射线显微镜，整合 X 射线显微镜与 microCT，面向半导体封装、电子、材料研究","impact":"在半导体/电子失效分析领域加强布局，对三丰影像/非接触测量形成竞争压力"},{"brand":"海克斯康 Hexagon","news":"中标上海民航职业技术学院高精度三坐标测量机项目（58.9 万元，型号 FUSION 05.06.05）","impact":"持续占据教育培训及中小型 CMM 采购市场"},{"brand":"泰勒霍普森 Taylor Hobson","news":"中标成光镜界（四川）三维光学轮廓仪项目 2 套","impact":"在光学轮廓/表面粗糙度高端市场保持优势"},{"brand":"中图仪器 Chotest","news":"Novator 全自动影像测量仪报价 52 万元，强调 AI 影像测量、自主可控软件","impact":"国产影像测量仪在中低端市场加速替代，价格竞争激烈"},{"brand":"国产影像测量仪品牌","news":"万濠、天准、舜宇等持续推广全自动影像测量仪，强调与 MES 对接、珠三角服务响应","impact":"对三丰 QV 系列影像测量仪形成价格竞争"}],"leads":[{"co":"蓝箭航天无锡生产基地","loc":"江苏无锡","ind":"商业航天","type":"火箭量产基地检测需求","amount":"23 亿元","score":93,"prob":"🔴 极可能（1-3 个月）","act":"重点攻关，推荐三坐标 + 激光跟踪仪"},{"co":"星河动力廊坊基地","loc":"河北廊坊","ind":"商业航天","type":"火箭零部件扩产","amount":"年产 50 发","score":89,"prob":"🔴 极可能","act":"对接质量部门，提供航空航天测量方案"},{"co":"丽水市质检院","loc":"浙江丽水","ind":"质检机构","type":"设备更新","amount":"1463.9 万元","score":86,"prob":"🔴 极可能（已中标，跟进下一轮）","act":"关注后续标包，准备方案"},{"co":"钠美新能源巴中","loc":"四川巴中","ind":"钠电池","type":"产线及扩产","amount":"5 亿元","score":86,"prob":"🟠 较可能（3-6 个月）","act":"跟进扩产进度"},{"co":"苏州华集数控","loc":"江苏南京","ind":"数控机床","type":"新工厂建设","amount":"5 亿元","score":85,"prob":"🟡 潜在（6-12 个月）","act":"提前接触采购/技术部门"},{"co":"江苏密特科智能装备","loc":"江苏南通","ind":"半导体 / 大飞机","type":"新工厂","amount":"3 亿元","score":84,"prob":"🟡 潜在","act":"跟踪开工节点"},{"co":"威海市 / 聊城市检验检测中心","loc":"山东","ind":"质检机构","type":"设备更新","amount":"2150 万元","score":84,"prob":"🟠 较可能","act":"重点跟进招标文件"},{"co":"强生苏州产业园","loc":"江苏苏州","ind":"医疗器械","type":"心电生理产线落成","amount":"暂无法确认","score":83,"prob":"🟠 较可能","act":"对接强生供应链/质量部门"},{"co":"锟仑精密工业","loc":"江苏南通","ind":"高端数控机床","type":"五轴机床项目","amount":"1.5 亿元","score":82,"prob":"🟡 潜在","act":"跟踪设备采购"},{"co":"昊志高端装备智造园","loc":"湖南湘阴","ind":"高端装备","type":"二期扩产","amount":"251 亩","score":82,"prob":"🟡 潜在","act":"关注设备招标"},{"co":"深圳天溯计量检测","loc":"新疆塔城","ind":"第三方检测","type":"医院合同公告","amount":"280 万元","score":82,"prob":"🟠 较可能","act":"关注其设备采购需求"},{"co":"博迈医疗","loc":"广东东莞","ind":"医疗器械","type":"IPO 扩产","amount":"12 亿元","score":81,"prob":"🟡 潜在","act":"跟进募投项目设备采购"},{"co":"鼎泰鑫电子","loc":"广东东莞","ind":"PCB 新材料","type":"先进新材料制造基地","amount":"7 亿元","score":80,"prob":"🟡 潜在","act":"关注项目开工"},{"co":"重庆市计量质量检测研究院","loc":"重庆","ind":"质检机构","type":"医学标包中标","amount":"226 万元","score":76,"prob":"🟠 较可能","act":"关注后续标包"},{"co":"上海民航职业技术学院","loc":"上海","ind":"教育 / 培训","type":"三坐标采购已中标","amount":"58.9 万元","score":75,"prob":"🟢 长期","act":"作为教育市场推广案例"}],"trends":[{"span":"1 个月（2026-08 ~ 09）","items":["商业航天进入量产兑现期：蓝箭、星河动力、东方空间等民营火箭企业从试验发射转向批量交付组网星，火箭及零部件制造基地密集投产，精密测量需求快速上升。","钠电池量产元年启动：钠美巴中 1.5GWh 投产、中科海钠万吨级产线商业化，钠电产业链从材料端向电芯制造端跨越。"]},{"span":"3 个月（2026-06 ~ 09）","items":["高端数控机床国产化加速：华集数控、海德曼、昊志机电、锟仑精密等五轴/复合机床项目密集落地，机床精度检测市场扩容。","质检机构设备更新持续：丽水、威海、聊城、重庆等地质检/计量机构大额设备更新招标密集发布，是测量仪器集中采购的重要窗口。"]},{"span":"6 个月（2026-03 ~ 09）","items":["新能源产业链海外扩张：宁德时代埃及建厂、比亚迪海外工厂投产、吉利雷诺巴西本地化，带动海外测量设备配套机会（需评估 Ailis 海外服务能力）。","医疗器械本土化深化：强生、博迈、爱迪特等外资/国产医疗器械企业持续扩产，高端医疗器械测量需求增长。"]},{"span":"12 个月（2025-09 ~ 2026-09）","items":["精密测量仪器国产替代与外资高端并存：国产影像测量仪、三坐标在中低端市场加速渗透；蔡司、海克斯康持续在高端半导体、航空航天、教育市场保持优势。","政策驱动设备更新：质检、计量、高校、科研院所设备更新政策持续释放采购需求。"]}],"actions":{"contact":["蓝箭航天无锡生产基地 — 火箭量产基地刚建成，测量设备需求迫切，推荐大型三坐标、激光跟踪仪方案。","星河动力廊坊基地 — 一期投产、二期建设中，航空航天零部件检测需求明确。","丽水市质量检验检测研究院 — 1463.9 万元设备更新已开标，关注后续标包及类似机构招标。","威海市 / 聊城市检验检测中心 — 2150 万元设备更新项目正在招标，需立即获取招标文件并准备应标。"],"promote":["商业航天 / 火箭制造领域 — 蓝箭、星河动力、东方空间等民营火箭企业进入量产期，重点推广三坐标、激光跟踪仪、影像测量仪。","钠离子电池 / 储能领域 — 钠美、中科海钠等企业扩产，推广影像测量仪、粗糙度仪、测厚仪。","高端数控机床领域 — 华集数控、锟仑精密、昊志机电等新工厂建设，推广激光干涉仪、球杆仪、三坐标。","医疗器械领域 — 强生苏州、博迈医疗、爱迪特扩产，推广影像测量仪、粗糙度仪、轮廓仪。"],"watch":["C919 产业链 — 长江-1000A 发动机取证收尾，航空发动机热端部件、机载系统国产化将带来新的精密测量需求。","固态电池 / 固态电解质 — 蓝固新能源万吨级固态电解质产线投产，清陶能源台州二期谋划开工。","半导体设备国产化 — 海门半导体装备项目、华集数控半导体新材料加工装备项目。"],"avoid":["海外动力电池项目（宁德时代埃及、比亚迪泰国/巴西等）— 距离 Ailis 核心服务区域较远，且面临当地代理商/服务网络竞争，暂不主动投入。","已中标的低价值项目 — 上海民航职业技术学院 58.9 万元项目已由海克斯康中标，无需跟进。","信息不明确的早期招商项目 — 部分仅完成签约、尚未开工的项目，待用地/环评/设备招标信息明确后再投入。"]}};
+
 /* ===== 数据时点工具 =====================================================
    目的：模块顶部一律显示「数据本身的日期」，绝不显示页面打开时间，
         避免把「刚打开页面」误读成「数据刚更新」。
 ======================================================================= */
+function dataStamp(s){
+  // 从 updated 一类长文本里取出「日期[ 时间]」，丢掉括号注释等噪声
+  const m=String(s||'').match(/20\d\d-\d\d-\d\d(?:[ T]\d\d:\d\d)?/);
+  return m ? m[0] : String(s||'').split('·')[0].trim();
+}
 function latestDateIn(strs){
   let best=null;
   (strs||[]).forEach(function(s){
@@ -710,7 +885,14 @@ document.getElementById('sum-news').innerHTML=newsCount+' <small>条</small>';
 /* 电商行情快照渲染 */
 (function(){
   const E=EC_NEWS;
-  setDataTime('ec-time', String(E.updated||'').replace(/\./g,'-'), '抓取日');
+  // updated 若为当日、但 note 里声明「取数受限、数值为某历史快照」，则以该快照日期显示
+  (function(){
+    const upd=String(E.updated||'').replace(/\./g,'-');
+    const iso=s=>{ const p=String(s).split(/[-.\/]/); return p[0]+'-'+String(p[1]).padStart(2,'0')+'-'+String(p[2]).padStart(2,'0'); };
+    const ds=(String(E.note||'').match(/20\d\d[-.\/]\d{1,2}[-.\/]\d{1,2}/g)||[]).map(iso).filter(d=>d<upd).sort();
+    const snap=ds.length?ds[ds.length-1]:'';
+    setDataTime('ec-time', snap||upd, snap?'数据快照日（本日取数受限）':'抓取日');
+  })();
   const s=E.stat;
   document.getElementById('ec-stat').innerHTML=
     `<div class="s"><div class="k">在售商品</div><div class="v">${s.count}<small> 件</small></div></div>`+
@@ -738,6 +920,121 @@ document.getElementById('sum-news').innerHTML=newsCount+' <small>条</small>';
 /* dashboard 首页统计 */
 document.getElementById('sum-ec').innerHTML=EC_NEWS.stat.authCount+' <small>件</small>';
 document.getElementById('sum-bid').innerHTML=BID_NEWS.length+' <small>条</small>';
+
+/* ============================================================
+   模块 4：周度报告渲染（WEEKLY_REPORT）
+============================================================ */
+(function(){
+  const W=WEEKLY_REPORT, $=id=>document.getElementById(id);
+  // TL;DR：把 **粗体** 转 <b>
+  const bd=s=>String(s||'').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+  $('wk-period').textContent=W.period||'—';
+  setDataTime('wk-time', W.reportDate, '报告出具日');
+  $('wk-stat').innerHTML=
+    `<div class="mini teal"><div class="k">📅 覆盖周期</div><div class="v" style="font-size:13px;font-weight:700">${W.period}</div></div>`+
+    `<div class="mini red"><div class="k">🏭 扩产企业</div><div class="v">${(W.expanding||[]).length} <small>家</small></div></div>`+
+    `<div class="mini blue"><div class="k">🎯 可能采购三丰</div><div class="v">${(W.buyers||[]).length} <small>家</small></div></div>`+
+    `<div class="mini green"><div class="k">📌 下周跟进</div><div class="v">${(W.follow10||[]).length} <small>家</small></div></div>`;
+  $('wk-tldr').innerHTML=(W.tldr||[]).map(t=>`<li>${bd(t)}</li>`).join('');
+
+  $('wk-ind').innerHTML='<table class="tbl"><thead><tr><th>行业</th><th class="c">新增项目/招标</th><th>代表性事件</th><th class="c">增速判断</th></tr></thead><tbody>'+
+    (W.industries||[]).map(x=>`<tr><td><b>${x.name}</b></td><td class="c num">${x.count}</td><td>${x.event}</td><td class="c">${x.growth}</td></tr>`).join('')+
+    '</tbody></table>';
+  $('wk-region').innerHTML='<table class="tbl"><thead><tr><th>地区</th><th>省市</th><th class="c">新增项目/招标</th><th>重点项目</th></tr></thead><tbody>'+
+    (W.regions||[]).map(x=>`<tr><td><b>${x.area}</b></td><td>${x.provs}</td><td class="c num">${x.count}</td><td>${x.key}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('wk-expand').innerHTML='<table class="tbl"><thead><tr><th>企业</th><th>行业</th><th>地点</th><th>项目内容</th><th>投资/产能规模</th><th>状态</th></tr></thead><tbody>'+
+    (W.expanding||[]).map(x=>`<tr><td><b>${x.co}</b></td><td>${x.ind}</td><td>${x.loc}</td><td>${x.proj}</td><td>${x.scale}</td><td>${x.status}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('wk-buyers').innerHTML='<table class="tbl"><thead><tr><th>企业</th><th>所在地</th><th>需求匹配产品</th><th>判断理由</th></tr></thead><tbody>'+
+    (W.buyers||[]).map(x=>`<tr><td><b>${x.co}</b></td><td>${x.loc}</td><td>${x.need}</td><td>${x.why}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('wk-demand').innerHTML='<table class="tbl"><thead><tr><th>产品类别</th><th class="c">信号数</th><th>金额区间 / 典型案例</th><th class="c">需求强度</th></tr></thead><tbody>'+
+    (W.demand||[]).map(x=>`<tr><td><b>${x.cat}</b></td><td class="c num">${x.n}</td><td>${x.amount}</td><td class="c">${x.strength}</td></tr>`).join('')+
+    '</tbody></table>';
+  $('wk-subst').innerHTML='<table class="tbl"><thead><tr><th>产品类别</th><th class="c">影响程度</th><th>主要表现</th><th>代表国产品牌 / 动态</th></tr></thead><tbody>'+
+    (W.substitution||[]).map(x=>`<tr><td><b>${x.cat}</b></td><td class="c">${x.level}</td><td>${x.how}</td><td>${x.brands}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('wk-follow').innerHTML='<table class="tbl"><thead><tr><th class="c">#</th><th>公司</th><th>所在地</th><th>跟进理由</th><th>建议行动</th></tr></thead><tbody>'+
+    (W.follow10||[]).map((x,i)=>`<tr><td class="c num">${i+1}</td><td><b>${x.co}</b></td><td>${x.loc}</td><td>${x.why}</td><td>${x.act}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('wk-markets').innerHTML=(W.markets3m||[]).map((m,i)=>
+    `<div class="rd-block"><h5>${i+1}. ${m.title}</h5>
+      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">驱动因素</i>${m.driver}</div>
+      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">推荐产品</i>${m.products}</div>
+      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">关键客户</i>${m.clients}</div>
+    </div>`).join('');
+
+  $('wk-actions').innerHTML=(W.actions||[]).map(a=>`<li>${a}</li>`).join('');
+  $('wk-sources').innerHTML=(W.sources||[]).map(a=>`<li>${a}</li>`).join('');
+
+  $('sum-weekly').innerHTML=(W.follow10||[]).length+' <small>家</small>';
+})();
+
+/* ============================================================
+   模块 5：市场机会雷达渲染（DAILY_RADAR）
+============================================================ */
+(function(){
+  const R=DAILY_RADAR, $=id=>document.getElementById(id);
+  const scrCls=n=> n>=90?'scr hi' : (n>=85?'scr' : (n>=80?'scr mid' : 'scr lo'));
+  const trendCls=t=> t==='增长'?'tr-up' : (t==='稳定'?'tr-fl':'tr-dn');
+  $('rd-window').textContent=R.window||'—';
+  setDataTime('rd-time', R.date, '日报日期');
+  const hi=(R.leads||[]).filter(x=>x.score>=85).length;
+  $('rd-stat').innerHTML=
+    `<div class="mini red"><div class="k">🔥 高价值机会(≥85分)</div><div class="v">${hi} <small>个</small></div></div>`+
+    `<div class="mini blue"><div class="k">💰 潜在客户</div><div class="v">${(R.leads||[]).length} <small>家</small></div></div>`+
+    `<div class="mini green"><div class="k">🏭 新厂 / 扩产</div><div class="v">${(R.plants||[]).length} <small>条</small></div></div>`+
+    `<div class="mini teal"><div class="k">🥊 竞品动态</div><div class="v">${(R.competitors||[]).length} <small>条</small></div></div>`;
+
+  $('rd-top5').innerHTML='<table class="tbl"><thead><tr><th class="c">#</th><th>企业 / 机构</th><th>行业</th><th>地区</th><th>机会</th><th>可能采购设备</th><th>预计时间</th><th class="c">评分</th></tr></thead><tbody>'+
+    (R.top5||[]).map((x,i)=>`<tr><td class="c num">${x.rank||i+1}</td><td><b>${x.co}</b></td><td>${x.ind}</td><td>${x.loc}</td><td>${x.opp}</td><td>${x.dev}</td><td>${x.when}</td><td class="c"><span class="${scrCls(x.score)}">${x.score}</span></td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('rd-must').innerHTML=(R.mustWatch||[]).map(x=>
+    `<div class="rd-must"><h4>🚨 ${x.title}</h4>
+      <div class="row"><i>发生了什么</i>${x.what}</div>
+      <div class="row"><i>为什么重要</i>${x.why}</div>
+      <div class="row"><i>可能需求</i>${x.need}</div>
+      <div class="row"><i>预计采购</i>${x.when}</div>
+      <div class="row"><i>建议动作</i>${x.todo}</div>
+    </div>`).join('');
+
+  $('rd-plants').innerHTML='<table class="tbl"><thead><tr><th>企业 / 项目</th><th>地区</th><th>行业</th><th>投资 / 规模</th><th>状态</th><th>测量设备需求</th></tr></thead><tbody>'+
+    (R.plants||[]).map(x=>`<tr><td><b>${x.co}</b></td><td>${x.loc}</td><td>${x.ind}</td><td>${x.scale}</td><td>${x.status}</td><td>${x.need}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('rd-markets').innerHTML='<table class="tbl"><thead><tr><th>行业</th><th class="c">趋势</th><th>判断依据</th></tr></thead><tbody>'+
+    (R.markets||[]).map(x=>`<tr><td><b>${x.ind}</b></td><td class="c"><span class="${trendCls(x.trend)}">${x.trend}</span></td><td>${x.why}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('rd-comp').innerHTML='<table class="tbl"><thead><tr><th>品牌</th><th>动态</th><th>影响评估</th></tr></thead><tbody>'+
+    (R.competitors||[]).map(x=>`<tr><td><b>${x.brand}</b></td><td>${x.news}</td><td>${x.impact}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('rd-leads').innerHTML='<table class="tbl"><thead><tr><th>企业 / 机构</th><th>地区</th><th>行业</th><th>机会类型</th><th>金额 / 规模</th><th class="c">评分</th><th class="c">采购概率</th><th>建议行动</th></tr></thead><tbody>'+
+    (R.leads||[]).map(x=>`<tr><td><b>${x.co}</b></td><td>${x.loc}</td><td>${x.ind}</td><td>${x.type}</td><td>${x.amount}</td><td class="c"><span class="${scrCls(x.score)}">${x.score}</span></td><td class="c">${x.prob}</td><td>${x.act}</td></tr>`).join('')+
+    '</tbody></table>';
+
+  $('rd-trends').innerHTML=(R.trends||[]).map(t=>
+    `<div class="rd-block"><h5>${t.span}</h5><ul>${(t.items||[]).map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('');
+
+  const A=R.actions||{};
+  const grp=(icon,title,arr)=> (arr&&arr.length)
+    ? `<div class="rd-block"><h5>${icon} ${title}</h5><ul>${arr.map(i=>`<li>${i}</li>`).join('')}</ul></div>` : '';
+  $('rd-actions').innerHTML=
+    grp('✅','建议联系（立即行动）',A.contact)+
+    grp('🔍','重点推广',A.promote)+
+    grp('👀','建议关注',A.watch)+
+    grp('⛔','暂时不要投入',A.avoid);
+
+  $('sum-radar').innerHTML=hi+' <small>个</small>';
+})();
 
 /* ============================================================
    模块 3：FX_DATA（日币走势预估，由自动化每 1 小时替换）
@@ -783,7 +1080,7 @@ function renderFx(){
     a.classList.add('show');
     document.getElementById('fx-badge').style.display='inline-block';
   }
-  setDataTime('fx-time', String(D.updated||'').split('·')[0].trim(), '行情时点');
+  setDataTime('fx-time', dataStamp(D.updated), '行情时点');
   const _m0 = (D.history && D.history.length) ? D.history[0].m : '';
   const _endDate = (D.allDates && D.allDates.length) ? D.allDates[D.allDates.length - 1] : '';
   document.getElementById('fx-note').innerHTML=
@@ -918,7 +1215,7 @@ renderFx();
 
 /* ===== 汇总条更新 ===== */
 document.getElementById('sum-fx').innerHTML=FX_DATA.latest+' <small>CNY</small>';
-document.getElementById('sum-update').textContent=FX_DATA.updated.split('·')[0].trim();
+document.getElementById('sum-update').textContent=dataStamp(FX_DATA.updated);
 </script>
 </body>
 </html>
