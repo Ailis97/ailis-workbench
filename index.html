@@ -1,27 +1,27 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#16a34a">
-<title>Ailis 三件套 · 三丰代理商务台</title>
+<title>Ailis 涓変欢濂?路 涓変赴浠ｇ悊鍟嗗姟鍙?/title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <style>
-  /* ===== 莫兰迪色系 + 微信式左栏 ===== */
+  /* ===== 鑾叞杩壊绯?+ 寰俊寮忓乏鏍?===== */
   :root{
-    --bg:#f4f6f9;          /* 主背景：浅米灰 */
+    --bg:#f4f6f9;          /* 涓昏儗鏅細娴呯背鐏?*/
     --card:#ffffff;
     --ink:#1f2a37;
     --muted:#6b7280;
     --line:#e6e9ef;
-    --red:#c66b5f;         /* 三丰红（莫兰迪降饱和） */
+    --red:#c66b5f;         /* 涓変赴绾紙鑾叞杩檷楗卞拰锛?*/
     --red-soft:#f4e6e3;
-    --teal:#7a9b8e;        /* 莫兰迪绿 */
+    --teal:#7a9b8e;        /* 鑾叞杩豢 */
     --teal-soft:#e8efe9;
-    --blue:#7c95b3;        /* 莫兰迪蓝 */
+    --blue:#7c95b3;        /* 鑾叞杩摑 */
     --blue-soft:#e6ebf1;
-    --amber:#b59870;       /* 莫兰迪琥珀 */
-    --green:#7a9b6b;       /* 莫兰迪橄榄绿 */
+    --amber:#b59870;       /* 鑾叞杩惀鐝€ */
+    --green:#7a9b6b;       /* 鑾叞杩﹦姒勭豢 */
     --green-soft:#e8efe0;
     --shadow:0 1px 3px rgba(16,24,40,.06),0 6px 20px rgba(16,24,40,.05);
   }
@@ -31,7 +31,7 @@
   a{color:var(--blue);text-decoration:none}
   a:hover{text-decoration:underline}
 
-  /* ===== App Shell：左栏 + 主区 ===== */
+  /* ===== App Shell锛氬乏鏍?+ 涓诲尯 ===== */
   .app{display:flex;height:100vh;overflow:hidden}
   .sidebar{width:248px;background:#fff;border-right:1px solid var(--line);
     display:flex;flex-direction:column;flex-shrink:0}
@@ -41,13 +41,13 @@
   .sidebar .brand h1{font-size:15px;margin:0;font-weight:700;line-height:1.3;color:var(--ink)}
   .sidebar .brand .sub{font-size:11px;color:var(--muted);margin-top:1px}
 
-  /* 微信式导航：竖条选中态 */
+  /* 寰俊寮忓鑸細绔栨潯閫変腑鎬?*/
   nav{flex:1;overflow-y:auto;padding:10px 8px}
   nav a{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:9px;color:var(--ink);
     font-size:14px;text-decoration:none;margin-bottom:4px;transition:.15s;cursor:pointer;
     position:relative}
   nav a:hover{background:#f3f4f6}
-  /* 选中态：绿色竖条 + 浅绿背景 */
+  /* 閫変腑鎬侊細缁胯壊绔栨潯 + 娴呯豢鑳屾櫙 */
   nav a.active{background:var(--green-soft);color:var(--green);font-weight:700}
   nav a.active::before{content:"";position:absolute;left:-8px;top:50%;transform:translateY(-50%);
     width:4px;height:60%;background:var(--green);border-radius:0 3px 3px 0}
@@ -59,7 +59,7 @@
   .side-footer{margin-top:auto;padding:14px 16px 12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
   .side-footer b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
 
-  /* ===== 主内容区 ===== */
+  /* ===== 涓诲唴瀹瑰尯 ===== */
   .main{flex:1;overflow-y:auto;padding:24px 28px 40px}
   .wrap-inner{max-width:980px;margin:0 auto}
 
@@ -67,13 +67,13 @@
   .section.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  /* 顶部欢迎条 */
+  /* 椤堕儴娆㈣繋鏉?*/
   .welcome{background:linear-gradient(120deg,#f3f6f1,#eaeee7);border:1px solid #d8e2cf;border-radius:14px;
     padding:18px 20px;margin-bottom:18px}
   .welcome h2{margin:0 0 6px;font-size:17px;color:#3e5e3a}
   .welcome p{margin:0;font-size:13px;color:#4b5563}
 
-  /* 4 个 mini 摘要卡 */
+  /* 4 涓?mini 鎽樿鍗?*/
   .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
   .mini{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
   .mini .k{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
@@ -92,7 +92,7 @@
   .card .update-info{font-size:12px;color:var(--muted);margin-bottom:14px;padding:8px 12px;background:#fafbf9;
     border-left:3px solid var(--green);border-radius:6px}
 
-  /* 行业增量（INDUSTRIES） */
+  /* 琛屼笟澧為噺锛圛NDUSTRIES锛?*/
   .theme{background:linear-gradient(180deg,#fff,#fcfdfe);border:1px solid var(--line);border-radius:12px;
     padding:14px 16px;margin-bottom:12px;border-left:4px solid var(--red)}
   .theme h3{margin:0 0 7px;font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -105,26 +105,26 @@
   .src a{color:var(--teal);text-decoration:none;font-weight:600}
   .src a:hover{text-decoration:underline}
 
-  /* 「数据时点」标签：区别于页面打开时间 */
+  /* 銆屾暟鎹椂鐐广€嶆爣绛撅細鍖哄埆浜庨〉闈㈡墦寮€鏃堕棿 */
   .update-info .dtag{font-size:10.5px;font-weight:700;color:#5f7a63;background:#eef3ee;
     padding:1px 7px;border-radius:20px;margin-left:6px;white-space:nowrap}
 
-  /* 市场行情（NEWS） */
+  /* 甯傚満琛屾儏锛圢EWS锛?*/
   .news{list-style:none;margin:8px 0 0;padding:0}
   .news li{font-size:13px;padding:9px 0;border-top:1px dashed var(--line);display:flex;gap:9px}
   .news li:first-child{border-top:none}
   .news .when{color:#fff;font-weight:700;flex:none;font-size:11px;background:var(--red);
     padding:3px 9px;border-radius:5px;align-self:flex-start;line-height:1.3;height:fit-content}
-  .news .when.tag-竞品{background:var(--blue)}
-  .news .when.tag-新品{background:var(--red)}
-  .news .when.tag-展会{background:var(--amber)}
-  .news .when.tag-头条{background:#7a6b9b}
+  .news .when.tag-绔炲搧{background:var(--blue)}
+  .news .when.tag-鏂板搧{background:var(--red)}
+  .news .when.tag-灞曚細{background:var(--amber)}
+  .news .when.tag-澶存潯{background:#7a6b9b}
   .news .nb{display:block;flex:1}
   .news .meta{display:block;font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}
   .news .meta a{color:var(--teal);text-decoration:none;font-weight:600}
   .news .meta a:hover{text-decoration:underline}
 
-  /* 电商行情快照（EC） */
+  /* 鐢靛晢琛屾儏蹇収锛圗C锛?*/
   .ec-stat{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 6px}
   .ec-stat .s{background:#fbfdff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-width:96px}
   .ec-stat .s .k{font-size:11px;color:var(--muted)}
@@ -145,7 +145,7 @@
   .ec .eb .meta a{color:var(--teal);text-decoration:none;font-weight:600}
   .ec .eb .meta a:hover{text-decoration:underline}
 
-  /* 招标动态（BID） */
+  /* 鎷涙爣鍔ㄦ€侊紙BID锛?*/
   .bid{list-style:none;margin:6px 0 0;padding:0}
   .bid li{font-size:12.5px;padding:9px 0;border-top:1px dashed var(--line)}
   .bid li:first-child{border-top:none}
@@ -158,7 +158,7 @@
   .bid .bm a{color:var(--teal);text-decoration:none;font-weight:600}
   .bid .bm a:hover{text-decoration:underline}
 
-  /* 日币走势预估（FX） */
+  /* 鏃ュ竵璧板娍棰勪及锛團X锛?*/
   .fx-alert{background:var(--red-soft);border:1px solid #d8c0b8;border-radius:10px;padding:12px 15px;
     margin:0 0 14px;font-size:13px;color:#7a4a3e;line-height:1.7;display:none}
   .fx-alert.show{display:block}
@@ -217,7 +217,7 @@
   .disclaimer{background:var(--red-soft);border:1px solid #d8c0b8;color:#7a4a3e;
     padding:10px 14px;border-radius:10px;font-size:12.5px;margin:14px 0 14px}
 
-  /* ===== 周报 / 雷达：通用表格与版式 ===== */
+  /* ===== 鍛ㄦ姤 / 闆疯揪锛氶€氱敤琛ㄦ牸涓庣増寮?===== */
   .tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}
   .tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top;line-height:1.6}
   .tbl th{background:#f3f6f2;color:#3e5e3a;font-weight:700;white-space:nowrap}
@@ -235,13 +235,13 @@
   .acts li::before{content:"\25B8";position:absolute;left:6px;color:var(--green);font-weight:800}
   .mini.amber .v{color:var(--amber)}
 
-  /* 周报：TL;DR */
+  /* 鍛ㄦ姤锛歍L;DR */
   .rp-tldr{list-style:none;margin:14px 0 0;padding:0}
   .rp-tldr li{font-size:13px;padding:9px 13px;border-left:3px solid var(--red);background:#fdfaf9;
     border-radius:0 8px 8px 0;margin-bottom:8px;color:#374151;line-height:1.7}
   .rp-tldr li b{color:var(--ink);font-weight:800}
 
-  /* 雷达：评分徽章 */
+  /* 闆疯揪锛氳瘎鍒嗗窘绔?*/
   .scr{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--red);
     padding:1px 8px;border-radius:20px;font-family:tabular-nums;line-height:1.5}
   .scr.hi{background:#b23a2e}
@@ -259,7 +259,7 @@
   .rd-block h5{margin:0 0 5px;font-size:12.5px;font-weight:800;color:#3e5e3a}
   .rd-block ul{margin:0;padding-left:19px}
   .rd-block li{font-size:12.5px;color:#374151;line-height:1.7;margin:3px 0}
-  /* 响应式 */
+  /* 鍝嶅簲寮?*/
   @media(max-width:860px){
     .app{flex-direction:column;height:auto}
     .sidebar{width:100%;border-right:none;border-bottom:1px solid var(--line)}
@@ -275,146 +275,146 @@
 </head>
 <body>
 <div class="app">
-  <!-- ===== 左侧导航栏（莫兰迪 + 微信式绿色竖条） ===== -->
+  <!-- ===== 宸︿晶瀵艰埅鏍忥紙鑾叞杩?+ 寰俊寮忕豢鑹茬珫鏉★級 ===== -->
   <aside class="sidebar">
     <div class="brand">
-      <div class="logo">丰</div>
+      <div class="logo">涓?/div>
       <div>
-        <h1>Ailis 三件套</h1>
-        <div class="sub">三丰代理商务台 · 跨设备云同步</div>
+        <h1>Ailis 涓変欢濂?/h1>
+        <div class="sub">涓変赴浠ｇ悊鍟嗗姟鍙?路 璺ㄨ澶囦簯鍚屾</div>
       </div>
     </div>
     <nav id="nav">
-      <a href="#" class="active" data-nav="dashboard"><span class="icon">🏠</span><span class="label">工作台</span></a>
-      <a href="#" data-nav="industries"><span class="icon">📈</span><span class="label">三丰行业增量</span></a>
-      <a href="#" data-nav="news"><span class="icon">📰</span><span class="label">三丰市场行情</span></a>
-      <a href="#" data-nav="fx"><span class="icon">💴</span><span class="label">日币走势预估</span><span class="badge" id="fx-badge" style="display:none">!</span></a>
-      <a href="#" data-nav="weekly"><span class="icon">📋</span><span class="label">行业周度报告</span></a>
-      <a href="#" data-nav="radar"><span class="icon">🎯</span><span class="label">市场机会雷达</span></a>
+      <a href="#" class="active" data-nav="dashboard"><span class="icon">馃彔</span><span class="label">宸ヤ綔鍙?/span></a>
+      <a href="#" data-nav="industries"><span class="icon">馃搱</span><span class="label">涓変赴琛屼笟澧為噺</span></a>
+      <a href="#" data-nav="news"><span class="icon">馃摪</span><span class="label">涓変赴甯傚満琛屾儏</span></a>
+      <a href="#" data-nav="fx"><span class="icon">馃挻</span><span class="label">鏃ュ竵璧板娍棰勪及</span><span class="badge" id="fx-badge" style="display:none">!</span></a>
+      <a href="#" data-nav="weekly"><span class="icon">馃搵</span><span class="label">琛屼笟鍛ㄥ害鎶ュ憡</span></a>
+      <a href="#" data-nav="radar"><span class="icon">馃幆</span><span class="label">甯傚満鏈轰細闆疯揪</span></a>
     </nav>
     <div class="side-footer">
-      <b id="now">—</b>
-      <span id="greet">—</span>
+      <b id="now">鈥?/b>
+      <span id="greet">鈥?/span>
     </div>
   </aside>
 
-  <!-- ===== 右侧主内容区 ===== -->
+  <!-- ===== 鍙充晶涓诲唴瀹瑰尯 ===== -->
   <main class="main">
     <div class="wrap-inner">
 
-      <!-- ========== 工作台 ========== -->
+      <!-- ========== 宸ヤ綔鍙?========== -->
       <section data-section="dashboard" class="section active">
         <div class="welcome">
-          <h2>👋 Ailis 三件套 · 三丰代理商务台</h2>
-          <p>五大模块由 6 个 WorkBuddy 自动化定时刷新：📈 <b>行业增量</b>（6 小时） · 📰 <b>市场行情</b>（09:00） · 💴 <b>日币走势</b>（每小时） · 📋 <b>行业周度报告</b>（每周一 08:50） · 🎯 <b>市场机会雷达</b>（每天 09:00）。点击左侧模块进入；GitHub 公开仓库 + GitHub Actions 自动部署到腾讯云 CloudBase。</p>
+          <h2>馃憢 Ailis 涓変欢濂?路 涓変赴浠ｇ悊鍟嗗姟鍙?/h2>
+          <p>浜斿ぇ妯″潡鐢?6 涓?WorkBuddy 鑷姩鍖栧畾鏃跺埛鏂帮細馃搱 <b>琛屼笟澧為噺</b>锛? 灏忔椂锛?路 馃摪 <b>甯傚満琛屾儏</b>锛?9:00锛?路 馃挻 <b>鏃ュ竵璧板娍</b>锛堟瘡灏忔椂锛?路 馃搵 <b>琛屼笟鍛ㄥ害鎶ュ憡</b>锛堟瘡鍛ㄤ竴 08:50锛?路 馃幆 <b>甯傚満鏈轰細闆疯揪</b>锛堟瘡澶?09:00锛夈€傜偣鍑诲乏渚фā鍧楄繘鍏ワ紱GitHub 鍏紑浠撳簱 + GitHub Actions 鑷姩閮ㄧ讲鍒拌吘璁簯 CloudBase銆?/p>
         </div>
         <div class="strip">
           <div class="mini red">
-            <div class="k">📈 行业增量</div>
-            <div class="v" id="sum-industries">— <small>条</small></div>
+            <div class="k">馃搱 琛屼笟澧為噺</div>
+            <div class="v" id="sum-industries">鈥?<small>鏉?/small></div>
           </div>
           <div class="mini blue">
-            <div class="k">📰 市场行情</div>
-            <div class="v" id="sum-news">— <small>条</small></div>
+            <div class="k">馃摪 甯傚満琛屾儏</div>
+            <div class="v" id="sum-news">鈥?<small>鏉?/small></div>
           </div>
           <div class="mini green">
-            <div class="k">💴 100日元(最新)</div>
-            <div class="v" id="sum-fx">— <small>CNY</small></div>
+            <div class="k">馃挻 100鏃ュ厓(鏈€鏂?</div>
+            <div class="v" id="sum-fx">鈥?<small>CNY</small></div>
           </div>
           <div class="mini teal">
-            <div class="k">⏱️ 日币行情时点</div>
-            <div class="v" id="sum-update" style="font-size:14px;font-weight:600">—</div>
+            <div class="k">鈴憋笍 鏃ュ竵琛屾儏鏃剁偣</div>
+            <div class="v" id="sum-update" style="font-size:14px;font-weight:600">鈥?/div>
           </div>
           <div class="mini teal">
-            <div class="k">🛒 电商在售(正品)</div>
-            <div class="v" id="sum-ec">— <small>件</small></div>
+            <div class="k">馃洅 鐢靛晢鍦ㄥ敭(姝ｅ搧)</div>
+            <div class="v" id="sum-ec">鈥?<small>浠?/small></div>
           </div>
           <div class="mini blue">
-            <div class="k">📑 招标动态</div>
-            <div class="v" id="sum-bid">— <small>条</small></div>
+            <div class="k">馃搼 鎷涙爣鍔ㄦ€?/div>
+            <div class="v" id="sum-bid">鈥?<small>鏉?/small></div>
           </div>
           <div class="mini red">
-            <div class="k">🎯 高价值机会(≥85分)</div>
-            <div class="v" id="sum-radar">— <small>个</small></div>
+            <div class="k">馃幆 楂樹环鍊兼満浼?鈮?5鍒?</div>
+            <div class="v" id="sum-radar">鈥?<small>涓?/small></div>
           </div>
           <div class="mini amber">
-            <div class="k">📋 周报跟进</div>
-            <div class="v" id="sum-weekly">— <small>家</small></div>
+            <div class="k">馃搵 鍛ㄦ姤璺熻繘</div>
+            <div class="v" id="sum-weekly">鈥?<small>瀹?/small></div>
           </div>
         </div>
 
         <div class="card">
-          <h2>🎯 三大模块快速入口 <span class="tag">由自动化推送</span></h2>
-          <p style="font-size:13.5px;color:#374151;margin:0 0 12px">点击左侧模块查看；每个模块顶部显示「最后更新时间 + 数据源 + 自动化名称」，便于核对。</p>
+          <h2>馃幆 涓夊ぇ妯″潡蹇€熷叆鍙?<span class="tag">鐢辫嚜鍔ㄥ寲鎺ㄩ€?/span></h2>
+          <p style="font-size:13.5px;color:#374151;margin:0 0 12px">鐐瑰嚮宸︿晶妯″潡鏌ョ湅锛涙瘡涓ā鍧楅《閮ㄦ樉绀恒€屾渶鍚庢洿鏂版椂闂?+ 鏁版嵁婧?+ 鑷姩鍖栧悕绉般€嶏紝渚夸簬鏍稿銆?/p>
           <div style="display:flex;flex-wrap:wrap;gap:8px">
-            <button class="btn-ghost" onclick="goTo('industries')">📈 查看行业增量</button>
-            <button class="btn-ghost" onclick="goTo('news')">📰 查看市场行情</button>
-            <button class="btn-ghost" onclick="goTo('fx')">💴 查看日币走势</button>
-            <button class="btn-ghost" onclick="goTo('weekly')">📋 查看周度报告</button>
-            <button class="btn-ghost" onclick="goTo('radar')">🎯 查看机会雷达</button>
+            <button class="btn-ghost" onclick="goTo('industries')">馃搱 鏌ョ湅琛屼笟澧為噺</button>
+            <button class="btn-ghost" onclick="goTo('news')">馃摪 鏌ョ湅甯傚満琛屾儏</button>
+            <button class="btn-ghost" onclick="goTo('fx')">馃挻 鏌ョ湅鏃ュ竵璧板娍</button>
+            <button class="btn-ghost" onclick="goTo('weekly')">馃搵 鏌ョ湅鍛ㄥ害鎶ュ憡</button>
+            <button class="btn-ghost" onclick="goTo('radar')">馃幆 鏌ョ湅鏈轰細闆疯揪</button>
           </div>
         </div>
 
         <div class="card">
-          <h2>☁️ 跨设备云同步 <span class="tag">GitHub 私有仓库 + SSH</span></h2>
+          <h2>鈽侊笍 璺ㄨ澶囦簯鍚屾 <span class="tag">GitHub 绉佹湁浠撳簱 + SSH</span></h2>
           <p style="font-size:13.5px;color:#374151;margin:0 0 8px">
-            工作平台已托管到 <b>git@github.com:Ailis97/workbuddy.git</b>（私有）的 <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px">workbench/</code> 子目录。
-            任意设备只需执行以下命令即可拉到本地打开：
+            宸ヤ綔骞冲彴宸叉墭绠″埌 <b>git@github.com:Ailis97/workbuddy.git</b>锛堢鏈夛級鐨?<code style="background:#f3f4f6;padding:2px 6px;border-radius:4px">workbench/</code> 瀛愮洰褰曘€?
+            浠绘剰璁惧鍙渶鎵ц浠ヤ笅鍛戒护鍗冲彲鎷夊埌鏈湴鎵撳紑锛?
           </p>
           <pre style="background:#fafbf9;border:1px solid var(--line);border-radius:8px;padding:12px 14px;
                       font-family:Cascadia Code,Consolas,monospace;font-size:12.5px;color:#1f2a37;overflow-x:auto;margin:8px 0">git clone git@github.com:Ailis97/workbuddy.git
 start workbuddy\workbench\index.html       # Windows
 open workbuddy/workbench/index.html         # macOS</pre>
           <p style="font-size:12px;color:var(--muted);margin:8px 0 0">
-            或打开 GitHub Pages：<code style="background:#f3f4f6;padding:2px 6px;border-radius:4px">https://Ailis97.github.io/workbuddy/workbench/</code>
-            （需先在 GitHub 仓库设置中开启 Pages → Source: main branch /workbench folder）
+            鎴栨墦寮€ GitHub Pages锛?code style="background:#f3f4f6;padding:2px 6px;border-radius:4px">https://Ailis97.github.io/workbuddy/workbench/</code>
+            锛堥渶鍏堝湪 GitHub 浠撳簱璁剧疆涓紑鍚?Pages 鈫?Source: main branch /workbench folder锛?
           </p>
         </div>
       </section>
 
-      <!-- ========== 模块 1：三丰行业增量 ========== -->
+      <!-- ========== 妯″潡 1锛氫笁涓拌涓氬閲?========== -->
       <section data-section="industries" class="section">
         <div class="card">
-          <h2>📈 三丰行业增量 · 全品类需求拉动 <span class="tag" id="ind-tag">每日 09:00 自动更新</span></h2>
-          <div class="update-info" id="ind-update">📡 自动化：<b>三丰行业增量每日抓取</b> · 数据源：联网检索（行业媒体 / 三丰官网 / 公开新闻） · 数据时点：<span id="ind-time">—</span></div>
+          <h2>馃搱 涓変赴琛屼笟澧為噺 路 鍏ㄥ搧绫婚渶姹傛媺鍔?<span class="tag" id="ind-tag">姣忔棩 09:00 鑷姩鏇存柊</span></h2>
+          <div class="update-info" id="ind-update">馃摗 鑷姩鍖栵細<b>涓変赴琛屼笟澧為噺姣忔棩鎶撳彇</b> 路 鏁版嵁婧愶細鑱旂綉妫€绱紙琛屼笟濯掍綋 / 涓変赴瀹樼綉 / 鍏紑鏂伴椈锛?路 鏁版嵁鏃剁偣锛?span id="ind-time">鈥?/span></div>
           <div id="industry-list"></div>
         </div>
       </section>
 
-      <!-- ========== 模块 2：三丰市场行情 ========== -->
+      <!-- ========== 妯″潡 2锛氫笁涓板競鍦鸿鎯?========== -->
       <section data-section="news" class="section">
         <div class="card">
-          <h2>📰 三丰市场行情（近 2 个月 · 官方 / 权威来源） <span class="tag" id="news-tag">每日 09:00 自动更新</span></h2>
-          <div class="update-info">📡 自动化：<b>三丰每日市场行情速递</b> · 仅保留发布于近 2 个月内的官方/权威源（三丰官网 / 基恩士 / 海克斯康 / 计量 NEWS / 中国工控网等）· 数据时点：<span id="news-time">—</span></div>
+          <h2>馃摪 涓変赴甯傚満琛屾儏锛堣繎 2 涓湀 路 瀹樻柟 / 鏉冨▉鏉ユ簮锛?<span class="tag" id="news-tag">姣忔棩 09:00 鑷姩鏇存柊</span></h2>
+          <div class="update-info">馃摗 鑷姩鍖栵細<b>涓変赴姣忔棩甯傚満琛屾儏閫熼€?/b> 路 浠呬繚鐣欏彂甯冧簬杩?2 涓湀鍐呯殑瀹樻柟/鏉冨▉婧愶紙涓変赴瀹樼綉 / 鍩烘仼澹?/ 娴峰厠鏂悍 / 璁￠噺 NEWS / 涓浗宸ユ帶缃戠瓑锛壜?鏁版嵁鏃剁偣锛?span id="news-time">鈥?/span></div>
           <ul class="news" id="news-list"></ul>
         </div>
 
         <div class="card">
-          <h2>🛒 电商行情快照（1688 平台） <span class="tag" id="ec-tag">每日 09:00 自动更新</span></h2>
-          <div class="update-info">📡 数据源：1688.com 检索「三丰卡尺/千分尺」等关键词 · 数据时点：<span id="ec-time">—</span></div>
+          <h2>馃洅 鐢靛晢琛屾儏蹇収锛?688 骞冲彴锛?<span class="tag" id="ec-tag">姣忔棩 09:00 鑷姩鏇存柊</span></h2>
+          <div class="update-info">馃摗 鏁版嵁婧愶細1688.com 妫€绱€屼笁涓板崱灏?鍗冨垎灏恒€嶇瓑鍏抽敭璇?路 鏁版嵁鏃剁偣锛?span id="ec-time">鈥?/span></div>
           <div class="ec-stat" id="ec-stat"></div>
           <div class="ec-warn" id="ec-warn"></div>
           <ul class="ec" id="ec-list"></ul>
         </div>
 
         <div class="card">
-          <h2>📑 招标动态（中国政府采购网 · 近 2 个月） <span class="tag" id="bid-tag">每日 09:00 自动更新</span></h2>
-          <div class="update-info">📡 数据源：ccgp.gov.cn 检索三丰/量具相关品类 · 数据时点：<span id="bid-time">—</span></div>
+          <h2>馃搼 鎷涙爣鍔ㄦ€侊紙涓浗鏀垮簻閲囪喘缃?路 杩?2 涓湀锛?<span class="tag" id="bid-tag">姣忔棩 09:00 鑷姩鏇存柊</span></h2>
+          <div class="update-info">馃摗 鏁版嵁婧愶細ccgp.gov.cn 妫€绱笁涓?閲忓叿鐩稿叧鍝佺被 路 鏁版嵁鏃剁偣锛?span id="bid-time">鈥?/span></div>
           <ul class="bid" id="bid-list"></ul>
         </div>
       </section>
 
-      <!-- ========== 模块 3：日币走势预估 ========== -->
+      <!-- ========== 妯″潡 3锛氭棩甯佽蛋鍔块浼?========== -->
       <section data-section="fx" class="section">
         <div class="card">
-          <h2>💴 日元兑人民币 · 实时 & 走势 <span class="tag" id="fx-date">每 1 小时自动更新</span></h2>
-          <div class="update-info">📡 自动化：<b>日币走势预估-1小时更新</b> · 数据源：建行日元现汇牌价 / Yahoo Finance / 新浪财经 / 金十数据 / BoJ / Fed 公开信息 · 数据时点：<span id="fx-time">—</span></div>
+          <h2>馃挻 鏃ュ厓鍏戜汉姘戝竵 路 瀹炴椂 & 璧板娍 <span class="tag" id="fx-date">姣?1 灏忔椂鑷姩鏇存柊</span></h2>
+          <div class="update-info">馃摗 鑷姩鍖栵細<b>鏃ュ竵璧板娍棰勪及-1灏忔椂鏇存柊</b> 路 鏁版嵁婧愶細寤鸿鏃ュ厓鐜版眹鐗屼环 / Yahoo Finance / 鏂版氮璐㈢粡 / 閲戝崄鏁版嵁 / BoJ / Fed 鍏紑淇℃伅 路 鏁版嵁鏃剁偣锛?span id="fx-time">鈥?/span></div>
           <div class="fx-alert" id="fx-alert"></div>
           <div class="fx-strip" id="fx-strip">
-            <div class="fx-mini red"><div class="k">100日元兑人民币(最新)</div><div class="v" id="fx-now">4.2867</div><div class="sub" id="fx-now-sub">—</div></div>
-            <div class="fx-mini teal"><div class="k">建行日元现汇卖出价</div><div class="v" id="fx-ccb">4.2977</div><div class="sub" id="fx-ccb-sub">100JPY(购汇参考)</div></div>
-            <div class="fx-mini blue"><div class="k">美元兑日元 USD/JPY</div><div class="v" id="fx-usd">157.430</div><div class="sub" id="fx-usd-sub">—</div></div>
-            <div class="fx-mini"><div class="k">美元兑人民币 USD/CNY</div><div class="v" id="fx-usdcny">6.7484</div><div class="sub" id="fx-usdcny-sub">新浪财经在岸</div></div>
+            <div class="fx-mini red"><div class="k">100鏃ュ厓鍏戜汉姘戝竵(鏈€鏂?</div><div class="v" id="fx-now">4.2867</div><div class="sub" id="fx-now-sub">鈥?/div></div>
+            <div class="fx-mini teal"><div class="k">寤鸿鏃ュ厓鐜版眹鍗栧嚭浠?/div><div class="v" id="fx-ccb">4.2977</div><div class="sub" id="fx-ccb-sub">100JPY(璐眹鍙傝€?</div></div>
+            <div class="fx-mini blue"><div class="k">缇庡厓鍏戞棩鍏?USD/JPY</div><div class="v" id="fx-usd">157.430</div><div class="sub" id="fx-usd-sub">鈥?/div></div>
+            <div class="fx-mini"><div class="k">缇庡厓鍏戜汉姘戝竵 USD/CNY</div><div class="v" id="fx-usdcny">6.7484</div><div class="sub" id="fx-usdcny-sub">鏂版氮璐㈢粡鍦ㄥ哺</div></div>
           </div>
           <div class="chartbox" id="fx-chartbox" style="height:340px">
             <div id="fxchart" style="width:100%;height:100%"></div>
@@ -425,135 +425,135 @@ open workbuddy/workbench/index.html         # macOS</pre>
         </div>
 
         <div class="card">
-          <h2>📊 情景预估（至 2026-09-25）· 低点买日元参考 <span class="tag">政策事件 + 利差情景</span></h2>
+          <h2>馃搳 鎯呮櫙棰勪及锛堣嚦 2026-09-25锛壜?浣庣偣涔版棩鍏冨弬鑰?<span class="tag">鏀跨瓥浜嬩欢 + 鍒╁樊鎯呮櫙</span></h2>
           <div id="fx-scn"></div>
           <div class="fx-buy" id="fx-buy"></div>
         </div>
 
         <div class="card">
-          <h2>📰 国际动态（近一周） <span class="tag">每 1 小时更新</span></h2>
+          <h2>馃摪 鍥介檯鍔ㄦ€侊紙杩戜竴鍛級 <span class="tag">姣?1 灏忔椂鏇存柊</span></h2>
           <ul class="news" id="fx-news"></ul>
         </div>
 
         <div class="card">
-          <h2>📈 历史月度数据（100日元兑人民币） <span class="tag">2025-08 至今</span></h2>
+          <h2>馃搱 鍘嗗彶鏈堝害鏁版嵁锛?00鏃ュ厓鍏戜汉姘戝竵锛?<span class="tag">2025-08 鑷充粖</span></h2>
           <div id="fx-hist"></div>
         </div>
       </section>
 
-      <!-- ========== 模块 4：行业周度报告 ========== -->
+      <!-- ========== 妯″潡 4锛氳涓氬懆搴︽姤鍛?========== -->
       <section data-section="weekly" class="section">
         <div class="card">
-          <h2>📋 精密测量行业周度增量市场报告 <span class="tag" id="wk-tag">每周一 08:50 自动更新</span></h2>
-          <div class="update-info">📡 自动化：<b>《精密测量行业周度增量市场报告》</b> · 覆盖周期：<span id="wk-period">—</span> · 数据源：中国政府采购网 / 必联网 / 仪器信息网 / 上市公司公告 等 · 报告时点：<span id="wk-time">—</span></div>
+          <h2>馃搵 绮惧瘑娴嬮噺琛屼笟鍛ㄥ害澧為噺甯傚満鎶ュ憡 <span class="tag" id="wk-tag">姣忓懆涓€ 08:50 鑷姩鏇存柊</span></h2>
+          <div class="update-info">馃摗 鑷姩鍖栵細<b>銆婄簿瀵嗘祴閲忚涓氬懆搴﹀閲忓競鍦烘姤鍛娿€?/b> 路 瑕嗙洊鍛ㄦ湡锛?span id="wk-period">鈥?/span> 路 鏁版嵁婧愶細涓浗鏀垮簻閲囪喘缃?/ 蹇呰仈缃?/ 浠櫒淇℃伅缃?/ 涓婂競鍏徃鍏憡 绛?路 鎶ュ憡鏃剁偣锛?span id="wk-time">鈥?/span></div>
           <div class="strip" id="wk-stat" style="margin:12px 0 0"></div>
           <ul class="rp-tldr" id="wk-tldr"></ul>
         </div>
 
         <div class="card">
-          <h2>🏆 增长最快的行业 · 项目最多的地区</h2>
-          <div class="sec-h">过去 7 天行业增量信号统计</div>
+          <h2>馃弳 澧為暱鏈€蹇殑琛屼笟 路 椤圭洰鏈€澶氱殑鍦板尯</h2>
+          <div class="sec-h">杩囧幓 7 澶╄涓氬閲忎俊鍙风粺璁?/div>
           <div class="tbl-scroll" id="wk-ind"></div>
-          <div class="sec-h">过去 7 天新增项目地区分布</div>
+          <div class="sec-h">杩囧幓 7 澶╂柊澧為」鐩湴鍖哄垎甯?/div>
           <div class="tbl-scroll" id="wk-region"></div>
         </div>
 
         <div class="card">
-          <h2>🏭 正在扩产 / 新建工厂的企业</h2>
+          <h2>馃彮 姝ｅ湪鎵╀骇 / 鏂板缓宸ュ巶鐨勪紒涓?/h2>
           <div class="tbl-scroll" id="wk-expand"></div>
         </div>
 
         <div class="card">
-          <h2>🎯 可能采购三丰产品的企业</h2>
+          <h2>馃幆 鍙兘閲囪喘涓変赴浜у搧鐨勪紒涓?/h2>
           <div class="tbl-scroll" id="wk-buyers"></div>
-          <div class="src" style="margin-top:8px">注：以上判断基于公开项目信息与三丰产品应用经验，具体采购窗口、预算及品牌偏好需进一步商务确认。</div>
+          <div class="src" style="margin-top:8px">娉細浠ヤ笂鍒ゆ柇鍩轰簬鍏紑椤圭洰淇℃伅涓庝笁涓颁骇鍝佸簲鐢ㄧ粡楠岋紝鍏蜂綋閲囪喘绐楀彛銆侀绠楀強鍝佺墝鍋忓ソ闇€杩涗竴姝ュ晢鍔＄‘璁ゃ€?/div>
         </div>
 
         <div class="card">
-          <h2>📦 产品需求增长 · 国产替代影响</h2>
-          <div class="sec-h">各类测量设备需求信号</div>
+          <h2>馃摝 浜у搧闇€姹傚闀?路 鍥戒骇鏇夸唬褰卞搷</h2>
+          <div class="sec-h">鍚勭被娴嬮噺璁惧闇€姹備俊鍙?/div>
           <div class="tbl-scroll" id="wk-demand"></div>
-          <div class="sec-h">国产替代正在影响的产品类别</div>
+          <div class="sec-h">鍥戒骇鏇夸唬姝ｅ湪褰卞搷鐨勪骇鍝佺被鍒?/div>
           <div class="tbl-scroll" id="wk-subst"></div>
         </div>
 
         <div class="card">
-          <h2>📌 下周最值得跟进的 10 家公司</h2>
+          <h2>馃搶 涓嬪懆鏈€鍊煎緱璺熻繘鐨?10 瀹跺叕鍙?/h2>
           <div class="tbl-scroll" id="wk-follow"></div>
         </div>
 
         <div class="card">
-          <h2>🔭 未来 3 个月最值得投入的细分市场</h2>
+          <h2>馃敪 鏈潵 3 涓湀鏈€鍊煎緱鎶曞叆鐨勭粏鍒嗗競鍦?/h2>
           <div id="wk-markets"></div>
         </div>
 
         <div class="card">
-          <h2>✅ 行动建议</h2>
+          <h2>鉁?琛屽姩寤鸿</h2>
           <ul class="acts" id="wk-actions"></ul>
-          <div class="sec-h">本周重点数据源清单</div>
+          <div class="sec-h">鏈懆閲嶇偣鏁版嵁婧愭竻鍗?/div>
           <ul class="acts" id="wk-sources"></ul>
         </div>
       </section>
 
-      <!-- ========== 模块 5：市场机会雷达 ========== -->
+      <!-- ========== 妯″潡 5锛氬競鍦烘満浼氶浄杈?========== -->
       <section data-section="radar" class="section">
         <div class="card">
-          <h2>🎯 三丰精密测量行业增量市场雷达（机会日报） <span class="tag" id="rd-tag">每天 09:00 自动更新</span></h2>
-          <div class="update-info">📡 自动化：<b>《三丰精密测量行业增量市场雷达》</b> · 信息窗口：<span id="rd-window">—</span> · 数据源：政府采购网 / 上市公司公告 / 企业官网 / 行业媒体 · 数据时点：<span id="rd-time">—</span></div>
+          <h2>馃幆 涓変赴绮惧瘑娴嬮噺琛屼笟澧為噺甯傚満闆疯揪锛堟満浼氭棩鎶ワ級 <span class="tag" id="rd-tag">姣忓ぉ 09:00 鑷姩鏇存柊</span></h2>
+          <div class="update-info">馃摗 鑷姩鍖栵細<b>銆婁笁涓扮簿瀵嗘祴閲忚涓氬閲忓競鍦洪浄杈俱€?/b> 路 淇℃伅绐楀彛锛?span id="rd-window">鈥?/span> 路 鏁版嵁婧愶細鏀垮簻閲囪喘缃?/ 涓婂競鍏徃鍏憡 / 浼佷笟瀹樼綉 / 琛屼笟濯掍綋 路 鏁版嵁鏃剁偣锛?span id="rd-time">鈥?/span></div>
           <div class="strip" id="rd-stat" style="margin:12px 0 0"></div>
         </div>
 
         <div class="card">
-          <h2>🔥 今日最值得关注的 5 个机会</h2>
+          <h2>馃敟 浠婃棩鏈€鍊煎緱鍏虫敞鐨?5 涓満浼?/h2>
           <div class="tbl-scroll" id="rd-top5"></div>
         </div>
 
         <div class="card">
-          <h2>🚨 今天必须关注</h2>
+          <h2>馃毃 浠婂ぉ蹇呴』鍏虫敞</h2>
           <div id="rd-must"></div>
         </div>
 
         <div class="card">
-          <h2>🏭 新工厂 / 扩产</h2>
+          <h2>馃彮 鏂板伐鍘?/ 鎵╀骇</h2>
           <div class="tbl-scroll" id="rd-plants"></div>
         </div>
 
         <div class="card">
-          <h2>📈 增量市场</h2>
+          <h2>馃搱 澧為噺甯傚満</h2>
           <div class="tbl-scroll" id="rd-markets"></div>
         </div>
 
         <div class="card">
-          <h2>🥊 竞争对手动态</h2>
+          <h2>馃 绔炰簤瀵规墜鍔ㄦ€?/h2>
           <div class="tbl-scroll" id="rd-comp"></div>
         </div>
 
         <div class="card">
-          <h2>💰 潜在客户列表（含评分与采购概率）</h2>
+          <h2>馃挵 娼滃湪瀹㈡埛鍒楄〃锛堝惈璇勫垎涓庨噰璐鐜囷級</h2>
           <div class="tbl-scroll" id="rd-leads"></div>
         </div>
 
         <div class="card">
-          <h2>📊 市场趋势</h2>
+          <h2>馃搳 甯傚満瓒嬪娍</h2>
           <div id="rd-trends"></div>
         </div>
 
         <div class="card">
-          <h2>🎯 行动建议</h2>
+          <h2>馃幆 琛屽姩寤鸿</h2>
           <div id="rd-actions"></div>
         </div>
       </section>
 
       <div class="disclaimer">
-        ⚠️ 汇率与行情数据来源于公开网络检索，存在时延与口径差异；汇率走势为模型聚合预估，<b>不构成任何投资建议</b>。日元采购决策请结合实时牌价与自身风险承受能力。
+        鈿狅笍 姹囩巼涓庤鎯呮暟鎹潵婧愪簬鍏紑缃戠粶妫€绱紝瀛樺湪鏃跺欢涓庡彛寰勫樊寮傦紱姹囩巼璧板娍涓烘ā鍨嬭仛鍚堥浼帮紝<b>涓嶆瀯鎴愪换浣曟姇璧勫缓璁?/b>銆傛棩鍏冮噰璐喅绛栬缁撳悎瀹炴椂鐗屼环涓庤嚜韬闄╂壙鍙楄兘鍔涖€?
       </div>
 
       <footer>
-        <b>📦 Ailis 三件套 · 跨设备云同步</b><br>
-        · <b>托管仓库：</b>git@github.com:Ailis97/workbuddy.git（私有） · 子目录 workbench/<br>
-        · <b>同步方式：</b>SSH 密钥认证（无需 PAT / 密码） · 同步脚本：<code>workbench-push.ps1</code><br>
-        · <b>五大模块来源：</b>① 三丰行业增量每日抓取（每 6 小时）· ② 三丰每日市场行情速递（09:00）· ③ 日币走势预估-1小时更新 · ④ 《精密测量行业周度增量市场报告》（每周一 08:50）· ⑤ 《三丰精密测量行业增量市场雷达》（每天 09:00）<br>
-        · <b>Pages 公网：</b>https://Ailis97.github.io/workbuddy/workbench/（需先在仓库 Settings → Pages 启用）
+        <b>馃摝 Ailis 涓変欢濂?路 璺ㄨ澶囦簯鍚屾</b><br>
+        路 <b>鎵樼浠撳簱锛?/b>git@github.com:Ailis97/workbuddy.git锛堢鏈夛級 路 瀛愮洰褰?workbench/<br>
+        路 <b>鍚屾鏂瑰紡锛?/b>SSH 瀵嗛挜璁よ瘉锛堟棤闇€ PAT / 瀵嗙爜锛?路 鍚屾鑴氭湰锛?code>workbench-push.ps1</code><br>
+        路 <b>浜斿ぇ妯″潡鏉ユ簮锛?/b>鈶?涓変赴琛屼笟澧為噺姣忔棩鎶撳彇锛堟瘡 6 灏忔椂锛壜?鈶?涓変赴姣忔棩甯傚満琛屾儏閫熼€掞紙09:00锛壜?鈶?鏃ュ竵璧板娍棰勪及-1灏忔椂鏇存柊 路 鈶?銆婄簿瀵嗘祴閲忚涓氬懆搴﹀閲忓競鍦烘姤鍛娿€嬶紙姣忓懆涓€ 08:50锛壜?鈶?銆婁笁涓扮簿瀵嗘祴閲忚涓氬閲忓競鍦洪浄杈俱€嬶紙姣忓ぉ 09:00锛?br>
+        路 <b>Pages 鍏綉锛?/b>https://Ailis97.github.io/workbuddy/workbench/锛堥渶鍏堝湪浠撳簱 Settings 鈫?Pages 鍚敤锛?
       </footer>
 
     </div>
@@ -561,25 +561,25 @@ open workbuddy/workbench/index.html         # macOS</pre>
 </div>
 
 <style>
-  /* dashboard 卡片内按钮 */
+  /* dashboard 鍗＄墖鍐呮寜閽?*/
   .btn-ghost{background:#eef2ed;color:var(--ink);border:none;padding:8px 16px;border-radius:9px;
     font-size:13.5px;font-weight:600;cursor:pointer}
   .btn-ghost:hover{background:#dde5dc}
 </style>
 
 <script>
-/* ===== 时钟与问候 ===== */
+/* ===== 鏃堕挓涓庨棶鍊?===== */
 function tick(){
   const d=new Date();
   const pad=n=>String(n).padStart(2,'0');
-  const wk=['周日','周一','周二','周三','周四','周五','周六'][d.getDay()];
+  const wk=['鍛ㄦ棩','鍛ㄤ竴','鍛ㄤ簩','鍛ㄤ笁','鍛ㄥ洓','鍛ㄤ簲','鍛ㄥ叚'][d.getDay()];
   document.getElementById('now').textContent=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${wk} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   const h=d.getHours();
-  document.getElementById('greet').textContent = h<11?'早上好，Ailis ☀️':h<14?'中午好，Ailis 🌿':h<18?'下午好，Ailis 🍵':'晚上好，Ailis 🌙';
+  document.getElementById('greet').textContent = h<11?'鏃╀笂濂斤紝Ailis 鈽€锔?:h<14?'涓崍濂斤紝Ailis 馃尶':h<18?'涓嬪崍濂斤紝Ailis 馃嵉':'鏅氫笂濂斤紝Ailis 馃寵';
 }
 tick(); setInterval(tick,30000);
 
-/* ===== 左侧导航切换 ===== */
+/* ===== 宸︿晶瀵艰埅鍒囨崲 ===== */
 const navLinks=document.querySelectorAll('#nav a');
 const sections=document.querySelectorAll('.section');
 function goTo(name){
@@ -601,301 +601,301 @@ const savedLink=document.querySelector(`#nav a[data-nav="${savedSection}"]`);
 if(savedLink && savedSection!=='dashboard') savedLink.click();
 
 /* ============================================================
-   模块 1：INDUSTRIES（三丰行业增量，由自动化每日 09:00 替换）
-   字段：pill / title / desc / products / url / src
+   妯″潡 1锛欼NDUSTRIES锛堜笁涓拌涓氬閲忥紝鐢辫嚜鍔ㄥ寲姣忔棩 09:00 鏇挎崲锛?
+   瀛楁锛歱ill / title / desc / products / url / src
 ============================================================ */
 /* ============================================================
-   模块 2a：NEWS（三丰市场行情，每日 09:00 由自动化替换）
-   字段：tag / title / desc / url / src / time
-   仅保留发布于近 2 个月内、来源为官方/权威站点（三丰/海克斯康/基恩士官网、计量NEWS 等）
+   妯″潡 2a锛歂EWS锛堜笁涓板競鍦鸿鎯咃紝姣忔棩 09:00 鐢辫嚜鍔ㄥ寲鏇挎崲锛?
+   瀛楁锛歵ag / title / desc / url / src / time
+   浠呬繚鐣欏彂甯冧簬杩?2 涓湀鍐呫€佹潵婧愪负瀹樻柟/鏉冨▉绔欑偣锛堜笁涓?娴峰厠鏂悍/鍩烘仼澹畼缃戙€佽閲廚EWS 绛夛級
 ============================================================ */
 const NEWS=[
   {
-    "tag": "竞品",
-    "title": "基恩士发布 IV4 系列内置 AI 视觉传感器（视觉检测）",
-    "desc": "9/14 基恩士（KEYENCE）将 IV4 系列「内置 AI 视觉传感器」列为新品。IV4 搭载新一代 AI，无需调整位置即可检测零件、稳定判别有无/正反面、读取并计数（最高 250 件/秒、4ms），支持 AI-OCR 与 AI 判别，3 步完成设定，强化对光照与表面变化的稳定性，并提供高柔性机器人线缆、IP67 防护。信号：基恩士以「AI 视觉传感器」切入尺寸/外观检测，与三丰 QV 影像测量系统、Quick Image 在「非接触批量尺寸测量」场景直接竞争；三丰应以「可溯源尺寸数据源＋MeasurLink 11 SPC 数据链＋JCSS 校准」守壁垒，并以 QM-Fit「秒级测量」回应易用性叙事。",
+    "tag": "绔炲搧",
+    "title": "鍩烘仼澹彂甯?IV4 绯诲垪鍐呯疆 AI 瑙嗚浼犳劅鍣紙瑙嗚妫€娴嬶級",
+    "desc": "9/14 鍩烘仼澹紙KEYENCE锛夊皢 IV4 绯诲垪銆屽唴缃?AI 瑙嗚浼犳劅鍣ㄣ€嶅垪涓烘柊鍝併€侷V4 鎼浇鏂颁竴浠?AI锛屾棤闇€璋冩暣浣嶇疆鍗冲彲妫€娴嬮浂浠躲€佺ǔ瀹氬垽鍒湁鏃?姝ｅ弽闈€佽鍙栧苟璁℃暟锛堟渶楂?250 浠?绉掋€?ms锛夛紝鏀寔 AI-OCR 涓?AI 鍒ゅ埆锛? 姝ュ畬鎴愯瀹氾紝寮哄寲瀵瑰厜鐓т笌琛ㄩ潰鍙樺寲鐨勭ǔ瀹氭€э紝骞舵彁渚涢珮鏌旀€ф満鍣ㄤ汉绾跨紗銆両P67 闃叉姢銆備俊鍙凤細鍩烘仼澹互銆孉I 瑙嗚浼犳劅鍣ㄣ€嶅垏鍏ュ昂瀵?澶栬妫€娴嬶紝涓庝笁涓?QV 褰卞儚娴嬮噺绯荤粺銆丵uick Image 鍦ㄣ€岄潪鎺ヨЕ鎵归噺灏哄娴嬮噺銆嶅満鏅洿鎺ョ珵浜夛紱涓変赴搴斾互銆屽彲婧簮灏哄鏁版嵁婧愶紜MeasurLink 11 SPC 鏁版嵁閾撅紜JCSS 鏍″噯銆嶅畧澹佸瀿锛屽苟浠?QM-Fit銆岀绾ф祴閲忋€嶅洖搴旀槗鐢ㄦ€у彊浜嬨€?,
     "url": "https://asia1.keyence.com/products/vision/vision-sensor/iv4/",
-    "src": "基恩士官网 keyence.com",
-    "time": "发布 2026-09-14"
+    "src": "鍩烘仼澹畼缃?keyence.com",
+    "time": "鍙戝竷 2026-09-14"
   },
   {
-    "tag": "竞品",
-    "title": "海克斯康推出 ENSPEC 入门级桥式三坐标，打开专业计量新入口",
-    "desc": "9/8 海克斯康固定式计量事业部发布 ENSPEC 专业级桥式三坐标测量机（CMM），面向英国及 EMEA 市场，专为首次将测量纳入内部的中小制造商与分包商设计。ENSPEC 沿用海克斯康成熟桥式 CMM 的 TRICISION 三角框架、花岗岩底座与空气轴承结构，配备成熟传感器技术并搭载 PC-DMIS 软件；提供 Touch/Scan/Speed 三种传感器配置、8 种行程（600×800×600mm 至 1200×3000×1000mm），最大 3D 速度 520mm/s。信号：海克斯康以「成熟技术下沉＋PC-DMIS 生态」降低专业 CMM 门槛，挤压中小制造企业外包检测与手动量具空间；三丰应以 QM-Height／数显卡尺／千分尺「手持高精度＋JCSS 可溯源＋U-WAVE 无线数采」组合守基本盘，并用 CRYSTA-Apex V PLUS 承接升级需求。",
+    "tag": "绔炲搧",
+    "title": "娴峰厠鏂悍鎺ㄥ嚭 ENSPEC 鍏ラ棬绾фˉ寮忎笁鍧愭爣锛屾墦寮€涓撲笟璁￠噺鏂板叆鍙?,
+    "desc": "9/8 娴峰厠鏂悍鍥哄畾寮忚閲忎簨涓氶儴鍙戝竷 ENSPEC 涓撲笟绾фˉ寮忎笁鍧愭爣娴嬮噺鏈猴紙CMM锛夛紝闈㈠悜鑻卞浗鍙?EMEA 甯傚満锛屼笓涓洪娆″皢娴嬮噺绾冲叆鍐呴儴鐨勪腑灏忓埗閫犲晢涓庡垎鍖呭晢璁捐銆侲NSPEC 娌跨敤娴峰厠鏂悍鎴愮啛妗ュ紡 CMM 鐨?TRICISION 涓夎妗嗘灦銆佽姳宀楀博搴曞骇涓庣┖姘旇酱鎵跨粨鏋勶紝閰嶅鎴愮啛浼犳劅鍣ㄦ妧鏈苟鎼浇 PC-DMIS 杞欢锛涙彁渚?Touch/Scan/Speed 涓夌浼犳劅鍣ㄩ厤缃€? 绉嶈绋嬶紙600脳800脳600mm 鑷?1200脳3000脳1000mm锛夛紝鏈€澶?3D 閫熷害 520mm/s銆備俊鍙凤細娴峰厠鏂悍浠ャ€屾垚鐔熸妧鏈笅娌夛紜PC-DMIS 鐢熸€併€嶉檷浣庝笓涓?CMM 闂ㄦ锛屾尋鍘嬩腑灏忓埗閫犱紒涓氬鍖呮娴嬩笌鎵嬪姩閲忓叿绌洪棿锛涗笁涓板簲浠?QM-Height锛忔暟鏄惧崱灏猴紡鍗冨垎灏恒€屾墜鎸侀珮绮惧害锛婮CSS 鍙函婧愶紜U-WAVE 鏃犵嚎鏁伴噰銆嶇粍鍚堝畧鍩烘湰鐩橈紝骞剁敤 CRYSTA-Apex V PLUS 鎵挎帴鍗囩骇闇€姹傘€?,
     "url": "http://metrology.news/hexagon-enspec-opens-a-new-entry-point-to-professional-cmm-metrology",
-    "src": "计量NEWS metrology.news",
-    "time": "发布 2026-09-08"
+    "src": "璁￠噺NEWS metrology.news",
+    "time": "鍙戝竷 2026-09-08"
   },
   {
-    "tag": "竞品",
-    "title": "海克斯康完成收购武汉 ZG Technology，全资掌控便携 3D 扫描",
-    "desc": "9/7 海克斯康宣布收购武汉 ZG Automation Technology 剩余 49% 股权，实现 100% 全资持有。ZG 成立于 2014 年，基于武汉大学摄影测量与遥感学科研发手持式 3D 扫描技术，自持软件著作权与专利，扫描设备用于质量检测、逆向工程与复杂零件数字化（汽车/航空航天/铁路/重工/医疗/科研）。信号：海克斯康将 ZG 设为「便携计量卓越中心」，统一手持扫描平台、加速研发并向中国以外客户开放；便携 3D 扫描虽与三丰接触式量具定位不同，但在「现场大尺寸数字化＋逆向」场景形成补充竞争，三丰应强化 U-WAVE/MeasurLink 数据链与 QM-Fit 非接触影像的现场近线方案叙事。",
+    "tag": "绔炲搧",
+    "title": "娴峰厠鏂悍瀹屾垚鏀惰喘姝︽眽 ZG Technology锛屽叏璧勬帉鎺т究鎼?3D 鎵弿",
+    "desc": "9/7 娴峰厠鏂悍瀹ｅ竷鏀惰喘姝︽眽 ZG Automation Technology 鍓╀綑 49% 鑲℃潈锛屽疄鐜?100% 鍏ㄨ祫鎸佹湁銆俍G 鎴愮珛浜?2014 骞达紝鍩轰簬姝︽眽澶у鎽勫奖娴嬮噺涓庨仴鎰熷绉戠爺鍙戞墜鎸佸紡 3D 鎵弿鎶€鏈紝鑷寔杞欢钁椾綔鏉冧笌涓撳埄锛屾壂鎻忚澶囩敤浜庤川閲忔娴嬨€侀€嗗悜宸ョ▼涓庡鏉傞浂浠舵暟瀛楀寲锛堟苯杞?鑸┖鑸ぉ/閾佽矾/閲嶅伐/鍖荤枟/绉戠爺锛夈€備俊鍙凤細娴峰厠鏂悍灏?ZG 璁句负銆屼究鎼鸿閲忓崜瓒婁腑蹇冦€嶏紝缁熶竴鎵嬫寔鎵弿骞冲彴銆佸姞閫熺爺鍙戝苟鍚戜腑鍥戒互澶栧鎴峰紑鏀撅紱渚挎惡 3D 鎵弿铏戒笌涓変赴鎺ヨЕ寮忛噺鍏峰畾浣嶄笉鍚岋紝浣嗗湪銆岀幇鍦哄ぇ灏哄鏁板瓧鍖栵紜閫嗗悜銆嶅満鏅舰鎴愯ˉ鍏呯珵浜夛紝涓変赴搴斿己鍖?U-WAVE/MeasurLink 鏁版嵁閾句笌 QM-Fit 闈炴帴瑙﹀奖鍍忕殑鐜板満杩戠嚎鏂规鍙欎簨銆?,
     "url": "https://mb.cision.com/Main/387/4391958/4252127.pdf",
-    "src": "海克斯康官方新闻稿（Cision 分发，2026-09-07）",
-    "time": "发布 2026-09-07"
+    "src": "娴峰厠鏂悍瀹樻柟鏂伴椈绋匡紙Cision 鍒嗗彂锛?026-09-07锛?,
+    "time": "鍙戝竷 2026-09-07"
   },
   {
-    "tag": "竞品",
-    "title": "海克斯康发布新一代 OPTIV S 4.4.3 光学三坐标测量机（IMTS 2026）",
-    "desc": "9/2 海克斯康在 IMTS 2026 发布新一代 OPTIV S 4.4.3 光学 CMM。OPTIV S 系列为海克斯康多传感器影像/光学测量旗舰，4.4.3 版本触测精度提升至 E0、MPEE=(1.6+L/200)μm、机型动态约 +30%、首测节拍缩短约 15%；并通过 PC-DMIS 引入 AI Edge Detection（2026.2）、Fast Auto-Focus（2027，最快 +50%）、AI Illumination（2027）等 AI 辅助测量能力，9/14 起在 IMTS 与 AMB 正式商用。信号：海克斯康正把「光学非接触＋多传感器＋AI」作为对抗三丰 QM-Fit／QV 影像测量系统的主力方向；三丰应以「原厂精度传承＋JCSS 可溯源校准＋U-WAVE/MeasurLink 数据链」守存量客户壁垒，并用 QM-Fit 的「秒级测量」差异化回应易用性叙事。",
+    "tag": "绔炲搧",
+    "title": "娴峰厠鏂悍鍙戝竷鏂颁竴浠?OPTIV S 4.4.3 鍏夊涓夊潗鏍囨祴閲忔満锛圛MTS 2026锛?,
+    "desc": "9/2 娴峰厠鏂悍鍦?IMTS 2026 鍙戝竷鏂颁竴浠?OPTIV S 4.4.3 鍏夊 CMM銆侽PTIV S 绯诲垪涓烘捣鍏嬫柉搴峰浼犳劅鍣ㄥ奖鍍?鍏夊娴嬮噺鏃楄埌锛?.4.3 鐗堟湰瑙︽祴绮惧害鎻愬崌鑷?E0銆丮PEE=(1.6+L/200)渭m銆佹満鍨嬪姩鎬佺害 +30%銆侀娴嬭妭鎷嶇缉鐭害 15%锛涘苟閫氳繃 PC-DMIS 寮曞叆 AI Edge Detection锛?026.2锛夈€丗ast Auto-Focus锛?027锛屾渶蹇?+50%锛夈€丄I Illumination锛?027锛夌瓑 AI 杈呭姪娴嬮噺鑳藉姏锛?/14 璧峰湪 IMTS 涓?AMB 姝ｅ紡鍟嗙敤銆備俊鍙凤細娴峰厠鏂悍姝ｆ妸銆屽厜瀛﹂潪鎺ヨЕ锛嬪浼犳劅鍣紜AI銆嶄綔涓哄鎶椾笁涓?QM-Fit锛廞V 褰卞儚娴嬮噺绯荤粺鐨勪富鍔涙柟鍚戯紱涓変赴搴斾互銆屽師鍘傜簿搴︿紶鎵匡紜JCSS 鍙函婧愭牎鍑嗭紜U-WAVE/MeasurLink 鏁版嵁閾俱€嶅畧瀛橀噺瀹㈡埛澹佸瀿锛屽苟鐢?QM-Fit 鐨勩€岀绾ф祴閲忋€嶅樊寮傚寲鍥炲簲鏄撶敤鎬у彊浜嬨€?,
     "url": "https://hexagon.com/nl/company/newsroom/press-releases/2026/hexagon-releases-next-generation-optiv-s",
-    "src": "海克斯康官网 hexagon.com",
-    "time": "发布 2026-09-02"
+    "src": "娴峰厠鏂悍瀹樼綉 hexagon.com",
+    "time": "鍙戝竷 2026-09-02"
   },
   {
-    "tag": "新品",
-    "title": "三丰发布高精度数显千分尺（0.1µm 分辨率，业界首款数字千分尺）",
-    "desc": "9/1 三丰美国公司（Mitutoyo America）发布高精度 Digimatic 数显千分尺，为业界首款提供 0.1µm 分辨率测量的数字千分尺；采用三丰自研 Absolute 旋转传感器（专利 Pending），将仪器误差降至 ±0.5µm，兼具手持便捷与高精度。恒定测力机构消除过速误差，可拆卸隔热罩降低手持热影响；支持 MeasurLink 数据输出，可接入 SPC 与上层网络。信号：三丰以「0.1µm 手持化」强化千分尺基本盘的精度壁垒，直接对冲电商低价仿品与国产替代话术；可作为千分尺品类高价值升级与品牌背书的推广素材。",
+    "tag": "鏂板搧",
+    "title": "涓変赴鍙戝竷楂樼簿搴︽暟鏄惧崈鍒嗗昂锛?.1碌m 鍒嗚鲸鐜囷紝涓氱晫棣栨鏁板瓧鍗冨垎灏猴級",
+    "desc": "9/1 涓変赴缇庡浗鍏徃锛圡itutoyo America锛夊彂甯冮珮绮惧害 Digimatic 鏁版樉鍗冨垎灏猴紝涓轰笟鐣岄娆炬彁渚?0.1碌m 鍒嗚鲸鐜囨祴閲忕殑鏁板瓧鍗冨垎灏猴紱閲囩敤涓変赴鑷爺 Absolute 鏃嬭浆浼犳劅鍣紙涓撳埄 Pending锛夛紝灏嗕华鍣ㄨ宸檷鑷?卤0.5碌m锛屽吋鍏锋墜鎸佷究鎹蜂笌楂樼簿搴︺€傛亽瀹氭祴鍔涙満鏋勬秷闄よ繃閫熻宸紝鍙媶鍗搁殧鐑僵闄嶄綆鎵嬫寔鐑奖鍝嶏紱鏀寔 MeasurLink 鏁版嵁杈撳嚭锛屽彲鎺ュ叆 SPC 涓庝笂灞傜綉缁溿€備俊鍙凤細涓変赴浠ャ€?.1碌m 鎵嬫寔鍖栥€嶅己鍖栧崈鍒嗗昂鍩烘湰鐩樼殑绮惧害澹佸瀿锛岀洿鎺ュ鍐茬數鍟嗕綆浠蜂豢鍝佷笌鍥戒骇鏇夸唬璇濇湳锛涘彲浣滀负鍗冨垎灏哄搧绫婚珮浠峰€煎崌绾т笌鍝佺墝鑳屼功鐨勬帹骞跨礌鏉愩€?,
     "url": "https://mitutoyo.com/news/high-accuracy-digimatic-digital-micrometer",
-    "src": "三丰美国官网 mitutoyo.com",
-    "time": "发布 2026-09-01"
+    "src": "涓変赴缇庡浗瀹樼綉 mitutoyo.com",
+    "time": "鍙戝竷 2026-09-01"
   },
   {
-    "tag": "新品",
-    "title": "三丰发布 2026 秋季促销：MDE QuantuMike 数显千分尺、SJ-220 Surftest、ID-C/ID-F 指示表、LH-600F 测高仪、投影仪等",
-    "desc": "9/1 三丰美国公司（Mitutoyo America）启动 2026 秋季促销（9/1–12/18），对多款主力精密量具与仪器提供 5%–20% 折扣，并含指定机型免费运输、安装、校准与培训。重点覆盖：MDE QuantuMike 数显千分尺（测杆每圈进给 2.0mm、精度 ±1µm、IP65、新增 Digimatic S1 输出）；便携式 SJ-220 Surftest 粗糙度仪（2.8 寸彩触屏、ISO 21920、可选 U-WAVE-TIB 蓝牙）；ID-C/ID-F 数显指示表（分辨率可切至 0.5µm、带校准周期提醒、超差绿转红背光）；MeasurLink 11 实时 SPC 软件；LH-600F 数显测高仪；投影仪等。信号：秋季促销把「卡尺/千分尺/指示表/测高仪/粗糙度/投影仪」全品类主力机型打包促销，是经销商冲量、挤压低价仿品与国产替代话术的直接窗口。",
+    "tag": "鏂板搧",
+    "title": "涓変赴鍙戝竷 2026 绉嬪淇冮攢锛歁DE QuantuMike 鏁版樉鍗冨垎灏恒€丼J-220 Surftest銆両D-C/ID-F 鎸囩ず琛ㄣ€丩H-600F 娴嬮珮浠€佹姇褰变华绛?,
+    "desc": "9/1 涓変赴缇庡浗鍏徃锛圡itutoyo America锛夊惎鍔?2026 绉嬪淇冮攢锛?/1鈥?2/18锛夛紝瀵瑰娆句富鍔涚簿瀵嗛噺鍏蜂笌浠櫒鎻愪緵 5%鈥?0% 鎶樻墸锛屽苟鍚寚瀹氭満鍨嬪厤璐硅繍杈撱€佸畨瑁呫€佹牎鍑嗕笌鍩硅銆傞噸鐐硅鐩栵細MDE QuantuMike 鏁版樉鍗冨垎灏猴紙娴嬫潌姣忓湀杩涚粰 2.0mm銆佺簿搴?卤1碌m銆両P65銆佹柊澧?Digimatic S1 杈撳嚭锛夛紱渚挎惡寮?SJ-220 Surftest 绮楃硻搴︿华锛?.8 瀵稿僵瑙﹀睆銆両SO 21920銆佸彲閫?U-WAVE-TIB 钃濈墮锛夛紱ID-C/ID-F 鏁版樉鎸囩ず琛紙鍒嗚鲸鐜囧彲鍒囪嚦 0.5碌m銆佸甫鏍″噯鍛ㄦ湡鎻愰啋銆佽秴宸豢杞孩鑳屽厜锛夛紱MeasurLink 11 瀹炴椂 SPC 杞欢锛汱H-600F 鏁版樉娴嬮珮浠紱鎶曞奖浠瓑銆備俊鍙凤細绉嬪淇冮攢鎶娿€屽崱灏?鍗冨垎灏?鎸囩ず琛?娴嬮珮浠?绮楃硻搴?鎶曞奖浠€嶅叏鍝佺被涓诲姏鏈哄瀷鎵撳寘淇冮攢锛屾槸缁忛攢鍟嗗啿閲忋€佹尋鍘嬩綆浠蜂豢鍝佷笌鍥戒骇鏇夸唬璇濇湳鐨勭洿鎺ョ獥鍙ｃ€?,
     "url": "https://mitutoyo.com/news/the-2026-mitutoyo-fall-promo-is-here",
-    "src": "三丰美国官网 mitutoyo.com",
-    "time": "发布 2026-09-01"
+    "src": "涓変赴缇庡浗瀹樼綉 mitutoyo.com",
+    "time": "鍙戝竷 2026-09-01"
   },
   {
-    "tag": "新品",
-    "title": "三丰集中发布秋季重点方案：MeasurLink 11、CRYSTA-Apex V PLUS 车间级 CMM、QM-Fit",
-    "desc": "9/1 三丰美国官网集中更新秋季重点：① MeasurLink 11（2026 年 7 月引入的最新一代 SPC/数据管理软件，主打易用性——快速建计划、OCR 自动读图生成检验计划、上下文帮助、暗色模式，降低对专职 SPC/计量工程师的依赖）；② CRYSTA-Apex V PLUS 系列 CNC 三坐标，把实验室级精度带上车间——实时温度补偿、保证精度温区拓宽至 15~30°C、参考点温度补偿、节能降耗；③ QM-Fit 全自动智能影像系统「秒级测量」；④ 佛罗里达 Lakeland 新建 11,200 平方英尺计量服务中心。信号：三丰把「软件数据链（MeasurLink 11）＋车间级 CMM（CRYSTA-Apex V PLUS/MiSTAR）＋自动化影像（QM-Fit）」打包为对抗海克斯康 MAESTRO/OPTIV 无人化检测的组合拳，对国内需要可溯源尺寸数据源与产线近线检测的存量客户是直接切入点。",
+    "tag": "鏂板搧",
+    "title": "涓変赴闆嗕腑鍙戝竷绉嬪閲嶇偣鏂规锛歁easurLink 11銆丆RYSTA-Apex V PLUS 杞﹂棿绾?CMM銆丵M-Fit",
+    "desc": "9/1 涓変赴缇庡浗瀹樼綉闆嗕腑鏇存柊绉嬪閲嶇偣锛氣憼 MeasurLink 11锛?026 骞?7 鏈堝紩鍏ョ殑鏈€鏂颁竴浠?SPC/鏁版嵁绠＄悊杞欢锛屼富鎵撴槗鐢ㄦ€р€斺€斿揩閫熷缓璁″垝銆丱CR 鑷姩璇诲浘鐢熸垚妫€楠岃鍒掋€佷笂涓嬫枃甯姪銆佹殫鑹叉ā寮忥紝闄嶄綆瀵逛笓鑱?SPC/璁￠噺宸ョ▼甯堢殑渚濊禆锛夛紱鈶?CRYSTA-Apex V PLUS 绯诲垪 CNC 涓夊潗鏍囷紝鎶婂疄楠屽绾х簿搴﹀甫涓婅溅闂粹€斺€斿疄鏃舵俯搴﹁ˉ鍋裤€佷繚璇佺簿搴︽俯鍖烘嫇瀹借嚦 15~30掳C銆佸弬鑰冪偣娓╁害琛ュ伩銆佽妭鑳介檷鑰楋紱鈶?QM-Fit 鍏ㄨ嚜鍔ㄦ櫤鑳藉奖鍍忕郴缁熴€岀绾ф祴閲忋€嶏紱鈶?浣涚綏閲岃揪 Lakeland 鏂板缓 11,200 骞虫柟鑻卞昂璁￠噺鏈嶅姟涓績銆備俊鍙凤細涓変赴鎶娿€岃蒋浠舵暟鎹摼锛圡easurLink 11锛夛紜杞﹂棿绾?CMM锛圕RYSTA-Apex V PLUS/MiSTAR锛夛紜鑷姩鍖栧奖鍍忥紙QM-Fit锛夈€嶆墦鍖呬负瀵规姉娴峰厠鏂悍 MAESTRO/OPTIV 鏃犱汉鍖栨娴嬬殑缁勫悎鎷筹紝瀵瑰浗鍐呴渶瑕佸彲婧簮灏哄鏁版嵁婧愪笌浜х嚎杩戠嚎妫€娴嬬殑瀛橀噺瀹㈡埛鏄洿鎺ュ垏鍏ョ偣銆?,
     "url": "https://mitutoyo.com/",
-    "src": "三丰美国官网 mitutoyo.com",
-    "time": "发布 2026-09-01"
+    "src": "涓変赴缇庡浗瀹樼綉 mitutoyo.com",
+    "time": "鍙戝竷 2026-09-01"
   },
   {
-    "tag": "竞品",
-    "title": "海克斯康推出 METRICAL 全自动 CMM 上下料系统，实现 lights-out 自主检测",
-    "desc": "9/1 海克斯康发布 METRICAL——面向 CMM 的自动排队/上下料系统，实现大尺寸零件的全自主（lights-out）检测；提供 3/5/7 个预备工位三种配置，可与海克斯康新 MAESTRO 及既有 GLOBAL 三坐标无缝集成，显著减少检测闲置时间、降低对稀缺熟练检测人力的依赖。信号：海克斯康把三坐标从「单台设备」推向「24/7 无人化检测产线入口」，直接冲击三丰 CRYSTA-Apex V / MiSTAR 车间型 CMM 在自动化场景的话语权；三丰应以 U-WAVE 无线数采＋MeasurLink 11＋AJS 自动交换系统把量具/CMM 数据接入客户 MES，守住「可溯源尺寸数据源」这一不可替代位置。",
+    "tag": "绔炲搧",
+    "title": "娴峰厠鏂悍鎺ㄥ嚭 METRICAL 鍏ㄨ嚜鍔?CMM 涓婁笅鏂欑郴缁燂紝瀹炵幇 lights-out 鑷富妫€娴?,
+    "desc": "9/1 娴峰厠鏂悍鍙戝竷 METRICAL鈥斺€旈潰鍚?CMM 鐨勮嚜鍔ㄦ帓闃?涓婁笅鏂欑郴缁燂紝瀹炵幇澶у昂瀵搁浂浠剁殑鍏ㄨ嚜涓伙紙lights-out锛夋娴嬶紱鎻愪緵 3/5/7 涓澶囧伐浣嶄笁绉嶉厤缃紝鍙笌娴峰厠鏂悍鏂?MAESTRO 鍙婃棦鏈?GLOBAL 涓夊潗鏍囨棤缂濋泦鎴愶紝鏄捐憲鍑忓皯妫€娴嬮棽缃椂闂淬€侀檷浣庡绋€缂虹啛缁冩娴嬩汉鍔涚殑渚濊禆銆備俊鍙凤細娴峰厠鏂悍鎶婁笁鍧愭爣浠庛€屽崟鍙拌澶囥€嶆帹鍚戙€?4/7 鏃犱汉鍖栨娴嬩骇绾垮叆鍙ｃ€嶏紝鐩存帴鍐插嚮涓変赴 CRYSTA-Apex V / MiSTAR 杞﹂棿鍨?CMM 鍦ㄨ嚜鍔ㄥ寲鍦烘櫙鐨勮瘽璇潈锛涗笁涓板簲浠?U-WAVE 鏃犵嚎鏁伴噰锛婱easurLink 11锛婣JS 鑷姩浜ゆ崲绯荤粺鎶婇噺鍏?CMM 鏁版嵁鎺ュ叆瀹㈡埛 MES锛屽畧浣忋€屽彲婧簮灏哄鏁版嵁婧愩€嶈繖涓€涓嶅彲鏇夸唬浣嶇疆銆?,
     "url": "https://metrology.news/hexagon-launches-metrical-for-fully-autonomous-cmm-inspection",
-    "src": "计量NEWS metrology.news",
-    "time": "发布 2026-09-01"
+    "src": "璁￠噺NEWS metrology.news",
+    "time": "鍙戝竷 2026-09-01"
   }
 ];
 
 /* ============================================================
-   模块 2b：EC_NEWS（1688 电商行情快照，每日 09:00 由自动化替换）
+   妯″潡 2b锛欵C_NEWS锛?688 鐢靛晢琛屾儏蹇収锛屾瘡鏃?09:00 鐢辫嚜鍔ㄥ寲鏇挎崲锛?
 ============================================================ */
 const EC_NEWS={
   updated:"2026-09-17",
-  src:"1688.com 检索「三丰卡尺/三丰数显卡尺/三丰千分尺/三丰百分表/三丰杠杆表 513/三丰测高仪/Mitutoyo 500-196-30/Mitutoyo 293-240-30/Mitutoyo 570 高度尺」等 13 组关键词（含具体三丰货号）",
-  note:"取数受限说明：2026-09-17 本次自动化运行时，1688 检索仍触发反爬/编码乱码（WebFetch 实测返回与「三丰卡尺」关键词无关的运动鞋等无关商品，关键词被服务端转码错乱），非商品数据；京东(b.jd.com)/天猫/淘宝/咸鱼均需登录态且风控更严，未能取得当日实时数据。下方数值为工作区留存的最近一次成功抓取快照（2026-08-25，来源 crawl/ec_1688_20260825.json 与 crawl/ec_top10_20260825.json，已核验真实），非 2026-09-17 实时复抓，仅供趋势参考。平台公开检索结果，含非官方店铺与疑似仿品（低价位多为蹭流量），价格/销量仅供参考，非三丰官方指导价。正品口径：标题含三丰或 Mitutoyo，剔除价<100 且无具体货号者、第三方通用件与配件耗材（表座/测头/加长杆/数采装置等）；展示清单另加风险守门——价<300 且标题无具体三丰货号者不予展示（如某深圳店 ¥114「三丰数显卡尺」成交 2000+ 笔，仿品风险高，已从展示清单剔除但仍计入 authCount）。",
+  src:"1688.com 妫€绱€屼笁涓板崱灏?涓変赴鏁版樉鍗″昂/涓変赴鍗冨垎灏?涓変赴鐧惧垎琛?涓変赴鏉犳潌琛?513/涓変赴娴嬮珮浠?Mitutoyo 500-196-30/Mitutoyo 293-240-30/Mitutoyo 570 楂樺害灏恒€嶇瓑 13 缁勫叧閿瘝锛堝惈鍏蜂綋涓変赴璐у彿锛?,
+  note:"鍙栨暟鍙楅檺璇存槑锛?026-09-17 鏈鑷姩鍖栬繍琛屾椂锛?688 妫€绱粛瑙﹀彂鍙嶇埇/缂栫爜涔辩爜锛圵ebFetch 瀹炴祴杩斿洖涓庛€屼笁涓板崱灏恒€嶅叧閿瘝鏃犲叧鐨勮繍鍔ㄩ瀷绛夋棤鍏冲晢鍝侊紝鍏抽敭璇嶈鏈嶅姟绔浆鐮侀敊涔憋級锛岄潪鍟嗗搧鏁版嵁锛涗含涓?b.jd.com)/澶╃尗/娣樺疂/鍜搁奔鍧囬渶鐧诲綍鎬佷笖椋庢帶鏇翠弗锛屾湭鑳藉彇寰楀綋鏃ュ疄鏃舵暟鎹€備笅鏂规暟鍊间负宸ヤ綔鍖虹暀瀛樼殑鏈€杩戜竴娆℃垚鍔熸姄鍙栧揩鐓э紙2026-08-25锛屾潵婧?crawl/ec_1688_20260825.json 涓?crawl/ec_top10_20260825.json锛屽凡鏍搁獙鐪熷疄锛夛紝闈?2026-09-17 瀹炴椂澶嶆姄锛屼粎渚涜秼鍔垮弬鑰冦€傚钩鍙板叕寮€妫€绱㈢粨鏋滐紝鍚潪瀹樻柟搴楅摵涓庣枒浼间豢鍝侊紙浣庝环浣嶅涓鸿弓娴侀噺锛夛紝浠锋牸/閿€閲忎粎渚涘弬鑰冿紝闈炰笁涓板畼鏂规寚瀵间环銆傛鍝佸彛寰勶細鏍囬鍚笁涓版垨 Mitutoyo锛屽墧闄や环<100 涓旀棤鍏蜂綋璐у彿鑰呫€佺涓夋柟閫氱敤浠朵笌閰嶄欢鑰楁潗锛堣〃搴?娴嬪ご/鍔犻暱鏉?鏁伴噰瑁呯疆绛夛級锛涘睍绀烘竻鍗曞彟鍔犻闄╁畧闂ㄢ€斺€斾环<300 涓旀爣棰樻棤鍏蜂綋涓変赴璐у彿鑰呬笉浜堝睍绀猴紙濡傛煇娣卞湷搴?楼114銆屼笁涓版暟鏄惧崱灏恒€嶆垚浜?2000+ 绗旓紝浠垮搧椋庨櫓楂橈紝宸蹭粠灞曠ず娓呭崟鍓旈櫎浣嗕粛璁″叆 authCount锛夈€?,
   stat:{count:160,pmin:0.6,pmax:9200,pmedian:315,authMin:100,authMax:9200,authCount:104},
   items:[
-  {title:"进口日本三丰数显卡尺 500-196-30高精度电子游标卡尺0-150mm",price:955.8,vol:"成交700+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527358692190.html"},
-  {title:"日本三丰数显外径千分尺螺旋分厘卡防水防尘IP65电子千分尺0-25mm",price:1036.8,vol:"成交500+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527363548085.html"},
-  {title:"日本三丰Mitutoyo防水数显外径千分尺293-340 240 0-25MM",price:780,vol:"成交100+笔",city:"东莞市",shopYears:14,url:"https://detail.1688.com/offer/42355606541.html"},
-  {title:"Mitutoyo三丰代理防震防水小较表513-471-10E 0.001杠杆千分表",price:588.6,vol:"成交100+笔",city:"宁波市",shopYears:null,url:"https://detail.1688.com/offer/527080039816.html"},
-  {title:"Mitutoyo三丰杠杆百分表杠杆表千分表513-404C 405E 401E 0.001",price:365,vol:"成交100+笔",city:"东莞市",shopYears:null,url:"https://detail.1688.com/offer/560558970747.html"},
-  {title:"日本三丰 高精度电子游标卡尺0-150-200 三丰数显卡尺500-196 197",price:216.78,vol:"成交100+笔",city:"宁波市",shopYears:7,url:"https://detail.1688.com/offer/632660822626.html"},
-  {title:"日本三丰指针式百分表2046A/1044A/2109AB 10mm/0.01mm千分百分表",price:155,vol:"成交67笔",city:"东莞市",shopYears:14,url:"https://detail.1688.com/offer/42353319589.html"},
-  {title:"Mitutoyo三丰百分表0-0.8 水平型杠杆百分表千分表513-404-10E",price:478.72,vol:"成交57笔",city:"宁波市",shopYears:7,url:"https://detail.1688.com/offer/616035477657.html"},
-  {title:"批发三丰数显千分尺293-240-30 外径千分尺0-25*0.001mm",price:700,vol:"成交53笔",city:"深圳市",shopYears:9,url:"https://detail.1688.com/offer/567502233160.html"},
-  {title:"Mitutoyo日本三丰500-196-30数显卡尺0-150mm高精度不锈钢电子游",price:118,vol:"成交51笔",city:"深圳市",shopYears:2,url:"https://detail.1688.com/offer/873545425900.html"}
+  {title:"杩涘彛鏃ユ湰涓変赴鏁版樉鍗″昂 500-196-30楂樼簿搴︾數瀛愭父鏍囧崱灏?-150mm",price:955.8,vol:"鎴愪氦700+绗?,city:"瀹佹尝甯?,shopYears:null,url:"https://detail.1688.com/offer/527358692190.html"},
+  {title:"鏃ユ湰涓変赴鏁版樉澶栧緞鍗冨垎灏鸿灪鏃嬪垎鍘樺崱闃叉按闃插皹IP65鐢靛瓙鍗冨垎灏?-25mm",price:1036.8,vol:"鎴愪氦500+绗?,city:"瀹佹尝甯?,shopYears:null,url:"https://detail.1688.com/offer/527363548085.html"},
+  {title:"鏃ユ湰涓変赴Mitutoyo闃叉按鏁版樉澶栧緞鍗冨垎灏?93-340 240 0-25MM",price:780,vol:"鎴愪氦100+绗?,city:"涓滆帪甯?,shopYears:14,url:"https://detail.1688.com/offer/42355606541.html"},
+  {title:"Mitutoyo涓変赴浠ｇ悊闃查渿闃叉按灏忚緝琛?13-471-10E 0.001鏉犳潌鍗冨垎琛?,price:588.6,vol:"鎴愪氦100+绗?,city:"瀹佹尝甯?,shopYears:null,url:"https://detail.1688.com/offer/527080039816.html"},
+  {title:"Mitutoyo涓変赴鏉犳潌鐧惧垎琛ㄦ潬鏉嗚〃鍗冨垎琛?13-404C 405E 401E 0.001",price:365,vol:"鎴愪氦100+绗?,city:"涓滆帪甯?,shopYears:null,url:"https://detail.1688.com/offer/560558970747.html"},
+  {title:"鏃ユ湰涓変赴 楂樼簿搴︾數瀛愭父鏍囧崱灏?-150-200 涓変赴鏁版樉鍗″昂500-196 197",price:216.78,vol:"鎴愪氦100+绗?,city:"瀹佹尝甯?,shopYears:7,url:"https://detail.1688.com/offer/632660822626.html"},
+  {title:"鏃ユ湰涓変赴鎸囬拡寮忕櫨鍒嗚〃2046A/1044A/2109AB 10mm/0.01mm鍗冨垎鐧惧垎琛?,price:155,vol:"鎴愪氦67绗?,city:"涓滆帪甯?,shopYears:14,url:"https://detail.1688.com/offer/42353319589.html"},
+  {title:"Mitutoyo涓変赴鐧惧垎琛?-0.8 姘村钩鍨嬫潬鏉嗙櫨鍒嗚〃鍗冨垎琛?13-404-10E",price:478.72,vol:"鎴愪氦57绗?,city:"瀹佹尝甯?,shopYears:7,url:"https://detail.1688.com/offer/616035477657.html"},
+  {title:"鎵瑰彂涓変赴鏁版樉鍗冨垎灏?93-240-30 澶栧緞鍗冨垎灏?-25*0.001mm",price:700,vol:"鎴愪氦53绗?,city:"娣卞湷甯?,shopYears:9,url:"https://detail.1688.com/offer/567502233160.html"},
+  {title:"Mitutoyo鏃ユ湰涓変赴500-196-30鏁版樉鍗″昂0-150mm楂樼簿搴︿笉閿堥挗鐢靛瓙娓?,price:118,vol:"鎴愪氦51绗?,city:"娣卞湷甯?,shopYears:2,url:"https://detail.1688.com/offer/873545425900.html"}
   ]
 };
 
 /* ============================================================
-   模块 2c：BID_NEWS（中国政府采购网招标动态，每日 09:00 由自动化替换）
+   妯″潡 2c锛欱ID_NEWS锛堜腑鍥芥斂搴滈噰璐綉鎷涙爣鍔ㄦ€侊紝姣忔棩 09:00 鐢辫嚜鍔ㄥ寲鏇挎崲锛?
 ============================================================ */
 const BID_NEWS=[
-  {kw:"计量标准器具",title:"中国测试技术研究院现代产业先进测量能力建设与提升项目（一期）2026年度二批次（二次）中标（成交）结果公告（其他计量仪器：氩三相点装置/标准套管铂电阻温度计/纳伏表等；中标：北京迈凯测量/成都兴创腾达，总424.43万元）",date:"2026.09.15",buyer:"中国测试技术研究院",type:"中标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260915_27332816.htm"},
-  {kw:"三坐标测量机",title:"中国科学院高能物理研究所CSNS-II中子背散射谱仪三坐标测量仪采购项目公开招标公告（预算260万元，国产，不允许进口）",date:"2026.09.11",buyer:"中国科学院高能物理研究所",type:"公开招标公告",prov:"北京",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202609/t20260911_27311770.htm"},
-  {kw:"三坐标测量机",title:"上海电机学院桥式三坐标测量机中标（成交）结果公告（品牌：海克斯康 Hexagon GLOBAL S 9.12.8，149.5 万元）",date:"2026.09.10",buyer:"上海电机学院",type:"中标公告",prov:"上海",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260910_27304722.htm"},
-  {kw:"计量标准器具",title:"台州市计量技术研究院设备更新项目中标（成交）结果公告（含万能工具显微镜、电脑量块比较仪；中标：中图仪器/宁波科佳等）",date:"2026.09.07",buyer:"台州市计量技术研究院",type:"中标公告",prov:"浙江",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260907_27276646.htm"},
-  {kw:"计量标准器具",title:"宣城市标准计量所计量标准设备更新项目第一包更正公告第（3）次（开标延期至 2026-09-21）",date:"2026.09.04",buyer:"宣城市标准计量所",type:"更正公告",prov:"安徽",url:"https://www.ccgp.gov.cn/cggg/dfgg/gzgg/202609/t20260904_27271840.htm"},
-  {kw:"硬度计",title:"北京市丰台区特种设备检测所特种设备检验检测设备更新项目公开招标公告（含便携式硬度计、测厚仪）",date:"2026.09.04",buyer:"北京市丰台区特种设备检测所",type:"公开招标公告",prov:"北京",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260904_27266291.htm"},
-  {kw:"三坐标测量机",title:"浙江理工大学三坐标测量机采购项目（第三次）中标（成交）结果公告（品牌：海克斯康 Leitz Reference 07.07.05，129.6 万元）",date:"2026.09.03",buyer:"浙江理工大学",type:"中标公告",prov:"浙江",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260903_27262383.htm"},
-  {kw:"检验设备",title:"河北省产品质量监督检验研究院2026年第二批检验检测专用仪器设备采购项目招标公告（79 万元）",date:"2026.09.03",buyer:"河北省产品质量监督检验研究院",type:"公开招标公告",prov:"河北",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260903_27256445.htm"},
-  {kw:"计量标准器具",title:"广东省计量科学研究院面向国家重大需求的高端科学仪器验证共性技术研究与产业应用仪器设备采购项目招标公告（340 万元）",date:"2026.09.02",buyer:"广东省计量科学研究院",type:"公开招标公告",prov:"广东",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260902_27248642.htm"},
-  {kw:"轮廓仪",title:"中国民航大学白光干涉共聚焦轮廓仪采购项目公开招标公告（55.2 万元）",date:"2026.09.02",buyer:"中国民航大学",type:"公开招标公告",prov:"天津",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202609/t20260902_27248666.htm"},
-  {kw:"轮廓仪",title:"上海市医疗器械检验研究院柔性电极多模式光学轮廓检测系统国际公开招标采购公告（预算235万元，可采购进口产品）",date:"2026.09.01",buyer:"上海市医疗器械检验研究院",type:"公开招标公告",prov:"上海",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260901_27246545.htm"},
-  {kw:"硬度计",title:"福建省纤维检验中心2026年检验设备采购-第一批(二次)结果公告（含硬度计A/C/D）",date:"2026.08.31",buyer:"福建省纤维检验中心",type:"结果公告",prov:"福建",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260831_27234564.htm"},
-  {kw:"检验设备",title:"湖北省特种设备检验检测研究院2026年检验设备购置公开招标公告（58 万元）",date:"2026.08.28",buyer:"湖北省特种设备检验检测研究院",type:"公开招标公告",prov:"湖北",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260828_27222671.htm"},
-  {kw:"三坐标测量机",title:"上海民航职业技术学院高精度三坐标测量机及配套设备采购项目公开招标公告",date:"2026.08.26",buyer:"上海民航职业技术学院",type:"公开招标公告",prov:"上海",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202608/t20260826_27211393.htm"},
-  {kw:"测长机",title:"乐山市计量测试所2026年市场监管重点领域社会公用计量标准设备更新项目中标（成交）结果公告（含光栅指示表检定仪、测长机）",date:"2026.08.26",buyer:"乐山市计量测试所",type:"中标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260826_27207603.htm"},
-  {kw:"测长机",title:"漳州市计量所社会公用计量标准设备更新项目第四批采购更正公告（万能工具显微镜、测长机、电脑量块比较仪）",date:"2026.08.26",buyer:"漳州市计量所",type:"更正公告",prov:"福建",url:"https://www.ccgp.gov.cn/cggg/dfgg/gzgg/202608/t20260826_27210279.htm"},
-  {kw:"轮廓仪",title:"中国科学院合肥物质科学研究院高精度非接触三维轮廓仪采购项目中标公告（Taylor Hobson Luphoscan 260XL HD，499.1 万元）",date:"2026.08.24",buyer:"中国科学院合肥物质科学研究院",type:"中标公告",prov:"安徽",url:"https://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260824_27192478.htm"},
-  {kw:"硬度计",title:"中国科学院福建物质结构研究所全自动显微硬度计采购项目中标公告",date:"2026.08.21",buyer:"中国科学院福建物质结构研究所",type:"中标公告",prov:"福建",url:"https://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260821_27183212.htm"},
-  {kw:"计量标准器具",title:"宜宾市检验检测中心2026年度计量标准器具设备采购项目招标公告",date:"2026.08.20",buyer:"宜宾市检验检测中心",type:"公开招标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260820_27172952.htm"},
-  {kw:"计量标准器具",title:"中国测试技术研究院现代产业先进测量能力建设与提升项目（一期）2026年度二批次中标（成交）结果公告",date:"2026.08.20",buyer:"中国测试技术研究院",type:"中标公告",prov:"四川",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260820_27176238.htm"},
-  {kw:"轮廓仪",title:"西南交通大学三维光学轮廓仪飞秒激光加工装置等设备采购项目公开招标公告",date:"2026.08.19",buyer:"西南交通大学",type:"公开招标公告",prov:"四川",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202608/t20260819_27162268.htm"},
-  {kw:"计量标准器具",title:"海南省检验检测研究院2026年计量检定校准设备更新项目公开招标公告（1184 万元）",date:"2026.08.19",buyer:"海南省检验检测研究院",type:"公开招标公告",prov:"海南",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260819_27166967.htm"},
-  {kw:"硬度计",title:"海南省检验检测研究院2026年特种设备检验检测设备更新项目公开招标公告（含便携式硬度计）",date:"2026.08.19",buyer:"海南省检验检测研究院",type:"公开招标公告",prov:"海南",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260819_27164955.htm"},
-  {kw:"三坐标测量机",title:"桥式三坐标测量机公开招标公告（预算150万元，上海）",date:"2026.08.18",buyer:"上海（采购单位详见公告正文）",type:"公开招标公告",prov:"上海",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260818_27156228.htm"},
-  {kw:"三坐标测量机",title:"长沙航空职业技术学院精密三坐标测量机和全息测量仿真教学系统购置竞争性磋商成交公告",date:"2026.08.17",buyer:"长沙航空职业技术学院",type:"成交公告",prov:"湖南",url:"http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202608/t20260817_27144643.htm"},
-  {kw:"三坐标测量机",title:"关于浙江理工大学三坐标测量机采购项目（第三次）公开招标公告",date:"2026.08.08",buyer:"浙江理工大学",type:"公开招标公告",prov:"浙江",url:"http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260808_27099132.htm"},
-  {kw:"三坐标测量机",title:"中山大学天琴中心高精度三坐标测量机采购项目中标结果公告（海克斯康 XPERT 10.15.08，219.8 万元）",date:"2026.08.07",buyer:"中山大学",type:"中标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260807_27096004.htm"},
-  {kw:"硬度计",title:"安徽省特种设备检测院特种设备安全检验检测设备更新项目（三）中标结果公告（便携式布氏硬度计）",date:"2026.08.06",buyer:"安徽省特种设备检测院",type:"中标公告",prov:"安徽",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260806_27083269.htm"},
-  {kw:"轮廓仪",title:"中国科学院合肥物质科学研究院高精度非接触三维轮廓仪采购项目公开招标公告",date:"2026.07.28",buyer:"中国科学院合肥物质科学研究院",type:"公开招标公告",prov:"安徽",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260728_27021451.htm"},
-  {kw:"硬度计",title:"中国科学院福建物质结构研究所全自动显微硬度计采购项目公开招标公告（预算 30 万元）",date:"2026.07.27",buyer:"中国科学院福建物质结构研究所",type:"公开招标公告",prov:"福建",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260727_27014265.htm"},
-  {kw:"影像测量仪",title:"陕西国防工业职业技术学院复合式影像测量仪项目中标（成交）结果公告（成交 66.18 万元）",date:"2026.07.24",buyer:"陕西国防工业职业技术学院",type:"成交公告",prov:"陕西",url:"http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202607/t20260724_27005795.htm"},
-  {kw:"影像测量仪",title:"大连民族大学改善基本办学条件项目-工程训练实训平台建设公开招标公告（含影像测量仪）",date:"2026.07.23",buyer:"大连民族大学",type:"公开招标公告",prov:"辽宁",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260723_26996580.htm"},
-  {kw:"三坐标测量机",title:"合肥工业大学跨尺度精密测量仪器研发平台项目第1、3、4包中标结果公告",date:"2026.07.22",buyer:"合肥工业大学",type:"中标公告",prov:"安徽",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260722_26983611.htm"},
-  {kw:"三坐标测量机",title:"香港城市大学（东莞）智能制造教学设备采购项目（集中采购）招标公告",date:"2026.07.21",buyer:"香港城市大学（东莞）",type:"公开招标公告",prov:"广东",url:"http://www.ccgp.gov.cn/cggg/dfgg/kzb/202607/t20260721_26980209.htm"},
-  {kw:"三坐标测量机",title:"中国科学院理化技术研究所高速高精度五轴三坐标测量机采购项目中标公告",date:"2026.07.20",buyer:"中国科学院理化技术研究所",type:"中标公告",prov:"北京",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260720_26964556.htm"}
+  {kw:"璁￠噺鏍囧噯鍣ㄥ叿",title:"涓浗娴嬭瘯鎶€鏈爺绌堕櫌鐜颁唬浜т笟鍏堣繘娴嬮噺鑳藉姏寤鸿涓庢彁鍗囬」鐩紙涓€鏈燂級2026骞村害浜屾壒娆★紙浜屾锛変腑鏍囷紙鎴愪氦锛夌粨鏋滃叕鍛婏紙鍏朵粬璁￠噺浠櫒锛氭癌涓夌浉鐐硅缃?鏍囧噯濂楃閾傜數闃绘俯搴﹁/绾充紡琛ㄧ瓑锛涗腑鏍囷細鍖椾含杩堝嚡娴嬮噺/鎴愰兘鍏村垱鑵捐揪锛屾€?24.43涓囧厓锛?,date:"2026.09.15",buyer:"涓浗娴嬭瘯鎶€鏈爺绌堕櫌",type:"涓爣鍏憡",prov:"鍥涘窛",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260915_27332816.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"涓浗绉戝闄㈤珮鑳界墿鐞嗙爺绌舵墍CSNS-II涓瓙鑳屾暎灏勮氨浠笁鍧愭爣娴嬮噺浠噰璐」鐩叕寮€鎷涙爣鍏憡锛堥绠?60涓囧厓锛屽浗浜э紝涓嶅厑璁歌繘鍙ｏ級",date:"2026.09.11",buyer:"涓浗绉戝闄㈤珮鑳界墿鐞嗙爺绌舵墍",type:"鍏紑鎷涙爣鍏憡",prov:"鍖椾含",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202609/t20260911_27311770.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"涓婃捣鐢垫満瀛﹂櫌妗ュ紡涓夊潗鏍囨祴閲忔満涓爣锛堟垚浜わ級缁撴灉鍏憡锛堝搧鐗岋細娴峰厠鏂悍 Hexagon GLOBAL S 9.12.8锛?49.5 涓囧厓锛?,date:"2026.09.10",buyer:"涓婃捣鐢垫満瀛﹂櫌",type:"涓爣鍏憡",prov:"涓婃捣",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260910_27304722.htm"},
+  {kw:"璁￠噺鏍囧噯鍣ㄥ叿",title:"鍙板窞甯傝閲忔妧鏈爺绌堕櫌璁惧鏇存柊椤圭洰涓爣锛堟垚浜わ級缁撴灉鍏憡锛堝惈涓囪兘宸ュ叿鏄惧井闀溿€佺數鑴戦噺鍧楁瘮杈冧华锛涗腑鏍囷細涓浘浠櫒/瀹佹尝绉戜匠绛夛級",date:"2026.09.07",buyer:"鍙板窞甯傝閲忔妧鏈爺绌堕櫌",type:"涓爣鍏憡",prov:"娴欐睙",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260907_27276646.htm"},
+  {kw:"璁￠噺鏍囧噯鍣ㄥ叿",title:"瀹ｅ煄甯傛爣鍑嗚閲忔墍璁￠噺鏍囧噯璁惧鏇存柊椤圭洰绗竴鍖呮洿姝ｅ叕鍛婄锛?锛夋锛堝紑鏍囧欢鏈熻嚦 2026-09-21锛?,date:"2026.09.04",buyer:"瀹ｅ煄甯傛爣鍑嗚閲忔墍",type:"鏇存鍏憡",prov:"瀹夊窘",url:"https://www.ccgp.gov.cn/cggg/dfgg/gzgg/202609/t20260904_27271840.htm"},
+  {kw:"纭害璁?,title:"鍖椾含甯備赴鍙板尯鐗圭璁惧妫€娴嬫墍鐗圭璁惧妫€楠屾娴嬭澶囨洿鏂伴」鐩叕寮€鎷涙爣鍏憡锛堝惈渚挎惡寮忕‖搴﹁銆佹祴鍘氫华锛?,date:"2026.09.04",buyer:"鍖椾含甯備赴鍙板尯鐗圭璁惧妫€娴嬫墍",type:"鍏紑鎷涙爣鍏憡",prov:"鍖椾含",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260904_27266291.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"娴欐睙鐞嗗伐澶у涓夊潗鏍囨祴閲忔満閲囪喘椤圭洰锛堢涓夋锛変腑鏍囷紙鎴愪氦锛夌粨鏋滃叕鍛婏紙鍝佺墝锛氭捣鍏嬫柉搴?Leitz Reference 07.07.05锛?29.6 涓囧厓锛?,date:"2026.09.03",buyer:"娴欐睙鐞嗗伐澶у",type:"涓爣鍏憡",prov:"娴欐睙",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202609/t20260903_27262383.htm"},
+  {kw:"妫€楠岃澶?,title:"娌冲寳鐪佷骇鍝佽川閲忕洃鐫ｆ楠岀爺绌堕櫌2026骞寸浜屾壒妫€楠屾娴嬩笓鐢ㄤ华鍣ㄨ澶囬噰璐」鐩嫑鏍囧叕鍛婏紙79 涓囧厓锛?,date:"2026.09.03",buyer:"娌冲寳鐪佷骇鍝佽川閲忕洃鐫ｆ楠岀爺绌堕櫌",type:"鍏紑鎷涙爣鍏憡",prov:"娌冲寳",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260903_27256445.htm"},
+  {kw:"璁￠噺鏍囧噯鍣ㄥ叿",title:"骞夸笢鐪佽閲忕瀛︾爺绌堕櫌闈㈠悜鍥藉閲嶅ぇ闇€姹傜殑楂樼绉戝浠櫒楠岃瘉鍏辨€ф妧鏈爺绌朵笌浜т笟搴旂敤浠櫒璁惧閲囪喘椤圭洰鎷涙爣鍏憡锛?40 涓囧厓锛?,date:"2026.09.02",buyer:"骞夸笢鐪佽閲忕瀛︾爺绌堕櫌",type:"鍏紑鎷涙爣鍏憡",prov:"骞夸笢",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260902_27248642.htm"},
+  {kw:"杞粨浠?,title:"涓浗姘戣埅澶у鐧藉厜骞叉秹鍏辫仛鐒﹁疆寤撲华閲囪喘椤圭洰鍏紑鎷涙爣鍏憡锛?5.2 涓囧厓锛?,date:"2026.09.02",buyer:"涓浗姘戣埅澶у",type:"鍏紑鎷涙爣鍏憡",prov:"澶╂触",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202609/t20260902_27248666.htm"},
+  {kw:"杞粨浠?,title:"涓婃捣甯傚尰鐤楀櫒姊版楠岀爺绌堕櫌鏌旀€х數鏋佸妯″紡鍏夊杞粨妫€娴嬬郴缁熷浗闄呭叕寮€鎷涙爣閲囪喘鍏憡锛堥绠?35涓囧厓锛屽彲閲囪喘杩涘彛浜у搧锛?,date:"2026.09.01",buyer:"涓婃捣甯傚尰鐤楀櫒姊版楠岀爺绌堕櫌",type:"鍏紑鎷涙爣鍏憡",prov:"涓婃捣",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202609/t20260901_27246545.htm"},
+  {kw:"纭害璁?,title:"绂忓缓鐪佺氦缁存楠屼腑蹇?026骞存楠岃澶囬噰璐?绗竴鎵?浜屾)缁撴灉鍏憡锛堝惈纭害璁/C/D锛?,date:"2026.08.31",buyer:"绂忓缓鐪佺氦缁存楠屼腑蹇?,type:"缁撴灉鍏憡",prov:"绂忓缓",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260831_27234564.htm"},
+  {kw:"妫€楠岃澶?,title:"婀栧寳鐪佺壒绉嶈澶囨楠屾娴嬬爺绌堕櫌2026骞存楠岃澶囪喘缃叕寮€鎷涙爣鍏憡锛?8 涓囧厓锛?,date:"2026.08.28",buyer:"婀栧寳鐪佺壒绉嶈澶囨楠屾娴嬬爺绌堕櫌",type:"鍏紑鎷涙爣鍏憡",prov:"婀栧寳",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260828_27222671.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"涓婃捣姘戣埅鑱屼笟鎶€鏈闄㈤珮绮惧害涓夊潗鏍囨祴閲忔満鍙婇厤濂楄澶囬噰璐」鐩叕寮€鎷涙爣鍏憡",date:"2026.08.26",buyer:"涓婃捣姘戣埅鑱屼笟鎶€鏈闄?,type:"鍏紑鎷涙爣鍏憡",prov:"涓婃捣",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202608/t20260826_27211393.htm"},
+  {kw:"娴嬮暱鏈?,title:"涔愬北甯傝閲忔祴璇曟墍2026骞村競鍦虹洃绠￠噸鐐归鍩熺ぞ浼氬叕鐢ㄨ閲忔爣鍑嗚澶囨洿鏂伴」鐩腑鏍囷紙鎴愪氦锛夌粨鏋滃叕鍛婏紙鍚厜鏍呮寚绀鸿〃妫€瀹氫华銆佹祴闀挎満锛?,date:"2026.08.26",buyer:"涔愬北甯傝閲忔祴璇曟墍",type:"涓爣鍏憡",prov:"鍥涘窛",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260826_27207603.htm"},
+  {kw:"娴嬮暱鏈?,title:"婕冲窞甯傝閲忔墍绀句細鍏敤璁￠噺鏍囧噯璁惧鏇存柊椤圭洰绗洓鎵归噰璐洿姝ｅ叕鍛婏紙涓囪兘宸ュ叿鏄惧井闀溿€佹祴闀挎満銆佺數鑴戦噺鍧楁瘮杈冧华锛?,date:"2026.08.26",buyer:"婕冲窞甯傝閲忔墍",type:"鏇存鍏憡",prov:"绂忓缓",url:"https://www.ccgp.gov.cn/cggg/dfgg/gzgg/202608/t20260826_27210279.htm"},
+  {kw:"杞粨浠?,title:"涓浗绉戝闄㈠悎鑲ョ墿璐ㄧ瀛︾爺绌堕櫌楂樼簿搴﹂潪鎺ヨЕ涓夌淮杞粨浠噰璐」鐩腑鏍囧叕鍛婏紙Taylor Hobson Luphoscan 260XL HD锛?99.1 涓囧厓锛?,date:"2026.08.24",buyer:"涓浗绉戝闄㈠悎鑲ョ墿璐ㄧ瀛︾爺绌堕櫌",type:"涓爣鍏憡",prov:"瀹夊窘",url:"https://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260824_27192478.htm"},
+  {kw:"纭害璁?,title:"涓浗绉戝闄㈢寤虹墿璐ㄧ粨鏋勭爺绌舵墍鍏ㄨ嚜鍔ㄦ樉寰‖搴﹁閲囪喘椤圭洰涓爣鍏憡",date:"2026.08.21",buyer:"涓浗绉戝闄㈢寤虹墿璐ㄧ粨鏋勭爺绌舵墍",type:"涓爣鍏憡",prov:"绂忓缓",url:"https://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260821_27183212.htm"},
+  {kw:"璁￠噺鏍囧噯鍣ㄥ叿",title:"瀹滃甯傛楠屾娴嬩腑蹇?026骞村害璁￠噺鏍囧噯鍣ㄥ叿璁惧閲囪喘椤圭洰鎷涙爣鍏憡",date:"2026.08.20",buyer:"瀹滃甯傛楠屾娴嬩腑蹇?,type:"鍏紑鎷涙爣鍏憡",prov:"鍥涘窛",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260820_27172952.htm"},
+  {kw:"璁￠噺鏍囧噯鍣ㄥ叿",title:"涓浗娴嬭瘯鎶€鏈爺绌堕櫌鐜颁唬浜т笟鍏堣繘娴嬮噺鑳藉姏寤鸿涓庢彁鍗囬」鐩紙涓€鏈燂級2026骞村害浜屾壒娆′腑鏍囷紙鎴愪氦锛夌粨鏋滃叕鍛?,date:"2026.08.20",buyer:"涓浗娴嬭瘯鎶€鏈爺绌堕櫌",type:"涓爣鍏憡",prov:"鍥涘窛",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260820_27176238.htm"},
+  {kw:"杞粨浠?,title:"瑗垮崡浜ら€氬ぇ瀛︿笁缁村厜瀛﹁疆寤撲华椋炵婵€鍏夊姞宸ヨ缃瓑璁惧閲囪喘椤圭洰鍏紑鎷涙爣鍏憡",date:"2026.08.19",buyer:"瑗垮崡浜ら€氬ぇ瀛?,type:"鍏紑鎷涙爣鍏憡",prov:"鍥涘窛",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202608/t20260819_27162268.htm"},
+  {kw:"璁￠噺鏍囧噯鍣ㄥ叿",title:"娴峰崡鐪佹楠屾娴嬬爺绌堕櫌2026骞磋閲忔瀹氭牎鍑嗚澶囨洿鏂伴」鐩叕寮€鎷涙爣鍏憡锛?184 涓囧厓锛?,date:"2026.08.19",buyer:"娴峰崡鐪佹楠屾娴嬬爺绌堕櫌",type:"鍏紑鎷涙爣鍏憡",prov:"娴峰崡",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260819_27166967.htm"},
+  {kw:"纭害璁?,title:"娴峰崡鐪佹楠屾娴嬬爺绌堕櫌2026骞寸壒绉嶈澶囨楠屾娴嬭澶囨洿鏂伴」鐩叕寮€鎷涙爣鍏憡锛堝惈渚挎惡寮忕‖搴﹁锛?,date:"2026.08.19",buyer:"娴峰崡鐪佹楠屾娴嬬爺绌堕櫌",type:"鍏紑鎷涙爣鍏憡",prov:"娴峰崡",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260819_27164955.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"妗ュ紡涓夊潗鏍囨祴閲忔満鍏紑鎷涙爣鍏憡锛堥绠?50涓囧厓锛屼笂娴凤級",date:"2026.08.18",buyer:"涓婃捣锛堥噰璐崟浣嶈瑙佸叕鍛婃鏂囷級",type:"鍏紑鎷涙爣鍏憡",prov:"涓婃捣",url:"https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260818_27156228.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"闀挎矙鑸┖鑱屼笟鎶€鏈闄㈢簿瀵嗕笁鍧愭爣娴嬮噺鏈哄拰鍏ㄦ伅娴嬮噺浠跨湡鏁欏绯荤粺璐疆绔炰簤鎬х鍟嗘垚浜ゅ叕鍛?,date:"2026.08.17",buyer:"闀挎矙鑸┖鑱屼笟鎶€鏈闄?,type:"鎴愪氦鍏憡",prov:"婀栧崡",url:"http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202608/t20260817_27144643.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"鍏充簬娴欐睙鐞嗗伐澶у涓夊潗鏍囨祴閲忔満閲囪喘椤圭洰锛堢涓夋锛夊叕寮€鎷涙爣鍏憡",date:"2026.08.08",buyer:"娴欐睙鐞嗗伐澶у",type:"鍏紑鎷涙爣鍏憡",prov:"娴欐睙",url:"http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202608/t20260808_27099132.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"涓北澶у澶╃惔涓績楂樼簿搴︿笁鍧愭爣娴嬮噺鏈洪噰璐」鐩腑鏍囩粨鏋滃叕鍛婏紙娴峰厠鏂悍 XPERT 10.15.08锛?19.8 涓囧厓锛?,date:"2026.08.07",buyer:"涓北澶у",type:"涓爣鍏憡",prov:"骞夸笢",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202608/t20260807_27096004.htm"},
+  {kw:"纭害璁?,title:"瀹夊窘鐪佺壒绉嶈澶囨娴嬮櫌鐗圭璁惧瀹夊叏妫€楠屾娴嬭澶囨洿鏂伴」鐩紙涓夛級涓爣缁撴灉鍏憡锛堜究鎼哄紡甯冩皬纭害璁★級",date:"2026.08.06",buyer:"瀹夊窘鐪佺壒绉嶈澶囨娴嬮櫌",type:"涓爣鍏憡",prov:"瀹夊窘",url:"https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202608/t20260806_27083269.htm"},
+  {kw:"杞粨浠?,title:"涓浗绉戝闄㈠悎鑲ョ墿璐ㄧ瀛︾爺绌堕櫌楂樼簿搴﹂潪鎺ヨЕ涓夌淮杞粨浠噰璐」鐩叕寮€鎷涙爣鍏憡",date:"2026.07.28",buyer:"涓浗绉戝闄㈠悎鑲ョ墿璐ㄧ瀛︾爺绌堕櫌",type:"鍏紑鎷涙爣鍏憡",prov:"瀹夊窘",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260728_27021451.htm"},
+  {kw:"纭害璁?,title:"涓浗绉戝闄㈢寤虹墿璐ㄧ粨鏋勭爺绌舵墍鍏ㄨ嚜鍔ㄦ樉寰‖搴﹁閲囪喘椤圭洰鍏紑鎷涙爣鍏憡锛堥绠?30 涓囧厓锛?,date:"2026.07.27",buyer:"涓浗绉戝闄㈢寤虹墿璐ㄧ粨鏋勭爺绌舵墍",type:"鍏紑鎷涙爣鍏憡",prov:"绂忓缓",url:"http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260727_27014265.htm"},
+  {kw:"褰卞儚娴嬮噺浠?,title:"闄曡タ鍥介槻宸ヤ笟鑱屼笟鎶€鏈闄㈠鍚堝紡褰卞儚娴嬮噺浠」鐩腑鏍囷紙鎴愪氦锛夌粨鏋滃叕鍛婏紙鎴愪氦 66.18 涓囧厓锛?,date:"2026.07.24",buyer:"闄曡タ鍥介槻宸ヤ笟鑱屼笟鎶€鏈闄?,type:"鎴愪氦鍏憡",prov:"闄曡タ",url:"http://www.ccgp.gov.cn/cggg/dfgg/cjgg/202607/t20260724_27005795.htm"},
+  {kw:"褰卞儚娴嬮噺浠?,title:"澶ц繛姘戞棌澶у鏀瑰杽鍩烘湰鍔炲鏉′欢椤圭洰-宸ョ▼璁粌瀹炶骞冲彴寤鸿鍏紑鎷涙爣鍏憡锛堝惈褰卞儚娴嬮噺浠級",date:"2026.07.23",buyer:"澶ц繛姘戞棌澶у",type:"鍏紑鎷涙爣鍏憡",prov:"杈藉畞",url:"https://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260723_26996580.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"鍚堣偉宸ヤ笟澶у璺ㄥ昂搴︾簿瀵嗘祴閲忎华鍣ㄧ爺鍙戝钩鍙伴」鐩1銆?銆?鍖呬腑鏍囩粨鏋滃叕鍛?,date:"2026.07.22",buyer:"鍚堣偉宸ヤ笟澶у",type:"涓爣鍏憡",prov:"瀹夊窘",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260722_26983611.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"棣欐腐鍩庡競澶у锛堜笢鑾烇級鏅鸿兘鍒堕€犳暀瀛﹁澶囬噰璐」鐩紙闆嗕腑閲囪喘锛夋嫑鏍囧叕鍛?,date:"2026.07.21",buyer:"棣欐腐鍩庡競澶у锛堜笢鑾烇級",type:"鍏紑鎷涙爣鍏憡",prov:"骞夸笢",url:"http://www.ccgp.gov.cn/cggg/dfgg/kzb/202607/t20260721_26980209.htm"},
+  {kw:"涓夊潗鏍囨祴閲忔満",title:"涓浗绉戝闄㈢悊鍖栨妧鏈爺绌舵墍楂橀€熼珮绮惧害浜旇酱涓夊潗鏍囨祴閲忔満閲囪喘椤圭洰涓爣鍏憡",date:"2026.07.20",buyer:"涓浗绉戝闄㈢悊鍖栨妧鏈爺绌舵墍",type:"涓爣鍏憡",prov:"鍖椾含",url:"http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260720_26964556.htm"}
 
 ];
 
 const INDUSTRIES=[
   {
-    "pill": "液冷 / AI 算力",
-    "title": "今日头条9月15日：液冷渗透率迈过53%拐点、头部工厂订单排至年底，159.8亿赛道同比+45.2%",
-    "desc": "9月15日报道：国内液冷相关赛道规模159.8亿元、同比暴增45.2%，全球AI服务器液冷系统一年吃下89亿美元，头部工厂产线订单全线排到年底；2026年液冷在AI专用高密算力场景渗透率预计攀升至53%，Rubin机柜功耗逼近225kW、风冷物理上限仅15-20kW，液冷从加分项变强制标配。落到量测：冷板微通道流道底面与密封贴合面的表面粗糙度Ra直接决定换热系数与钎焊密封可靠性，铣削钎焊后须用便携式粗糙度仪按节拍抽检，仅靠压力测试拦不住渗漏；CDU管路长度、支架孔距、冷板外形与厚度用大量程数显卡尺做全尺寸首件与批次抽检——订单排到年底、产线满负荷下，粗糙度仪与大量程卡尺是液冷精密件合格率的第一道闸门。",
+    "pill": "娑插喎 / AI 绠楀姏",
+    "title": "浠婃棩澶存潯9鏈?5鏃ワ細娑插喎娓楅€忕巼杩堣繃53%鎷愮偣銆佸ご閮ㄥ伐鍘傝鍗曟帓鑷冲勾搴曪紝159.8浜胯禌閬撳悓姣?45.2%",
+    "desc": "9鏈?5鏃ユ姤閬擄細鍥藉唴娑插喎鐩稿叧璧涢亾瑙勬ā159.8浜垮厓銆佸悓姣旀毚澧?5.2%锛屽叏鐞傾I鏈嶅姟鍣ㄦ恫鍐风郴缁熶竴骞村悆涓?9浜跨編鍏冿紝澶撮儴宸ュ巶浜х嚎璁㈠崟鍏ㄧ嚎鎺掑埌骞村簳锛?026骞存恫鍐峰湪AI涓撶敤楂樺瘑绠楀姏鍦烘櫙娓楅€忕巼棰勮鏀€鍗囪嚦53%锛孯ubin鏈烘煖鍔熻€楅€艰繎225kW銆侀鍐风墿鐞嗕笂闄愪粎15-20kW锛屾恫鍐蜂粠鍔犲垎椤瑰彉寮哄埗鏍囬厤銆傝惤鍒伴噺娴嬶細鍐锋澘寰€氶亾娴侀亾搴曢潰涓庡瘑灏佽创鍚堥潰鐨勮〃闈㈢矖绯欏害Ra鐩存帴鍐冲畾鎹㈢儹绯绘暟涓庨拵鐒婂瘑灏佸彲闈犳€э紝閾ｅ墛閽庣剨鍚庨』鐢ㄤ究鎼哄紡绮楃硻搴︿华鎸夎妭鎷嶆娊妫€锛屼粎闈犲帇鍔涙祴璇曟嫤涓嶄綇娓楁紡锛汣DU绠¤矾闀垮害銆佹敮鏋跺瓟璺濄€佸喎鏉垮褰笌鍘氬害鐢ㄥぇ閲忕▼鏁版樉鍗″昂鍋氬叏灏哄棣栦欢涓庢壒娆℃娊妫€鈥斺€旇鍗曟帓鍒板勾搴曘€佷骇绾挎弧璐熻嵎涓嬶紝绮楃硻搴︿华涓庡ぇ閲忕▼鍗″昂鏄恫鍐风簿瀵嗕欢鍚堟牸鐜囩殑绗竴閬撻椄闂ㄣ€?,
     "products": [
-      "卡尺 ABSOLUTE Digimatic 大量程",
-      "粗糙度仪 SJ-210 便携式"
+      "鍗″昂 ABSOLUTE Digimatic 澶ч噺绋?,
+      "绮楃硻搴︿华 SJ-210 渚挎惡寮?
     ],
     "url": "https://www.toutiao.com/article/7685425323579572790/",
-    "src": "今日头条《机柜功耗逼退风冷，绿电直连再推一把，液冷渗透率空间多大？》（2026-09-15；已核验：159.8亿赛道同比+45.2%、全球AI服务器液冷一年89亿美元、头部工厂订单排至年底、英维克45亿/工业富联68亿/维谛30亿/高澜14亿/申菱38亿在手订单、AI专用场景渗透率2026预计53%、Rubin机柜功耗逼225kW风冷上限15-20kW）"
+    "src": "浠婃棩澶存潯銆婃満鏌滃姛鑰楅€奸€€椋庡喎锛岀豢鐢电洿杩炲啀鎺ㄤ竴鎶婏紝娑插喎娓楅€忕巼绌洪棿澶氬ぇ锛熴€嬶紙2026-09-15锛涘凡鏍搁獙锛?59.8浜胯禌閬撳悓姣?45.2%銆佸叏鐞傾I鏈嶅姟鍣ㄦ恫鍐蜂竴骞?9浜跨編鍏冦€佸ご閮ㄥ伐鍘傝鍗曟帓鑷冲勾搴曘€佽嫳缁村厠45浜?宸ヤ笟瀵岃仈68浜?缁磋皼30浜?楂樻緶14浜?鐢宠彵38浜垮湪鎵嬭鍗曘€丄I涓撶敤鍦烘櫙娓楅€忕巼2026棰勮53%銆丷ubin鏈烘煖鍔熻€楅€?25kW椋庡喎涓婇檺15-20kW锛?
   },
   {
-    "pill": "半导体 / 先进封装 / CoWoS",
-    "title": "新浪9月17日：CoWoS紧缺持续、供给格局重塑，2026底月产能12-14万片、2027约20万片，先进封装资本开支上行",
-    "desc": "9月17日爱建证券点评：截至2026年三季度末台积电CoWoS仍供不应求，2026年底月产能约12-14万片、2027年望提升至20万片，CoWoS-L占比2026Q4升至约75%；日月光/矽品相关月产能由约3万片提升至约5万片，安靠由约2万片提升至约3万片，面板企业凭大尺寸加工能力切入FOPLP/玻璃基封装。先进封装把一套微米级计量复制到新线：研磨减薄后晶圆与载板厚度及总厚变化(TTV)须用0.001mm片状测砧千分尺沿径向逐点抽检，是键合良率与堆叠总高的源头控制；凸块阵列位置度、RDL图形位置与硅桥对位精度必须用影像仪做非接触批量测量——接触式量具会压伤金属层与凸块，先进封装现场只能靠光学影像取值。",
+    "pill": "鍗婂浣?/ 鍏堣繘灏佽 / CoWoS",
+    "title": "鏂版氮9鏈?7鏃ワ細CoWoS绱х己鎸佺画銆佷緵缁欐牸灞€閲嶅锛?026搴曟湀浜ц兘12-14涓囩墖銆?027绾?0涓囩墖锛屽厛杩涘皝瑁呰祫鏈紑鏀笂琛?,
+    "desc": "9鏈?7鏃ョ埍寤鸿瘉鍒哥偣璇勶細鎴嚦2026骞翠笁瀛ｅ害鏈彴绉數CoWoS浠嶄緵涓嶅簲姹傦紝2026骞村簳鏈堜骇鑳界害12-14涓囩墖銆?027骞存湜鎻愬崌鑷?0涓囩墖锛孋oWoS-L鍗犳瘮2026Q4鍗囪嚦绾?5%锛涙棩鏈堝厜/鐭藉搧鐩稿叧鏈堜骇鑳界敱绾?涓囩墖鎻愬崌鑷崇害5涓囩墖锛屽畨闈犵敱绾?涓囩墖鎻愬崌鑷崇害3涓囩墖锛岄潰鏉夸紒涓氬嚟澶у昂瀵稿姞宸ヨ兘鍔涘垏鍏OPLP/鐜荤拑鍩哄皝瑁呫€傚厛杩涘皝瑁呮妸涓€濂楀井绫崇骇璁￠噺澶嶅埗鍒版柊绾匡細鐮旂（鍑忚杽鍚庢櫠鍦嗕笌杞芥澘鍘氬害鍙婃€诲帤鍙樺寲(TTV)椤荤敤0.001mm鐗囩姸娴嬬牕鍗冨垎灏烘部寰勫悜閫愮偣鎶芥锛屾槸閿悎鑹巼涓庡爢鍙犳€婚珮鐨勬簮澶存帶鍒讹紱鍑稿潡闃靛垪浣嶇疆搴︺€丷DL鍥惧舰浣嶇疆涓庣妗ュ浣嶇簿搴﹀繀椤荤敤褰卞儚浠仛闈炴帴瑙︽壒閲忔祴閲忊€斺€旀帴瑙﹀紡閲忓叿浼氬帇浼ら噾灞炲眰涓庡嚫鍧楋紝鍏堣繘灏佽鐜板満鍙兘闈犲厜瀛﹀奖鍍忓彇鍊笺€?,
     "products": [
-      "千分尺 片状测砧 0.001mm",
-      "影像仪 Quick Image QI 系列"
+      "鍗冨垎灏?鐗囩姸娴嬬牕 0.001mm",
+      "褰卞儚浠?Quick Image QI 绯诲垪"
     ],
     "url": "https://k.sina.com.cn/article_5953190046_162d6789e06703sc9m.html",
-    "src": "新浪财经/爱建证券《半导体行业点评：CoWoS紧缺持续，先进封装供给格局重塑》（2026-09-17；已核验：CoWoS供不应求/2026底月产能12-14万片/2027约20万片/CoWoS-L占比2026Q4约75%、日月光矽品3→5万片、安靠2→3万片、面板企业切入FOPLP/玻璃基封装）"
+    "src": "鏂版氮璐㈢粡/鐖卞缓璇佸埜銆婂崐瀵间綋琛屼笟鐐硅瘎锛欳oWoS绱х己鎸佺画锛屽厛杩涘皝瑁呬緵缁欐牸灞€閲嶅銆嬶紙2026-09-17锛涘凡鏍搁獙锛欳oWoS渚涗笉搴旀眰/2026搴曟湀浜ц兘12-14涓囩墖/2027绾?0涓囩墖/CoWoS-L鍗犳瘮2026Q4绾?5%銆佹棩鏈堝厜鐭藉搧3鈫?涓囩墖銆佸畨闈?鈫?涓囩墖銆侀潰鏉夸紒涓氬垏鍏OPLP/鐜荤拑鍩哄皝瑁咃級"
   },
   {
-    "pill": "新能源汽车 / 固态电池",
-    "title": "今日头条9月12日：固态电池2026量产元年，东风eπ007 350Wh/kg半固态9月量产、宁德凝聚态360Wh/kg、广汽昊铂400Wh/kg年内装车",
-    "desc": "9月12日盘点：2026年被称为半固态（混合固液）电池量产元年，东风奕派eπ007的350Wh/kg半固态电池9月量产上车、CLTC续航超1000公里；宁德时代凝聚态半固态能量密度360Wh/kg、2026年三季度批量交付，广汽昊铂400Wh/kg准固态年内小批量装车，上汽MG4半固态版10万级已批量交付。法规侧GB/T 43568-2026于2026年7月实施，按电解液含量5%红线把行业一刀切开。从中试到量产跨越卡在工艺一致性：干法电极辊压后极片厚度波动直接决定界面接触阻抗与循环寿命，需用数显表(ID-C数显指示器)配专用支架在机连续读数、逐段监控μm级厚度漂移；叠片完成后的叠芯高度、电芯总高与工装台阶用测高仪在花岗石平台上一次装夹读取多个高度值，为封装压力与模组装配预留量提供依据。",
+    "pill": "鏂拌兘婧愭苯杞?/ 鍥烘€佺數姹?,
+    "title": "浠婃棩澶存潯9鏈?2鏃ワ細鍥烘€佺數姹?026閲忎骇鍏冨勾锛屼笢椋巈蟺007 350Wh/kg鍗婂浐鎬?鏈堥噺浜с€佸畞寰峰嚌鑱氭€?60Wh/kg銆佸箍姹芥槉閾?00Wh/kg骞村唴瑁呰溅",
+    "desc": "9鏈?2鏃ョ洏鐐癸細2026骞磋绉颁负鍗婂浐鎬侊紙娣峰悎鍥烘恫锛夌數姹犻噺浜у厓骞达紝涓滈濂曟淳e蟺007鐨?50Wh/kg鍗婂浐鎬佺數姹?鏈堥噺浜т笂杞︺€丆LTC缁埅瓒?000鍏噷锛涘畞寰锋椂浠ｅ嚌鑱氭€佸崐鍥烘€佽兘閲忓瘑搴?60Wh/kg銆?026骞翠笁瀛ｅ害鎵归噺浜や粯锛屽箍姹芥槉閾?00Wh/kg鍑嗗浐鎬佸勾鍐呭皬鎵归噺瑁呰溅锛屼笂姹組G4鍗婂浐鎬佺増10涓囩骇宸叉壒閲忎氦浠樸€傛硶瑙勪晶GB/T 43568-2026浜?026骞?鏈堝疄鏂斤紝鎸夌數瑙ｆ恫鍚噺5%绾㈢嚎鎶婅涓氫竴鍒€鍒囧紑銆備粠涓瘯鍒伴噺浜ц法瓒婂崱鍦ㄥ伐鑹轰竴鑷存€э細骞叉硶鐢垫瀬杈婂帇鍚庢瀬鐗囧帤搴︽尝鍔ㄧ洿鎺ュ喅瀹氱晫闈㈡帴瑙﹂樆鎶椾笌寰幆瀵垮懡锛岄渶鐢ㄦ暟鏄捐〃(ID-C鏁版樉鎸囩ず鍣?閰嶄笓鐢ㄦ敮鏋跺湪鏈鸿繛缁鏁般€侀€愭鐩戞帶渭m绾у帤搴︽紓绉伙紱鍙犵墖瀹屾垚鍚庣殑鍙犺姱楂樺害銆佺數鑺€婚珮涓庡伐瑁呭彴闃剁敤娴嬮珮浠湪鑺卞矖鐭冲钩鍙颁笂涓€娆¤澶硅鍙栧涓珮搴﹀€硷紝涓哄皝瑁呭帇鍔涗笌妯＄粍瑁呴厤棰勭暀閲忔彁渚涗緷鎹€?,
     "products": [
-      "数显表 ID-C 543 系列数显指示器",
-      "测高仪 Linear Height LH-600"
+      "鏁版樉琛?ID-C 543 绯诲垪鏁版樉鎸囩ず鍣?,
+      "娴嬮珮浠?Linear Height LH-600"
     ],
     "url": "https://www.toutiao.com/article/7683710423056728615",
-    "src": "今日头条《固态电池到底什么时候“上市”？26年能买到还是要等等》（2026-09-12；已核验：东风eπ007 350Wh/kg半固态9月量产/CLTC破千、宁德凝聚态360Wh/kg、广汽昊铂400Wh/kg年内装车、上汽MG4半固态10万级、GB/T 43568-2026于2026-07实施电解液5%红线、全固态2027小批量/2030普及）"
+    "src": "浠婃棩澶存潯銆婂浐鎬佺數姹犲埌搴曚粈涔堟椂鍊欌€滀笂甯傗€濓紵26骞磋兘涔板埌杩樻槸瑕佺瓑绛夈€嬶紙2026-09-12锛涘凡鏍搁獙锛氫笢椋巈蟺007 350Wh/kg鍗婂浐鎬?鏈堥噺浜?CLTC鐮村崈銆佸畞寰峰嚌鑱氭€?60Wh/kg銆佸箍姹芥槉閾?00Wh/kg骞村唴瑁呰溅銆佷笂姹組G4鍗婂浐鎬?0涓囩骇銆丟B/T 43568-2026浜?026-07瀹炴柦鐢佃В娑?%绾㈢嚎銆佸叏鍥烘€?027灏忔壒閲?2030鏅強锛?
   },
   {
-    "pill": "商业航天 / 可重复使用火箭",
-    "title": "央视网/光明日报9月2日：智神星一号遥一首飞入轨，两级全长52米/起飞283吨/复用≥25次，苍穹-50七台并联变推32-105%",
-    "desc": "9月2日央视网/光明日报：星河动力中大型可重复使用液体运载火箭智神星一号遥一于9月1日10时在酒泉首飞成功入轨，两级构型、全长52米、芯级直径3.35米、起飞质量约283吨、起飞推力350吨、LEO运力5-7吨、设计复用不少于25次，一子级采用7台CQ-50针栓式液氧/煤油发动机并联，实测支持32%-105%大范围深度变推并可多次重启。可重复使用意味着同一批零件承受多次热力循环，配套走向规模化必须升级检验：涡轮泵壳体、阀体、发动机机架与贮箱接口的孔系位置度、同轴度、平面度需要出全尺寸报告并可追溯，只有三坐标测量机能在一次装夹下完成复杂空间形位评定；3D打印高温合金与钛合金零件的热处理硬度、焊后热影响区硬度是复用寿命验收硬指标，须用硬度计(洛氏/维氏)逐批打点留档——硬度与形位数据是复飞放行凭证。",
+    "pill": "鍟嗕笟鑸ぉ / 鍙噸澶嶄娇鐢ㄧ伀绠?,
+    "title": "澶缃?鍏夋槑鏃ユ姤9鏈?鏃ワ細鏅虹鏄熶竴鍙烽仴涓€棣栭鍏ヨ建锛屼袱绾у叏闀?2绫?璧烽283鍚?澶嶇敤鈮?5娆★紝鑻嶇┕-50涓冨彴骞惰仈鍙樻帹32-105%",
+    "desc": "9鏈?鏃ュぎ瑙嗙綉/鍏夋槑鏃ユ姤锛氭槦娌冲姩鍔涗腑澶у瀷鍙噸澶嶄娇鐢ㄦ恫浣撹繍杞界伀绠櫤绁炴槦涓€鍙烽仴涓€浜?鏈?鏃?0鏃跺湪閰掓硥棣栭鎴愬姛鍏ヨ建锛屼袱绾ф瀯鍨嬨€佸叏闀?2绫炽€佽姱绾х洿寰?.35绫炽€佽捣椋炶川閲忕害283鍚ㄣ€佽捣椋炴帹鍔?50鍚ㄣ€丩EO杩愬姏5-7鍚ㄣ€佽璁″鐢ㄤ笉灏戜簬25娆★紝涓€瀛愮骇閲囩敤7鍙癈Q-50閽堟爴寮忔恫姘?鐓ゆ补鍙戝姩鏈哄苟鑱旓紝瀹炴祴鏀寔32%-105%澶ц寖鍥存繁搴﹀彉鎺ㄥ苟鍙娆￠噸鍚€傚彲閲嶅浣跨敤鎰忓懗鐫€鍚屼竴鎵归浂浠舵壙鍙楀娆＄儹鍔涘惊鐜紝閰嶅璧板悜瑙勬ā鍖栧繀椤诲崌绾ф楠岋細娑¤疆娉靛３浣撱€侀榾浣撱€佸彂鍔ㄦ満鏈烘灦涓庤串绠辨帴鍙ｇ殑瀛旂郴浣嶇疆搴︺€佸悓杞村害銆佸钩闈㈠害闇€瑕佸嚭鍏ㄥ昂瀵告姤鍛婂苟鍙拷婧紝鍙湁涓夊潗鏍囨祴閲忔満鑳藉湪涓€娆¤澶逛笅瀹屾垚澶嶆潅绌洪棿褰綅璇勫畾锛?D鎵撳嵃楂樻俯鍚堥噾涓庨挍鍚堥噾闆朵欢鐨勭儹澶勭悊纭害銆佺剨鍚庣儹褰卞搷鍖虹‖搴︽槸澶嶇敤瀵垮懡楠屾敹纭寚鏍囷紝椤荤敤纭害璁?娲涙皬/缁存皬)閫愭壒鎵撶偣鐣欐。鈥斺€旂‖搴︿笌褰綅鏁版嵁鏄椋炴斁琛屽嚟璇併€?,
     "products": [
-      "三坐标测量机 CRYSTA-Apex V",
-      "硬度计 洛氏 / 维氏"
+      "涓夊潗鏍囨祴閲忔満 CRYSTA-Apex V",
+      "纭害璁?娲涙皬 / 缁存皬"
     ],
     "url": "https://news.cctv.cn/2026/09/02/ARTIqd2EpDHe3lohUhWgp7Dy260902.shtml",
-    "src": "央视网/光明日报《智神星一号运载火箭首飞成功》（2026-09-02；已核验：智神星一号遥一首飞入轨/两级全长52m/芯级直径3.35m/起飞283t/推力350t/LEO 5-7t/复用≥25次、一子级7台CQ-50并联/实测变推32-105%多次重启、星河动力累计22次入轨89颗星）"
+    "src": "澶缃?鍏夋槑鏃ユ姤銆婃櫤绁炴槦涓€鍙疯繍杞界伀绠椋炴垚鍔熴€嬶紙2026-09-02锛涘凡鏍搁獙锛氭櫤绁炴槦涓€鍙烽仴涓€棣栭鍏ヨ建/涓ょ骇鍏ㄩ暱52m/鑺骇鐩村緞3.35m/璧烽283t/鎺ㄥ姏350t/LEO 5-7t/澶嶇敤鈮?5娆°€佷竴瀛愮骇7鍙癈Q-50骞惰仈/瀹炴祴鍙樻帹32-105%澶氭閲嶅惎銆佹槦娌冲姩鍔涚疮璁?2娆″叆杞?9棰楁槦锛?
   },
   {
-    "pill": "精密模具 / 3C 电子折叠屏",
-    "title": "中财网9月17日：苹果iPhone Duo铰链盖100%再生钛3D打印、AI匹配+共聚焦激光扫描25层微层，钛粉降至200-300元/kg",
-    "desc": "9月17日中财网：苹果9月9日发布首款折叠屏iPhone Duo，铰链护壳采用100%再生5级钛3D打印，机身用镜面抛光5级钛金属，并借AI匹配+共聚焦激光扫描3D打印最多25层光敏聚合物微层提升铰链平整度；钛合金粉末价格已从3000元/公斤降至200-300元/公斤，成本瓶颈大幅缓解，3D打印由USB-C小件跃升至折叠屏核心结构件。铰链是折叠屏受浪潮影响最大的部件：铰链主轴与MIM转轴属小尺寸复杂型面，齿形、R角、键槽在压铸与烧结后需放上投影仪，用标准轮廓片放大比对齿形与转角，是模具修配与批次一致性判定最快手段；铰链凸轮曲线、转轴母线与屏幕支撑板台阶属自由曲面型线，必须用轮廓仪扫形后与CAD理论线叠合评差——折叠手感与数十万次开合寿命，本质上就是这条型线的公差带守住没守住。",
+    "pill": "绮惧瘑妯″叿 / 3C 鐢靛瓙鎶樺彔灞?,
+    "title": "涓储缃?鏈?7鏃ワ細鑻规灉iPhone Duo閾伴摼鐩?00%鍐嶇敓閽?D鎵撳嵃銆丄I鍖归厤+鍏辫仛鐒︽縺鍏夋壂鎻?5灞傚井灞傦紝閽涚矇闄嶈嚦200-300鍏?kg",
+    "desc": "9鏈?7鏃ヤ腑璐㈢綉锛氳嫻鏋?鏈?鏃ュ彂甯冮娆炬姌鍙犲睆iPhone Duo锛岄摪閾炬姢澹抽噰鐢?00%鍐嶇敓5绾ч挍3D鎵撳嵃锛屾満韬敤闀滈潰鎶涘厜5绾ч挍閲戝睘锛屽苟鍊烝I鍖归厤+鍏辫仛鐒︽縺鍏夋壂鎻?D鎵撳嵃鏈€澶?5灞傚厜鏁忚仛鍚堢墿寰眰鎻愬崌閾伴摼骞虫暣搴︼紱閽涘悎閲戠矇鏈环鏍煎凡浠?000鍏?鍏枻闄嶈嚦200-300鍏?鍏枻锛屾垚鏈摱棰堝ぇ骞呯紦瑙ｏ紝3D鎵撳嵃鐢盪SB-C灏忎欢璺冨崌鑷虫姌鍙犲睆鏍稿績缁撴瀯浠躲€傞摪閾炬槸鎶樺彔灞忓彈娴疆褰卞搷鏈€澶х殑閮ㄤ欢锛氶摪閾句富杞翠笌MIM杞酱灞炲皬灏哄澶嶆潅鍨嬮潰锛岄娇褰€丷瑙掋€侀敭妲藉湪鍘嬮摳涓庣儳缁撳悗闇€鏀句笂鎶曞奖浠紝鐢ㄦ爣鍑嗚疆寤撶墖鏀惧ぇ姣斿榻垮舰涓庤浆瑙掞紝鏄ā鍏蜂慨閰嶄笌鎵规涓€鑷存€у垽瀹氭渶蹇墜娈碉紱閾伴摼鍑歌疆鏇茬嚎銆佽浆杞存瘝绾夸笌灞忓箷鏀拺鏉垮彴闃跺睘鑷敱鏇查潰鍨嬬嚎锛屽繀椤荤敤杞粨浠壂褰㈠悗涓嶤AD鐞嗚绾垮彔鍚堣瘎宸€斺€旀姌鍙犳墜鎰熶笌鏁板崄涓囨寮€鍚堝鍛斤紝鏈川涓婂氨鏄繖鏉″瀷绾跨殑鍏樊甯﹀畧浣忔病瀹堜綇銆?,
     "products": [
-      "投影仪 PJ-A3000 轮廓投影",
-      "轮廓仪 Contracer CV-3200"
+      "鎶曞奖浠?PJ-A3000 杞粨鎶曞奖",
+      "杞粨浠?Contracer CV-3200"
     ],
     "url": "https://cfi.net.cn/p20260917000385.html",
-    "src": "中财网《苹果折叠机引爆3D打印新周期 钛材设备双受益》（2026-09-17；已核验：iPhone Duo 9-9发布/起售1999美元/10-23开售、铰链盖100%再生钛3D打印、AI匹配+共聚焦激光扫描25层光聚合物微层、钛合金粉末3000→200-300元/kg、3D打印向消费电子精密结构件渗透）"
+    "src": "涓储缃戙€婅嫻鏋滄姌鍙犳満寮曠垎3D鎵撳嵃鏂板懆鏈?閽涙潗璁惧鍙屽彈鐩娿€嬶紙2026-09-17锛涘凡鏍搁獙锛歩Phone Duo 9-9鍙戝竷/璧峰敭1999缇庡厓/10-23寮€鍞€侀摪閾剧洊100%鍐嶇敓閽?D鎵撳嵃銆丄I鍖归厤+鍏辫仛鐒︽縺鍏夋壂鎻?5灞傚厜鑱氬悎鐗╁井灞傘€侀挍鍚堥噾绮夋湯3000鈫?00-300鍏?kg銆?D鎵撳嵃鍚戞秷璐圭數瀛愮簿瀵嗙粨鏋勪欢娓楅€忥級"
   },
   {
-    "pill": "医疗器械 / 人工关节",
-    "title": "江西等省9月3日落地国采人工关节接续等十四批集采续签：第二年度协议期至2026-9-30，续签量不少于首年，多省第三年同步启动",
-    "desc": "9月3日江西省医保局印发《关于做好人工关节接续等十四批医用耗材集采采购协议签订工作的通知》：人工关节接续第二年度采购协议期为2025-10-1至2026-9-30，续签采购协议时原则上各中选产品协议采购量不少于首年协议采购量；通知覆盖14批耗材接续，山西/上海/云南/天津等省第三年续约已陆续启动。叠加集采压价周期，国产骨科龙头必须同时上量与降本。植入件互换性红线只能靠计量守住：股骨柄、髋臼杯、胫骨托的厚度台阶、颈高、工装定位高度用数显高度规在平板上快速判定，是产线终检与来料复核最高效方式；关节柄圆跳动、股骨球头与柄同轴度用杠杆表配磁性表座在顶尖或V型架上打表——植入件与手术器械(导向器、旋入手柄)配合间隙一旦超差，术中拧不进或滑扣属不可接受风险。",
+    "pill": "鍖荤枟鍣ㄦ / 浜哄伐鍏宠妭",
+    "title": "姹熻タ绛夌渷9鏈?鏃ヨ惤鍦板浗閲囦汉宸ュ叧鑺傛帴缁瓑鍗佸洓鎵归泦閲囩画绛撅細绗簩骞村害鍗忚鏈熻嚦2026-9-30锛岀画绛鹃噺涓嶅皯浜庨骞达紝澶氱渷绗笁骞村悓姝ュ惎鍔?,
+    "desc": "9鏈?鏃ユ睙瑗跨渷鍖讳繚灞€鍗板彂銆婂叧浜庡仛濂戒汉宸ュ叧鑺傛帴缁瓑鍗佸洓鎵瑰尰鐢ㄨ€楁潗闆嗛噰閲囪喘鍗忚绛捐宸ヤ綔鐨勯€氱煡銆嬶細浜哄伐鍏宠妭鎺ョ画绗簩骞村害閲囪喘鍗忚鏈熶负2025-10-1鑷?026-9-30锛岀画绛鹃噰璐崗璁椂鍘熷垯涓婂悇涓€変骇鍝佸崗璁噰璐噺涓嶅皯浜庨骞村崗璁噰璐噺锛涢€氱煡瑕嗙洊14鎵硅€楁潗鎺ョ画锛屽北瑗?涓婃捣/浜戝崡/澶╂触绛夌渷绗笁骞寸画绾﹀凡闄嗙画鍚姩銆傚彔鍔犻泦閲囧帇浠峰懆鏈燂紝鍥戒骇楠ㄧ榫欏ご蹇呴』鍚屾椂涓婇噺涓庨檷鏈€傛鍏ヤ欢浜掓崲鎬х孩绾垮彧鑳介潬璁￠噺瀹堜綇锛氳偂楠ㄦ焺銆侀珛鑷兼澂銆佽儷楠ㄦ墭鐨勫帤搴﹀彴闃躲€侀楂樸€佸伐瑁呭畾浣嶉珮搴︾敤鏁版樉楂樺害瑙勫湪骞虫澘涓婂揩閫熷垽瀹氾紝鏄骇绾跨粓妫€涓庢潵鏂欏鏍告渶楂樻晥鏂瑰紡锛涘叧鑺傛焺鍦嗚烦鍔ㄣ€佽偂楠ㄧ悆澶翠笌鏌勫悓杞村害鐢ㄦ潬鏉嗚〃閰嶇鎬ц〃搴у湪椤跺皷鎴朧鍨嬫灦涓婃墦琛ㄢ€斺€旀鍏ヤ欢涓庢墜鏈櫒姊?瀵煎悜鍣ㄣ€佹棆鍏ユ墜鏌?閰嶅悎闂撮殭涓€鏃﹁秴宸紝鏈腑鎷т笉杩涙垨婊戞墸灞炰笉鍙帴鍙楅闄┿€?,
     "products": [
-      "高度规 数显高度尺 570 系列",
-      "杠杆表 513 系列"
+      "楂樺害瑙?鏁版樉楂樺害灏?570 绯诲垪",
+      "鏉犳潌琛?513 绯诲垪"
     ],
     "url": "https://ylqxzb.com/ZbPublish/Iteme916f2b386a6bca5.html",
-    "src": "泰茂医疗器械招标网《关于做好人工关节接续等十四批医用耗材集采采购协议签订工作的通知》（2026-09-03；已核验：人工关节接续第二年度协议期2025-10-1至2026-9-30、续签协议量原则上不少于首年协议采购量；覆盖14批耗材接续、多省第三年续约启动、江西医保局印发）"
+    "src": "娉拌寕鍖荤枟鍣ㄦ鎷涙爣缃戙€婂叧浜庡仛濂戒汉宸ュ叧鑺傛帴缁瓑鍗佸洓鎵瑰尰鐢ㄨ€楁潗闆嗛噰閲囪喘鍗忚绛捐宸ヤ綔鐨勯€氱煡銆嬶紙2026-09-03锛涘凡鏍搁獙锛氫汉宸ュ叧鑺傛帴缁浜屽勾搴﹀崗璁湡2025-10-1鑷?026-9-30銆佺画绛惧崗璁噺鍘熷垯涓婁笉灏戜簬棣栧勾鍗忚閲囪喘閲忥紱瑕嗙洊14鎵硅€楁潗鎺ョ画銆佸鐪佺涓夊勾缁害鍚姩銆佹睙瑗垮尰淇濆眬鍗板彂锛?
   },
   {
-    "pill": "人形机器人 / 精密传动",
-    "title": "同花顺/研值与财华9月3日：人形机器人拐点·量产分化，2026上半年产量破4万台、国产化率75%-90%、绿的谐波市占超60%",
-    "desc": "9月3日分析：2026上半年国内人形机器人产量突破4万台、全球占比97%，核心零部件国产化率2026年提升至75%-90%；绿的谐波人形细分市占率超60%，中鼎股份年产能15万颗、在手订单约30万颗，五洲新春进入特斯拉Optimus供应链，北特科技投资18.5亿元建丝杠研发生产基地、规划年产260万套，巨轮智能JLRV系列收获比亚迪约10万台/年订单。精密传动量测随之放量：谐波减速器柔轮与刚轮的齿形、节圆、齿距累积误差需用量具配合专用检具做首件全尺寸复核，丝杠的螺距、中径与轴径用数显卡尺/千分尺沿程抽检；关节模组装配后回转精度与轴向窜动用杠杆表配表座在V型架上打表，是出厂一致性判定最快手段。人形机器人从送样迈向万台级交付，直接拉动小尺寸精密量具需求。",
+    "pill": "浜哄舰鏈哄櫒浜?/ 绮惧瘑浼犲姩",
+    "title": "鍚岃姳椤?鐮斿€间笌璐㈠崕9鏈?鏃ワ細浜哄舰鏈哄櫒浜烘嫄鐐孤烽噺浜у垎鍖栵紝2026涓婂崐骞翠骇閲忕牬4涓囧彴銆佸浗浜у寲鐜?5%-90%銆佺豢鐨勮皭娉㈠競鍗犺秴60%",
+    "desc": "9鏈?鏃ュ垎鏋愶細2026涓婂崐骞村浗鍐呬汉褰㈡満鍣ㄤ汉浜ч噺绐佺牬4涓囧彴銆佸叏鐞冨崰姣?7%锛屾牳蹇冮浂閮ㄤ欢鍥戒骇鍖栫巼2026骞存彁鍗囪嚦75%-90%锛涚豢鐨勮皭娉汉褰㈢粏鍒嗗競鍗犵巼瓒?0%锛屼腑榧庤偂浠藉勾浜ц兘15涓囬銆佸湪鎵嬭鍗曠害30涓囬锛屼簲娲叉柊鏄ヨ繘鍏ョ壒鏂媺Optimus渚涘簲閾撅紝鍖楃壒绉戞妧鎶曡祫18.5浜垮厓寤轰笣鏉犵爺鍙戠敓浜у熀鍦般€佽鍒掑勾浜?60涓囧锛屽法杞櫤鑳絁LRV绯诲垪鏀惰幏姣斾簹杩害10涓囧彴/骞磋鍗曘€傜簿瀵嗕紶鍔ㄩ噺娴嬮殢涔嬫斁閲忥細璋愭尝鍑忛€熷櫒鏌旇疆涓庡垰杞殑榻垮舰銆佽妭鍦嗐€侀娇璺濈疮绉宸渶鐢ㄩ噺鍏烽厤鍚堜笓鐢ㄦ鍏峰仛棣栦欢鍏ㄥ昂瀵稿鏍革紝涓濇潬鐨勮灪璺濄€佷腑寰勪笌杞村緞鐢ㄦ暟鏄惧崱灏?鍗冨垎灏烘部绋嬫娊妫€锛涘叧鑺傛ā缁勮閰嶅悗鍥炶浆绮惧害涓庤酱鍚戠獪鍔ㄧ敤鏉犳潌琛ㄩ厤琛ㄥ骇鍦╒鍨嬫灦涓婃墦琛紝鏄嚭鍘備竴鑷存€у垽瀹氭渶蹇墜娈点€備汉褰㈡満鍣ㄤ汉浠庨€佹牱杩堝悜涓囧彴绾т氦浠橈紝鐩存帴鎷夊姩灏忓昂瀵哥簿瀵嗛噺鍏烽渶姹傘€?,
     "products": [
-      "卡尺 数显 0-200mm",
-      "杠杆表 513 系列"
+      "鍗″昂 鏁版樉 0-200mm",
+      "鏉犳潌琛?513 绯诲垪"
     ],
     "url": "https://field.10jqka.com.cn/20260904/c679602087.shtml",
-    "src": "同花顺行业频道/研值与财华《人形机器人拐点：量产分化，兑现为王》（2026-09-03；已核验：2026上半年国内产量破4万台/全球占比97%、核心零部件国产化率2026升至75%-90%、绿的谐波人形细分市占超60%、中鼎15万颗年产能/在手30万颗、五洲新春进特斯拉Optimus供应链、北特科技18.5亿建260万套丝杠基地）"
+    "src": "鍚岃姳椤鸿涓氶閬?鐮斿€间笌璐㈠崕銆婁汉褰㈡満鍣ㄤ汉鎷愮偣锛氶噺浜у垎鍖栵紝鍏戠幇涓虹帇銆嬶紙2026-09-03锛涘凡鏍搁獙锛?026涓婂崐骞村浗鍐呬骇閲忕牬4涓囧彴/鍏ㄧ悆鍗犳瘮97%銆佹牳蹇冮浂閮ㄤ欢鍥戒骇鍖栫巼2026鍗囪嚦75%-90%銆佺豢鐨勮皭娉汉褰㈢粏鍒嗗競鍗犺秴60%銆佷腑榧?5涓囬骞翠骇鑳?鍦ㄦ墜30涓囬銆佷簲娲叉柊鏄ヨ繘鐗规柉鎷塐ptimus渚涘簲閾俱€佸寳鐗圭鎶€18.5浜垮缓260涓囧涓濇潬鍩哄湴锛?
   },
   {
-    "pill": "低空经济 / eVTOL",
-    "title": "环球网9月3日：吨级载人eVTOL适航格局分化，时的E20/沃飞AE200/沃兰特VE25进入符合性验证第一梯队，2027迎TC窗口",
-    "desc": "9月3日环球网：2026年eVTOL竞争从“能不能飞”转向“能否按民航适航要求把整架飞机系统证明出来”，审定链为TC申请受理→G1→G2→CP→符合性验证→TIA→审定试飞→TC颁发；时的科技E20、沃飞长空AE200、沃兰特VE25-100已完成G1/G2/CP签署进入符合性验证第一梯队，沙利文预计多款头部机型2027年前后迎TC取证窗口。适航取证是商业化最后一公里：复材翼面、机身框架、旋翼桨叶的型面轮廓与装配孔位协调须用三坐标测量机做全尺寸扫描与形位评定，确保气动外形与结构强度可追溯；碳纤维构件、接头与紧固件的表面质量与装配贴合面用便携式粗糙度仪抽检，飞控与起落架支撑件的微观形貌直接关系疲劳寿命。低空经济从装备制造迈向场景运营，把航空级量测需求从军工小批量推向民用量产。",
+    "pill": "浣庣┖缁忔祹 / eVTOL",
+    "title": "鐜悆缃?鏈?鏃ワ細鍚ㄧ骇杞戒汉eVTOL閫傝埅鏍煎眬鍒嗗寲锛屾椂鐨凟20/娌冮AE200/娌冨叞鐗筕E25杩涘叆绗﹀悎鎬ч獙璇佺涓€姊槦锛?027杩嶵C绐楀彛",
+    "desc": "9鏈?鏃ョ幆鐞冪綉锛?026骞磂VTOL绔炰簤浠庘€滆兘涓嶈兘椋炩€濊浆鍚戔€滆兘鍚︽寜姘戣埅閫傝埅瑕佹眰鎶婃暣鏋堕鏈虹郴缁熻瘉鏄庡嚭鏉モ€濓紝瀹″畾閾句负TC鐢宠鍙楃悊鈫扜1鈫扜2鈫扖P鈫掔鍚堟€ч獙璇佲啋TIA鈫掑瀹氳瘯椋炩啋TC棰佸彂锛涙椂鐨勭鎶€E20銆佹矁椋為暱绌篈E200銆佹矁鍏扮壒VE25-100宸插畬鎴怗1/G2/CP绛剧讲杩涘叆绗﹀悎鎬ч獙璇佺涓€姊槦锛屾矙鍒╂枃棰勮澶氭澶撮儴鏈哄瀷2027骞村墠鍚庤繋TC鍙栬瘉绐楀彛銆傞€傝埅鍙栬瘉鏄晢涓氬寲鏈€鍚庝竴鍏噷锛氬鏉愮考闈€佹満韬鏋躲€佹棆缈兼〃鍙剁殑鍨嬮潰杞粨涓庤閰嶅瓟浣嶅崗璋冮』鐢ㄤ笁鍧愭爣娴嬮噺鏈哄仛鍏ㄥ昂瀵告壂鎻忎笌褰綅璇勫畾锛岀‘淇濇皵鍔ㄥ褰笌缁撴瀯寮哄害鍙拷婧紱纰崇氦缁存瀯浠躲€佹帴澶翠笌绱у浐浠剁殑琛ㄩ潰璐ㄩ噺涓庤閰嶈创鍚堥潰鐢ㄤ究鎼哄紡绮楃硻搴︿华鎶芥锛岄鎺т笌璧疯惤鏋舵敮鎾戜欢鐨勫井瑙傚舰璨岀洿鎺ュ叧绯荤柌鍔冲鍛姐€備綆绌虹粡娴庝粠瑁呭鍒堕€犺繄鍚戝満鏅繍钀ワ紝鎶婅埅绌虹骇閲忔祴闇€姹備粠鍐涘伐灏忔壒閲忔帹鍚戞皯鐢ㄩ噺浜с€?,
     "products": [
-      "三坐标测量机 CRYSTA-Apex V",
-      "粗糙度仪 SJ-210 便携式"
+      "涓夊潗鏍囨祴閲忔満 CRYSTA-Apex V",
+      "绮楃硻搴︿华 SJ-210 渚挎惡寮?
     ],
     "url": "https://www.toutiao.com/article/7681233884251472425/",
-    "src": "环球网《吨级载人eVTOL适航进展观察：G1、G2、CP之后，还要看什么？》（2026-09-03；已核验：eVTOL由原型验证转向适航/量产/商业化能力竞争、TC→G1→G2→CP→符合性验证审定链、时的E20/沃飞AE200/沃兰特VE25-100完成G1G2CP进入第一梯队、沙利文预计多款2027迎TC窗口）"
+    "src": "鐜悆缃戙€婂惃绾ц浇浜篹VTOL閫傝埅杩涘睍瑙傚療锛欸1銆丟2銆丆P涔嬪悗锛岃繕瑕佺湅浠€涔堬紵銆嬶紙2026-09-03锛涘凡鏍搁獙锛歟VTOL鐢卞師鍨嬮獙璇佽浆鍚戦€傝埅/閲忎骇/鍟嗕笟鍖栬兘鍔涚珵浜夈€乀C鈫扜1鈫扜2鈫扖P鈫掔鍚堟€ч獙璇佸瀹氶摼銆佹椂鐨凟20/娌冮AE200/娌冨叞鐗筕E25-100瀹屾垚G1G2CP杩涘叆绗竴姊槦銆佹矙鍒╂枃棰勮澶氭2027杩嶵C绐楀彛锛?
   },
   {
-    "pill": "风电 / 大型化装备",
-    "title": "今日头条9月11日：风电主轴轴承国产化跨越，16/18/26MW相继研制、合格率+30%、加工精度近一倍、每3分钟下线1套",
-    "desc": "9月11日报道：国内团队2026年先后研制出18兆瓦海上风电主轴轴承、以及世界首台26兆瓦级风电主轴轴承，并开发出25兆瓦级风电主轴轴承用高品质特殊钢填补国内空白；智能工厂以“加工单元与加工岛模式”精简为三道核心工序，合格率提升约30%、质量稳定性与加工精度提升近一倍，国内部分基地平均每三分钟下线1套风电轴承、覆盖4至25兆瓦全系列。大型化直接抬高量测门槛：风电齿轮箱齿圈、行星架、主轴的齿面粗糙度与齿形精度决定传动效率与寿命，须用粗糙度仪按齿轮等级抽检齿面Ra/Rz；主轴轴承滚道、齿轮箱铸件的表面硬度与芯部硬度是疲劳寿命验收硬指标，须用硬度计(洛氏/维氏)逐批打点；超大铸件形位公差则依赖三坐标测量机。海风规模化把精密量测从样机验证推向批量交付。",
+    "pill": "椋庣數 / 澶у瀷鍖栬澶?,
+    "title": "浠婃棩澶存潯9鏈?1鏃ワ細椋庣數涓昏酱杞存壙鍥戒骇鍖栬法瓒婏紝16/18/26MW鐩哥户鐮斿埗銆佸悎鏍肩巼+30%銆佸姞宸ョ簿搴﹁繎涓€鍊嶃€佹瘡3鍒嗛挓涓嬬嚎1濂?,
+    "desc": "9鏈?1鏃ユ姤閬擄細鍥藉唴鍥㈤槦2026骞村厛鍚庣爺鍒跺嚭18鍏嗙摝娴蜂笂椋庣數涓昏酱杞存壙銆佷互鍙婁笘鐣岄鍙?6鍏嗙摝绾ч鐢典富杞磋酱鎵匡紝骞跺紑鍙戝嚭25鍏嗙摝绾ч鐢典富杞磋酱鎵跨敤楂樺搧璐ㄧ壒娈婇挗濉ˉ鍥藉唴绌虹櫧锛涙櫤鑳藉伐鍘備互鈥滃姞宸ュ崟鍏冧笌鍔犲伐宀涙ā寮忊€濈簿绠€涓轰笁閬撴牳蹇冨伐搴忥紝鍚堟牸鐜囨彁鍗囩害30%銆佽川閲忕ǔ瀹氭€т笌鍔犲伐绮惧害鎻愬崌杩戜竴鍊嶏紝鍥藉唴閮ㄥ垎鍩哄湴骞冲潎姣忎笁鍒嗛挓涓嬬嚎1濂楅鐢佃酱鎵裤€佽鐩?鑷?5鍏嗙摝鍏ㄧ郴鍒椼€傚ぇ鍨嬪寲鐩存帴鎶珮閲忔祴闂ㄦ锛氶鐢甸娇杞榻垮湀銆佽鏄熸灦銆佷富杞寸殑榻块潰绮楃硻搴︿笌榻垮舰绮惧害鍐冲畾浼犲姩鏁堢巼涓庡鍛斤紝椤荤敤绮楃硻搴︿华鎸夐娇杞瓑绾ф娊妫€榻块潰Ra/Rz锛涗富杞磋酱鎵挎粴閬撱€侀娇杞閾镐欢鐨勮〃闈㈢‖搴︿笌鑺儴纭害鏄柌鍔冲鍛介獙鏀剁‖鎸囨爣锛岄』鐢ㄧ‖搴﹁(娲涙皬/缁存皬)閫愭壒鎵撶偣锛涜秴澶ч摳浠跺舰浣嶅叕宸垯渚濊禆涓夊潗鏍囨祴閲忔満銆傛捣椋庤妯″寲鎶婄簿瀵嗛噺娴嬩粠鏍锋満楠岃瘉鎺ㄥ悜鎵归噺浜や粯銆?,
     "products": [
-      "粗糙度仪 SJ-210 便携式",
-      "硬度计 洛氏 / 维氏"
+      "绮楃硻搴︿华 SJ-210 渚挎惡寮?,
+      "纭害璁?娲涙皬 / 缁存皬"
     ],
     "url": "https://www.toutiao.com/article/7683463010186215972/",
-    "src": "今日头条《风机出海前，它先动了：一根轴承的国产化跨越》（2026-09-11；已核验：国产16MW/18MW/2026世界首台26MW级风电主轴轴承、25MW级轴承用高品质特殊钢填补空白、合格率提升约30%、加工精度提升近一倍、平均每3分钟下线1套、覆盖4-25MW全系列）"
+    "src": "浠婃棩澶存潯銆婇鏈哄嚭娴峰墠锛屽畠鍏堝姩浜嗭細涓€鏍硅酱鎵跨殑鍥戒骇鍖栬法瓒娿€嬶紙2026-09-11锛涘凡鏍搁獙锛氬浗浜?6MW/18MW/2026涓栫晫棣栧彴26MW绾ч鐢典富杞磋酱鎵裤€?5MW绾ц酱鎵跨敤楂樺搧璐ㄧ壒娈婇挗濉ˉ绌虹櫧銆佸悎鏍肩巼鎻愬崌绾?0%銆佸姞宸ョ簿搴︽彁鍗囪繎涓€鍊嶃€佸钩鍧囨瘡3鍒嗛挓涓嬬嚎1濂椼€佽鐩?-25MW鍏ㄧ郴鍒楋級"
   },
   {
-    "pill": "半导体设备 / 晶圆制造",
-    "title": "芯智讯9月11日：长鑫存储上海新厂启动设备招标、2026Q4启用月产能超10万片，长期目标60万片直逼一线厂",
-    "desc": "9月11日芯智讯：长鑫存储近期为上海新工厂正式启动设备采购招标，计划2026年第四季度启用，仅上海厂即可确保月产能超10万片；当前合肥二期+北京一期总产能约20-25万片、2026年底有望突破30万片，扩产时间表排至2028年（2027上半年合肥新厂、2027下半年北京新厂、2028上半年合肥扩建），长期目标月产能60万片以上，摩根士丹利预计2026年30万片→2028年50万片。晶圆厂建设把精密量测需求同步放大：洁净厂房内工艺设备的不锈钢腔体、管路与法兰孔径、壁厚须用内径千分尺/壁厚千分尺逐件复核，避免颗粒与泄漏风险；晶圆传输、对准与缺陷检测环节大量依赖影像仪做非接触尺寸与外观测量，前道量检测设备（膜厚/OCD光学关键尺寸）本身即是精密光学量测的延伸。国产设备导入提速，对应国产精密量具与影像量测方案配套放量。",
+    "pill": "鍗婂浣撹澶?/ 鏅跺渾鍒堕€?,
+    "title": "鑺櫤璁?鏈?1鏃ワ細闀块懌瀛樺偍涓婃捣鏂板巶鍚姩璁惧鎷涙爣銆?026Q4鍚敤鏈堜骇鑳借秴10涓囩墖锛岄暱鏈熺洰鏍?0涓囩墖鐩撮€间竴绾垮巶",
+    "desc": "9鏈?1鏃ヨ姱鏅鸿锛氶暱閼瓨鍌ㄨ繎鏈熶负涓婃捣鏂板伐鍘傛寮忓惎鍔ㄨ澶囬噰璐嫑鏍囷紝璁″垝2026骞寸鍥涘搴﹀惎鐢紝浠呬笂娴峰巶鍗冲彲纭繚鏈堜骇鑳借秴10涓囩墖锛涘綋鍓嶅悎鑲ヤ簩鏈?鍖椾含涓€鏈熸€讳骇鑳界害20-25涓囩墖銆?026骞村簳鏈夋湜绐佺牬30涓囩墖锛屾墿浜ф椂闂磋〃鎺掕嚦2028骞达紙2027涓婂崐骞村悎鑲ユ柊鍘傘€?027涓嬪崐骞村寳浜柊鍘傘€?028涓婂崐骞村悎鑲ユ墿寤猴級锛岄暱鏈熺洰鏍囨湀浜ц兘60涓囩墖浠ヤ笂锛屾懇鏍瑰＋涓瑰埄棰勮2026骞?0涓囩墖鈫?028骞?0涓囩墖銆傛櫠鍦嗗巶寤鸿鎶婄簿瀵嗛噺娴嬮渶姹傚悓姝ユ斁澶э細娲佸噣鍘傛埧鍐呭伐鑹鸿澶囩殑涓嶉攬閽㈣厰浣撱€佺璺笌娉曞叞瀛斿緞銆佸鍘氶』鐢ㄥ唴寰勫崈鍒嗗昂/澹佸帤鍗冨垎灏洪€愪欢澶嶆牳锛岄伩鍏嶉绮掍笌娉勬紡椋庨櫓锛涙櫠鍦嗕紶杈撱€佸鍑嗕笌缂洪櫡妫€娴嬬幆鑺傚ぇ閲忎緷璧栧奖鍍忎华鍋氶潪鎺ヨЕ灏哄涓庡瑙傛祴閲忥紝鍓嶉亾閲忔娴嬭澶囷紙鑶滃帤/OCD鍏夊鍏抽敭灏哄锛夋湰韬嵆鏄簿瀵嗗厜瀛﹂噺娴嬬殑寤朵几銆傚浗浜ц澶囧鍏ユ彁閫燂紝瀵瑰簲鍥戒骇绮惧瘑閲忓叿涓庡奖鍍忛噺娴嬫柟妗堥厤濂楁斁閲忋€?,
     "products": [
-      "千分尺 内径 / 壁厚 0.001mm",
-      "三坐标测量机 CRYSTA-Apex V"
+      "鍗冨垎灏?鍐呭緞 / 澹佸帤 0.001mm",
+      "涓夊潗鏍囨祴閲忔満 CRYSTA-Apex V"
     ],
     "url": "https://www.icsmart.cn/141957/",
-    "src": "芯智讯《长鑫存储上海厂启动设备招标，规划月产能或超10万片》（2026-09-11；已核验：长鑫上海新厂设备招标启动/2026Q4启用/月产能超10万片、当前合肥二期+北京一期总产能20-25万片/2026底破30万片、2027上合肥新厂/下北京新厂/2028合肥扩建、长期目标60万片+/摩根士丹利2026 30万片→2028 50万片）"
+    "src": "鑺櫤璁€婇暱閼瓨鍌ㄤ笂娴峰巶鍚姩璁惧鎷涙爣锛岃鍒掓湀浜ц兘鎴栬秴10涓囩墖銆嬶紙2026-09-11锛涘凡鏍搁獙锛氶暱閼笂娴锋柊鍘傝澶囨嫑鏍囧惎鍔?2026Q4鍚敤/鏈堜骇鑳借秴10涓囩墖銆佸綋鍓嶅悎鑲ヤ簩鏈?鍖椾含涓€鏈熸€讳骇鑳?0-25涓囩墖/2026搴曠牬30涓囩墖銆?027涓婂悎鑲ユ柊鍘?涓嬪寳浜柊鍘?2028鍚堣偉鎵╁缓銆侀暱鏈熺洰鏍?0涓囩墖+/鎽╂牴澹腹鍒?026 30涓囩墖鈫?028 50涓囩墖锛?
   },
   {
-    "pill": "储能 / 大圆柱电池",
-    "title": "今日头条9月11日：金钠科技超大圆柱钠电储能系统下线，280Ah量产/在手订单20GWh/2030需求21GWh，UL利用率99%",
-    "desc": "9月11日起点钠电：金钠科技定位超大圆柱钠电池第一品牌，第一代120420、280Ah已正式量产、第二代800Ah储备技术基本落实；UL测试显示120420超大圆柱综合利用率可达99%、生产工序简化30%、产品成本降低15%，已与海外客户签订超过20GWh长期大额订单供AIDC储能电站、预计2030年需求达21GWh，1.7MW级集装箱储能系统已下线。大圆柱量产一致性高度依赖在线量测：极柱高度、壳体总长与封口台阶用数显表(ID-C数显指示器)配合自动化工装在机连续监控μm级漂移；电池总高、极柱相对壳体的高度差与工装定位用数显高度规在装配线快速判定，为激光焊与封装压力提供预留量。圆柱电池从动力走向储能，把批量尺寸量测从抽检推向100%在线。",
+    "pill": "鍌ㄨ兘 / 澶у渾鏌辩數姹?,
+    "title": "浠婃棩澶存潯9鏈?1鏃ワ細閲戦挔绉戞妧瓒呭ぇ鍦嗘煴閽犵數鍌ㄨ兘绯荤粺涓嬬嚎锛?80Ah閲忎骇/鍦ㄦ墜璁㈠崟20GWh/2030闇€姹?1GWh锛孶L鍒╃敤鐜?9%",
+    "desc": "9鏈?1鏃ヨ捣鐐归挔鐢碉細閲戦挔绉戞妧瀹氫綅瓒呭ぇ鍦嗘煴閽犵數姹犵涓€鍝佺墝锛岀涓€浠?20420銆?80Ah宸叉寮忛噺浜с€佺浜屼唬800Ah鍌ㄥ鎶€鏈熀鏈惤瀹烇紱UL娴嬭瘯鏄剧ず120420瓒呭ぇ鍦嗘煴缁煎悎鍒╃敤鐜囧彲杈?9%銆佺敓浜у伐搴忕畝鍖?0%銆佷骇鍝佹垚鏈檷浣?5%锛屽凡涓庢捣澶栧鎴风璁㈣秴杩?0GWh闀挎湡澶ч璁㈠崟渚汚IDC鍌ㄨ兘鐢电珯銆侀璁?030骞撮渶姹傝揪21GWh锛?.7MW绾ч泦瑁呯鍌ㄨ兘绯荤粺宸蹭笅绾裤€傚ぇ鍦嗘煴閲忎骇涓€鑷存€ч珮搴︿緷璧栧湪绾块噺娴嬶細鏋佹煴楂樺害銆佸３浣撴€婚暱涓庡皝鍙ｅ彴闃剁敤鏁版樉琛?ID-C鏁版樉鎸囩ず鍣?閰嶅悎鑷姩鍖栧伐瑁呭湪鏈鸿繛缁洃鎺糾绾ф紓绉伙紱鐢垫睜鎬婚珮銆佹瀬鏌辩浉瀵瑰３浣撶殑楂樺害宸笌宸ヨ瀹氫綅鐢ㄦ暟鏄鹃珮搴﹁鍦ㄨ閰嶇嚎蹇€熷垽瀹氾紝涓烘縺鍏夌剨涓庡皝瑁呭帇鍔涙彁渚涢鐣欓噺銆傚渾鏌辩數姹犱粠鍔ㄥ姏璧板悜鍌ㄨ兘锛屾妸鎵归噺灏哄閲忔祴浠庢娊妫€鎺ㄥ悜100%鍦ㄧ嚎銆?,
     "products": [
-      "数显表 ID-C 543 系列数显指示器",
-      "高度规 数显高度尺 570 系列"
+      "鏁版樉琛?ID-C 543 绯诲垪鏁版樉鎸囩ず鍣?,
+      "楂樺害瑙?鏁版樉楂樺害灏?570 绯诲垪"
     ],
     "url": "https://www.toutiao.com/article/7684098714394165801",
-    "src": "今日头条/起点钠电《金钠科技：在手订单20GWh 超大圆柱钠电储能系统已成功下线》（2026-09-11；已核验：120420超大圆柱钠电280Ah已量产/800Ah储备、UL综合利用率99%/工序简化30%/成本降15%、锁定海外客户2030需求21GWh、与海外签超20GWh长期大额订单供AIDC储能、1.7MW集装箱储能下线）"
+    "src": "浠婃棩澶存潯/璧风偣閽犵數銆婇噾閽犵鎶€锛氬湪鎵嬭鍗?0GWh 瓒呭ぇ鍦嗘煴閽犵數鍌ㄨ兘绯荤粺宸叉垚鍔熶笅绾裤€嬶紙2026-09-11锛涘凡鏍搁獙锛?20420瓒呭ぇ鍦嗘煴閽犵數280Ah宸查噺浜?800Ah鍌ㄥ銆乁L缁煎悎鍒╃敤鐜?9%/宸ュ簭绠€鍖?0%/鎴愭湰闄?5%銆侀攣瀹氭捣澶栧鎴?030闇€姹?1GWh銆佷笌娴峰绛捐秴20GWh闀挎湡澶ч璁㈠崟渚汚IDC鍌ㄨ兘銆?.7MW闆嗚绠卞偍鑳戒笅绾匡級"
   },
   {
-    "pill": "制药 / 无菌注射剂",
-    "title": "美通社/今日头条9月10日：CordenPharma 8000万欧元扩建意大利无菌注射剂产能，年产能将达5亿支(PFS/西林瓶/卡式瓶)",
-    "desc": "9月10日美通社：CDMO企业CordenPharma承诺未来数年投资8000万欧元扩建意大利卡波纳戈基地无菌注射剂产能，已斥资1300万欧元购入11000平方米新厂房及26000平方米土地（厂区扩大逾50%），新空间可容纳至少4条无菌灌装与封装线、4条外观检测线与4条包装线，Syntegon高速PFS/卡式瓶线日产能超50万支；目标年产能达5亿支，覆盖多肽、LNP、生物药与寡核苷酸类注射药物。无菌注射剂放量把容器与灌装量测推到前台：预灌封注射器、西林瓶、卡式瓶的瓶身高度、肩部轮廓与灌装液位用测高仪在灯检与装量工序快速判定；安瓿/卡式瓶的封口轮廓、颈部几何与外观缺陷须用轮廓仪/投影仪做非接触比对，确保密封完整性与给药剂量一致。GLP-1与多肽类药物需求爆发，正把制药精密量测从研发QC推向产线在线全检。",
+    "pill": "鍒惰嵂 / 鏃犺弻娉ㄥ皠鍓?,
+    "title": "缇庨€氱ぞ/浠婃棩澶存潯9鏈?0鏃ワ細CordenPharma 8000涓囨鍏冩墿寤烘剰澶у埄鏃犺弻娉ㄥ皠鍓備骇鑳斤紝骞翠骇鑳藉皢杈?浜挎敮(PFS/瑗挎灄鐡?鍗″紡鐡?",
+    "desc": "9鏈?0鏃ョ編閫氱ぞ锛欳DMO浼佷笟CordenPharma鎵胯鏈潵鏁板勾鎶曡祫8000涓囨鍏冩墿寤烘剰澶у埄鍗℃尝绾虫垐鍩哄湴鏃犺弻娉ㄥ皠鍓備骇鑳斤紝宸叉枼璧?300涓囨鍏冭喘鍏?1000骞虫柟绫虫柊鍘傛埧鍙?6000骞虫柟绫冲湡鍦帮紙鍘傚尯鎵╁ぇ閫?0%锛夛紝鏂扮┖闂村彲瀹圭撼鑷冲皯4鏉℃棤鑿岀亴瑁呬笌灏佽绾裤€?鏉″瑙傛娴嬬嚎涓?鏉″寘瑁呯嚎锛孲yntegon楂橀€烶FS/鍗″紡鐡剁嚎鏃ヤ骇鑳借秴50涓囨敮锛涚洰鏍囧勾浜ц兘杈?浜挎敮锛岃鐩栧鑲姐€丩NP銆佺敓鐗╄嵂涓庡鏍歌嫹閰哥被娉ㄥ皠鑽墿銆傛棤鑿屾敞灏勫墏鏀鹃噺鎶婂鍣ㄤ笌鐏岃閲忔祴鎺ㄥ埌鍓嶅彴锛氶鐏屽皝娉ㄥ皠鍣ㄣ€佽タ鏋楃摱銆佸崱寮忕摱鐨勭摱韬珮搴︺€佽偐閮ㄨ疆寤撲笌鐏岃娑蹭綅鐢ㄦ祴楂樹华鍦ㄧ伅妫€涓庤閲忓伐搴忓揩閫熷垽瀹氾紱瀹夌摽/鍗″紡鐡剁殑灏佸彛杞粨銆侀閮ㄥ嚑浣曚笌澶栬缂洪櫡椤荤敤杞粨浠?鎶曞奖浠仛闈炴帴瑙︽瘮瀵癸紝纭繚瀵嗗皝瀹屾暣鎬т笌缁欒嵂鍓傞噺涓€鑷淬€侴LP-1涓庡鑲界被鑽墿闇€姹傜垎鍙戯紝姝ｆ妸鍒惰嵂绮惧瘑閲忔祴浠庣爺鍙慟C鎺ㄥ悜浜х嚎鍦ㄧ嚎鍏ㄦ銆?,
     "products": [
-      "测高仪 Linear Height LH-600",
-      "轮廓仪 Contracer CV-3200"
+      "娴嬮珮浠?Linear Height LH-600",
+      "杞粨浠?Contracer CV-3200"
     ],
     "url": "https://www.toutiao.com/article/7683936494649606656",
-    "src": "美通社/CordenPharma《CordenPharma 扩充无菌灌装与封装产能，无菌注射剂年产能将达 5 亿支》（2026-09-10；已核验：投资8000万欧元/购11000㎡新厂房+26000㎡土地厂区+50%、目标年产能5亿支、4条无菌灌装线+4条外观检测线+4条包装线、Syntegon高速PFS/卡式瓶线日产能超50万支、覆盖多肽/LNP/生物药/寡核苷酸）"
+    "src": "缇庨€氱ぞ/CordenPharma銆奀ordenPharma 鎵╁厖鏃犺弻鐏岃涓庡皝瑁呬骇鑳斤紝鏃犺弻娉ㄥ皠鍓傚勾浜ц兘灏嗚揪 5 浜挎敮銆嬶紙2026-09-10锛涘凡鏍搁獙锛氭姇璧?000涓囨鍏?璐?1000銕℃柊鍘傛埧+26000銕″湡鍦板巶鍖?50%銆佺洰鏍囧勾浜ц兘5浜挎敮銆?鏉℃棤鑿岀亴瑁呯嚎+4鏉″瑙傛娴嬬嚎+4鏉″寘瑁呯嚎銆丼yntegon楂橀€烶FS/鍗″紡鐡剁嚎鏃ヤ骇鑳借秴50涓囨敮銆佽鐩栧鑲?LNP/鐢熺墿鑽?瀵℃牳鑻烽吀锛?
   }
 ];
 
 /* ============================================================
-   模块 4：WEEKLY_REPORT（精密测量行业周度增量市场报告，每周一 08:50 由自动化整体替换）
-   字段：period/reportDate/src/tldr/industries/regions/expanding/buyers
+   妯″潡 4锛歐EEKLY_REPORT锛堢簿瀵嗘祴閲忚涓氬懆搴﹀閲忓競鍦烘姤鍛婏紝姣忓懆涓€ 08:50 鐢辫嚜鍔ㄥ寲鏁翠綋鏇挎崲锛?
+   瀛楁锛歱eriod/reportDate/src/tldr/industries/regions/expanding/buyers
         /demand/substitution/follow10/markets3m/actions/sources
 ============================================================ */
-const WEEKLY_REPORT={"period":"2026-09-07 ~ 2026-09-13","reportDate":"2026-09-14","src":"中国政府采购网 · 必联网 · 中招联合 · 仪器信息网 · 上市公司公告 · 政府/开发区官网 · 行业媒体","tldr":["增长最快行业：**半导体/晶圆制造** 与 **新能源动力电池** 在过去 7 天释放的扩产/设备采购信号最密集，双双处于高位；半导体设备采购预期上调、华虹无锡 12 英寸三期增资、中创新航合肥三期投产是三大标志性事件。","新增项目最多地区：**华东地区**（江苏/上海/安徽/浙江）以 12 个可直接识别的增量项目居首，其次是华北地区（北京/天津/山西）和华南地区（广东）。","TOP3 扩产企业：中创新航（合肥三期 25GWh 投产、四期推进）、华虹宏力（无锡 12 英寸三期增资至 41.7 亿美元）、爱思达航天（天津智能制造基地启动，投资超 5 亿元）。","TOP3 可能采购三丰产品的企业：中创新航合肥基地、南京威诺克 / 西安巨浪精密机床基地、欣旺达电白汽车电子基地。","TOP3 产品需求增长：**三坐标测量机（CMM）**、**激光干涉 / 激光位移传感器类精密测量**、**表面粗糙度 / 轮廓 / 圆度仪**。","国产替代影响最大产品：**影像测量仪/二次元** 与 **便携式粗糙度仪/入门级量具** 面临最直接的价格竞争与国产替代压力；中高端 CMM 仍由进口品牌主导。","下周最值得跟进：中创新航合肥研究院/三期产线、南京威诺克智能科技、西安巨浪精密机械华东总部、欣旺达电白基地、华虹宏力无锡三期、爱思达航天天津基地 等。","未来 3 个月最值得投入的细分市场：新能源汽车电驱/PACK 产线配套的现场快速测量与量具方案、半导体晶圆/封装厂配套的精密尺寸/形貌测量、航空航天复合材料/精密结构件的高精度三坐标/粗糙度/轮廓测量。"],"industries":[{"name":"半导体 / 晶圆制造","count":7,"event":"华虹无锡 12 英寸三期增资、SEMI 上调设备销售额、台积电设备采购预期翻倍、长电科技定增、中微/北方华创订单高增","growth":"高速增长"},{"name":"新能源汽车 / 动力电池","count":5,"event":"中创新航合肥三期 25GWh 投产、四期推进；欣旺达电白基地新增 SMT 产线","growth":"高速增长"},{"name":"精密机床 / CNC","count":4,"event":"南京威诺克华东基地 9 月底投产、西安巨浪华东总部封顶、Star Micronics 牧之原工厂竣工","growth":"显著增长"},{"name":"航空航天","count":2,"event":"爱思达航天天津智能制造基地启动（项目金额大）","growth":"高增长"},{"name":"医疗器械","count":3,"event":"西门子医疗 PET 探测器基地扩建完成、强生苏州产业园扩产、瑞奇外科天津项目落地","growth":"稳健增长"},{"name":"汽车及零部件","count":3,"event":"东风轻型发动机粗糙度仪采购、Gestamp 印度第五工厂投产、Audi A2 e-tron 投产","growth":"稳健增长"}],"regions":[{"area":"华东地区","provs":"江苏、上海、安徽、浙江","count":12,"key":"华虹无锡三期、中创新航合肥三期、南京威诺克/西安巨浪基地、上海微系统所晶圆几何量测仪、上海电机学院 CMM"},{"area":"华北地区","provs":"北京、天津、山西","count":6,"key":"爱思达航天天津基地、北京航天计量圆柱度仪、大同市检测中心设备采购、中科院高能物理研究所 CMM"},{"area":"华南地区","provs":"广东","count":4,"key":"欣旺达电白基地、和而泰青岛东北亚基地（关联）、中科院高能所东莞中子源 CMM"},{"area":"西南地区","provs":"四川、云南","count":3,"key":"成都三维光学轮廓仪、云南省计量院光学测速仪"},{"area":"华中地区","provs":"湖南、湖北","count":2,"key":"湖南天创精工 CMM、东风轻型发动机粗糙度仪"},{"area":"东北地区","provs":"—","count":0,"key":"暂无明显信号"}],"expanding":[{"co":"中创新航","ind":"动力电池","loc":"安徽合肥长丰","proj":"合肥基地三期 / 四期","scale":"三期 25GWh 已投产；总产能将达 100GWh","status":"三期已投产，四期年底投产"},{"co":"华虹宏力（无锡华虹）","ind":"半导体","loc":"江苏无锡","proj":"12 英寸特色工艺三期（Fab 9B）","scale":"注册资本增资至 41.7 亿美元；总投资 69.5 亿美元","status":"2026-03 启动建设，预计 2027-12 完工"},{"co":"爱思达航天","ind":"商业航天 / 复合材料","loc":"天津东丽","proj":"智能制造基地二期","scale":"占地 125 亩，建面 6.2 万㎡，投资超 5 亿元","status":"2027-12 竣工，2028 投用"},{"co":"南京威诺克智能科技","ind":"高端数控机床","loc":"江苏南京高淳","proj":"华东工业母机研发制造基地","scale":"总占地 180 亩，一期 48.9 亩","status":"一期 9 月底投产，二期 9 月底开工"},{"co":"西安巨浪精密机械","ind":"精密数控机床","loc":"江苏南京溧水","proj":"华东总部基地","scale":"总投资 5.25 亿元，建面 3 万㎡","status":"主体结构封顶，预计 11 月底竣工"},{"co":"华翌精机","ind":"高端五轴机床","loc":"广州黄埔 / 南京六合 / 重庆","proj":"华南 / 华东 / 总部制造基地","scale":"广州一期计划 2026 年底投产","status":"广州一期 2026 年底投产"},{"co":"欣旺达电白基地","ind":"汽车电子 / SMT","loc":"广东茂名电白","proj":"新增 SMT / DIP 产线","scale":"新增 5 条 SMT、8 条 DIP 产线","status":"2026 年扩产中"},{"co":"和而泰","ind":"智能控制器","loc":"山东青岛城阳","proj":"东北亚智能制造基地一期","scale":"建面超 7 万㎡，17 条自动化产线","status":"已正式投产"},{"co":"Star Micronics","ind":"高端 CNC 车床","loc":"日本静冈牧之原","proj":"牧之原工厂","scale":"投资约 40 亿日元，建面约 9,100㎡","status":"2026-07 已投入运行"},{"co":"西门子医疗","ind":"医疗器械","loc":"美国田纳西 Rockford","proj":"PET 探测器中心扩建","scale":"投资 4,360 万美元（约 3 亿元）","status":"扩建完成"},{"co":"强生医疗科技","ind":"医疗器械","loc":"江苏苏州","proj":"苏州产业园产能扩容","scale":"新增现代化绿色厂房与多条高端智造产线","status":"已完成新一轮扩容"},{"co":"瑞奇外科器械","ind":"医疗器械","loc":"天津经开区","proj":"全链条智能制造协同发展产业项目","scale":"投资数亿元，面积超 7,000㎡","status":"签约落地，建设中"},{"co":"融捷集团","ind":"新能源电池 / 储能","loc":"广州黄埔","proj":"新能源智造基地","scale":"总投资 120 亿元","status":"建设中"}],"buyers":[{"co":"中创新航合肥基地 / 研究院","loc":"安徽合肥","need":"三坐标、影像测量仪、粗糙度仪、卡尺/千分尺、激光位移传感器","why":"动力电池壳体、盖板、电芯尺寸/形位公差检测，产线扩张期量具与 CMM 需求同步放大"},{"co":"南京威诺克智能科技","loc":"江苏南京","need":"三坐标、粗糙度仪、轮廓仪、测高仪、硬度计","why":"高端数控机床床身、导轨、主轴等关键零部件的精密测量与出货前终检"},{"co":"西安巨浪精密机械（华东总部）","loc":"江苏南京溧水","need":"三坐标、圆度/圆柱度仪、粗糙度仪、轮廓仪","why":"年产 3,000 台精密数控机床，主轴、导轨、刀塔等精密部件检测需求刚性"},{"co":"欣旺达电白基地","loc":"广东茂名","need":"影像测量仪、二次元、三坐标、基础量具","why":"新增 5 条 SMT + 8 条 DIP 产线，BMS/BCM 等汽车电子 PCB 与结构件尺寸检测需求增加"},{"co":"华翌精机（南京/广州/重庆）","loc":"江苏 / 广东 / 重庆","need":"三坐标、激光干涉仪、粗糙度/轮廓仪","why":"高端五轴机床研发与量产，对导轨、丝杠、主轴等核心传动件精度要求极高"},{"co":"爱思达航天","loc":"天津东丽","need":"三坐标、粗糙度/轮廓仪、圆度仪、测高仪","why":"碳纤维复合材料火箭整流罩、航空航天结构件批量生产，尺寸与形位公差检测需求大"},{"co":"东风轻型发动机","loc":"湖北十堰","need":"便携式粗糙度仪、轮廓仪、三坐标、量具","why":"ZD 加工线新增 3 个便携式粗糙度仪采购完成，后续产线升级仍有增量"},{"co":"中航飞机起落架","loc":"湖南长沙","need":"高精度粗糙度轮廓测量仪、三坐标、圆度仪","why":"已采购高精度粗糙度轮廓测量仪，航空起落架精密零件检测持续"},{"co":"南京工艺装备制造","loc":"江苏南京","need":"滚珠丝杠行程误差测量仪、激光干涉仪、测长机","why":"已就 4 米/6 米滚珠丝杠行程误差测量仪招标，传动件精密测量需求明确"},{"co":"和而泰青岛基地","loc":"山东青岛","need":"影像测量仪、三坐标、基础量具、AOI/光学检测","why":"17 条智能控制器产线投产，SMT/组装环节尺寸与外观检测需求旺盛"}],"demand":[{"cat":"三坐标测量机（CMM）","n":6,"amount":"¥149.5 万（上海电机学院）；¥260 万（中科院高能所）；湖南天创精工、中车戚墅堰、郑州磨料磨具研究所","strength":"高"},{"cat":"表面粗糙度 / 轮廓 / 圆度 / 圆柱度仪","n":5,"amount":"¥156.6 万（中航飞机起落架）；¥379.5 万（北京航天计量圆柱度仪）；三维光学轮廓仪 2 套；便携式粗糙度仪 3 台","strength":"高"},{"cat":"激光干涉仪 / 激光位移 / 光电传感","n":4,"amount":"¥151 万（芜湖计量院相移式激光干涉仪）；¥83 万（马鞍山计量所）；¥19.479 万（西南交大光电传感器）","strength":"中高"},{"cat":"影像测量仪 / 二次元 / 投影图像测量仪","n":3,"amount":"¥62.8 万（云南省计量院非接触光学测速仪）；合肥波林新材料投影图像测量仪","strength":"中"},{"cat":"硬度计 / 理化检测设备","n":3,"amount":"江苏省特检院理化类检测设备；太原理工大学全自动显微硬度仪（¥65 万）","strength":"中"},{"cat":"晶圆几何量测 / 半导体检测","n":2,"amount":"¥108 万（中科院上海微系统所晶圆几何参数量测仪）；三维光学轮廓仪（半导体相关）","strength":"高"},{"cat":"基础量具（卡尺、千分尺、高度规等）","n":2,"amount":"大同市综合检验检测中心批量采购；东风轻型发动机新增量具需求","strength":"中"}],"substitution":[{"cat":"影像测量仪 / 二次元 / 闪测仪","level":"高","how":"价格竞争激烈，国产厂商以「自研算法+高性价比+快速交付」抢占中低端；进口品牌向高精度/复合式/在线检测收缩","brands":"天准科技、中图仪器、七海检测、梵码电子、德瑞检测"},{"cat":"便携式粗糙度仪 / 入门级量具","level":"中高","how":"计量院所、汽车产线对性价比敏感，国产品牌入围频繁；进口在高端粗糙度轮廓复合仪仍占优","brands":"北京时代、上海泰明、西安威而信"},{"cat":"三坐标测量机（CMM）","level":"中","how":"中高端桥式/龙门仍由海克斯康、蔡司、温泽主导；国产替代目录与「本国产品标准」政策持续加压","brands":"天准 CMZ/CMU/CME、力合精密、雷顿数控、爱德华、智泰柯"},{"cat":"激光干涉仪 / 光学轮廓仪","level":"中","how":"国产激光干涉仪在计量院所批量中标；高端光学轮廓仪仍由 Taylor Hobson 等进口品牌主导","brands":"慧利仪器、中图仪器"},{"cat":"硬度计 / 理化检测设备","level":"中","how":"国产布洛维/显微硬度计在高校、特检院份额提升；高端全自动显微硬度仪仍依赖进口","brands":"上海标卓、新天、华煜众信"}],"follow10":[{"co":"中创新航科技（合肥）有限公司 / 研究院","loc":"安徽合肥","why":"三期 25GWh 刚投产、四期年底投产，研究院新落地，电池壳体/盖板/电芯检测需求爆发","act":"联系质量/设备部门，推介 CMM、粗糙度仪、激光测厚/位移方案；跟进研究院实验室设备招标"},{"co":"南京威诺克智能科技有限公司","loc":"江苏南京高淳","why":"华东工业母机基地一期 9 月底投产、二期 9 月底开工，高端数控机床零部件检测需求明确","act":"9 月下旬拜访，推介三坐标、粗糙度/轮廓仪、测高仪，切入供应商体系"},{"co":"西安巨浪精密机械有限公司（华东总部）","loc":"江苏南京溧水","why":"华东总部基地 11 月底竣工，年产 3,000 台精密数控机床，主轴/导轨/刀塔精密测量需求大","act":"对接采购/品控，推介圆度仪、三坐标、粗糙度仪"},{"co":"欣旺达电白基地","loc":"广东茂名","why":"新增 5 条 SMT + 8 条 DIP 产线，汽车电子 BMS/BCM 尺寸检测需求增加","act":"联系基地质量部门，推介影像测量仪、三坐标、基础量具"},{"co":"华虹宏力半导体（无锡）","loc":"江苏无锡","why":"12 英寸三期巨额投资，Fab 9B 设备采购进行中，晶圆/零部件精密测量需求大","act":"关注 Fab 9B 设备招标，推介晶圆几何量测、激光干涉、三坐标"},{"co":"爱思达航天科技股份有限公司","loc":"天津东丽","why":"智能制造基地二期刚启动，商业航天火箭整流罩/结构件批量生产","act":"联系采购/质量，推介三坐标、粗糙度/轮廓仪、复合材料检测方案"},{"co":"东风轻型发动机有限公司","loc":"湖北十堰","why":"ZD 加工线新增便携式粗糙度仪采购完成，后续产线升级仍有增量","act":"跟进粗糙度仪使用情况，推介更多量具/CMM/轮廓仪"},{"co":"中航飞机起落架有限责任公司","loc":"湖南长沙","why":"已采购高精度粗糙度轮廓测量仪，航空精密零件检测持续","act":"维护现有关系，推介圆度/圆柱度仪、三坐标"},{"co":"南京工艺装备制造股份有限公司","loc":"江苏南京","why":"已就滚珠丝杠行程误差测量仪招标，传动件精密测量需求明确","act":"对接技术/采购，推介激光干涉仪、测长机、三坐标"},{"co":"上海电机学院","loc":"上海","why":"桥式三坐标测量机已中标（海克斯康），后续教学/科研设备仍有更新窗口","act":"关注后续设备采购计划，推介影像仪、粗糙度仪、基础量具"}],"markets3m":[{"title":"新能源汽车电驱 / PACK 产线现场快速测量","driver":"中创新航、宁德时代、欣旺达、比亚迪等电池/电驱产线持续扩产，对电池壳体尺寸、极片毛刺、盖板平面度、电芯高度/直径、PACK 装配间隙等现场快速检测需求爆发","products":"数显卡尺/千分尺、ABSOLUTE 防冷却液卡尺、数显测高仪、便携式粗糙度仪、激光位移传感器、现场型 CMM","clients":"中创新航合肥/厦门/江门、欣旺达电白/南京、宁德时代国内基地、蜂巢能源"},{"title":"半导体晶圆 / 封装厂精密尺寸与形貌测量","driver":"华虹无锡三期、长江存储三期、长电科技先进封装扩产、台积电/中芯设备采购上修，对晶圆几何量测、BGA/CSP 尺寸、引线框架/封装体尺寸、wafer 翘曲、表面粗糙度等检测需求增加","products":"晶圆几何量测方案、激光扫描测量、影像测量仪（QV）、粗糙度/轮廓仪、高精度测高仪、基础量具","clients":"华虹宏力无锡、长电科技、通富微电、盛合晶微、上海微系统所等科研平台"},{"title":"航空航天复合材料与精密结构件高精度测量","driver":"爱思达航天、蓝箭航天、星际荣耀等商业航天企业从研发进入批产，火箭整流罩、舱段、阀体、紧固件等对大尺寸三坐标、形位公差、粗糙度/轮廓、圆度圆柱度检测需求刚性","products":"大型桥式/龙门三坐标、圆度仪、圆柱度仪、粗糙度轮廓复合仪、测高仪、螺纹/齿轮专用量具","clients":"爱思达航天天津、中航飞机起落架、航空发动机主机厂、航天一院/八院配套企业"}],"actions":["销售侧：下周优先拜访南京威诺克、西安巨浪华东总部、中创新航合肥研究院、欣旺达电白基地，携带三坐标/粗糙度/影像仪样册与成功案例，聚焦「扩产期的设备选型窗口」。","市场侧：持续监控华虹无锡三期、台积电/中芯设备采购、商业航天基地扩产的后续招标；建立「计量院所设备更新」专项跟踪清单。","产品侧：针对国产替代压力最大的影像测量仪/二次元/便携式粗糙度仪/基础量具，准备「精度对比+服务响应+数据接口」组合方案；对中高端 CMM/圆度/轮廓仪强化「稳定性+全球服务网络」卖点。","渠道侧：加强与华东（南京、苏州、无锡）、华南（深圳、东莞、茂名）、华北（天津、北京）本地代理商/服务商协同，确保扩产客户能在 24–48 小时内获得现场支持。","数据侧：补充获取 ① 华虹无锡三期设备招标明细；② 中创新航合肥研究院设备采购计划；③ 南京威诺克/西安巨浪已确定的检测设备供应商名单；④ 东风轻型发动机 ZD 线后续投资计划。"],"sources":["中国政府采购网（ccgp.gov.cn）— 上海电机学院、中科院高能物理研究所、云南省计量院、大同市检测中心、太原理工大学、中国测试技术研究院等","必联网（ebnew.com）— 中车戚墅堰 CMM、湖南天创精工 CMM、三维光学轮廓仪、江苏省特检院等","中招联合招标采购平台 — 北京航天计量圆柱度仪","仪器信息网 — 中科院高能所 CMM、海克斯康 OPTIV S 发布","上市公司 / 企业公告 — 华虹宏力、中创新航、长电科技、北方华创、中微公司","政府 / 开发区官网 — 南京高淳区（威诺克）、南京溧水区（西安巨浪）、天津东丽区（爱思达航天）、广州黄埔区（融捷集团）","行业媒体 — 中国电子报/SEMI、中国工业新闻网、盖世汽车、中国新闻周刊","招聘平台 — 猎聘、智通直聘（CMM / 测量工程师岗位热度）"]};
+const WEEKLY_REPORT={"period":"2026-09-07 ~ 2026-09-13","reportDate":"2026-09-14","src":"涓浗鏀垮簻閲囪喘缃?路 蹇呰仈缃?路 涓嫑鑱斿悎 路 浠櫒淇℃伅缃?路 涓婂競鍏徃鍏憡 路 鏀垮簻/寮€鍙戝尯瀹樼綉 路 琛屼笟濯掍綋","tldr":["澧為暱鏈€蹇涓氾細**鍗婂浣?鏅跺渾鍒堕€?* 涓?**鏂拌兘婧愬姩鍔涚數姹?* 鍦ㄨ繃鍘?7 澶╅噴鏀剧殑鎵╀骇/璁惧閲囪喘淇″彿鏈€瀵嗛泦锛屽弻鍙屽浜庨珮浣嶏紱鍗婂浣撹澶囬噰璐鏈熶笂璋冦€佸崕铏规棤閿?12 鑻卞涓夋湡澧炶祫銆佷腑鍒涙柊鑸悎鑲ヤ笁鏈熸姇浜ф槸涓夊ぇ鏍囧織鎬т簨浠躲€?,"鏂板椤圭洰鏈€澶氬湴鍖猴細**鍗庝笢鍦板尯**锛堟睙鑻?涓婃捣/瀹夊窘/娴欐睙锛変互 12 涓彲鐩存帴璇嗗埆鐨勫閲忛」鐩眳棣栵紝鍏舵鏄崕鍖楀湴鍖猴紙鍖椾含/澶╂触/灞辫タ锛夊拰鍗庡崡鍦板尯锛堝箍涓滐級銆?,"TOP3 鎵╀骇浼佷笟锛氫腑鍒涙柊鑸紙鍚堣偉涓夋湡 25GWh 鎶曚骇銆佸洓鏈熸帹杩涳級銆佸崕铏瑰畯鍔涳紙鏃犻敗 12 鑻卞涓夋湡澧炶祫鑷?41.7 浜跨編鍏冿級銆佺埍鎬濊揪鑸ぉ锛堝ぉ娲ユ櫤鑳藉埗閫犲熀鍦板惎鍔紝鎶曡祫瓒?5 浜垮厓锛夈€?,"TOP3 鍙兘閲囪喘涓変赴浜у搧鐨勪紒涓氾細涓垱鏂拌埅鍚堣偉鍩哄湴銆佸崡浜▉璇哄厠 / 瑗垮畨宸ㄦ氮绮惧瘑鏈哄簥鍩哄湴銆佹鏃鸿揪鐢电櫧姹借溅鐢靛瓙鍩哄湴銆?,"TOP3 浜у搧闇€姹傚闀匡細**涓夊潗鏍囨祴閲忔満锛圕MM锛?*銆?*婵€鍏夊共娑?/ 婵€鍏変綅绉讳紶鎰熷櫒绫荤簿瀵嗘祴閲?*銆?*琛ㄩ潰绮楃硻搴?/ 杞粨 / 鍦嗗害浠?*銆?,"鍥戒骇鏇夸唬褰卞搷鏈€澶т骇鍝侊細**褰卞儚娴嬮噺浠?浜屾鍏?* 涓?**渚挎惡寮忕矖绯欏害浠?鍏ラ棬绾ч噺鍏?* 闈复鏈€鐩存帴鐨勪环鏍肩珵浜変笌鍥戒骇鏇夸唬鍘嬪姏锛涗腑楂樼 CMM 浠嶇敱杩涘彛鍝佺墝涓诲銆?,"涓嬪懆鏈€鍊煎緱璺熻繘锛氫腑鍒涙柊鑸悎鑲ョ爺绌堕櫌/涓夋湡浜х嚎銆佸崡浜▉璇哄厠鏅鸿兘绉戞妧銆佽タ瀹夊法娴簿瀵嗘満姊板崕涓滄€婚儴銆佹鏃鸿揪鐢电櫧鍩哄湴銆佸崕铏瑰畯鍔涙棤閿′笁鏈熴€佺埍鎬濊揪鑸ぉ澶╂触鍩哄湴 绛夈€?,"鏈潵 3 涓湀鏈€鍊煎緱鎶曞叆鐨勭粏鍒嗗競鍦猴細鏂拌兘婧愭苯杞︾數椹?PACK 浜х嚎閰嶅鐨勭幇鍦哄揩閫熸祴閲忎笌閲忓叿鏂规銆佸崐瀵间綋鏅跺渾/灏佽鍘傞厤濂楃殑绮惧瘑灏哄/褰㈣矊娴嬮噺銆佽埅绌鸿埅澶╁鍚堟潗鏂?绮惧瘑缁撴瀯浠剁殑楂樼簿搴︿笁鍧愭爣/绮楃硻搴?杞粨娴嬮噺銆?],"industries":[{"name":"鍗婂浣?/ 鏅跺渾鍒堕€?,"count":7,"event":"鍗庤櫣鏃犻敗 12 鑻卞涓夋湡澧炶祫銆丼EMI 涓婅皟璁惧閿€鍞銆佸彴绉數璁惧閲囪喘棰勬湡缈诲€嶃€侀暱鐢电鎶€瀹氬銆佷腑寰?鍖楁柟鍗庡垱璁㈠崟楂樺","growth":"楂橀€熷闀?},{"name":"鏂拌兘婧愭苯杞?/ 鍔ㄥ姏鐢垫睜","count":5,"event":"涓垱鏂拌埅鍚堣偉涓夋湡 25GWh 鎶曚骇銆佸洓鏈熸帹杩涳紱娆ｆ椇杈剧數鐧藉熀鍦版柊澧?SMT 浜х嚎","growth":"楂橀€熷闀?},{"name":"绮惧瘑鏈哄簥 / CNC","count":4,"event":"鍗椾含濞佽鍏嬪崕涓滃熀鍦?9 鏈堝簳鎶曚骇銆佽タ瀹夊法娴崕涓滄€婚儴灏侀《銆丼tar Micronics 鐗т箣鍘熷伐鍘傜宸?,"growth":"鏄捐憲澧為暱"},{"name":"鑸┖鑸ぉ","count":2,"event":"鐖辨€濊揪鑸ぉ澶╂触鏅鸿兘鍒堕€犲熀鍦板惎鍔紙椤圭洰閲戦澶э級","growth":"楂樺闀?},{"name":"鍖荤枟鍣ㄦ","count":3,"event":"瑗块棬瀛愬尰鐤?PET 鎺㈡祴鍣ㄥ熀鍦版墿寤哄畬鎴愩€佸己鐢熻嫃宸炰骇涓氬洯鎵╀骇銆佺憺濂囧绉戝ぉ娲ラ」鐩惤鍦?,"growth":"绋冲仴澧為暱"},{"name":"姹借溅鍙婇浂閮ㄤ欢","count":3,"event":"涓滈杞诲瀷鍙戝姩鏈虹矖绯欏害浠噰璐€丟estamp 鍗板害绗簲宸ュ巶鎶曚骇銆丄udi A2 e-tron 鎶曚骇","growth":"绋冲仴澧為暱"}],"regions":[{"area":"鍗庝笢鍦板尯","provs":"姹熻嫃銆佷笂娴枫€佸畨寰姐€佹禉姹?,"count":12,"key":"鍗庤櫣鏃犻敗涓夋湡銆佷腑鍒涙柊鑸悎鑲ヤ笁鏈熴€佸崡浜▉璇哄厠/瑗垮畨宸ㄦ氮鍩哄湴銆佷笂娴峰井绯荤粺鎵€鏅跺渾鍑犱綍閲忔祴浠€佷笂娴风數鏈哄闄?CMM"},{"area":"鍗庡寳鍦板尯","provs":"鍖椾含銆佸ぉ娲ャ€佸北瑗?,"count":6,"key":"鐖辨€濊揪鑸ぉ澶╂触鍩哄湴銆佸寳浜埅澶╄閲忓渾鏌卞害浠€佸ぇ鍚屽競妫€娴嬩腑蹇冭澶囬噰璐€佷腑绉戦櫌楂樿兘鐗╃悊鐮旂┒鎵€ CMM"},{"area":"鍗庡崡鍦板尯","provs":"骞夸笢","count":4,"key":"娆ｆ椇杈剧數鐧藉熀鍦般€佸拰鑰屾嘲闈掑矝涓滃寳浜氬熀鍦帮紙鍏宠仈锛夈€佷腑绉戦櫌楂樿兘鎵€涓滆帪涓瓙婧?CMM"},{"area":"瑗垮崡鍦板尯","provs":"鍥涘窛銆佷簯鍗?,"count":3,"key":"鎴愰兘涓夌淮鍏夊杞粨浠€佷簯鍗楃渷璁￠噺闄㈠厜瀛︽祴閫熶华"},{"area":"鍗庝腑鍦板尯","provs":"婀栧崡銆佹箹鍖?,"count":2,"key":"婀栧崡澶╁垱绮惧伐 CMM銆佷笢椋庤交鍨嬪彂鍔ㄦ満绮楃硻搴︿华"},{"area":"涓滃寳鍦板尯","provs":"鈥?,"count":0,"key":"鏆傛棤鏄庢樉淇″彿"}],"expanding":[{"co":"涓垱鏂拌埅","ind":"鍔ㄥ姏鐢垫睜","loc":"瀹夊窘鍚堣偉闀夸赴","proj":"鍚堣偉鍩哄湴涓夋湡 / 鍥涙湡","scale":"涓夋湡 25GWh 宸叉姇浜э紱鎬讳骇鑳藉皢杈?100GWh","status":"涓夋湡宸叉姇浜э紝鍥涙湡骞村簳鎶曚骇"},{"co":"鍗庤櫣瀹忓姏锛堟棤閿″崕铏癸級","ind":"鍗婂浣?,"loc":"姹熻嫃鏃犻敗","proj":"12 鑻卞鐗硅壊宸ヨ壓涓夋湡锛團ab 9B锛?,"scale":"娉ㄥ唽璧勬湰澧炶祫鑷?41.7 浜跨編鍏冿紱鎬绘姇璧?69.5 浜跨編鍏?,"status":"2026-03 鍚姩寤鸿锛岄璁?2027-12 瀹屽伐"},{"co":"鐖辨€濊揪鑸ぉ","ind":"鍟嗕笟鑸ぉ / 澶嶅悎鏉愭枡","loc":"澶╂触涓滀附","proj":"鏅鸿兘鍒堕€犲熀鍦颁簩鏈?,"scale":"鍗犲湴 125 浜╋紝寤洪潰 6.2 涓囥帯锛屾姇璧勮秴 5 浜垮厓","status":"2027-12 绔ｅ伐锛?028 鎶曠敤"},{"co":"鍗椾含濞佽鍏嬫櫤鑳界鎶€","ind":"楂樼鏁版帶鏈哄簥","loc":"姹熻嫃鍗椾含楂樻烦","proj":"鍗庝笢宸ヤ笟姣嶆満鐮斿彂鍒堕€犲熀鍦?,"scale":"鎬诲崰鍦?180 浜╋紝涓€鏈?48.9 浜?,"status":"涓€鏈?9 鏈堝簳鎶曚骇锛屼簩鏈?9 鏈堝簳寮€宸?},{"co":"瑗垮畨宸ㄦ氮绮惧瘑鏈烘","ind":"绮惧瘑鏁版帶鏈哄簥","loc":"姹熻嫃鍗椾含婧ф按","proj":"鍗庝笢鎬婚儴鍩哄湴","scale":"鎬绘姇璧?5.25 浜垮厓锛屽缓闈?3 涓囥帯","status":"涓讳綋缁撴瀯灏侀《锛岄璁?11 鏈堝簳绔ｅ伐"},{"co":"鍗庣繉绮炬満","ind":"楂樼浜旇酱鏈哄簥","loc":"骞垮窞榛勫煍 / 鍗椾含鍏悎 / 閲嶅簡","proj":"鍗庡崡 / 鍗庝笢 / 鎬婚儴鍒堕€犲熀鍦?,"scale":"骞垮窞涓€鏈熻鍒?2026 骞村簳鎶曚骇","status":"骞垮窞涓€鏈?2026 骞村簳鎶曚骇"},{"co":"娆ｆ椇杈剧數鐧藉熀鍦?,"ind":"姹借溅鐢靛瓙 / SMT","loc":"骞夸笢鑼傚悕鐢电櫧","proj":"鏂板 SMT / DIP 浜х嚎","scale":"鏂板 5 鏉?SMT銆? 鏉?DIP 浜х嚎","status":"2026 骞存墿浜т腑"},{"co":"鍜岃€屾嘲","ind":"鏅鸿兘鎺у埗鍣?,"loc":"灞变笢闈掑矝鍩庨槼","proj":"涓滃寳浜氭櫤鑳藉埗閫犲熀鍦颁竴鏈?,"scale":"寤洪潰瓒?7 涓囥帯锛?7 鏉¤嚜鍔ㄥ寲浜х嚎","status":"宸叉寮忔姇浜?},{"co":"Star Micronics","ind":"楂樼 CNC 杞﹀簥","loc":"鏃ユ湰闈欏唸鐗т箣鍘?,"proj":"鐗т箣鍘熷伐鍘?,"scale":"鎶曡祫绾?40 浜挎棩鍏冿紝寤洪潰绾?9,100銕?,"status":"2026-07 宸叉姇鍏ヨ繍琛?},{"co":"瑗块棬瀛愬尰鐤?,"ind":"鍖荤枟鍣ㄦ","loc":"缇庡浗鐢扮撼瑗?Rockford","proj":"PET 鎺㈡祴鍣ㄤ腑蹇冩墿寤?,"scale":"鎶曡祫 4,360 涓囩編鍏冿紙绾?3 浜垮厓锛?,"status":"鎵╁缓瀹屾垚"},{"co":"寮虹敓鍖荤枟绉戞妧","ind":"鍖荤枟鍣ㄦ","loc":"姹熻嫃鑻忓窞","proj":"鑻忓窞浜т笟鍥骇鑳芥墿瀹?,"scale":"鏂板鐜颁唬鍖栫豢鑹插巶鎴夸笌澶氭潯楂樼鏅洪€犱骇绾?,"status":"宸插畬鎴愭柊涓€杞墿瀹?},{"co":"鐟炲澶栫鍣ㄦ","ind":"鍖荤枟鍣ㄦ","loc":"澶╂触缁忓紑鍖?,"proj":"鍏ㄩ摼鏉℃櫤鑳藉埗閫犲崗鍚屽彂灞曚骇涓氶」鐩?,"scale":"鎶曡祫鏁颁嚎鍏冿紝闈㈢Н瓒?7,000銕?,"status":"绛剧害钀藉湴锛屽缓璁句腑"},{"co":"铻嶆嵎闆嗗洟","ind":"鏂拌兘婧愮數姹?/ 鍌ㄨ兘","loc":"骞垮窞榛勫煍","proj":"鏂拌兘婧愭櫤閫犲熀鍦?,"scale":"鎬绘姇璧?120 浜垮厓","status":"寤鸿涓?}],"buyers":[{"co":"涓垱鏂拌埅鍚堣偉鍩哄湴 / 鐮旂┒闄?,"loc":"瀹夊窘鍚堣偉","need":"涓夊潗鏍囥€佸奖鍍忔祴閲忎华銆佺矖绯欏害浠€佸崱灏?鍗冨垎灏恒€佹縺鍏変綅绉讳紶鎰熷櫒","why":"鍔ㄥ姏鐢垫睜澹充綋銆佺洊鏉裤€佺數鑺昂瀵?褰綅鍏樊妫€娴嬶紝浜х嚎鎵╁紶鏈熼噺鍏蜂笌 CMM 闇€姹傚悓姝ユ斁澶?},{"co":"鍗椾含濞佽鍏嬫櫤鑳界鎶€","loc":"姹熻嫃鍗椾含","need":"涓夊潗鏍囥€佺矖绯欏害浠€佽疆寤撲华銆佹祴楂樹华銆佺‖搴﹁","why":"楂樼鏁版帶鏈哄簥搴婅韩銆佸杞ㄣ€佷富杞寸瓑鍏抽敭闆堕儴浠剁殑绮惧瘑娴嬮噺涓庡嚭璐у墠缁堟"},{"co":"瑗垮畨宸ㄦ氮绮惧瘑鏈烘锛堝崕涓滄€婚儴锛?,"loc":"姹熻嫃鍗椾含婧ф按","need":"涓夊潗鏍囥€佸渾搴?鍦嗘煴搴︿华銆佺矖绯欏害浠€佽疆寤撲华","why":"骞翠骇 3,000 鍙扮簿瀵嗘暟鎺ф満搴婏紝涓昏酱銆佸杞ㄣ€佸垁濉旂瓑绮惧瘑閮ㄤ欢妫€娴嬮渶姹傚垰鎬?},{"co":"娆ｆ椇杈剧數鐧藉熀鍦?,"loc":"骞夸笢鑼傚悕","need":"褰卞儚娴嬮噺浠€佷簩娆″厓銆佷笁鍧愭爣銆佸熀纭€閲忓叿","why":"鏂板 5 鏉?SMT + 8 鏉?DIP 浜х嚎锛孊MS/BCM 绛夋苯杞︾數瀛?PCB 涓庣粨鏋勪欢灏哄妫€娴嬮渶姹傚鍔?},{"co":"鍗庣繉绮炬満锛堝崡浜?骞垮窞/閲嶅簡锛?,"loc":"姹熻嫃 / 骞夸笢 / 閲嶅簡","need":"涓夊潗鏍囥€佹縺鍏夊共娑変华銆佺矖绯欏害/杞粨浠?,"why":"楂樼浜旇酱鏈哄簥鐮斿彂涓庨噺浜э紝瀵瑰杞ㄣ€佷笣鏉犮€佷富杞寸瓑鏍稿績浼犲姩浠剁簿搴﹁姹傛瀬楂?},{"co":"鐖辨€濊揪鑸ぉ","loc":"澶╂触涓滀附","need":"涓夊潗鏍囥€佺矖绯欏害/杞粨浠€佸渾搴︿华銆佹祴楂樹华","why":"纰崇氦缁村鍚堟潗鏂欑伀绠暣娴佺僵銆佽埅绌鸿埅澶╃粨鏋勪欢鎵归噺鐢熶骇锛屽昂瀵镐笌褰綅鍏樊妫€娴嬮渶姹傚ぇ"},{"co":"涓滈杞诲瀷鍙戝姩鏈?,"loc":"婀栧寳鍗佸牥","need":"渚挎惡寮忕矖绯欏害浠€佽疆寤撲华銆佷笁鍧愭爣銆侀噺鍏?,"why":"ZD 鍔犲伐绾挎柊澧?3 涓究鎼哄紡绮楃硻搴︿华閲囪喘瀹屾垚锛屽悗缁骇绾垮崌绾т粛鏈夊閲?},{"co":"涓埅椋炴満璧疯惤鏋?,"loc":"婀栧崡闀挎矙","need":"楂樼簿搴︾矖绯欏害杞粨娴嬮噺浠€佷笁鍧愭爣銆佸渾搴︿华","why":"宸查噰璐珮绮惧害绮楃硻搴﹁疆寤撴祴閲忎华锛岃埅绌鸿捣钀芥灦绮惧瘑闆朵欢妫€娴嬫寔缁?},{"co":"鍗椾含宸ヨ壓瑁呭鍒堕€?,"loc":"姹熻嫃鍗椾含","need":"婊氱彔涓濇潬琛岀▼璇樊娴嬮噺浠€佹縺鍏夊共娑変华銆佹祴闀挎満","why":"宸插氨 4 绫?6 绫虫粴鐝犱笣鏉犺绋嬭宸祴閲忎华鎷涙爣锛屼紶鍔ㄤ欢绮惧瘑娴嬮噺闇€姹傛槑纭?},{"co":"鍜岃€屾嘲闈掑矝鍩哄湴","loc":"灞变笢闈掑矝","need":"褰卞儚娴嬮噺浠€佷笁鍧愭爣銆佸熀纭€閲忓叿銆丄OI/鍏夊妫€娴?,"why":"17 鏉℃櫤鑳芥帶鍒跺櫒浜х嚎鎶曚骇锛孲MT/缁勮鐜妭灏哄涓庡瑙傛娴嬮渶姹傛椇鐩?}],"demand":[{"cat":"涓夊潗鏍囨祴閲忔満锛圕MM锛?,"n":6,"amount":"楼149.5 涓囷紙涓婃捣鐢垫満瀛﹂櫌锛夛紱楼260 涓囷紙涓闄㈤珮鑳芥墍锛夛紱婀栧崡澶╁垱绮惧伐銆佷腑杞︽垰澧呭牥銆侀儜宸炵（鏂欑（鍏风爺绌舵墍","strength":"楂?},{"cat":"琛ㄩ潰绮楃硻搴?/ 杞粨 / 鍦嗗害 / 鍦嗘煴搴︿华","n":5,"amount":"楼156.6 涓囷紙涓埅椋炴満璧疯惤鏋讹級锛浡?79.5 涓囷紙鍖椾含鑸ぉ璁￠噺鍦嗘煴搴︿华锛夛紱涓夌淮鍏夊杞粨浠?2 濂楋紱渚挎惡寮忕矖绯欏害浠?3 鍙?,"strength":"楂?},{"cat":"婵€鍏夊共娑変华 / 婵€鍏変綅绉?/ 鍏夌數浼犳劅","n":4,"amount":"楼151 涓囷紙鑺滄箹璁￠噺闄㈢浉绉诲紡婵€鍏夊共娑変华锛夛紱楼83 涓囷紙椹瀺灞辫閲忔墍锛夛紱楼19.479 涓囷紙瑗垮崡浜ゅぇ鍏夌數浼犳劅鍣級","strength":"涓珮"},{"cat":"褰卞儚娴嬮噺浠?/ 浜屾鍏?/ 鎶曞奖鍥惧儚娴嬮噺浠?,"n":3,"amount":"楼62.8 涓囷紙浜戝崡鐪佽閲忛櫌闈炴帴瑙﹀厜瀛︽祴閫熶华锛夛紱鍚堣偉娉㈡灄鏂版潗鏂欐姇褰卞浘鍍忔祴閲忎华","strength":"涓?},{"cat":"纭害璁?/ 鐞嗗寲妫€娴嬭澶?,"n":3,"amount":"姹熻嫃鐪佺壒妫€闄㈢悊鍖栫被妫€娴嬭澶囷紱澶師鐞嗗伐澶у鍏ㄨ嚜鍔ㄦ樉寰‖搴︿华锛埪?5 涓囷級","strength":"涓?},{"cat":"鏅跺渾鍑犱綍閲忔祴 / 鍗婂浣撴娴?,"n":2,"amount":"楼108 涓囷紙涓闄笂娴峰井绯荤粺鎵€鏅跺渾鍑犱綍鍙傛暟閲忔祴浠級锛涗笁缁村厜瀛﹁疆寤撲华锛堝崐瀵间綋鐩稿叧锛?,"strength":"楂?},{"cat":"鍩虹閲忓叿锛堝崱灏恒€佸崈鍒嗗昂銆侀珮搴﹁绛夛級","n":2,"amount":"澶у悓甯傜患鍚堟楠屾娴嬩腑蹇冩壒閲忛噰璐紱涓滈杞诲瀷鍙戝姩鏈烘柊澧為噺鍏烽渶姹?,"strength":"涓?}],"substitution":[{"cat":"褰卞儚娴嬮噺浠?/ 浜屾鍏?/ 闂祴浠?,"level":"楂?,"how":"浠锋牸绔炰簤婵€鐑堬紝鍥戒骇鍘傚晢浠ャ€岃嚜鐮旂畻娉?楂樻€т环姣?蹇€熶氦浠樸€嶆姠鍗犱腑浣庣锛涜繘鍙ｅ搧鐗屽悜楂樼簿搴?澶嶅悎寮?鍦ㄧ嚎妫€娴嬫敹缂?,"brands":"澶╁噯绉戞妧銆佷腑鍥句华鍣ㄣ€佷竷娴锋娴嬨€佹⒌鐮佺數瀛愩€佸痉鐟炴娴?},{"cat":"渚挎惡寮忕矖绯欏害浠?/ 鍏ラ棬绾ч噺鍏?,"level":"涓珮","how":"璁￠噺闄㈡墍銆佹苯杞︿骇绾垮鎬т环姣旀晱鎰燂紝鍥戒骇鍝佺墝鍏ュ洿棰戠箒锛涜繘鍙ｅ湪楂樼绮楃硻搴﹁疆寤撳鍚堜华浠嶅崰浼?,"brands":"鍖椾含鏃朵唬銆佷笂娴锋嘲鏄庛€佽タ瀹夊▉鑰屼俊"},{"cat":"涓夊潗鏍囨祴閲忔満锛圕MM锛?,"level":"涓?,"how":"涓珮绔ˉ寮?榫欓棬浠嶇敱娴峰厠鏂悍銆佽敗鍙搞€佹俯娉戒富瀵硷紱鍥戒骇鏇夸唬鐩綍涓庛€屾湰鍥戒骇鍝佹爣鍑嗐€嶆斂绛栨寔缁姞鍘?,"brands":"澶╁噯 CMZ/CMU/CME銆佸姏鍚堢簿瀵嗐€侀浄椤挎暟鎺с€佺埍寰峰崕銆佹櫤娉版煰"},{"cat":"婵€鍏夊共娑変华 / 鍏夊杞粨浠?,"level":"涓?,"how":"鍥戒骇婵€鍏夊共娑変华鍦ㄨ閲忛櫌鎵€鎵归噺涓爣锛涢珮绔厜瀛﹁疆寤撲华浠嶇敱 Taylor Hobson 绛夎繘鍙ｅ搧鐗屼富瀵?,"brands":"鎱у埄浠櫒銆佷腑鍥句华鍣?},{"cat":"纭害璁?/ 鐞嗗寲妫€娴嬭澶?,"level":"涓?,"how":"鍥戒骇甯冩礇缁?鏄惧井纭害璁″湪楂樻牎銆佺壒妫€闄唤棰濇彁鍗囷紱楂樼鍏ㄨ嚜鍔ㄦ樉寰‖搴︿华浠嶄緷璧栬繘鍙?,"brands":"涓婃捣鏍囧崜銆佹柊澶┿€佸崕鐓滀紬淇?}],"follow10":[{"co":"涓垱鏂拌埅绉戞妧锛堝悎鑲ワ級鏈夐檺鍏徃 / 鐮旂┒闄?,"loc":"瀹夊窘鍚堣偉","why":"涓夋湡 25GWh 鍒氭姇浜с€佸洓鏈熷勾搴曟姇浜э紝鐮旂┒闄㈡柊钀藉湴锛岀數姹犲３浣?鐩栨澘/鐢佃姱妫€娴嬮渶姹傜垎鍙?,"act":"鑱旂郴璐ㄩ噺/璁惧閮ㄩ棬锛屾帹浠?CMM銆佺矖绯欏害浠€佹縺鍏夋祴鍘?浣嶇Щ鏂规锛涜窡杩涚爺绌堕櫌瀹為獙瀹よ澶囨嫑鏍?},{"co":"鍗椾含濞佽鍏嬫櫤鑳界鎶€鏈夐檺鍏徃","loc":"姹熻嫃鍗椾含楂樻烦","why":"鍗庝笢宸ヤ笟姣嶆満鍩哄湴涓€鏈?9 鏈堝簳鎶曚骇銆佷簩鏈?9 鏈堝簳寮€宸ワ紝楂樼鏁版帶鏈哄簥闆堕儴浠舵娴嬮渶姹傛槑纭?,"act":"9 鏈堜笅鏃嫓璁匡紝鎺ㄤ粙涓夊潗鏍囥€佺矖绯欏害/杞粨浠€佹祴楂樹华锛屽垏鍏ヤ緵搴斿晢浣撶郴"},{"co":"瑗垮畨宸ㄦ氮绮惧瘑鏈烘鏈夐檺鍏徃锛堝崕涓滄€婚儴锛?,"loc":"姹熻嫃鍗椾含婧ф按","why":"鍗庝笢鎬婚儴鍩哄湴 11 鏈堝簳绔ｅ伐锛屽勾浜?3,000 鍙扮簿瀵嗘暟鎺ф満搴婏紝涓昏酱/瀵艰建/鍒€濉旂簿瀵嗘祴閲忛渶姹傚ぇ","act":"瀵规帴閲囪喘/鍝佹帶锛屾帹浠嬪渾搴︿华銆佷笁鍧愭爣銆佺矖绯欏害浠?},{"co":"娆ｆ椇杈剧數鐧藉熀鍦?,"loc":"骞夸笢鑼傚悕","why":"鏂板 5 鏉?SMT + 8 鏉?DIP 浜х嚎锛屾苯杞︾數瀛?BMS/BCM 灏哄妫€娴嬮渶姹傚鍔?,"act":"鑱旂郴鍩哄湴璐ㄩ噺閮ㄩ棬锛屾帹浠嬪奖鍍忔祴閲忎华銆佷笁鍧愭爣銆佸熀纭€閲忓叿"},{"co":"鍗庤櫣瀹忓姏鍗婂浣擄紙鏃犻敗锛?,"loc":"姹熻嫃鏃犻敗","why":"12 鑻卞涓夋湡宸ㄩ鎶曡祫锛孎ab 9B 璁惧閲囪喘杩涜涓紝鏅跺渾/闆堕儴浠剁簿瀵嗘祴閲忛渶姹傚ぇ","act":"鍏虫敞 Fab 9B 璁惧鎷涙爣锛屾帹浠嬫櫠鍦嗗嚑浣曢噺娴嬨€佹縺鍏夊共娑夈€佷笁鍧愭爣"},{"co":"鐖辨€濊揪鑸ぉ绉戞妧鑲′唤鏈夐檺鍏徃","loc":"澶╂触涓滀附","why":"鏅鸿兘鍒堕€犲熀鍦颁簩鏈熷垰鍚姩锛屽晢涓氳埅澶╃伀绠暣娴佺僵/缁撴瀯浠舵壒閲忕敓浜?,"act":"鑱旂郴閲囪喘/璐ㄩ噺锛屾帹浠嬩笁鍧愭爣銆佺矖绯欏害/杞粨浠€佸鍚堟潗鏂欐娴嬫柟妗?},{"co":"涓滈杞诲瀷鍙戝姩鏈烘湁闄愬叕鍙?,"loc":"婀栧寳鍗佸牥","why":"ZD 鍔犲伐绾挎柊澧炰究鎼哄紡绮楃硻搴︿华閲囪喘瀹屾垚锛屽悗缁骇绾垮崌绾т粛鏈夊閲?,"act":"璺熻繘绮楃硻搴︿华浣跨敤鎯呭喌锛屾帹浠嬫洿澶氶噺鍏?CMM/杞粨浠?},{"co":"涓埅椋炴満璧疯惤鏋舵湁闄愯矗浠诲叕鍙?,"loc":"婀栧崡闀挎矙","why":"宸查噰璐珮绮惧害绮楃硻搴﹁疆寤撴祴閲忎华锛岃埅绌虹簿瀵嗛浂浠舵娴嬫寔缁?,"act":"缁存姢鐜版湁鍏崇郴锛屾帹浠嬪渾搴?鍦嗘煴搴︿华銆佷笁鍧愭爣"},{"co":"鍗椾含宸ヨ壓瑁呭鍒堕€犺偂浠芥湁闄愬叕鍙?,"loc":"姹熻嫃鍗椾含","why":"宸插氨婊氱彔涓濇潬琛岀▼璇樊娴嬮噺浠嫑鏍囷紝浼犲姩浠剁簿瀵嗘祴閲忛渶姹傛槑纭?,"act":"瀵规帴鎶€鏈?閲囪喘锛屾帹浠嬫縺鍏夊共娑変华銆佹祴闀挎満銆佷笁鍧愭爣"},{"co":"涓婃捣鐢垫満瀛﹂櫌","loc":"涓婃捣","why":"妗ュ紡涓夊潗鏍囨祴閲忔満宸蹭腑鏍囷紙娴峰厠鏂悍锛夛紝鍚庣画鏁欏/绉戠爺璁惧浠嶆湁鏇存柊绐楀彛","act":"鍏虫敞鍚庣画璁惧閲囪喘璁″垝锛屾帹浠嬪奖鍍忎华銆佺矖绯欏害浠€佸熀纭€閲忓叿"}],"markets3m":[{"title":"鏂拌兘婧愭苯杞︾數椹?/ PACK 浜х嚎鐜板満蹇€熸祴閲?,"driver":"涓垱鏂拌埅銆佸畞寰锋椂浠ｃ€佹鏃鸿揪銆佹瘮浜氳开绛夌數姹?鐢甸┍浜х嚎鎸佺画鎵╀骇锛屽鐢垫睜澹充綋灏哄銆佹瀬鐗囨瘺鍒恒€佺洊鏉垮钩闈㈠害銆佺數鑺珮搴?鐩村緞銆丳ACK 瑁呴厤闂撮殭绛夌幇鍦哄揩閫熸娴嬮渶姹傜垎鍙?,"products":"鏁版樉鍗″昂/鍗冨垎灏恒€丄BSOLUTE 闃插喎鍗存恫鍗″昂銆佹暟鏄炬祴楂樹华銆佷究鎼哄紡绮楃硻搴︿华銆佹縺鍏変綅绉讳紶鎰熷櫒銆佺幇鍦哄瀷 CMM","clients":"涓垱鏂拌埅鍚堣偉/鍘﹂棬/姹熼棬銆佹鏃鸿揪鐢电櫧/鍗椾含銆佸畞寰锋椂浠ｅ浗鍐呭熀鍦般€佽渹宸㈣兘婧?},{"title":"鍗婂浣撴櫠鍦?/ 灏佽鍘傜簿瀵嗗昂瀵镐笌褰㈣矊娴嬮噺","driver":"鍗庤櫣鏃犻敗涓夋湡銆侀暱姹熷瓨鍌ㄤ笁鏈熴€侀暱鐢电鎶€鍏堣繘灏佽鎵╀骇銆佸彴绉數/涓姱璁惧閲囪喘涓婁慨锛屽鏅跺渾鍑犱綍閲忔祴銆丅GA/CSP 灏哄銆佸紩绾挎鏋?灏佽浣撳昂瀵搞€亀afer 缈樻洸銆佽〃闈㈢矖绯欏害绛夋娴嬮渶姹傚鍔?,"products":"鏅跺渾鍑犱綍閲忔祴鏂规銆佹縺鍏夋壂鎻忔祴閲忋€佸奖鍍忔祴閲忎华锛圦V锛夈€佺矖绯欏害/杞粨浠€侀珮绮惧害娴嬮珮浠€佸熀纭€閲忓叿","clients":"鍗庤櫣瀹忓姏鏃犻敗銆侀暱鐢电鎶€銆侀€氬瘜寰數銆佺洓鍚堟櫠寰€佷笂娴峰井绯荤粺鎵€绛夌鐮斿钩鍙?},{"title":"鑸┖鑸ぉ澶嶅悎鏉愭枡涓庣簿瀵嗙粨鏋勪欢楂樼簿搴︽祴閲?,"driver":"鐖辨€濊揪鑸ぉ銆佽摑绠埅澶┿€佹槦闄呰崳鑰€绛夊晢涓氳埅澶╀紒涓氫粠鐮斿彂杩涘叆鎵逛骇锛岀伀绠暣娴佺僵銆佽埍娈点€侀榾浣撱€佺揣鍥轰欢绛夊澶у昂瀵镐笁鍧愭爣銆佸舰浣嶅叕宸€佺矖绯欏害/杞粨銆佸渾搴﹀渾鏌卞害妫€娴嬮渶姹傚垰鎬?,"products":"澶у瀷妗ュ紡/榫欓棬涓夊潗鏍囥€佸渾搴︿华銆佸渾鏌卞害浠€佺矖绯欏害杞粨澶嶅悎浠€佹祴楂樹华銆佽灪绾?榻胯疆涓撶敤閲忓叿","clients":"鐖辨€濊揪鑸ぉ澶╂触銆佷腑鑸鏈鸿捣钀芥灦銆佽埅绌哄彂鍔ㄦ満涓绘満鍘傘€佽埅澶╀竴闄?鍏櫌閰嶅浼佷笟"}],"actions":["閿€鍞晶锛氫笅鍛ㄤ紭鍏堟嫓璁垮崡浜▉璇哄厠銆佽タ瀹夊法娴崕涓滄€婚儴銆佷腑鍒涙柊鑸悎鑲ョ爺绌堕櫌銆佹鏃鸿揪鐢电櫧鍩哄湴锛屾惡甯︿笁鍧愭爣/绮楃硻搴?褰卞儚浠牱鍐屼笌鎴愬姛妗堜緥锛岃仛鐒︺€屾墿浜ф湡鐨勮澶囬€夊瀷绐楀彛銆嶃€?,"甯傚満渚э細鎸佺画鐩戞帶鍗庤櫣鏃犻敗涓夋湡銆佸彴绉數/涓姱璁惧閲囪喘銆佸晢涓氳埅澶╁熀鍦版墿浜х殑鍚庣画鎷涙爣锛涘缓绔嬨€岃閲忛櫌鎵€璁惧鏇存柊銆嶄笓椤硅窡韪竻鍗曘€?,"浜у搧渚э細閽堝鍥戒骇鏇夸唬鍘嬪姏鏈€澶х殑褰卞儚娴嬮噺浠?浜屾鍏?渚挎惡寮忕矖绯欏害浠?鍩虹閲忓叿锛屽噯澶囥€岀簿搴﹀姣?鏈嶅姟鍝嶅簲+鏁版嵁鎺ュ彛銆嶇粍鍚堟柟妗堬紱瀵逛腑楂樼 CMM/鍦嗗害/杞粨浠己鍖栥€岀ǔ瀹氭€?鍏ㄧ悆鏈嶅姟缃戠粶銆嶅崠鐐广€?,"娓犻亾渚э細鍔犲己涓庡崕涓滐紙鍗椾含銆佽嫃宸炪€佹棤閿★級銆佸崕鍗楋紙娣卞湷銆佷笢鑾炪€佽寕鍚嶏級銆佸崕鍖楋紙澶╂触銆佸寳浜級鏈湴浠ｇ悊鍟?鏈嶅姟鍟嗗崗鍚岋紝纭繚鎵╀骇瀹㈡埛鑳藉湪 24鈥?8 灏忔椂鍐呰幏寰楃幇鍦烘敮鎸併€?,"鏁版嵁渚э細琛ュ厖鑾峰彇 鈶?鍗庤櫣鏃犻敗涓夋湡璁惧鎷涙爣鏄庣粏锛涒憽 涓垱鏂拌埅鍚堣偉鐮旂┒闄㈣澶囬噰璐鍒掞紱鈶?鍗椾含濞佽鍏?瑗垮畨宸ㄦ氮宸茬‘瀹氱殑妫€娴嬭澶囦緵搴斿晢鍚嶅崟锛涒懀 涓滈杞诲瀷鍙戝姩鏈?ZD 绾垮悗缁姇璧勮鍒掋€?],"sources":["涓浗鏀垮簻閲囪喘缃戯紙ccgp.gov.cn锛夆€?涓婃捣鐢垫満瀛﹂櫌銆佷腑绉戦櫌楂樿兘鐗╃悊鐮旂┒鎵€銆佷簯鍗楃渷璁￠噺闄€佸ぇ鍚屽競妫€娴嬩腑蹇冦€佸お鍘熺悊宸ュぇ瀛︺€佷腑鍥芥祴璇曟妧鏈爺绌堕櫌绛?,"蹇呰仈缃戯紙ebnew.com锛夆€?涓溅鎴氬鍫?CMM銆佹箹鍗楀ぉ鍒涚簿宸?CMM銆佷笁缁村厜瀛﹁疆寤撲华銆佹睙鑻忕渷鐗规闄㈢瓑","涓嫑鑱斿悎鎷涙爣閲囪喘骞冲彴 鈥?鍖椾含鑸ぉ璁￠噺鍦嗘煴搴︿华","浠櫒淇℃伅缃?鈥?涓闄㈤珮鑳芥墍 CMM銆佹捣鍏嬫柉搴?OPTIV S 鍙戝竷","涓婂競鍏徃 / 浼佷笟鍏憡 鈥?鍗庤櫣瀹忓姏銆佷腑鍒涙柊鑸€侀暱鐢电鎶€銆佸寳鏂瑰崕鍒涖€佷腑寰叕鍙?,"鏀垮簻 / 寮€鍙戝尯瀹樼綉 鈥?鍗椾含楂樻烦鍖猴紙濞佽鍏嬶級銆佸崡浜骇姘村尯锛堣タ瀹夊法娴級銆佸ぉ娲ヤ笢涓藉尯锛堢埍鎬濊揪鑸ぉ锛夈€佸箍宸為粍鍩斿尯锛堣瀺鎹烽泦鍥級","琛屼笟濯掍綋 鈥?涓浗鐢靛瓙鎶?SEMI銆佷腑鍥藉伐涓氭柊闂荤綉銆佺洊涓栨苯杞︺€佷腑鍥芥柊闂诲懆鍒?,"鎷涜仒骞冲彴 鈥?鐚庤仒銆佹櫤閫氱洿鑱橈紙CMM / 娴嬮噺宸ョ▼甯堝矖浣嶇儹搴︼級"]};
 
 /* ============================================================
-   模块 5：DAILY_RADAR（三丰精密测量行业增量市场雷达·机会日报，每天 09:00 由自动化整体替换）
-   字段：date/window/top5/mustWatch/plants/markets/competitors/leads/trends/actions
+   妯″潡 5锛欴AILY_RADAR锛堜笁涓扮簿瀵嗘祴閲忚涓氬閲忓競鍦洪浄杈韭锋満浼氭棩鎶ワ紝姣忓ぉ 09:00 鐢辫嚜鍔ㄥ寲鏁翠綋鏇挎崲锛?
+   瀛楁锛歞ate/window/top5/mustWatch/plants/markets/competitors/leads/trends/actions
 ============================================================ */
-const DAILY_RADAR={"date":"2026-09-17","window":"2026-09-14 ~ 2026-09-17","top5":[{"co":"蓝箭航天无锡生产基地","ind":"商业航天 / 火箭","loc":"江苏无锡","opp":"朱雀三号大型可复用液体火箭量产基地建成，总投资 23 亿元，满产后年发射 20 次总装能力","dev":"三坐标测量机、激光跟踪仪、影像测量仪、轮廓仪","when":"2026 Q4 起量产","score":93},{"co":"星河动力廊坊基地","ind":"商业航天 / 火箭","loc":"河北廊坊","opp":"一期投产，年产 30 发谷神星固体火箭 + 20 发智神星液体火箭核心零部件","dev":"三坐标测量机、圆度仪、粗糙度仪、影像测量仪","when":"2026-2027 年","score":89},{"co":"丽水市质量检验检测研究院","ind":"质检 / 计量","loc":"浙江丽水","opp":"检验检测设备更新项目中标，总金额 1463.9 万元","dev":"三坐标、影像测量仪、粗糙度仪、轮廓仪等","when":"已中标，设备进场中","score":86},{"co":"钠美新能源科技（巴中）","ind":"钠离子电池","loc":"四川巴中","opp":"国内首条 GWh 级全极耳大圆柱钠电产线投产，总投资约 5 亿元","dev":"三坐标、影像测量仪、粗糙度仪、测厚仪","when":"已投产，后续扩产 30GWh","score":86},{"co":"苏州华集数控科技","ind":"数控机床 / 精密机械","loc":"江苏南京溧水","opp":"年产 3000 台通用 CNC 加工中心研发生产项目落户，总投资 5 亿元","dev":"三坐标、激光干涉仪、球杆仪、影像测量仪","when":"2028 年建成投产","score":85}],"mustWatch":[{"title":"蓝箭航天无锡基地建成：民营大型可复用火箭进入量产阶段","what":"2026 年 5 月建成的蓝箭航天无锡生产基地将实现朱雀三号大型可复用液体运载火箭量产能力，基地占地约 112 亩，总投资 23 亿元，满产后具备年发射 20 次的总装、总测能力。","why":"中国民营商业航天首次承接大型低轨星座批量组网任务后的关键产能布局，GW 星座、千帆星座等超万颗卫星部署对大运力、低成本火箭提出刚性需求。","need":"火箭贮箱、阀门、发动机零部件、3D 打印件的高精度检测；贮箱总成焊接后的形位公差测量；总装阶段的对接测量。","when":"基地已建成，2026 Q4 进入量产爬坡，测量设备需求在 3-6 个月内集中释放。","todo":"重点接触蓝箭航天无锡基地质量/工艺部门，推荐三丰大型桥式三坐标、激光跟踪仪及配套测头方案。"},{"title":"星河动力「智神星一号」首飞成功，廊坊基地一期投产","what":"星河动力自研中大型可重复使用液体运载火箭「智神星一号」首飞成功；廊坊基地一期 6 月投产，生产火箭用阀门组件，二期建设中，全部建成后具备年产 30 发谷神星固体火箭及 20 发智神星液体火箭核心零部件生产能力。","why":"京津冀协同背景下，北京研发 + 廊坊制造的产业格局形成，航天零部件精密加工需求集中。","need":"阀门、发动机涡轮泵、燃烧室等精密零件的三坐标检测、表面粗糙度/轮廓测量、形位公差检测。","when":"2026 Q4 - 2027 Q2。","todo":"跟进星河动力廊坊基地扩产进度，提供航空航天行业测量解决方案。"},{"title":"钠美新能源 1.5GWh 钠离子电池产线在巴中投产","what":"9 月 16 日，国内首条 GWh 级全极耳大圆柱钠离子电池智能量产线在四川巴中正式投产，钠美新能源 1.5GWh 钠离子电池一期项目总投资约 5 亿元。","why":"2026 年被行业公认为钠电量产元年，巴中市计划 3-5 年内集聚 20 家以上钠电产业链核心企业，形成年产 30GWh 电芯及配套材料产能。","need":"极片、隔膜、电芯壳体、极耳的尺寸测量；电池组装的视觉定位与检测；产线 SPC 用在线测量设备。","when":"已投产，后续扩产设备需求持续 3-6 个月。","todo":"关注巴中经开区钠电产业园后续扩产项目，推荐影像测量仪、粗糙度仪、测高仪等。"},{"title":"苏州华集数控年产 3000 台 CNC 项目落户南京溧水","what":"苏州华集数控科技与南京溧水区签约，总投资 5 亿元建设年产 3000 台通用 CNC 加工中心研发生产项目，预计明年初开工、2028 年建成投产。","why":"企业以五轴机床及半导体新材料加工装备为特色，新工厂建设将带来大量机床精度检测与出厂标定需求。","need":"机床出厂精度标定用的激光干涉仪、球杆仪、三坐标测量机；客户现场验收用测量设备。","when":"2026 年底 - 2027 年设备招标。","todo":"提前接触华集数控采购/技术部门，推介三丰在机床行业测量方案。"},{"title":"海门经开区签约三大高端智造项目","what":"9 月 16 日，海门经开区签约高精度五轴联动数控机床智造（锟仑精密 1.5 亿元）、半导体及大飞机高端智能装备制造（江苏密特科 3 亿元）、空天通信光子器件研发生产三大项目。","why":"项目涵盖高端数控机床、半导体装备、航空航天通信等战略性新兴产业，精密测量需求明确。","need":"五轴机床精度检测、半导体精密装备结构件测量、航空航天零部件形位公差检测。","when":"签约后 6-12 个月。","todo":"跟踪项目开工及设备招标节点，重点跟进江苏密特科半导体/大飞机装备项目。"}],"plants":[{"co":"蓝箭航天无锡生产基地","loc":"江苏无锡","ind":"商业航天火箭","scale":"23 亿元，年发射 20 次总装能力","status":"已建成（5 月）","need":"三坐标、激光跟踪仪、影像测量仪"},{"co":"星河动力廊坊基地","loc":"河北廊坊","ind":"商业航天火箭","scale":"年产 30 发固体 + 20 发液体火箭零部件","status":"一期投产，二期建设","need":"三坐标、圆度仪、粗糙度仪"},{"co":"钠美新能源巴中基地","loc":"四川巴中","ind":"钠离子电池","scale":"5 亿元，1.5GWh","status":"正式投产","need":"影像测量仪、粗糙度仪、测厚仪"},{"co":"苏州华集数控 CNC 项目","loc":"江苏南京溧水","ind":"数控机床","scale":"5 亿元，年产 3000 台","status":"签约落地，2028 年建成","need":"激光干涉仪、球杆仪、三坐标"},{"co":"海门经开区高端智造项目","loc":"江苏南通海门","ind":"高端装备 / 半导体","scale":"合计 4.5 亿元","status":"签约","need":"三坐标、影像测量仪、轮廓仪"},{"co":"强生苏州产业园","loc":"江苏苏州","ind":"医疗器械","scale":"心电生理产线落成 + 外科工厂升级","status":"9 月正式落成","need":"影像测量仪、粗糙度仪、轮廓仪"},{"co":"爱迪特牙科产业园","loc":"河北秦皇岛","ind":"医疗器械（牙科）","scale":"一期设备搬迁调试中","status":"逐步试生产","need":"影像测量仪、三坐标、粗糙度仪"},{"co":"昊志高端装备智造产业园二期","loc":"湖南湘阴","ind":"高端装备 / 数控机床","scale":"251 亩","status":"签约","need":"三坐标、激光干涉仪、影像测量仪"},{"co":"博迈医疗 IPO 募投","loc":"广东东莞 / 湖南","ind":"血管介入医疗器械","scale":"12 亿元","status":"创业板过会","need":"影像测量仪、粗糙度仪、测径仪"},{"co":"鼎泰鑫先进新材料制造基地","loc":"广东东莞厚街","ind":"PCB / 新材料","scale":"7 亿元","status":"签约","need":"影像测量仪、三坐标、厚度测量仪"}],"markets":[{"ind":"汽车 / 新能源汽车","trend":"增长","why":"吉利雷诺巴西工厂本地化投产、十堰新能源转型、比亚迪海外工厂推进；国内动力电池产业链持续扩产"},{"ind":"动力电池","trend":"增长","why":"宁德时代埃及 5GWh 电池厂签约；溧阳电池制造产业 2026 上半年规上产值 637.3 亿元，同比 +51.9%"},{"ind":"储能","trend":"增长","why":"钠美巴中 1.5GWh 投产，巴中规划 30GWh；蓝固新能源万吨级固态电解质产线投产"},{"ind":"半导体 / 晶圆厂","trend":"增长","why":"海门半导体装备项目签约；华集数控布局半导体新材料加工装备；国产替代持续推进"},{"ind":"精密机械 / 数控机床","trend":"增长","why":"华集数控、海德曼、昊志机电、锟仑精密等五轴/复合机床项目密集落地"},{"ind":"电子制造","trend":"增长","why":"昊志机电 PCB 主轴、鼎泰鑫 PCB 新材料项目扩产"},{"ind":"航空航天","trend":"增长","why":"蓝箭、星河动力、东方空间等商业航天火箭量产加速；C919 交付爬坡"},{"ind":"医疗器械","trend":"增长","why":"强生苏州心电生理产线落成、博迈医疗 IPO 扩产、爱迪特牙科产业园试生产"},{"ind":"模具","trend":"稳定","why":"鼎泰高科 PCB 相关材料扩产；连云港眼镜模具国产化项目推进"}],"competitors":[{"brand":"蔡司 ZEISS","news":"9 月发布 VersaXRM 5 Insight 混合 3D X 射线显微镜，整合 X 射线显微镜与 microCT，面向半导体封装、电子、材料研究","impact":"在半导体/电子失效分析领域加强布局，对三丰影像/非接触测量形成竞争压力"},{"brand":"海克斯康 Hexagon","news":"中标上海民航职业技术学院高精度三坐标测量机项目（58.9 万元，型号 FUSION 05.06.05）","impact":"持续占据教育培训及中小型 CMM 采购市场"},{"brand":"泰勒霍普森 Taylor Hobson","news":"中标成光镜界（四川）三维光学轮廓仪项目 2 套","impact":"在光学轮廓/表面粗糙度高端市场保持优势"},{"brand":"中图仪器 Chotest","news":"Novator 全自动影像测量仪报价 52 万元，强调 AI 影像测量、自主可控软件","impact":"国产影像测量仪在中低端市场加速替代，价格竞争激烈"},{"brand":"国产影像测量仪品牌","news":"万濠、天准、舜宇等持续推广全自动影像测量仪，强调与 MES 对接、珠三角服务响应","impact":"对三丰 QV 系列影像测量仪形成价格竞争"}],"leads":[{"co":"蓝箭航天无锡生产基地","loc":"江苏无锡","ind":"商业航天","type":"火箭量产基地检测需求","amount":"23 亿元","score":93,"prob":"🔴 极可能（1-3 个月）","act":"重点攻关，推荐三坐标 + 激光跟踪仪"},{"co":"星河动力廊坊基地","loc":"河北廊坊","ind":"商业航天","type":"火箭零部件扩产","amount":"年产 50 发","score":89,"prob":"🔴 极可能","act":"对接质量部门，提供航空航天测量方案"},{"co":"丽水市质检院","loc":"浙江丽水","ind":"质检机构","type":"设备更新","amount":"1463.9 万元","score":86,"prob":"🔴 极可能（已中标，跟进下一轮）","act":"关注后续标包，准备方案"},{"co":"钠美新能源巴中","loc":"四川巴中","ind":"钠电池","type":"产线及扩产","amount":"5 亿元","score":86,"prob":"🟠 较可能（3-6 个月）","act":"跟进扩产进度"},{"co":"苏州华集数控","loc":"江苏南京","ind":"数控机床","type":"新工厂建设","amount":"5 亿元","score":85,"prob":"🟡 潜在（6-12 个月）","act":"提前接触采购/技术部门"},{"co":"江苏密特科智能装备","loc":"江苏南通","ind":"半导体 / 大飞机","type":"新工厂","amount":"3 亿元","score":84,"prob":"🟡 潜在","act":"跟踪开工节点"},{"co":"威海市 / 聊城市检验检测中心","loc":"山东","ind":"质检机构","type":"设备更新","amount":"2150 万元","score":84,"prob":"🟠 较可能","act":"重点跟进招标文件"},{"co":"强生苏州产业园","loc":"江苏苏州","ind":"医疗器械","type":"心电生理产线落成","amount":"暂无法确认","score":83,"prob":"🟠 较可能","act":"对接强生供应链/质量部门"},{"co":"锟仑精密工业","loc":"江苏南通","ind":"高端数控机床","type":"五轴机床项目","amount":"1.5 亿元","score":82,"prob":"🟡 潜在","act":"跟踪设备采购"},{"co":"昊志高端装备智造园","loc":"湖南湘阴","ind":"高端装备","type":"二期扩产","amount":"251 亩","score":82,"prob":"🟡 潜在","act":"关注设备招标"},{"co":"深圳天溯计量检测","loc":"新疆塔城","ind":"第三方检测","type":"医院合同公告","amount":"280 万元","score":82,"prob":"🟠 较可能","act":"关注其设备采购需求"},{"co":"博迈医疗","loc":"广东东莞","ind":"医疗器械","type":"IPO 扩产","amount":"12 亿元","score":81,"prob":"🟡 潜在","act":"跟进募投项目设备采购"},{"co":"鼎泰鑫电子","loc":"广东东莞","ind":"PCB 新材料","type":"先进新材料制造基地","amount":"7 亿元","score":80,"prob":"🟡 潜在","act":"关注项目开工"},{"co":"重庆市计量质量检测研究院","loc":"重庆","ind":"质检机构","type":"医学标包中标","amount":"226 万元","score":76,"prob":"🟠 较可能","act":"关注后续标包"},{"co":"上海民航职业技术学院","loc":"上海","ind":"教育 / 培训","type":"三坐标采购已中标","amount":"58.9 万元","score":75,"prob":"🟢 长期","act":"作为教育市场推广案例"}],"trends":[{"span":"1 个月（2026-08 ~ 09）","items":["商业航天进入量产兑现期：蓝箭、星河动力、东方空间等民营火箭企业从试验发射转向批量交付组网星，火箭及零部件制造基地密集投产，精密测量需求快速上升。","钠电池量产元年启动：钠美巴中 1.5GWh 投产、中科海钠万吨级产线商业化，钠电产业链从材料端向电芯制造端跨越。"]},{"span":"3 个月（2026-06 ~ 09）","items":["高端数控机床国产化加速：华集数控、海德曼、昊志机电、锟仑精密等五轴/复合机床项目密集落地，机床精度检测市场扩容。","质检机构设备更新持续：丽水、威海、聊城、重庆等地质检/计量机构大额设备更新招标密集发布，是测量仪器集中采购的重要窗口。"]},{"span":"6 个月（2026-03 ~ 09）","items":["新能源产业链海外扩张：宁德时代埃及建厂、比亚迪海外工厂投产、吉利雷诺巴西本地化，带动海外测量设备配套机会（需评估 Ailis 海外服务能力）。","医疗器械本土化深化：强生、博迈、爱迪特等外资/国产医疗器械企业持续扩产，高端医疗器械测量需求增长。"]},{"span":"12 个月（2025-09 ~ 2026-09）","items":["精密测量仪器国产替代与外资高端并存：国产影像测量仪、三坐标在中低端市场加速渗透；蔡司、海克斯康持续在高端半导体、航空航天、教育市场保持优势。","政策驱动设备更新：质检、计量、高校、科研院所设备更新政策持续释放采购需求。"]}],"actions":{"contact":["蓝箭航天无锡生产基地 — 火箭量产基地刚建成，测量设备需求迫切，推荐大型三坐标、激光跟踪仪方案。","星河动力廊坊基地 — 一期投产、二期建设中，航空航天零部件检测需求明确。","丽水市质量检验检测研究院 — 1463.9 万元设备更新已开标，关注后续标包及类似机构招标。","威海市 / 聊城市检验检测中心 — 2150 万元设备更新项目正在招标，需立即获取招标文件并准备应标。"],"promote":["商业航天 / 火箭制造领域 — 蓝箭、星河动力、东方空间等民营火箭企业进入量产期，重点推广三坐标、激光跟踪仪、影像测量仪。","钠离子电池 / 储能领域 — 钠美、中科海钠等企业扩产，推广影像测量仪、粗糙度仪、测厚仪。","高端数控机床领域 — 华集数控、锟仑精密、昊志机电等新工厂建设，推广激光干涉仪、球杆仪、三坐标。","医疗器械领域 — 强生苏州、博迈医疗、爱迪特扩产，推广影像测量仪、粗糙度仪、轮廓仪。"],"watch":["C919 产业链 — 长江-1000A 发动机取证收尾，航空发动机热端部件、机载系统国产化将带来新的精密测量需求。","固态电池 / 固态电解质 — 蓝固新能源万吨级固态电解质产线投产，清陶能源台州二期谋划开工。","半导体设备国产化 — 海门半导体装备项目、华集数控半导体新材料加工装备项目。"],"avoid":["海外动力电池项目（宁德时代埃及、比亚迪泰国/巴西等）— 距离 Ailis 核心服务区域较远，且面临当地代理商/服务网络竞争，暂不主动投入。","已中标的低价值项目 — 上海民航职业技术学院 58.9 万元项目已由海克斯康中标，无需跟进。","信息不明确的早期招商项目 — 部分仅完成签约、尚未开工的项目，待用地/环评/设备招标信息明确后再投入。"]}};
+const DAILY_RADAR={date:"2026-09-18",window:"2026-09-15 ~ 2026-09-18",top5:[{rank:1,co:"涓姱鍥介檯锛堝洓澶у熀鍦帮級",ind:"鍗婂浣?,loc:"涓婃捣/鍖椾含/澶╂触/娣卞湷",opp:"鍥涘ぇ12鑻卞鏅跺渾鍩哄湴鍚屾鎵╀骇锛屽勾搴曟柊澧炴湀浜ц兘绾?涓囩墖12鑻卞绛夋晥浜ц兘",dev:"鏅跺渾閲忔祴璁惧銆佷笁鍧愭爣銆佽疆寤撲华銆佽啘鍘氫华",when:"2026Q4-2027Q1璁惧瀵嗛泦杩涘満",score:97},{rank:2,co:"钃濈鑸ぉ鏃犻敗鐢熶骇鍩哄湴",ind:"鍟嗕笟鑸ぉ",loc:"姹熻嫃鏃犻敗",opp:"5鏈堝缓鎴愶紝鎬绘姇璧?3浜垮厓锛屾湵闆€涓夊彿閲忎骇鍩哄湴锛屽勾鍙戝皠20娆℃€昏鎬绘祴鑳藉姏",dev:"澶у瀷涓夊潗鏍囥€佹縺鍏夎窡韪华銆佷笁缁存壂鎻忎华",when:"浜х嚎宸插缓鎴愶紝璁惧鎸佺画琛ュ厖",score:93},{rank:3,co:"寰锋壃鏅鸿兘瑁呭锛堣嫃宸烇級",ind:"鏁版帶鏈哄簥",loc:"姹熻嫃甯哥啛",opp:"9鏈?6鏃ヤ笁鏈熷鍩猴紝鎬绘姇璧勮秴10浜垮厓锛岃仛鐒﹂珮绔簲杞存櫤鑳借澶?,dev:"婵€鍏夊共娑変华銆佺悆鏉嗕华銆佷笁鍧愭爣銆佽疆寤撲华",when:"2026Q4-2027Q2鍩哄缓鏈燂紝璁惧鎷涙爣鍦ㄥ嵆",score:89},{rank:4,co:"榛勭煶寮€鍙戝尯PCB浜т笟缇?,ind:"PCB/鐢靛瓙鍒堕€?,loc:"婀栧寳榛勭煶",opp:"鍏ㄥ浗绗笁澶CB闆嗚仛鍖猴紝AI绠楀姏鎵╀骇鏂板鎶曡祫瓒呯櫨浜垮厓",dev:"楂樼簿搴﹀奖鍍忔祴閲忎华銆乆-Ray銆佺嚎璺澘涓撶敤娴嬮噺璁惧",when:"鎸佺画鎵╀骇涓紝璁惧闇€姹傛椇鐩?,score:88},{rank:5,co:"閽犵編鏂拌兘婧愮鎶€锛堝反涓級",ind:"閽犵數姹?,loc:"鍥涘窛宸翠腑",opp:"9鏈?6鏃ュ浗鍐呴鏉Wh绾у叏鏋佽€冲ぇ鍦嗘煴閽犵數浜х嚎姝ｅ紡鎶曚骇",dev:"鐢垫睜灏哄妫€娴嬭澶囥€佸奖鍍忔祴閲忎华銆佽〃闈㈢矖绯欏害浠?,when:"宸叉姇浜э紝浜屾湡鎵╀骇绛瑰涓?,score:86}],mustWatch:[{title:"涓姱鍥介檯鍥涘ぇ鍩哄湴12鑻卞鏅跺渾鍚屾鎵╀骇锛岃澶囪繘鍦洪珮宄版湡灏嗚嚦",what:"涓姱鍥介檯2026骞村簳鏈堜骇鑳介璁¤緝2025骞村簳澧炲姞绾?涓囩墖12鑻卞绛夋晥浜ц兘銆備笂娴蜂复娓腑鑺笢鏂逛簩鏈熶笅鍗婂勾鍚姩璁惧杩涘満锛涘寳浜害搴勪腑鑺含鍩嶧ab16鍏ㄥ勾鐖潯锛涘ぉ娲ヨタ闈掓柊鍘傚勾搴曟敹灏撅紱娣卞湷浜屾湡骞村簳瀹屾垚寤鸿銆?,why:"鏅跺渾鍘傛墿浜х洿鎺ュ甫鍔ㄩ噺娴嬭澶囥€佷笁鍧愭爣銆佽啘鍘氫华銆佽疆寤撲华绛夌簿瀵嗘祴閲忚澶囬噰璐€備腑鑺浗闄呬緵搴旈摼鍏锋湁鏋佸己绀鸿寖鏁堝簲銆?,need:"鏅跺渾绾ч噺娴嬭澶囥€佷笁鍧愭爣娴嬮噺鏈恒€佽〃闈㈣疆寤撲华銆佽啘鍘氭祴閲忎华銆佹磥鍑€瀹ょ幆澧冪洃娴嬭澶囥€?,when:"2026Q4-2027Q1涓鸿澶囧瘑闆嗚繘鍦烘湡銆?,todo:"閲嶇偣璺熻繘涓姱鍥介檯璁惧渚涘簲閾惧悕鍗曪紝瀵绘壘宸茶繘鍏ュ叾鍚堟牸渚涘簲鍟嗗悕褰曠殑娴嬮噺璁惧浠ｇ悊鍟嗗悎浣滄満浼氥€?},{title:"寰锋壃鏅鸿兘甯哥啛涓夋湡濂犲熀锛岄珮绔簲杞存満搴婁骇鑳藉ぇ鎵╁",what:"9鏈?6鏃ワ紝寰锋壃鏅鸿兘瑁呭楂樼浜旇酱鏅鸿兘瑁呭鐮斿彂鎬婚儴鍙婃満搴婂埗閫犱笁鏈熼」鐩湪甯哥啛杈涘簞闀囧鍩猴紝鎬绘姇璧勮秴10浜垮厓锛屾€诲缓绛戦潰绉秴17涓囧钩鏂圭背銆?,why:"楂樼浜旇酱鏈哄簥瀵瑰嚭鍘傜簿搴︽娴嬭姹傛瀬楂橈紝姣忓彴鏈哄簥鍑哄巶鍓嶉』缁忔縺鍏夊共娑変华銆佺悆鏉嗕华銆佷笁鍧愭爣绛夊閲嶈閲忛獙璇併€?,need:"婵€鍏夊共娑変华銆佺悆鏉嗕华銆佷笁鍧愭爣娴嬮噺鏈恒€佽疆寤撲华/绮楃硻搴︿华銆?,when:"鍩哄缓鏈?-12涓湀锛?027骞翠笂鍗婂勾杩涘叆璁惧鎷涙爣楂樺嘲銆?,todo:"寰锋壃鏅鸿兘浣嶄簬甯哥啛锛孉ilis鍙緷鎵樺崕涓滃尯浣嶄紭鍔跨洿鎺ュ鎺ワ紱鍏虫敞鍏舵瘝鏈虹簿搴︽娴嬫柟妗堟嫑鏍囦俊鎭€?},{title:"钃濈鑸ぉ鏃犻敗鍩哄湴閲忎骇鍦ㄥ嵆锛屽晢涓氳埅澶╄繘鍏ヤ骇鑳界珵璧?,what:"钃濈鑸ぉ鏃犻敗鐢熶骇鍩哄湴5鏈堝缓鎴愶紝鎬绘姇璧?3浜垮厓銆?鏈?5鏃ユ湵闆€浜屽彿鏀硅繘鍨嬮仴涓冩垚鍔熷彂灏勶紙涓€绠崄鏄燂級锛屾湵闆€涓夊彿閬ヤ簩8鏈?9鏃ユ垚鍔熷疄鐜扮伀绠檰鍦板洖鏀躲€?,why:"鍟嗕笟鑸ぉ浠庤瘯楠岄獙璇佽繘鍏ヨ妯″寲閲忎骇闃舵锛岀伀绠€昏鎬绘祴瀵瑰ぇ鍨嬬粨鏋勪欢灏哄娴嬮噺銆佸彂鍔ㄦ満闆堕儴浠剁簿搴︽娴嬮渶姹傛縺澧炪€?,need:"澶у瀷榫欓棬寮忎笁鍧愭爣娴嬮噺鏈恒€佹縺鍏夎窡韪华銆佷笁缁存壂鎻忎华銆佺矖绯欏害/杞粨浠€佸鍚堟潗鏂欒秴澹版娴嬨€?,when:"鍩哄湴宸插缓鎴愶紝褰撳墠澶勪簬浜ц兘鐖潯鏈燂紝璁惧鎸佺画琛ュ厖銆?,todo:"涓诲姩鑱旂郴钃濈鑸ぉ鏃犻敗鍩哄湴閲囪喘/璐ㄩ噺閮ㄩ棬锛屾帹浠嬪ぇ鍨嬬粨鏋勪欢娴嬮噺鏂规銆?},{title:"閽犵數姹犱骇涓氬寲鍔犻€燂細閽犵編宸翠腑棣栨潯GWh绾т骇绾挎姇浜?,what:"9鏈?6鏃ワ紝閽犵編鏂拌兘婧愬浗鍐呴鏉Wh绾у叏鏋佽€冲ぇ鍦嗘煴閽犵瀛愮數姹犳櫤鑳藉寲閲忎骇浜х嚎鍦ㄥ洓宸濆反涓寮忔姇浜э紝鎬绘姇璧勭害5浜垮厓锛岃鍒掑勾浜ц兘1.5GWh銆?,why:"閽犵數姹犱骇涓氫粠鏉愭枡绔悜鐢佃姱鍒堕€犵璺ㄨ秺锛屼骇绾垮缓璁惧甫鍔ㄥ昂瀵告娴嬨€佽〃闈㈣川閲忔娴嬭澶囬渶姹傘€?,need:"鐢垫睜澹充綋/鏋佺墖灏哄妫€娴嬨€佹ā鍏蜂笁鍧愭爣妫€娴嬨€佽〃闈㈢矖绯欏害浠€?,when:"宸叉姇浜э紝浜屾湡鎵╀骇鍙婃潗鏂欓厤濂椾紒涓氳澶囬渶姹傛寔缁噴鏀俱€?,todo:"鍏虫敞鍥涘窛宸翠腑閽犵數浜т笟鍥悗缁墿浜ц鍒掞紱璺熻釜瀹佸痉鏃朵唬銆佷腑绉戞捣閽犵瓑澶撮儴浼佷笟閽犵數浜х嚎璁惧鎷涙爣銆?},{title:"涓滃崡澶у鍏紑鎷涙爣澶氱淮娴嬮噺璁惧",what:"涓浗鏀垮簻閲囪喘缃?鏈?6鏃ュ叕鍛婏紝涓滃崡澶у鏈烘宸ョ▼瀛﹂櫌閲囪喘鍏峰澶嶅悎鍒堕€犻獙璇佸姛鑳界殑澶氱淮娴嬮噺璁惧1濂楋紝棰勭畻80涓囧厓锛?0鏈?鏃ュ紑鏍囷紝涓嶆帴鍙楄繘鍙ｄ骇鍝佹姇鏍囥€?,why:"楂樻牎/绉戠爺闄㈡墍璁惧閲囪喘鍏锋湁绀鸿寖-鎺ㄥ箍鏁堝簲锛屼笖闈㈠悜澶嶅悎鍒堕€犻獙璇侊紝鎶€鏈棬妲涢珮銆?,need:"澶氱淮瑙嗚娴嬮噺绯荤粺銆佸鍚堝紡娴嬮噺璁惧銆?,when:"2026骞?0鏈堝紑鏍囷紝鍚堝悓绛捐鍚?5澶╀氦璐с€?,todo:"璇ラ」鐩笉鎺ュ彈杩涘彛浜у搧锛孉ilis鍙浆鍚戝叧娉ㄥ浗浜ф浛浠ｅ搧鐗屽悎浣滄満浼氾紱璺熻釜鍚庣画杩涘彛璁惧閲囪喘绐楀彛銆?}],plants:[{co:"涓姱鍥介檯涓婃捣涓存腐涓姱涓滄柟浜屾湡",loc:"涓婃捣涓存腐",ind:"鍗婂浣?,scale:"鏈堜骇鑳?0涓囩墖12鑻卞",status:"2026H2璁惧杩涘満",need:"鏅跺渾閲忔祴銆佷笁鍧愭爣銆佽疆寤撲华"},{co:"涓姱鍥介檯鍖椾含浜﹀簞Fab16",loc:"鍖椾含浜﹀簞",ind:"鍗婂浣?,scale:"鎬绘姇璧?97浜垮厓锛屾湀浜ц兘10涓囩墖",status:"鎸佺画鐖潯锛?027鍏ㄩ潰杈句骇",need:"閲忔祴璁惧銆佺簿瀵嗛浂閮ㄤ欢妫€娴?},{co:"涓姱鍥介檯澶╂触瑗块潚鏂板巶",loc:"澶╂触瑗块潚",ind:"鍗婂浣?,scale:"鏈堜骇鑳?0涓囩墖12鑻卞",status:"2026骞村簳鏀跺熬杞浐",need:"閲忔祴璁惧銆佷笁鍧愭爣"},{co:"涓姱鍥介檯娣卞湷12鑻卞绾夸簩鏈?,loc:"娣卞湷",ind:"鍗婂浣?,scale:"鏈堜骇鑳?.5涓囩墖12鑻卞",status:"2026骞村簳寤鸿瀹屾垚",need:"閲忔祴璁惧銆佽啘鍘氫华"},{co:"钃濈鑸ぉ鏃犻敗鐢熶骇鍩哄湴",loc:"姹熻嫃鏃犻敗",ind:"鍟嗕笟鑸ぉ",scale:"鎬绘姇璧?3浜垮厓锛?12浜?,status:"5鏈堝缓鎴愶紝閲忎骇鐖潯",need:"澶у瀷涓夊潗鏍囥€佹縺鍏夎窡韪华銆佷笁缁存壂鎻?},{co:"寰锋壃鏅鸿兘甯哥啛涓夋湡",loc:"姹熻嫃甯哥啛",ind:"鏁版帶鏈哄簥",scale:"鎬绘姇璧勮秴10浜垮厓锛?7涓囥帯",status:"9鏈?6鏃ュ鍩?,need:"婵€鍏夊共娑変华銆佺悆鏉嗕华銆佷笁鍧愭爣"},{co:"閽犵編鏂拌兘婧愬反涓熀鍦?,loc:"鍥涘窛宸翠腑",ind:"閽犵數姹?,scale:"鎬绘姇璧?浜垮厓锛?.5GWh",status:"9鏈?6鏃ユ寮忔姇浜?,need:"褰卞儚娴嬮噺浠€佷笁鍧愭爣銆佺矖绯欏害浠?},{co:"姝ｅ姏鏂拌兘甯哥啛閽犵數椤圭洰",loc:"姹熻嫃甯哥啛",ind:"閽犵數姹?,scale:"鎬绘姇璧?00浜垮厓锛?0GWh",status:"鐜瘎宸叉壒澶?,need:"浜х嚎閲忔祴璁惧銆佷笁鍧愭爣"},{co:"娴庡崡宸ヤ笟姣嶆満浜т笟鍥?,loc:"灞变笢娴庡崡",ind:"鏁版帶鏈哄簥",scale:"浠ユ祹鍗椾簩鏈哄簥涓洪摼涓?,status:"涓夋爧鏍稿績鍘傛埧骞村簳鎶曚骇",need:"澶у瀷涓夊潗鏍囥€佹縺鍏夊共娑変华"},{co:"寮虹敓鑻忓窞浜т笟鍥?,loc:"姹熻嫃鑻忓窞",ind:"鍖荤枟鍣ㄦ",scale:"寮虹敓鍦ㄥ崕鏈€澶т緵搴旈摼鍩哄湴",status:"9鏈堥鏉″浗浜у績鐢电敓鐞嗕骇绾胯惤鎴?,need:"鍖荤枟鍣ㄦ绮惧瘑娴嬮噺銆佷笁鍧愭爣"},{co:"娴峰崡鏂囨槍鍗槦瓒呯骇宸ュ巶",loc:"娴峰崡鏂囨槍",ind:"鍟嗕笟鑸ぉ",scale:"骞翠骇鑳?000棰楀崼鏄?,status:"璁″垝2025骞村簳寤烘垚锛屽凡杩涘叆璇曠敓浜?,need:"鍗槦缁撴瀯浠朵笁鍧愭爣銆佸厜瀛︽娴?},{co:"鏅椇鐢靛瓙鐝犳捣楂橀樁HDI鏂板巶鎴?,loc:"骞夸笢鐝犳捣",ind:"PCB",scale:"鎬绘姇璧?2浜垮厓",status:"2026骞翠腑璇曚骇",need:"楂樼簿搴﹀奖鍍忔祴閲忎华銆乆-Ray"}],markets:[{ind:"鏂拌兘婧愭苯杞?鍔ㄥ姏鐢垫睜",trend:"澧為暱",why:"涓垱鏂拌埅鍚堣偉涓夋湡9鏈堟姇浜э紙25GWh锛夛紝鍘﹂棬涓夋湡9鏈堝皝椤讹紱姝ｅ姏鏂拌兘鎺ㄨ繘浜屾湡15GWh+鏂板20GWh鍌ㄨ兘"},{ind:"鍌ㄨ兘鐢垫睜",trend:"澧為暱",why:"閽犵數姹?026骞撮噺浜у厓骞达紝閽犵編宸翠腑1.5GWh鎶曚骇锛涘浐鎬佺數姹犱骇涓氬寲鍔犻€燂紝钃濆浐鏂拌兘婧愪竾鍚ㄧ骇鍥烘€佺數瑙ｈ川浜х嚎5鏈堟姇浜?},{ind:"鍗婂浣?鏅跺渾鍒堕€?,trend:"澧為暱",why:"涓姱鍥介檯鍥涘ぇ鍩哄湴鍚屾鎵╀骇锛屽勾搴曟柊澧?涓囩墖/鏈?2鑻卞绛夋晥浜ц兘锛涘叏鐞冪鏅跺渾棰勮2027骞翠腑鏈熶緵闇€鎷愮偣"},{ind:"鍟嗕笟鑸ぉ/鍗槦",trend:"澧為暱",why:"娴峰崡鏂囨槍鍙戝皠鍦?銆?鍙峰伐浣嶅勾搴曞氨缁紱钃濈鏃犻敗鍩哄湴23浜垮厓閲忎骇鍩哄湴鎶曚骇锛涢泟瀹夊崼鏄熷叡浜櫤閫犱腑蹇冨嵆灏嗘姇鐢?},{ind:"鏁版帶鏈哄簥/宸ヤ笟姣嶆満",trend:"澧為暱",why:"寰锋壃鏅鸿兘甯哥啛涓夋湡10浜垮厓濂犲熀锛涙禉娴峰痉鏇煎嫙璧?.8浜垮厓鎵╅珮绔鍚堟満搴婏紱娴庡崡宸ヤ笟姣嶆満浜т笟鍥勾搴曟姇浜?},{ind:"PCB/鐢靛瓙鍒堕€?,trend:"澧為暱",why:"榛勭煶寮€鍙戝尯涓婂崐骞村厜鐢靛瓙浜у€?68.9浜垮厓锛堝悓姣?38%锛夛紝AI绠楀姏PCB鍗犳瘮鎻愬崌鑷?0%"},{ind:"鍖荤枟鍣ㄦ",trend:"绋冲畾澧為暱",why:"寮虹敓鑻忓窞蹇冪數鐢熺悊浜х嚎9鏈堣惤鎴愶紱瑗块棬瀛愬尰鐤楀痉鍥芥柊寤哄厜瀛愯鏁癈T浼犳劅鍣ㄦ櫠鍦嗗巶9鏈?6鏃ユ彮骞?},{ind:"鑸┖鑸ぉ锛堜紶缁燂級",trend:"绋冲畾",why:"鏃犻敗閫忓钩鍙剁墖9鏈?鏃ヤ腑鏍囧甫钃濈嚎鍏夊澶存ˉ寮忎笁鍧愭爣娴嬮噺鏈猴紝鑸┖鍙戝姩鏈?鐕冩満鍙剁墖闇€姹傜ǔ鍋?},{ind:"绮惧瘑鏈烘/妯″叿",trend:"澧為暱",why:"鍙楃泭浜庢苯杞︺€佺數瀛愩€佸尰鐤椾笅娓稿甫鍔紝妯″叿鍚戦珮绮惧害銆佸鏉傛洸闈㈡柟鍚戝彂灞?}],competitors:[{brand:"钄″徃 ZEISS",news:"9鏈?6鏃ュ彂甯僔ersaXRM 5 Insight娣峰悎3D X灏勭嚎鏄惧井闀滐紝闆嗘垚X灏勭嚎鏄惧井闀滀笌microCT锛岄潰鍚戝崐瀵间綋灏佽缂洪櫡鍒嗘瀽",impact:"楂樺▉鑳侊細鍦ㄥ崐瀵间綋灏佽妫€娴嬨€佸伐涓欳T棰嗗煙杩涗竴姝ュ珐鍥烘妧鏈鍨掞紝鐩存帴绔炰簤涓変赴褰卞儚娴嬮噺鍙婂伐涓欳T甯傚満"},{brand:"闆峰凹缁?Renishaw",news:"IMTS 2026鍙戝竷XC100鐜琛ュ伩鍣紙0.4ppm绮惧害锛夈€丳H20 PLUS浜旇酱娴嬪ご锛堟娴嬭寖鍥存彁鍗?0%+锛夈€佹柊涓€浠LE婵€鍏夊共娑夌紪鐮佸櫒",impact:"楂樺▉鑳侊細鍦–MM娴嬪ご銆佹縺鍏夋牎鍑嗐€佸崐瀵间綋杩愬姩鎺у埗缂栫爜鍣ㄩ鍩熷瘑闆嗗彂甯冩柊鍝侊紝鎶€鏈凯浠ｉ€熷害鍔犲揩"},{brand:"娴峰厠鏂悍 Hexagon",news:"CIOE 2026娣卞湷鍙戝竷OPTIV ULTRA锛?nm鍒嗚鲸鐜囧厜鏍呭昂銆佸厜瀛?鐧藉厜鍏辫仛鐒?鎺ヨЕ寮忓浼犳劅鍣級锛岄潰鍚戜簹寰背绾ф娴?,impact:"楂樺▉鑳侊細鍦ㄤ簹寰背绾у浼犳劅鍣ㄥ奖鍍忔祴閲忛鍩熸帹鍑洪噸纾呮柊鍝侊紝涓庝笁涓癚UICK VISION绯诲垪鐩存帴绔炰簤"},{brand:"娴峰厠鏂悍 Hexagon",news:"9鏈?6鏃ヤ腑鏍囦笂娴锋皯鑸亴涓氭妧鏈闄㈤珮绮惧害涓夊潗鏍囨祴閲忔満椤圭洰锛?8.9涓囧厓锛?,impact:"涓▉鑳侊細鎸佺画鍦ㄦ暀鑲?鑱屼笟闄㈡牎甯傚満鑾峰彇璁㈠崟锛屼笁涓伴渶鍔犲己鑱屾暀棰嗗煙娓犻亾瑕嗙洊"},{brand:"涓滀含绮惧瘑 TOKYO SEIMITSU",news:"浠ｇ悊鍟嗙綉缁滄寔缁墿寮狅紝鍗庝腑銆佸崕涓溿€佸崕鍗楀潎鏈変笓涓氫唬鐞嗗晢甯冨眬杞粨浠?娴嬮拡涓氬姟",impact:"涓▉鑳侊細鍦ㄨ疆寤撲华銆佸渾搴︿华棰嗗煙涓庝笁涓板舰鎴愮洿鎺ョ珵浜夛紝浠ｇ悊鍟嗕綋绯绘垚鐔燂紝浠锋牸绛栫暐婵€杩?},{brand:"鍥戒骇鏇夸唬锛堜腑鍥?澶╁噯/鍑杩堢瓑锛?,news:"鍥戒骇褰卞儚娴嬮噺銆佽疆寤撴祴閲忚澶囧姞閫熸浛浠ｈ繘鍙ｏ紱鏀跨瓥瀵煎悜涓嶆帴鍙楄繘鍙ｄ骇鍝侀」鐩鍔?,impact:"涓▉鑳侊細鍥戒骇璁惧鎬т环姣斾紭鍔挎槑鏄撅紝瀵逛笁涓颁腑绔競鍦哄舰鎴愭寔缁垎娴?}],leads:[{co:"涓姱鍥介檯锛堝洓澶у熀鍦帮級",loc:"涓婃捣/鍖椾含/澶╂触/娣卞湷",ind:"鍗婂浣?,type:"鏅跺渾鍘傛墿浜ц澶囬厤濂?,amount:"鎬绘姇璧勮秴鍗冧嚎鍏?,score:97,prob:"馃敶 鏋佸彲鑳斤紙1-3涓湀锛?,act:"閫氳繃璁惧闆嗘垚鍟嗘笭閬撳垏鍏ワ紝鍏虫敞閲忔祴璁惧渚涘簲閾?},{co:"钃濈鑸ぉ鏃犻敗鍩哄湴",loc:"姹熻嫃鏃犻敗",ind:"鍟嗕笟鑸ぉ",type:"鐏鎬昏鎬绘祴娴嬮噺璁惧",amount:"鎬绘姇璧?3浜垮厓",score:93,prob:"馃敶 鏋佸彲鑳斤紙1-3涓湀锛?,act:"涓诲姩鑱旂郴鍩哄湴璐ㄩ噺/閲囪喘閮ㄩ棬锛屾帹浠嬫縺鍏夎窡韪华銆佸ぇ鍨嬩笁鍧愭爣鏂规"},{co:"寰锋壃鏅鸿兘瑁呭",loc:"姹熻嫃甯哥啛",ind:"鏁版帶鏈哄簥",type:"楂樼浜旇酱鏈哄簥绮惧害妫€娴?,amount:"鎬绘姇璧勮秴10浜垮厓",score:89,prob:"馃煚 杈冨彲鑳斤紙3-6涓湀锛?,act:"瀵规帴鍏惰澶囬儴锛屾帹浠嬫縺鍏夊共娑変华+鐞冩潌浠?涓夊潗鏍囨暣鍖呮柟妗?},{co:"榛勭煶寮€鍙戝尯PCB浜т笟缇?,loc:"婀栧寳榛勭煶",ind:"PCB",type:"AI绠楀姏PCB鎵╀骇妫€娴嬭澶?,amount:"2026骞存柊澧炴姇璧勮秴鐧句嚎鍏?,score:88,prob:"馃敶 鏋佸彲鑳斤紙1-3涓湀锛?,act:"瀵规帴娌＋鐢靛瓙銆佸箍鍚堢簿瀵嗙瓑澶撮儴浼佷笟璐ㄩ噺閮ㄩ棬"},{co:"閽犵編鏂拌兘婧愶紙宸翠腑锛?,loc:"鍥涘窛宸翠腑",ind:"閽犵數姹?,type:"閽犵數閲忎骇浜х嚎妫€娴?,amount:"鎬绘姇璧?浜垮厓",score:86,prob:"馃煚 杈冨彲鑳斤紙3-6涓湀锛?,act:"鍏虫敞鍏朵簩鏈熸墿浜у強鍥涘窛閽犵數浜т笟闆嗙兢閰嶅闇€姹?},{co:"涓垱鏂拌埅鍘﹂棬鍩哄湴涓夋湡涓夐樁娈?,loc:"绂忓缓鍘﹂棬",ind:"鍔ㄥ姏鐢垫睜",type:"60GWh鐢垫睜鍩哄湴鎵╁缓",amount:"鎬绘姇璧勭害150浜垮厓",score:86,prob:"馃煚 杈冨彲鑳斤紙3-6涓湀锛?,act:"璺熻釜鍏朵骇绾胯澶囨嫑鏍囷紝鎺ㄤ粙鐢垫睜灏哄妫€娴嬫柟妗?},{co:"姝ｅ姏鏂拌兘甯哥啛閽犵數椤圭洰",loc:"姹熻嫃甯哥啛",ind:"閽犵數姹?,type:"50GWh閽犵瀛愮數姹犱骇绾?,amount:"鎬绘姇璧?00浜垮厓",score:85,prob:"馃煛 娼滃湪锛?-12涓湀锛?,act:"鐜瘎宸叉壒澶嶏紝鍏虫敞鍚庣画鍦熷缓瀹屾垚鍚庣殑璁惧鎷涙爣绐楀彛"},{co:"澶摑鏂拌兘婧愭綔姹熷熀鍦?,loc:"婀栧寳娼滄睙",ind:"鍥烘€佺數姹?,type:"500MWh鍥烘€佺數姹犱骇绾?,amount:"棣栨湡4.03浜垮厓",score:84,prob:"馃煚 杈冨彲鑳斤紙3-6涓湀锛?,act:"棰勮10鏈堣瘯杩愯锛屽叧娉ㄥ叾璁惧璋冭瘯鍙婃墿浜ц鍒?},{co:"娴庡崡宸ヤ笟姣嶆満浜т笟鍥?,loc:"灞变笢娴庡崡",ind:"鏁版帶鏈哄簥",type:"宸ヤ笟姣嶆満浜т笟闆嗙兢",amount:"浠ユ祹鍗椾簩鏈哄簥涓洪摼涓?,score:83,prob:"馃煛 娼滃湪锛?-12涓湀锛?,act:"涓夋爧鏍稿績鍘傛埧骞村簳鎶曚骇锛屾彁鍓嶅鎺ュ洯鍖烘嫑鍟嗛儴闂?},{co:"娴欐捣寰锋浖",loc:"娴欐睙",ind:"鏁版帶鏈哄簥",type:"楂樼澶嶅悎鏈哄簥浜т笟鍖?,amount:"鎬绘姇璧?.17浜垮厓",score:82,prob:"馃煛 娼滃湪锛?-12涓湀锛?,act:"瀹氬鏂规鎺ㄨ繘涓紝鍏虫敞鍏跺嫙鎶曢」鐩缓璁捐繘搴?},{co:"寮虹敓鑻忓窞浜т笟鍥?,loc:"姹熻嫃鑻忓窞",ind:"鍖荤枟鍣ㄦ",type:"蹇冪數鐢熺悊浜х嚎鏂板缓",amount:"寮虹敓鍦ㄥ崕鏈€澶т緵搴旈摼鍩哄湴",score:82,prob:"馃煚 杈冨彲鑳斤紙3-6涓湀锛?,act:"9鏈堟柊浜х嚎钀芥垚锛屽尰鐤楀櫒姊扮簿瀵嗘祴閲忛渶姹傞噴鏀?},{co:"鏅椇鐢靛瓙鐝犳捣鍩哄湴",loc:"骞夸笢鐝犳捣",ind:"PCB",type:"楂橀樁HDI浜ц兘鎵╁厖",amount:"鎬绘姇璧?2浜垮厓",score:81,prob:"馃煛 娼滃湪锛?-12涓湀锛?,act:"2026骞翠腑璇曚骇锛屽叧娉ㄥ叾妫€娴嬭澶囬厤濂楅渶姹?},{co:"鏄熸渤鍔ㄥ姏寤婂潑鍩哄湴浜屾湡",loc:"娌冲寳寤婂潑",ind:"鍟嗕笟鑸ぉ",type:"鐏闆堕儴浠朵骇鑳芥墿寤?,amount:"骞翠骇30鍙戝浐浣?20鍙戞恫浣撶伀绠浂閮ㄤ欢",score:80,prob:"馃煛 娼滃湪锛?-12涓湀锛?,act:"浜屾湡寤鸿涓紝鎻愬墠甯冨眬闃€闂?闆堕儴浠剁簿瀵嗘娴嬫柟妗?},{co:"涓婃捣姘戣埅鑱屼笟鎶€鏈闄?,loc:"涓婃捣",ind:"鏁欒偛/鑸┖",type:"楂樼簿搴︿笁鍧愭爣娴嬮噺鏈?,amount:"58.9涓囧厓锛堝凡涓爣锛?,score:79,prob:"馃煝 闀挎湡",act:"宸茶姳钀芥捣鍏嬫柉搴凤紝鍏虫敞鍏跺悗缁拷鍔犻噰璐垨鍏勫紵闄㈡牎椤圭洰"},{co:"涓滃崡澶у鏈烘宸ョ▼瀛﹂櫌",loc:"姹熻嫃鍗椾含",ind:"鏁欒偛/绉戠爺",type:"澶氱淮娴嬮噺璁惧",amount:"80涓囧厓",score:78,prob:"馃煛 娼滃湪锛?-12涓湀锛?,act:"涓嶆帴鍙楄繘鍙ｄ骇鍝佹姇鏍囷紝杞悜鍥戒骇鏇夸唬鍝佺墝鍚堜綔"}],trends:[{span:"1涓湀锛?026-09 ~ 10锛?,items:["涓姱鍥介檯鍥涘ぇ12鑻卞鏅跺渾鍩哄湴杩涘叆涓嬪崐骞磋澶囪繘鍦洪珮宄版湡锛屽崐瀵间綋閲忔祴璁惧闇€姹傞泦涓噴鏀?,"閽犵數姹犱骇涓氬寲姝ｅ紡璧锋锛氶挔缇庡反涓鏉Wh绾т骇绾挎姇浜э紝瀹佸痉鏃朵唬閽犵瀛愮數姹燪4瑙勬ā鍖栭噺浜?,"鍟嗕笟鑸ぉ杩涘叆瀵嗛泦鍙戝皠鏈燂細钃濈鏈遍泙浜屽彿鏀硅繘鍨嬪父鎬佸寲鍙戝皠锛屾捣鍗楁枃鏄?/4鍙峰彂灏勫伐浣嶅勾搴曞氨缁?,"宸ヤ笟姣嶆満棰嗗煙澶ч鎶曡祫棰戠幇锛氬痉鎵櫤鑳?0浜垮厓銆佹禉娴峰痉鏇?.8浜垮厓銆佹祹鍗楁瘝鏈轰骇涓氬洯绛夊瘑闆嗕笂椹?]},{span:"3涓湀锛?026-09 ~ 12锛?,items:["鍗婂浣撹澶囧浗浜у寲鐜囨寔缁彁鍗囷紝涓婃捣寰數瀛?0nm ArF鍏夊埢鏈洪噺浜у甫鍔ㄩ厤濂楅噺娴嬭澶囬渶姹?,"鍥烘€佺數姹犱粠鏉愭枡楠岃瘉杩涘叆浜х嚎寤鸿锛氬浗杞╅珮绉?GWh鍏ㄥ浐鎬佷骇绾裤€佸お钃濇綔姹熷熀鍦扮瓑鐩哥户鎶曚骇","PCB琛屼笟AI绠楀姏椹卞姩楂橀樁HDI/楂樺灞傛澘鎵╀骇娼欢缁紝榛勭煶銆佹槅灞便€佺彔娴风瓑鍦版柊澧炴姇璧勫瘑闆嗚惤鍦?,"鏁版帶鏈哄簥琛屼笟浜旇酱鍖栬秼鍔垮姞閫燂紝鍥戒骇鏇夸唬鐜囨彁鍗囧甫鍔ㄥ浗浜ч噺娴嬭澶囬厤濂楁満浼?]},{span:"6涓湀锛?026-09 ~ 2027-03锛?,items:["涓姱鍥介檯鍖椾含浜﹀簞Fab16棰勮2027骞村畬鎴愬叏闈㈣揪浜э紝澶╂触/娣卞湷鍩哄湴閲婃斁澶ч儴鍒嗕骇鑳?,"閽犵數姹犳垚鏈璁?026骞村簳鑷?027骞村疄鐜颁笌纾烽吀閾侀攤骞充环锛屽眾鏃跺皢瑙﹀彂鏇村ぇ瑙勬ā浜х嚎鎶曡祫","鍟嗕笟鑸ぉ鐧剧鍗冩槦浠诲姟鎺ㄨ繘锛屽崼鏄熸壒閲忓埗閫犲鑷姩鍖栨娴嬭澶囬渶姹傛縺澧?,"鍏ㄧ悆纭呮櫠鍦嗕緵闇€鎷愮偣棰勮2027骞翠腑鏈熷嚭鐜帮紝鏅跺渾鍘傛墿浜ц妭濂忓彲鑳借繘涓€姝ュ姞蹇?]},{span:"12涓湀锛?026-09 ~ 2027-09锛?,items:["鍗婂浣擄細鑻I鑺墖闇€姹傛寔缁珮鏅皵锛?2鑻卞鏅跺渾鍘傛墿浜у彲鑳藉悜鏇村厛杩涘埗绋嬪欢浼?,"鏂拌兘婧愶細鍥烘€佺數姹?027骞村皬鎵归噺瑁呰溅鐩爣鏄庣‘锛岀～鍖栫墿鐢佃В璐ㄣ€侀攤閲戝睘璐熸瀬绛夊叧閿潗鏂欒澶囬渶姹傜垎鍙?,"宸ヤ笟姣嶆満锛氬浗浜ч珮绔暟鎺ф満搴婂嚭娴峰姞閫燂紝娴峰鍞悗閲忔祴鏈嶅姟闇€姹傚鍔?,"鍟嗕笟鑸ぉ锛氫綆杞ㄥ崼鏄熶簰鑱旂綉杩涘叆瀵嗛泦缁勭綉鏈燂紝澶ц繍鍔涚伀绠笌鍗槦鍒堕€犲弻绾块┍鍔?]}],actions:{contact:["钃濈鑸ぉ鏃犻敗鐢熶骇鍩哄湴 鈥?姹熻嫃鏈湴椤圭洰锛?3浜垮厓鐏閲忎骇鍩哄湴锛屽ぇ鍨嬬粨鏋勪欢娴嬮噺闇€姹傛槑纭紝鍦扮悊浼樺娍+浜т笟楂樻櫙姘旓紝浼樺厛绾ф渶楂?,"寰锋壃鏅鸿兘瑁呭锛堝父鐔燂級 鈥?9鏈?6鏃ュ垰濂犲熀锛?0浜垮厓楂樼浜旇酱鏈哄簥椤圭洰锛屾満搴婂嚭鍘傜簿搴︽娴嬭澶囬渶姹傚垰鎬э紝涓斾綅浜庡父鐔燂紙鑻忓窞杈栧尯锛夛紝Ailis鍙揩閫熻Е杈?,"榛勭煶寮€鍙戝尯PCB浜т笟缇?鈥?娌＋鐢靛瓙銆佸箍鍚堢簿瀵嗙瓑澶撮儴浼佷笟AI绠楀姏PCB鎵╀骇锛屾娴嬭澶囬渶姹傛椇鐩涳紝鍙仈鍚堝尯鍩熶唬鐞嗗晢鎵归噺瑕嗙洊","閽犵編鏂拌兘婧愶紙宸翠腑锛夊強鍥涘窛閽犵數浜т笟闆嗙兢 鈥?閽犵數閲忎骇鍏冨勾鍚姩锛屽反涓熀鍦板凡鎶曚骇锛屽彲鎺ㄤ粙鐢垫睜灏哄妫€娴?琛ㄩ潰璐ㄩ噺妫€娴嬫柟妗?],promote:["涓夊潗鏍囨祴閲忔満锛圕RYSTA-Apex / FUSION绯诲垪锛?鈥?闈㈠悜鍗婂浣撻浂閮ㄤ欢銆佹満搴婃暣鏈恒€佺伀绠粨鏋勪欢銆丳CB妯″叿绛夊満鏅紝寮鸿皟楂樼簿搴?绋冲畾鎬?鍦ㄥ崕鏈嶅姟缃戠粶","褰卞儚娴嬮噺浠紙QUICK VISION绯诲垪锛?鈥?闈㈠悜閽犵數/閿傜數鏋佺墖銆丳CB绾胯矾鏉裤€佺數瀛愬厓鍣ㄤ欢绛夋壒閲忓昂瀵告娴嬶紝寮鸿皟CNC鑷姩娴嬮噺+SPC鏁版嵁绠＄悊","婵€鍏夎窡韪华 / 婵€鍏夊共娑変华 鈥?闈㈠悜鍟嗕笟鑸ぉ澶у瀷缁撴瀯浠躲€佹満搴婄簿搴︽牎鍑嗙瓑鍦烘櫙锛屼笌涓夊潗鏍囧舰鎴愪簰琛ユ柟妗?,"琛ㄩ潰绮楃硻搴︿华 / 杞粨浠紙SJ-210 / FORMTRACER绯诲垪锛?鈥?闈㈠悜鏈哄簥瀵艰建銆佽埅绌哄彂鍔ㄦ満鍙剁墖銆佺數姹犳瀬鐗囩瓑琛ㄩ潰璐ㄩ噺妫€娴嬶紝寮鸿皟渚挎惡鎬?楂樼簿搴?],watch:["涓姱鍥介檯渚涘簲閾?鈥?鍥涘ぇ鍩哄湴鎵╀骇瑙勬ā宸ㄥぇ锛屼絾鏅跺渾鍘傞噺娴嬭澶囦緵搴旈摼闂ㄦ楂橈紝寤鸿閫氳繃宸茶繘鍏ュ叾渚涘簲閾剧殑闆嗘垚鍟?浠ｇ悊鍟嗛棿鎺ュ垏鍏?,"姝ｅ姏鏂拌兘甯哥啛100浜垮厓閽犵數椤圭洰 鈥?鐜瘎宸叉壒澶嶏紝寰呭湡寤哄畬鎴愬悗杩涘叆璁惧鎷涙爣鏈燂紝鏃堕棿绐楀彛6-12涓湀","澶摑鏂拌兘婧愭綔姹熷浐鎬佺數姹犲熀鍦?鈥?棰勮10鏈堣瘯杩愯锛岃嫢楠岃瘉椤哄埄鍙兘蹇€熷惎鍔ㄤ簩鏈熸墿浜?,"娴庡崡宸ヤ笟姣嶆満浜т笟鍥?鈥?娴庡崡浜屾満搴婁负閾句富锛屽勾搴曚笁鏍嬪巶鎴挎姇浜э紝鍥尯閰嶅浼佷笟妫€娴嬭澶囬渶姹傚皢闆嗕腑閲婃斁","娴峰崡鏂囨槍鍟嗕笟鑸ぉ浜т笟闆嗙兢 鈥?鍗槦瓒呯骇宸ュ巶锛堝勾浜ц兘1000棰楋級+鍙戝皠鍦?/4鍙峰伐浣嶅勾搴曞氨缁紝鑸ぉ浜т笟閾炬娴嬭澶囬渶姹傞暱鏈熷悜濂?],avoid:["涓滃崡澶у澶氱淮娴嬮噺璁惧椤圭洰锛?0涓囧厓锛?鈥?宸叉槑纭笉鎺ュ彈杩涘彛浜у搧鎶曟爣锛屼笁涓颁綔涓烘棩璧勫搧鐗屾棤娉曞弬涓庯紝閬垮厤鏃犳晥鎶曞叆","涓婃捣姘戣埅鑱屼笟鎶€鏈闄MM椤圭洰锛?8.9涓囧厓锛?鈥?宸茶姳钀芥捣鍏嬫柉搴凤紝鐭湡鍐呮棤杩藉姞閲囪喘淇″彿锛岃浆鍚戝叾浠栭櫌鏍℃柊寤?鎵╁缓椤圭洰","鍗板害鍗婂浣撳競鍦猴紙Tata Electronics/Micron绛夛級 鈥?鍦扮悊璺濈杩溿€佹笭閬撳缓璁炬垚鏈珮銆佷笁涓板凡鏈夋垚鐔熸捣澶栦唬鐞嗕綋绯伙紝闈濧ilis褰撳墠浼樺厛绾?,"娉板浗/瓒婂崡PCB鎵╀骇椤圭洰 鈥?鏅椇銆佽儨瀹忕瓑铏芥湁娴峰甯冨眬锛屼絾涓滃崡浜氭湰鍦熼厤濂楀皻涓嶆垚鐔燂紝涓擜ilis鏆傛棤褰撳湴鏈嶅姟缃戠粶锛屽缓璁鏈?]}};
 
-/* ===== 数据时点工具 =====================================================
-   目的：模块顶部一律显示「数据本身的日期」，绝不显示页面打开时间，
-        避免把「刚打开页面」误读成「数据刚更新」。
+/* ===== 鏁版嵁鏃剁偣宸ュ叿 =====================================================
+   鐩殑锛氭ā鍧楅《閮ㄤ竴寰嬫樉绀恒€屾暟鎹湰韬殑鏃ユ湡銆嶏紝缁濅笉鏄剧ず椤甸潰鎵撳紑鏃堕棿锛?
+        閬垮厤鎶娿€屽垰鎵撳紑椤甸潰銆嶈璇绘垚銆屾暟鎹垰鏇存柊銆嶃€?
 ======================================================================= */
 function dataStamp(s){
-  // 从 updated 一类长文本里取出「日期[ 时间]」，丢掉括号注释等噪声
+  // 浠?updated 涓€绫婚暱鏂囨湰閲屽彇鍑恒€屾棩鏈焄 鏃堕棿]銆嶏紝涓㈡帀鎷彿娉ㄩ噴绛夊櫔澹?
   const m=String(s||'').match(/20\d\d-\d\d-\d\d(?:[ T]\d\d:\d\d)?/);
-  return m ? m[0] : String(s||'').split('·')[0].trim();
+  return m ? m[0] : String(s||'').split('路')[0].trim();
 }
 function latestDateIn(strs){
   let best=null;
@@ -912,11 +912,11 @@ function latestDateIn(strs){
 function setDataTime(id, dateStr, whatLabel){
   const el=document.getElementById(id); if(!el) return;
   el.innerHTML = dateStr
-    ? dateStr+' <span class="dtag">'+(whatLabel||'数据时点')+'</span>'
-    : '—';
+    ? dateStr+' <span class="dtag">'+(whatLabel||'鏁版嵁鏃剁偣')+'</span>'
+    : '鈥?;
 }
 
-/* ===== 模块 1：行业增量渲染（INDUSTRIES） ===== */
+/* ===== 妯″潡 1锛氳涓氬閲忔覆鏌擄紙INDUSTRIES锛?===== */
 (function(){
   const list=document.getElementById('industry-list');
   if(!list) return;
@@ -927,163 +927,163 @@ function setDataTime(id, dateStr, whatLabel){
       ((x.products&&x.products.length)
         ? '<div class="map">'+x.products.map(p=>'<span class="chip">'+p+'</span>').join('')+'</div>'
         : '')+
-      '<div class="src">🔗 <a href="'+x.url+'" target="_blank" rel="noopener">'+x.src+'</a></div>'+
+      '<div class="src">馃敆 <a href="'+x.url+'" target="_blank" rel="noopener">'+x.src+'</a></div>'+
     '</div>'
   ).join('');
-  document.getElementById('sum-industries').innerHTML=INDUSTRIES.length+' <small>条</small>';
-  setDataTime('ind-time', latestDateIn(INDUSTRIES.map(x=>(x.src||'')+' '+(x.title||''))), '最新动态发布日');
+  document.getElementById('sum-industries').innerHTML=INDUSTRIES.length+' <small>鏉?/small>';
+  setDataTime('ind-time', latestDateIn(INDUSTRIES.map(x=>(x.src||'')+' '+(x.title||''))), '鏈€鏂板姩鎬佸彂甯冩棩');
 })();
 
-// 仅展示发布于近 2 个月内的市场行情（打开页面时按当前日期自动剔除超期项）
+// 浠呭睍绀哄彂甯冧簬杩?2 涓湀鍐呯殑甯傚満琛屾儏锛堟墦寮€椤甸潰鏃舵寜褰撳墠鏃ユ湡鑷姩鍓旈櫎瓒呮湡椤癸級
 function newsInRange(t){
   const m=t.match(/(\d{4})-(\d{2})-(\d{2})/); if(!m) return true;
   const d=new Date(+m[1],+m[2]-1,+m[3]); const cut=new Date(); cut.setMonth(cut.getMonth()-2);
   return d>=cut;
 }
 document.getElementById('news-list').innerHTML=NEWS.filter(n=>newsInRange(n.time)).map(n=>
-  `<li><span class="when tag-${n.tag}">${n.tag}</span><span class="nb"><b>${n.title}</b>：${n.desc}
-   <span class="meta">🔗 <a href="${n.url}" target="_blank" rel="noopener">${n.src}</a> · 🕒 ${n.time}</span></span></li>`
+  `<li><span class="when tag-${n.tag}">${n.tag}</span><span class="nb"><b>${n.title}</b>锛?{n.desc}
+   <span class="meta">馃敆 <a href="${n.url}" target="_blank" rel="noopener">${n.src}</a> 路 馃晵 ${n.time}</span></span></li>`
 ).join('');
-setDataTime('news-time', latestDateIn(NEWS.filter(n=>newsInRange(n.time)).map(n=>n.time)), '最新动态发布日');
+setDataTime('news-time', latestDateIn(NEWS.filter(n=>newsInRange(n.time)).map(n=>n.time)), '鏈€鏂板姩鎬佸彂甯冩棩');
 const newsCount=NEWS.filter(n=>newsInRange(n.time)).length;
-document.getElementById('sum-news').innerHTML=newsCount+' <small>条</small>';
+document.getElementById('sum-news').innerHTML=newsCount+' <small>鏉?/small>';
 
-/* 电商行情快照渲染 */
+/* 鐢靛晢琛屾儏蹇収娓叉煋 */
 (function(){
   const E=EC_NEWS;
-  // updated 若为当日、但 note 里声明「取数受限、数值为某历史快照」，则以该快照日期显示
+  // updated 鑻ヤ负褰撴棩銆佷絾 note 閲屽０鏄庛€屽彇鏁板彈闄愩€佹暟鍊间负鏌愬巻鍙插揩鐓с€嶏紝鍒欎互璇ュ揩鐓ф棩鏈熸樉绀?
   (function(){
     const upd=String(E.updated||'').replace(/\./g,'-');
     const iso=s=>{ const p=String(s).split(/[-.\/]/); return p[0]+'-'+String(p[1]).padStart(2,'0')+'-'+String(p[2]).padStart(2,'0'); };
     const ds=(String(E.note||'').match(/20\d\d[-.\/]\d{1,2}[-.\/]\d{1,2}/g)||[]).map(iso).filter(d=>d<upd).sort();
     const snap=ds.length?ds[ds.length-1]:'';
-    setDataTime('ec-time', snap||upd, snap?'数据快照日（本日取数受限）':'抓取日');
+    setDataTime('ec-time', snap||upd, snap?'鏁版嵁蹇収鏃ワ紙鏈棩鍙栨暟鍙楅檺锛?:'鎶撳彇鏃?);
   })();
   const s=E.stat;
   document.getElementById('ec-stat').innerHTML=
-    `<div class="s"><div class="k">在售商品</div><div class="v">${s.count}<small> 件</small></div></div>`+
-    `<div class="s"><div class="k">价格区间(全量)</div><div class="v">¥${s.pmin}<small>~${s.pmax}</small></div></div>`+
-    `<div class="s r"><div class="k">正品区间</div><div class="v">¥${s.authMin}<small>~${s.authMax}</small></div></div>`+
-    `<div class="s g"><div class="k">正品在售</div><div class="v">${s.authCount}<small> 件</small></div></div>`;
-  document.getElementById('ec-warn').textContent='⚠️ '+E.note;
+    `<div class="s"><div class="k">鍦ㄥ敭鍟嗗搧</div><div class="v">${s.count}<small> 浠?/small></div></div>`+
+    `<div class="s"><div class="k">浠锋牸鍖洪棿(鍏ㄩ噺)</div><div class="v">楼${s.pmin}<small>~${s.pmax}</small></div></div>`+
+    `<div class="s r"><div class="k">姝ｅ搧鍖洪棿</div><div class="v">楼${s.authMin}<small>~${s.authMax}</small></div></div>`+
+    `<div class="s g"><div class="k">姝ｅ搧鍦ㄥ敭</div><div class="v">${s.authCount}<small> 浠?/small></div></div>`;
+  document.getElementById('ec-warn').textContent='鈿狅笍 '+E.note;
   document.getElementById('ec-list').innerHTML=E.items.map(x=>
-    `<li><span class="p">¥${x.price}<small>${x.vol}</small></span><span class="eb"><b>${x.title}</b>`+
-    `<span class="meta">📍 ${x.city} · 开店 ${x.shopYears} 年 · 🔗 <a href="${x.url}" target="_blank" rel="noopener">1688 商品页</a></span></span></li>`
+    `<li><span class="p">楼${x.price}<small>${x.vol}</small></span><span class="eb"><b>${x.title}</b>`+
+    `<span class="meta">馃搷 ${x.city} 路 寮€搴?${x.shopYears} 骞?路 馃敆 <a href="${x.url}" target="_blank" rel="noopener">1688 鍟嗗搧椤?/a></span></span></li>`
   ).join('');
 })();
 
-/* 招标动态渲染 */
+/* 鎷涙爣鍔ㄦ€佹覆鏌?*/
 (function(){
   const B=BID_NEWS;
-  setDataTime('bid-time', latestDateIn(B.map(x=>String(x.date||'').replace(/\./g,'-'))), '最新公告日');
+  setDataTime('bid-time', latestDateIn(B.map(x=>String(x.date||'').replace(/\./g,'-'))), '鏈€鏂板叕鍛婃棩');
   document.getElementById('bid-list').innerHTML=B.map(x=>
     `<li><span class="bt"><span class="kw">${x.kw}</span><span class="ty">${x.type}</span><span class="dt">${x.date}</span></span>`+
     `<span class="bb">${x.title}</span>`+
-    `<span class="bm">🏛️ ${x.buyer}（${x.prov}）· 🔗 <a href="${x.url}" target="_blank" rel="noopener">公告原文</a></span></li>`
+    `<span class="bm">馃彌锔?${x.buyer}锛?{x.prov}锛壜?馃敆 <a href="${x.url}" target="_blank" rel="noopener">鍏憡鍘熸枃</a></span></li>`
   ).join('');
 })();
 
-/* dashboard 首页统计 */
-document.getElementById('sum-ec').innerHTML=EC_NEWS.stat.authCount+' <small>件</small>';
-document.getElementById('sum-bid').innerHTML=BID_NEWS.length+' <small>条</small>';
+/* dashboard 棣栭〉缁熻 */
+document.getElementById('sum-ec').innerHTML=EC_NEWS.stat.authCount+' <small>浠?/small>';
+document.getElementById('sum-bid').innerHTML=BID_NEWS.length+' <small>鏉?/small>';
 
 /* ============================================================
-   模块 4：周度报告渲染（WEEKLY_REPORT）
+   妯″潡 4锛氬懆搴︽姤鍛婃覆鏌擄紙WEEKLY_REPORT锛?
 ============================================================ */
 (function(){
   const W=WEEKLY_REPORT, $=id=>document.getElementById(id);
-  // TL;DR：把 **粗体** 转 <b>
+  // TL;DR锛氭妸 **绮椾綋** 杞?<b>
   const bd=s=>String(s||'').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
-  $('wk-period').textContent=W.period||'—';
-  setDataTime('wk-time', W.reportDate, '报告出具日');
+  $('wk-period').textContent=W.period||'鈥?;
+  setDataTime('wk-time', W.reportDate, '鎶ュ憡鍑哄叿鏃?);
   $('wk-stat').innerHTML=
-    `<div class="mini teal"><div class="k">📅 覆盖周期</div><div class="v" style="font-size:13px;font-weight:700">${W.period}</div></div>`+
-    `<div class="mini red"><div class="k">🏭 扩产企业</div><div class="v">${(W.expanding||[]).length} <small>家</small></div></div>`+
-    `<div class="mini blue"><div class="k">🎯 可能采购三丰</div><div class="v">${(W.buyers||[]).length} <small>家</small></div></div>`+
-    `<div class="mini green"><div class="k">📌 下周跟进</div><div class="v">${(W.follow10||[]).length} <small>家</small></div></div>`;
+    `<div class="mini teal"><div class="k">馃搮 瑕嗙洊鍛ㄦ湡</div><div class="v" style="font-size:13px;font-weight:700">${W.period}</div></div>`+
+    `<div class="mini red"><div class="k">馃彮 鎵╀骇浼佷笟</div><div class="v">${(W.expanding||[]).length} <small>瀹?/small></div></div>`+
+    `<div class="mini blue"><div class="k">馃幆 鍙兘閲囪喘涓変赴</div><div class="v">${(W.buyers||[]).length} <small>瀹?/small></div></div>`+
+    `<div class="mini green"><div class="k">馃搶 涓嬪懆璺熻繘</div><div class="v">${(W.follow10||[]).length} <small>瀹?/small></div></div>`;
   $('wk-tldr').innerHTML=(W.tldr||[]).map(t=>`<li>${bd(t)}</li>`).join('');
 
-  $('wk-ind').innerHTML='<table class="tbl"><thead><tr><th>行业</th><th class="c">新增项目/招标</th><th>代表性事件</th><th class="c">增速判断</th></tr></thead><tbody>'+
+  $('wk-ind').innerHTML='<table class="tbl"><thead><tr><th>琛屼笟</th><th class="c">鏂板椤圭洰/鎷涙爣</th><th>浠ｈ〃鎬т簨浠?/th><th class="c">澧為€熷垽鏂?/th></tr></thead><tbody>'+
     (W.industries||[]).map(x=>`<tr><td><b>${x.name}</b></td><td class="c num">${x.count}</td><td>${x.event}</td><td class="c">${x.growth}</td></tr>`).join('')+
     '</tbody></table>';
-  $('wk-region').innerHTML='<table class="tbl"><thead><tr><th>地区</th><th>省市</th><th class="c">新增项目/招标</th><th>重点项目</th></tr></thead><tbody>'+
+  $('wk-region').innerHTML='<table class="tbl"><thead><tr><th>鍦板尯</th><th>鐪佸競</th><th class="c">鏂板椤圭洰/鎷涙爣</th><th>閲嶇偣椤圭洰</th></tr></thead><tbody>'+
     (W.regions||[]).map(x=>`<tr><td><b>${x.area}</b></td><td>${x.provs}</td><td class="c num">${x.count}</td><td>${x.key}</td></tr>`).join('')+
     '</tbody></table>';
 
-  $('wk-expand').innerHTML='<table class="tbl"><thead><tr><th>企业</th><th>行业</th><th>地点</th><th>项目内容</th><th>投资/产能规模</th><th>状态</th></tr></thead><tbody>'+
+  $('wk-expand').innerHTML='<table class="tbl"><thead><tr><th>浼佷笟</th><th>琛屼笟</th><th>鍦扮偣</th><th>椤圭洰鍐呭</th><th>鎶曡祫/浜ц兘瑙勬ā</th><th>鐘舵€?/th></tr></thead><tbody>'+
     (W.expanding||[]).map(x=>`<tr><td><b>${x.co}</b></td><td>${x.ind}</td><td>${x.loc}</td><td>${x.proj}</td><td>${x.scale}</td><td>${x.status}</td></tr>`).join('')+
     '</tbody></table>';
 
-  $('wk-buyers').innerHTML='<table class="tbl"><thead><tr><th>企业</th><th>所在地</th><th>需求匹配产品</th><th>判断理由</th></tr></thead><tbody>'+
+  $('wk-buyers').innerHTML='<table class="tbl"><thead><tr><th>浼佷笟</th><th>鎵€鍦ㄥ湴</th><th>闇€姹傚尮閰嶄骇鍝?/th><th>鍒ゆ柇鐞嗙敱</th></tr></thead><tbody>'+
     (W.buyers||[]).map(x=>`<tr><td><b>${x.co}</b></td><td>${x.loc}</td><td>${x.need}</td><td>${x.why}</td></tr>`).join('')+
     '</tbody></table>';
 
-  $('wk-demand').innerHTML='<table class="tbl"><thead><tr><th>产品类别</th><th class="c">信号数</th><th>金额区间 / 典型案例</th><th class="c">需求强度</th></tr></thead><tbody>'+
+  $('wk-demand').innerHTML='<table class="tbl"><thead><tr><th>浜у搧绫诲埆</th><th class="c">淇″彿鏁?/th><th>閲戦鍖洪棿 / 鍏稿瀷妗堜緥</th><th class="c">闇€姹傚己搴?/th></tr></thead><tbody>'+
     (W.demand||[]).map(x=>`<tr><td><b>${x.cat}</b></td><td class="c num">${x.n}</td><td>${x.amount}</td><td class="c">${x.strength}</td></tr>`).join('')+
     '</tbody></table>';
-  $('wk-subst').innerHTML='<table class="tbl"><thead><tr><th>产品类别</th><th class="c">影响程度</th><th>主要表现</th><th>代表国产品牌 / 动态</th></tr></thead><tbody>'+
+  $('wk-subst').innerHTML='<table class="tbl"><thead><tr><th>浜у搧绫诲埆</th><th class="c">褰卞搷绋嬪害</th><th>涓昏琛ㄧ幇</th><th>浠ｈ〃鍥戒骇鍝佺墝 / 鍔ㄦ€?/th></tr></thead><tbody>'+
     (W.substitution||[]).map(x=>`<tr><td><b>${x.cat}</b></td><td class="c">${x.level}</td><td>${x.how}</td><td>${x.brands}</td></tr>`).join('')+
     '</tbody></table>';
 
-  $('wk-follow').innerHTML='<table class="tbl"><thead><tr><th class="c">#</th><th>公司</th><th>所在地</th><th>跟进理由</th><th>建议行动</th></tr></thead><tbody>'+
+  $('wk-follow').innerHTML='<table class="tbl"><thead><tr><th class="c">#</th><th>鍏徃</th><th>鎵€鍦ㄥ湴</th><th>璺熻繘鐞嗙敱</th><th>寤鸿琛屽姩</th></tr></thead><tbody>'+
     (W.follow10||[]).map((x,i)=>`<tr><td class="c num">${i+1}</td><td><b>${x.co}</b></td><td>${x.loc}</td><td>${x.why}</td><td>${x.act}</td></tr>`).join('')+
     '</tbody></table>';
 
   $('wk-markets').innerHTML=(W.markets3m||[]).map((m,i)=>
     `<div class="rd-block"><h5>${i+1}. ${m.title}</h5>
-      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">驱动因素</i>${m.driver}</div>
-      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">推荐产品</i>${m.products}</div>
-      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">关键客户</i>${m.clients}</div>
+      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">椹卞姩鍥犵礌</i>${m.driver}</div>
+      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">鎺ㄨ崘浜у搧</i>${m.products}</div>
+      <div class="row" style="font-size:12.5px;color:#374151;line-height:1.72"><i style="font-style:normal;font-weight:800;color:#5f7a63">鍏抽敭瀹㈡埛</i>${m.clients}</div>
     </div>`).join('');
 
   $('wk-actions').innerHTML=(W.actions||[]).map(a=>`<li>${a}</li>`).join('');
   $('wk-sources').innerHTML=(W.sources||[]).map(a=>`<li>${a}</li>`).join('');
 
-  $('sum-weekly').innerHTML=(W.follow10||[]).length+' <small>家</small>';
+  $('sum-weekly').innerHTML=(W.follow10||[]).length+' <small>瀹?/small>';
 })();
 
 /* ============================================================
-   模块 5：市场机会雷达渲染（DAILY_RADAR）
+   妯″潡 5锛氬競鍦烘満浼氶浄杈炬覆鏌擄紙DAILY_RADAR锛?
 ============================================================ */
 (function(){
   const R=DAILY_RADAR, $=id=>document.getElementById(id);
   const scrCls=n=> n>=90?'scr hi' : (n>=85?'scr' : (n>=80?'scr mid' : 'scr lo'));
-  const trendCls=t=> t==='增长'?'tr-up' : (t==='稳定'?'tr-fl':'tr-dn');
-  $('rd-window').textContent=R.window||'—';
-  setDataTime('rd-time', R.date, '日报日期');
+  const trendCls=t=> t==='澧為暱'?'tr-up' : (t==='绋冲畾'?'tr-fl':'tr-dn');
+  $('rd-window').textContent=R.window||'鈥?;
+  setDataTime('rd-time', R.date, '鏃ユ姤鏃ユ湡');
   const hi=(R.leads||[]).filter(x=>x.score>=85).length;
   $('rd-stat').innerHTML=
-    `<div class="mini red"><div class="k">🔥 高价值机会(≥85分)</div><div class="v">${hi} <small>个</small></div></div>`+
-    `<div class="mini blue"><div class="k">💰 潜在客户</div><div class="v">${(R.leads||[]).length} <small>家</small></div></div>`+
-    `<div class="mini green"><div class="k">🏭 新厂 / 扩产</div><div class="v">${(R.plants||[]).length} <small>条</small></div></div>`+
-    `<div class="mini teal"><div class="k">🥊 竞品动态</div><div class="v">${(R.competitors||[]).length} <small>条</small></div></div>`;
+    `<div class="mini red"><div class="k">馃敟 楂樹环鍊兼満浼?鈮?5鍒?</div><div class="v">${hi} <small>涓?/small></div></div>`+
+    `<div class="mini blue"><div class="k">馃挵 娼滃湪瀹㈡埛</div><div class="v">${(R.leads||[]).length} <small>瀹?/small></div></div>`+
+    `<div class="mini green"><div class="k">馃彮 鏂板巶 / 鎵╀骇</div><div class="v">${(R.plants||[]).length} <small>鏉?/small></div></div>`+
+    `<div class="mini teal"><div class="k">馃 绔炲搧鍔ㄦ€?/div><div class="v">${(R.competitors||[]).length} <small>鏉?/small></div></div>`;
 
-  $('rd-top5').innerHTML='<table class="tbl"><thead><tr><th class="c">#</th><th>企业 / 机构</th><th>行业</th><th>地区</th><th>机会</th><th>可能采购设备</th><th>预计时间</th><th class="c">评分</th></tr></thead><tbody>'+
+  $('rd-top5').innerHTML='<table class="tbl"><thead><tr><th class="c">#</th><th>浼佷笟 / 鏈烘瀯</th><th>琛屼笟</th><th>鍦板尯</th><th>鏈轰細</th><th>鍙兘閲囪喘璁惧</th><th>棰勮鏃堕棿</th><th class="c">璇勫垎</th></tr></thead><tbody>'+
     (R.top5||[]).map((x,i)=>`<tr><td class="c num">${x.rank||i+1}</td><td><b>${x.co}</b></td><td>${x.ind}</td><td>${x.loc}</td><td>${x.opp}</td><td>${x.dev}</td><td>${x.when}</td><td class="c"><span class="${scrCls(x.score)}">${x.score}</span></td></tr>`).join('')+
     '</tbody></table>';
 
   $('rd-must').innerHTML=(R.mustWatch||[]).map(x=>
-    `<div class="rd-must"><h4>🚨 ${x.title}</h4>
-      <div class="row"><i>发生了什么</i>${x.what}</div>
-      <div class="row"><i>为什么重要</i>${x.why}</div>
-      <div class="row"><i>可能需求</i>${x.need}</div>
-      <div class="row"><i>预计采购</i>${x.when}</div>
-      <div class="row"><i>建议动作</i>${x.todo}</div>
+    `<div class="rd-must"><h4>馃毃 ${x.title}</h4>
+      <div class="row"><i>鍙戠敓浜嗕粈涔?/i>${x.what}</div>
+      <div class="row"><i>涓轰粈涔堥噸瑕?/i>${x.why}</div>
+      <div class="row"><i>鍙兘闇€姹?/i>${x.need}</div>
+      <div class="row"><i>棰勮閲囪喘</i>${x.when}</div>
+      <div class="row"><i>寤鸿鍔ㄤ綔</i>${x.todo}</div>
     </div>`).join('');
 
-  $('rd-plants').innerHTML='<table class="tbl"><thead><tr><th>企业 / 项目</th><th>地区</th><th>行业</th><th>投资 / 规模</th><th>状态</th><th>测量设备需求</th></tr></thead><tbody>'+
+  $('rd-plants').innerHTML='<table class="tbl"><thead><tr><th>浼佷笟 / 椤圭洰</th><th>鍦板尯</th><th>琛屼笟</th><th>鎶曡祫 / 瑙勬ā</th><th>鐘舵€?/th><th>娴嬮噺璁惧闇€姹?/th></tr></thead><tbody>'+
     (R.plants||[]).map(x=>`<tr><td><b>${x.co}</b></td><td>${x.loc}</td><td>${x.ind}</td><td>${x.scale}</td><td>${x.status}</td><td>${x.need}</td></tr>`).join('')+
     '</tbody></table>';
 
-  $('rd-markets').innerHTML='<table class="tbl"><thead><tr><th>行业</th><th class="c">趋势</th><th>判断依据</th></tr></thead><tbody>'+
+  $('rd-markets').innerHTML='<table class="tbl"><thead><tr><th>琛屼笟</th><th class="c">瓒嬪娍</th><th>鍒ゆ柇渚濇嵁</th></tr></thead><tbody>'+
     (R.markets||[]).map(x=>`<tr><td><b>${x.ind}</b></td><td class="c"><span class="${trendCls(x.trend)}">${x.trend}</span></td><td>${x.why}</td></tr>`).join('')+
     '</tbody></table>';
 
-  $('rd-comp').innerHTML='<table class="tbl"><thead><tr><th>品牌</th><th>动态</th><th>影响评估</th></tr></thead><tbody>'+
+  $('rd-comp').innerHTML='<table class="tbl"><thead><tr><th>鍝佺墝</th><th>鍔ㄦ€?/th><th>褰卞搷璇勪及</th></tr></thead><tbody>'+
     (R.competitors||[]).map(x=>`<tr><td><b>${x.brand}</b></td><td>${x.news}</td><td>${x.impact}</td></tr>`).join('')+
     '</tbody></table>';
 
-  $('rd-leads').innerHTML='<table class="tbl"><thead><tr><th>企业 / 机构</th><th>地区</th><th>行业</th><th>机会类型</th><th>金额 / 规模</th><th class="c">评分</th><th class="c">采购概率</th><th>建议行动</th></tr></thead><tbody>'+
+  $('rd-leads').innerHTML='<table class="tbl"><thead><tr><th>浼佷笟 / 鏈烘瀯</th><th>鍦板尯</th><th>琛屼笟</th><th>鏈轰細绫诲瀷</th><th>閲戦 / 瑙勬ā</th><th class="c">璇勫垎</th><th class="c">閲囪喘姒傜巼</th><th>寤鸿琛屽姩</th></tr></thead><tbody>'+
     (R.leads||[]).map(x=>`<tr><td><b>${x.co}</b></td><td>${x.loc}</td><td>${x.ind}</td><td>${x.type}</td><td>${x.amount}</td><td class="c"><span class="${scrCls(x.score)}">${x.score}</span></td><td class="c">${x.prob}</td><td>${x.act}</td></tr>`).join('')+
     '</tbody></table>';
 
@@ -1094,19 +1094,19 @@ document.getElementById('sum-bid').innerHTML=BID_NEWS.length+' <small>条</small
   const grp=(icon,title,arr)=> (arr&&arr.length)
     ? `<div class="rd-block"><h5>${icon} ${title}</h5><ul>${arr.map(i=>`<li>${i}</li>`).join('')}</ul></div>` : '';
   $('rd-actions').innerHTML=
-    grp('✅','建议联系（立即行动）',A.contact)+
-    grp('🔍','重点推广',A.promote)+
-    grp('👀','建议关注',A.watch)+
-    grp('⛔','暂时不要投入',A.avoid);
+    grp('鉁?,'寤鸿鑱旂郴锛堢珛鍗宠鍔級',A.contact)+
+    grp('馃攳','閲嶇偣鎺ㄥ箍',A.promote)+
+    grp('馃憖','寤鸿鍏虫敞',A.watch)+
+    grp('鉀?,'鏆傛椂涓嶈鎶曞叆',A.avoid);
 
-  $('sum-radar').innerHTML=hi+' <small>个</small>';
+  $('sum-radar').innerHTML=hi+' <small>涓?/small>';
 })();
 
 /* ============================================================
-   模块 3：FX_DATA（日币走势预估，由自动化每 1 小时替换）
-   来源：日币走势预估-1小时更新（Claw 自动化）
+   妯″潡 3锛欶X_DATA锛堟棩甯佽蛋鍔块浼帮紝鐢辫嚜鍔ㄥ寲姣?1 灏忔椂鏇挎崲锛?
+   鏉ユ簮锛氭棩甯佽蛋鍔块浼?1灏忔椂鏇存柊锛圕law 鑷姩鍖栵級
 ============================================================ */
-const FX_DATA = {"date": "2026-09-18", "now": "2026-09-18 08:41", "latest": 4.2922, "ccbSell": 4.3154, "usdjpy": 156.32, "usdcny": 6.7085, "ytd": "-3.51%", "updated": "数据时间 2026-09-18 08:41（北京时间）。来源：汇率插件 JPY/CNY 0.0429215848→100日元4.2922、USD/JPY 156.320；中国外汇交易中心中间价 USD/CNY 6.7580 / 100JPY 4.3252；建行现汇卖出价 4.3154（09-18 03:28，shishihuilv）；交叉校验 100×6.7085/156.32=4.2922。新闻多源：CNA/路透/共同社/日经/券商中国/华尔街见闻/金十/腾讯财经/每日经济新闻。", "alertOn": true, "alert": "⚠ <b>重大事件：日银9/18加息至1.25%（31年新高，3个月最快节奏）；美联储9/17已鹰派加息25bp至3.75%-4.00%（12-0全票，年内或再加一次）。</b><br>当前 100日元=4.2922（USD/JPY 156.32、USD/CNY 6.7085）；建行日元现汇卖出价 4.3154。<br>影响：日银升息+美财长施压升值→日元中期走强；但Fed鹰派+布油104支撑美元，USD/JPY短线在 152-158 拉锯。<br>基准情景(10/25) 100日元 4.33；乐观 4.45；悲观 4.20。若换汇买日元，可在 4.29-4.32 分批布局。", "historyVals": [4.866, 4.818, 4.7054, 4.5841, 4.5217, 4.4482, 4.459, 4.3458, 4.2949, 4.3019, 4.215, 4.1704, 4.2193, 4.2922], "base": [4.2922, 4.2932, 4.2942, 4.2953, 4.2963, 4.2973, 4.2983, 4.2994, 4.3004, 4.3014, 4.3024, 4.3034, 4.3045, 4.3055, 4.3065, 4.3075, 4.3085, 4.3096, 4.3106, 4.3116, 4.3126, 4.3137, 4.3147, 4.3157, 4.3167, 4.3177, 4.3188, 4.3198, 4.3208, 4.3218, 4.3228, 4.3239, 4.3249, 4.3259, 4.3269, 4.328, 4.329, 4.33], "bull": [4.2922, 4.2965, 4.3007, 4.305, 4.3093, 4.3135, 4.3178, 4.3221, 4.3263, 4.3306, 4.3348, 4.3391, 4.3434, 4.3476, 4.3519, 4.3562, 4.3604, 4.3647, 4.369, 4.3732, 4.3775, 4.3818, 4.386, 4.3903, 4.3946, 4.3988, 4.4031, 4.4074, 4.4116, 4.4159, 4.4201, 4.4244, 4.4287, 4.4329, 4.4372, 4.4415, 4.4457, 4.45], "bear": [4.2922, 4.2897, 4.2872, 4.2847, 4.2822, 4.2797, 4.2772, 4.2748, 4.2723, 4.2698, 4.2673, 4.2648, 4.2623, 4.2598, 4.2573, 4.2548, 4.2523, 4.2498, 4.2473, 4.2449, 4.2424, 4.2399, 4.2374, 4.2349, 4.2324, 4.2299, 4.2274, 4.2249, 4.2224, 4.2199, 4.2174, 4.215, 4.2125, 4.21, 4.2075, 4.205, 4.2025, 4.2], "allDates": ["2025-08-31", "2025-09-30", "2025-10-31", "2025-11-30", "2025-12-31", "2026-01-31", "2026-02-28", "2026-03-31", "2026-04-30", "2026-05-31", "2026-06-30", "2026-07-31", "2026-08-31", "2026-09-18", "2026-09-19", "2026-09-20", "2026-09-21", "2026-09-22", "2026-09-23", "2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27", "2026-09-28", "2026-09-29", "2026-09-30", "2026-10-01", "2026-10-02", "2026-10-03", "2026-10-04", "2026-10-05", "2026-10-06", "2026-10-07", "2026-10-08", "2026-10-09", "2026-10-10", "2026-10-11", "2026-10-12", "2026-10-13", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-17", "2026-10-18", "2026-10-19", "2026-10-20", "2026-10-21", "2026-10-22", "2026-10-23", "2026-10-24", "2026-10-25"], "scenario": [{"usdjpy": 154.97, "usdcny": "6.7100", "jpy100": 4.33, "prob": "50%", "cls": "基准", "desc": "日银9/18如期加息至1.25%且指引中性偏鹰，Fed鹰派但油价回落缓和通胀，USD/JPY温和回落至约155，100日元小幅上行至4.33附近。"}, {"usdjpy": 150.56, "usdcny": "6.7000", "jpy100": 4.45, "prob": "25%", "cls": "乐观(日元走强)", "desc": "植田14:30 JST释放加速加息信号（终端利率1.75%），美财长施压升值，USD/JPY跌向150-151，100日元升至4.45。"}, {"usdjpy": 160.0, "usdcny": "6.7200", "jpy100": 4.2, "prob": "25%", "cls": "悲观(日元走弱)", "desc": "植田指引平淡或'买消息卖事实'，油价再度抬升输入型通胀缓和加息紧迫性，USD/JPY上冲158-160，100日元跌向4.20。"}], "buyHint": "<div class='bh'><b>当前 100日元 ≈ 4.2922</b>，处2026年以来偏低区间（年初4.4482，YTD -3.51%）。日银9/18加息至1.25%且指引偏鹰，日元中期有升值空间（基准情景10/25见4.33，乐观4.45）。若计划换汇<b>买入日元</b>（如赴日采购/偿债），可在 <b>4.29-4.32</b> 区间分批布局，避免一次性押注；激进者可关注日银14:30 JST发布会后若USD/JPY跌破155的加仓机会。跌破4.25（悲观情景）概率约25%。<span class='disc'>（以上为基于公开数据的情景分析，非投资建议）</span></div>", "news": [{"tag": "⚠头条", "t": "日银9/18加息至1.25%（31年新高）", "d": "日本央行将政策利率由1.00%上调25bp至1.25%，为1995年以来最高、2024年3月正常化以来最短间隔（3个月）。市场已充分计价，焦点转向植田14:30 JST记者会对后续节奏与终端利率（预期1.75%）的指引。"}, {"tag": "美联储", "t": "美联储9/17鹰派加息25bp至3.75-4.00%", "d": "12-0全票通过，点阵图16/18官员预计年内至少再加息一次，2026年底中值4.1%；沃什偏鹰。2Y美债4.66-4.74%、10Y回落至4.93-5.02%、DXY 100.22。美元走强短线压制日元。"}, {"tag": "美日关系", "t": "美财长Bessent施压日元升值", "d": "Bessent本月与植田会晤，呼吁'果断'货币政策以对抗日元疲软；日银7/30-8/26耗964亿美元外储护盘，美财政部7/31直接买日元近30年首次。政策面支撑日元。"}, {"tag": "日银", "t": "日银委员放鹰+通胀高企", "d": "委员增岛·高田释放加速加息信号，10Y日债收益率触约3%（30年高点）；8月批发CPI +7.6%、日元计价进口物价指数 +24.8%，强化继续紧缩基础。"}, {"tag": "建行牌价", "t": "建行日元现汇卖出价4.3154", "d": "建行100日元现汇：买入4.2828/卖出4.3154（09-18 03:28）；在岸USD/CNY 6.7085、中间价6.7580；100日元中间价4.3252。即期100日元≈4.2922（汇率插件）。"}, {"tag": "美日关系", "t": "CFTC日元净空头降至约5万张", "d": "截至9/9投机者日元净空头降至约5万张（较前期9.2万张高位减半），大型投机者2月以来首现净多迹象；套息交易逆转对全球风险资产（美股科技/新兴市场）的外溢仍需警惕。"}, {"tag": "美联储", "t": "油价回落缓和通胀焦虑", "d": "布伦特104.10、WTI 101.09（9/17收），沙特东西管道抢修推进、霍尔木兹航运仍受限；10Y美债回落至4.93%。短期缓和美元与美债上行压力。"}, {"tag": "日银", "t": "日本8月核心CPI今日07:30公布", "d": "市场预期关注通胀是否超预期（7月整体CPI 1.9%、实际工资连7月上涨）；若超预期将强化日银提速加息路径，利好日元。"}], "history": [{"m": "2025-08", "v": "4.866", "p": "—"}, {"m": "2025-09", "v": "4.818", "p": -0.99}, {"m": "2025-10", "v": "4.7054", "p": -2.34}, {"m": "2025-11", "v": "4.5841", "p": -2.58}, {"m": "2025-12", "v": "4.5217", "p": -1.36}, {"m": "2026-01", "v": "4.4482", "p": -1.63}, {"m": "2026-02", "v": "4.459", "p": 0.24}, {"m": "2026-03", "v": "4.3458", "p": -2.54}, {"m": "2026-04", "v": "4.2949", "p": -1.17}, {"m": "2026-05", "v": "4.3019", "p": 0.16}, {"m": "2026-06", "v": "4.215", "p": -2.02}, {"m": "2026-07", "v": "4.1704", "p": -1.06}, {"m": "2026-08", "v": "4.2193", "p": 1.17, "real": true}], "events": [{"date": "2026-09-18", "t": "日银利率决议 + 植田记者会(14:30 JST)", "d": "已加息至1.25%；指引节奏（10/12月是否再加、终端1.75%）是关键。"}, {"date": "2026-09-18", "t": "日本8月核心CPI公布(07:30 JST)", "d": "通胀是否超预期，直接影响后续加息路径与市场定价。"}, {"date": "2026-10-01", "t": "日银下次议息窗口（市场押注）", "d": "互换定价2027年初前再加25bp，终端利率预期约1.75%（10月或12月）。"}, {"date": "2026-10-15", "t": "美联储10月议息（CME 10月再加25bp概率53%）", "d": "美日利差走向，决定USD/JPY中期方向。"}, {"date": "2026-09-25", "t": "日本9月CPI初值观察", "d": "观察油价→进口通胀传导是否兑现。"}, {"date": "持续", "t": "霍尔木兹海峡航运恢复情况", "d": "布伦特>100的风险溢价牵动日银通胀判断与加息节奏。"}, {"date": "2026-10-25", "t": "本预测horizon终点", "d": "三情景100日元：基准4.33 / 乐观4.45 / 悲观4.20。"}]};;;;;;;;;;
+const FX_DATA = {"date": "2026-09-18", "now": "2026-09-18 08:41", "latest": 4.2922, "ccbSell": 4.3154, "usdjpy": 156.32, "usdcny": 6.7085, "ytd": "-3.51%", "updated": "鏁版嵁鏃堕棿 2026-09-18 08:41锛堝寳浜椂闂达級銆傛潵婧愶細姹囩巼鎻掍欢 JPY/CNY 0.0429215848鈫?00鏃ュ厓4.2922銆乁SD/JPY 156.320锛涗腑鍥藉姹囦氦鏄撲腑蹇冧腑闂翠环 USD/CNY 6.7580 / 100JPY 4.3252锛涘缓琛岀幇姹囧崠鍑轰环 4.3154锛?9-18 03:28锛宻hishihuilv锛夛紱浜ゅ弶鏍￠獙 100脳6.7085/156.32=4.2922銆傛柊闂诲婧愶細CNA/璺€?鍏卞悓绀?鏃ョ粡/鍒稿晢涓浗/鍗庡皵琛楄闂?閲戝崄/鑵捐璐㈢粡/姣忔棩缁忔祹鏂伴椈銆?, "alertOn": true, "alert": "鈿?<b>閲嶅ぇ浜嬩欢锛氭棩閾?/18鍔犳伅鑷?.25%锛?1骞存柊楂橈紝3涓湀鏈€蹇妭濂忥級锛涚編鑱斿偍9/17宸查拱娲惧姞鎭?5bp鑷?.75%-4.00%锛?2-0鍏ㄧエ锛屽勾鍐呮垨鍐嶅姞涓€娆★級銆?/b><br>褰撳墠 100鏃ュ厓=4.2922锛圲SD/JPY 156.32銆乁SD/CNY 6.7085锛夛紱寤鸿鏃ュ厓鐜版眹鍗栧嚭浠?4.3154銆?br>褰卞搷锛氭棩閾跺崌鎭?缇庤储闀挎柦鍘嬪崌鍊尖啋鏃ュ厓涓湡璧板己锛涗絾Fed楣版淳+甯冩补104鏀拺缇庡厓锛孶SD/JPY鐭嚎鍦?152-158 鎷夐敮銆?br>鍩哄噯鎯呮櫙(10/25) 100鏃ュ厓 4.33锛涗箰瑙?4.45锛涙偛瑙?4.20銆傝嫢鎹㈡眹涔版棩鍏冿紝鍙湪 4.29-4.32 鍒嗘壒甯冨眬銆?, "historyVals": [4.866, 4.818, 4.7054, 4.5841, 4.5217, 4.4482, 4.459, 4.3458, 4.2949, 4.3019, 4.215, 4.1704, 4.2193, 4.2922], "base": [4.2922, 4.2932, 4.2942, 4.2953, 4.2963, 4.2973, 4.2983, 4.2994, 4.3004, 4.3014, 4.3024, 4.3034, 4.3045, 4.3055, 4.3065, 4.3075, 4.3085, 4.3096, 4.3106, 4.3116, 4.3126, 4.3137, 4.3147, 4.3157, 4.3167, 4.3177, 4.3188, 4.3198, 4.3208, 4.3218, 4.3228, 4.3239, 4.3249, 4.3259, 4.3269, 4.328, 4.329, 4.33], "bull": [4.2922, 4.2965, 4.3007, 4.305, 4.3093, 4.3135, 4.3178, 4.3221, 4.3263, 4.3306, 4.3348, 4.3391, 4.3434, 4.3476, 4.3519, 4.3562, 4.3604, 4.3647, 4.369, 4.3732, 4.3775, 4.3818, 4.386, 4.3903, 4.3946, 4.3988, 4.4031, 4.4074, 4.4116, 4.4159, 4.4201, 4.4244, 4.4287, 4.4329, 4.4372, 4.4415, 4.4457, 4.45], "bear": [4.2922, 4.2897, 4.2872, 4.2847, 4.2822, 4.2797, 4.2772, 4.2748, 4.2723, 4.2698, 4.2673, 4.2648, 4.2623, 4.2598, 4.2573, 4.2548, 4.2523, 4.2498, 4.2473, 4.2449, 4.2424, 4.2399, 4.2374, 4.2349, 4.2324, 4.2299, 4.2274, 4.2249, 4.2224, 4.2199, 4.2174, 4.215, 4.2125, 4.21, 4.2075, 4.205, 4.2025, 4.2], "allDates": ["2025-08-31", "2025-09-30", "2025-10-31", "2025-11-30", "2025-12-31", "2026-01-31", "2026-02-28", "2026-03-31", "2026-04-30", "2026-05-31", "2026-06-30", "2026-07-31", "2026-08-31", "2026-09-18", "2026-09-19", "2026-09-20", "2026-09-21", "2026-09-22", "2026-09-23", "2026-09-24", "2026-09-25", "2026-09-26", "2026-09-27", "2026-09-28", "2026-09-29", "2026-09-30", "2026-10-01", "2026-10-02", "2026-10-03", "2026-10-04", "2026-10-05", "2026-10-06", "2026-10-07", "2026-10-08", "2026-10-09", "2026-10-10", "2026-10-11", "2026-10-12", "2026-10-13", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-17", "2026-10-18", "2026-10-19", "2026-10-20", "2026-10-21", "2026-10-22", "2026-10-23", "2026-10-24", "2026-10-25"], "scenario": [{"usdjpy": 154.97, "usdcny": "6.7100", "jpy100": 4.33, "prob": "50%", "cls": "鍩哄噯", "desc": "鏃ラ摱9/18濡傛湡鍔犳伅鑷?.25%涓旀寚寮曚腑鎬у亸楣帮紝Fed楣版淳浣嗘补浠峰洖钀界紦鍜岄€氳儉锛孶SD/JPY娓╁拰鍥炶惤鑷崇害155锛?00鏃ュ厓灏忓箙涓婅鑷?.33闄勮繎銆?}, {"usdjpy": 150.56, "usdcny": "6.7000", "jpy100": 4.45, "prob": "25%", "cls": "涔愯(鏃ュ厓璧板己)", "desc": "妞嶇敯14:30 JST閲婃斁鍔犻€熷姞鎭俊鍙凤紙缁堢鍒╃巼1.75%锛夛紝缇庤储闀挎柦鍘嬪崌鍊硷紝USD/JPY璺屽悜150-151锛?00鏃ュ厓鍗囪嚦4.45銆?}, {"usdjpy": 160.0, "usdcny": "6.7200", "jpy100": 4.2, "prob": "25%", "cls": "鎮茶(鏃ュ厓璧板急)", "desc": "妞嶇敯鎸囧紩骞虫贰鎴?涔版秷鎭崠浜嬪疄'锛屾补浠峰啀搴︽姮鍗囪緭鍏ュ瀷閫氳儉缂撳拰鍔犳伅绱ц揩鎬э紝USD/JPY涓婂啿158-160锛?00鏃ュ厓璺屽悜4.20銆?}], "buyHint": "<div class='bh'><b>褰撳墠 100鏃ュ厓 鈮?4.2922</b>锛屽2026骞翠互鏉ュ亸浣庡尯闂达紙骞村垵4.4482锛孻TD -3.51%锛夈€傛棩閾?/18鍔犳伅鑷?.25%涓旀寚寮曞亸楣帮紝鏃ュ厓涓湡鏈夊崌鍊肩┖闂达紙鍩哄噯鎯呮櫙10/25瑙?.33锛屼箰瑙?.45锛夈€傝嫢璁″垝鎹㈡眹<b>涔板叆鏃ュ厓</b>锛堝璧存棩閲囪喘/鍋垮€猴級锛屽彲鍦?<b>4.29-4.32</b> 鍖洪棿鍒嗘壒甯冨眬锛岄伩鍏嶄竴娆℃€ф娂娉紱婵€杩涜€呭彲鍏虫敞鏃ラ摱14:30 JST鍙戝竷浼氬悗鑻SD/JPY璺岀牬155鐨勫姞浠撴満浼氥€傝穼鐮?.25锛堟偛瑙傛儏鏅級姒傜巼绾?5%銆?span class='disc'>锛堜互涓婁负鍩轰簬鍏紑鏁版嵁鐨勬儏鏅垎鏋愶紝闈炴姇璧勫缓璁級</span></div>", "news": [{"tag": "鈿犲ご鏉?, "t": "鏃ラ摱9/18鍔犳伅鑷?.25%锛?1骞存柊楂橈級", "d": "鏃ユ湰澶灏嗘斂绛栧埄鐜囩敱1.00%涓婅皟25bp鑷?.25%锛屼负1995骞翠互鏉ユ渶楂樸€?024骞?鏈堟甯稿寲浠ユ潵鏈€鐭棿闅旓紙3涓湀锛夈€傚競鍦哄凡鍏呭垎璁′环锛岀劍鐐硅浆鍚戞鐢?4:30 JST璁拌€呬細瀵瑰悗缁妭濂忎笌缁堢鍒╃巼锛堥鏈?.75%锛夌殑鎸囧紩銆?}, {"tag": "缇庤仈鍌?, "t": "缇庤仈鍌?/17楣版淳鍔犳伅25bp鑷?.75-4.00%", "d": "12-0鍏ㄧエ閫氳繃锛岀偣闃靛浘16/18瀹樺憳棰勮骞村唴鑷冲皯鍐嶅姞鎭竴娆★紝2026骞村簳涓€?.1%锛涙矁浠€鍋忛拱銆?Y缇庡€?.66-4.74%銆?0Y鍥炶惤鑷?.93-5.02%銆丏XY 100.22銆傜編鍏冭蛋寮虹煭绾垮帇鍒舵棩鍏冦€?}, {"tag": "缇庢棩鍏崇郴", "t": "缇庤储闀緽essent鏂藉帇鏃ュ厓鍗囧€?, "d": "Bessent鏈湀涓庢鐢颁細鏅わ紝鍛煎悂'鏋滄柇'璐у竵鏀跨瓥浠ュ鎶楁棩鍏冪柌杞紱鏃ラ摱7/30-8/26鑰?64浜跨編鍏冨鍌ㄦ姢鐩橈紝缇庤储鏀块儴7/31鐩存帴涔版棩鍏冭繎30骞撮娆°€傛斂绛栭潰鏀拺鏃ュ厓銆?}, {"tag": "鏃ラ摱", "t": "鏃ラ摱濮斿憳鏀鹃拱+閫氳儉楂樹紒", "d": "濮斿憳澧炲矝路楂樼敯閲婃斁鍔犻€熷姞鎭俊鍙凤紝10Y鏃ュ€烘敹鐩婄巼瑙︾害3%锛?0骞撮珮鐐癸級锛?鏈堟壒鍙慍PI +7.6%銆佹棩鍏冭浠疯繘鍙ｇ墿浠锋寚鏁?+24.8%锛屽己鍖栫户缁揣缂╁熀纭€銆?}, {"tag": "寤鸿鐗屼环", "t": "寤鸿鏃ュ厓鐜版眹鍗栧嚭浠?.3154", "d": "寤鸿100鏃ュ厓鐜版眹锛氫拱鍏?.2828/鍗栧嚭4.3154锛?9-18 03:28锛夛紱鍦ㄥ哺USD/CNY 6.7085銆佷腑闂翠环6.7580锛?00鏃ュ厓涓棿浠?.3252銆傚嵆鏈?00鏃ュ厓鈮?.2922锛堟眹鐜囨彃浠讹級銆?}, {"tag": "缇庢棩鍏崇郴", "t": "CFTC鏃ュ厓鍑€绌哄ご闄嶈嚦绾?涓囧紶", "d": "鎴嚦9/9鎶曟満鑰呮棩鍏冨噣绌哄ご闄嶈嚦绾?涓囧紶锛堣緝鍓嶆湡9.2涓囧紶楂樹綅鍑忓崐锛夛紝澶у瀷鎶曟満鑰?鏈堜互鏉ラ鐜板噣澶氳抗璞★紱濂楁伅浜ゆ槗閫嗚浆瀵瑰叏鐞冮闄╄祫浜э紙缇庤偂绉戞妧/鏂板叴甯傚満锛夌殑澶栨孩浠嶉渶璀︽儠銆?}, {"tag": "缇庤仈鍌?, "t": "娌逛环鍥炶惤缂撳拰閫氳儉鐒﹁檻", "d": "甯冧鸡鐗?04.10銆乄TI 101.09锛?/17鏀讹級锛屾矙鐗逛笢瑗跨閬撴姠淇帹杩涖€侀湇灏旀湪鍏硅埅杩愪粛鍙楅檺锛?0Y缇庡€哄洖钀借嚦4.93%銆傜煭鏈熺紦鍜岀編鍏冧笌缇庡€轰笂琛屽帇鍔涖€?}, {"tag": "鏃ラ摱", "t": "鏃ユ湰8鏈堟牳蹇僀PI浠婃棩07:30鍏竷", "d": "甯傚満棰勬湡鍏虫敞閫氳儉鏄惁瓒呴鏈燂紙7鏈堟暣浣揅PI 1.9%銆佸疄闄呭伐璧勮繛7鏈堜笂娑級锛涜嫢瓒呴鏈熷皢寮哄寲鏃ラ摱鎻愰€熷姞鎭矾寰勶紝鍒╁ソ鏃ュ厓銆?}], "history": [{"m": "2025-08", "v": "4.866", "p": "鈥?}, {"m": "2025-09", "v": "4.818", "p": -0.99}, {"m": "2025-10", "v": "4.7054", "p": -2.34}, {"m": "2025-11", "v": "4.5841", "p": -2.58}, {"m": "2025-12", "v": "4.5217", "p": -1.36}, {"m": "2026-01", "v": "4.4482", "p": -1.63}, {"m": "2026-02", "v": "4.459", "p": 0.24}, {"m": "2026-03", "v": "4.3458", "p": -2.54}, {"m": "2026-04", "v": "4.2949", "p": -1.17}, {"m": "2026-05", "v": "4.3019", "p": 0.16}, {"m": "2026-06", "v": "4.215", "p": -2.02}, {"m": "2026-07", "v": "4.1704", "p": -1.06}, {"m": "2026-08", "v": "4.2193", "p": 1.17, "real": true}], "events": [{"date": "2026-09-18", "t": "鏃ラ摱鍒╃巼鍐宠 + 妞嶇敯璁拌€呬細(14:30 JST)", "d": "宸插姞鎭嚦1.25%锛涙寚寮曡妭濂忥紙10/12鏈堟槸鍚﹀啀鍔犮€佺粓绔?.75%锛夋槸鍏抽敭銆?}, {"date": "2026-09-18", "t": "鏃ユ湰8鏈堟牳蹇僀PI鍏竷(07:30 JST)", "d": "閫氳儉鏄惁瓒呴鏈燂紝鐩存帴褰卞搷鍚庣画鍔犳伅璺緞涓庡競鍦哄畾浠枫€?}, {"date": "2026-10-01", "t": "鏃ラ摱涓嬫璁伅绐楀彛锛堝競鍦烘娂娉級", "d": "浜掓崲瀹氫环2027骞村垵鍓嶅啀鍔?5bp锛岀粓绔埄鐜囬鏈熺害1.75%锛?0鏈堟垨12鏈堬級銆?}, {"date": "2026-10-15", "t": "缇庤仈鍌?0鏈堣鎭紙CME 10鏈堝啀鍔?5bp姒傜巼53%锛?, "d": "缇庢棩鍒╁樊璧板悜锛屽喅瀹歎SD/JPY涓湡鏂瑰悜銆?}, {"date": "2026-09-25", "t": "鏃ユ湰9鏈圕PI鍒濆€艰瀵?, "d": "瑙傚療娌逛环鈫掕繘鍙ｉ€氳儉浼犲鏄惁鍏戠幇銆?}, {"date": "鎸佺画", "t": "闇嶅皵鏈ㄥ吂娴峰场鑸繍鎭㈠鎯呭喌", "d": "甯冧鸡鐗?100鐨勯闄╂孩浠风壍鍔ㄦ棩閾堕€氳儉鍒ゆ柇涓庡姞鎭妭濂忋€?}, {"date": "2026-10-25", "t": "鏈娴媓orizon缁堢偣", "d": "涓夋儏鏅?00鏃ュ厓锛氬熀鍑?.33 / 涔愯4.45 / 鎮茶4.20銆?}]};;;;;;;;;;
 
 
 
@@ -1117,7 +1117,7 @@ function renderFx(){
   const D=FX_DATA;
   document.getElementById('fx-date').textContent=D.date;
   document.getElementById('fx-now').textContent=D.latest;
-  // 相对「历史序列低位」的涨幅：低位取 historyVals 最小值，日期取同一索引的 allDates
+  // 鐩稿銆屽巻鍙插簭鍒椾綆浣嶃€嶇殑娑ㄥ箙锛氫綆浣嶅彇 historyVals 鏈€灏忓€硷紝鏃ユ湡鍙栧悓涓€绱㈠紩鐨?allDates
   (function(){
     const hv=D.historyVals||[], ad=D.allDates||[], cur=parseFloat(D.latest);
     let lo=null;
@@ -1125,47 +1125,47 @@ function renderFx(){
     const el=document.getElementById('fx-now-sub');
     if(lo && isFinite(cur) && lo.v){
       const pct=(cur-lo.v)/lo.v*100;
-      el.textContent='较 '+lo.d.slice(2)+' 低位 '+(pct>=0?'+':'')+pct.toFixed(2)+'%';
-    } else { el.textContent='—'; }
+      el.textContent='杈?'+lo.d.slice(2)+' 浣庝綅 '+(pct>=0?'+':'')+pct.toFixed(2)+'%';
+    } else { el.textContent='鈥?; }
   })();
   document.getElementById('fx-ccb').textContent=D.ccbSell;
-  document.getElementById('fx-ccb-sub').textContent='100JPY(购汇参考)';
+  document.getElementById('fx-ccb-sub').textContent='100JPY(璐眹鍙傝€?';
   document.getElementById('fx-usd').textContent=D.usdjpy;
-  // 交叉汇率校验：由 USD/JPY 与 USD/CNY 反推 100JPY，验证两条报价是否自洽
+  // 浜ゅ弶姹囩巼鏍￠獙锛氱敱 USD/JPY 涓?USD/CNY 鍙嶆帹 100JPY锛岄獙璇佷袱鏉℃姤浠锋槸鍚﹁嚜娲?
   (function(){
     const j=parseFloat(D.usdjpy), c=parseFloat(D.usdcny);
     document.getElementById('fx-usd-sub').textContent =
-      (isFinite(j)&&isFinite(c)&&j>0) ? ('交叉推算 100JPY = '+(c/j*100).toFixed(4))
-                                     : 'Yahoo / 新浪财经 多源';
+      (isFinite(j)&&isFinite(c)&&j>0) ? ('浜ゅ弶鎺ㄧ畻 100JPY = '+(c/j*100).toFixed(4))
+                                     : 'Yahoo / 鏂版氮璐㈢粡 澶氭簮';
   })();
   document.getElementById('fx-usdcny').textContent=D.usdcny;
-  document.getElementById('fx-usdcny-sub').textContent='新浪财经在岸';
+  document.getElementById('fx-usdcny-sub').textContent='鏂版氮璐㈢粡鍦ㄥ哺';
   if(D.alertOn){
     const a=document.getElementById('fx-alert');
     a.innerHTML=D.alert;
     a.classList.add('show');
     document.getElementById('fx-badge').style.display='inline-block';
   }
-  setDataTime('fx-time', dataStamp(D.updated), '行情时点');
+  setDataTime('fx-time', dataStamp(D.updated), '琛屾儏鏃剁偣');
   const _m0 = (D.history && D.history.length) ? D.history[0].m : '';
   const _endDate = (D.allDates && D.allDates.length) ? D.allDates[D.allDates.length - 1] : '';
   document.getElementById('fx-note').innerHTML=
-    '下图将 <b>历史月度均值</b>（'+_m0+' 至 '+D.date+'）与 <b>至 '+_endDate+' 的三情景预估</b> 绘制在同一坐标系：蓝色实线为历史月度均值，红/绿/红-虚线+空心圆点分别为基准/乐观/悲观情景。鼠标悬停查看具体数值，可拖动滑块局部放大。<b>非投资建议</b>。';
+    '涓嬪浘灏?<b>鍘嗗彶鏈堝害鍧囧€?/b>锛?+_m0+' 鑷?'+D.date+'锛変笌 <b>鑷?'+_endDate+' 鐨勪笁鎯呮櫙棰勪及</b> 缁樺埗鍦ㄥ悓涓€鍧愭爣绯伙細钃濊壊瀹炵嚎涓哄巻鍙叉湀搴﹀潎鍊硷紝绾?缁?绾?铏氱嚎+绌哄績鍦嗙偣鍒嗗埆涓哄熀鍑?涔愯/鎮茶鎯呮櫙銆傞紶鏍囨偓鍋滄煡鐪嬪叿浣撴暟鍊硷紝鍙嫋鍔ㄦ粦鍧楀眬閮ㄦ斁澶с€?b>闈炴姇璧勫缓璁?/b>銆?;
 
-  // ECharts 渲染：历史月度均值 + 三情景预估
+  // ECharts 娓叉煋锛氬巻鍙叉湀搴﹀潎鍊?+ 涓夋儏鏅浼?
   const chartEl = document.getElementById('fxchart');
   if (window.echarts) {
     if (!window._fxChart) window._fxChart = echarts.init(chartEl);
     const chart = window._fxChart;
     const allDates = D.allDates;
     const ctx = {
-      // 起点上一段历史 = 最后一个点补到 base/bull/bear 的起点，保证曲线连贯
+      // 璧风偣涓婁竴娈靛巻鍙?= 鏈€鍚庝竴涓偣琛ュ埌 base/bull/bear 鐨勮捣鐐癸紝淇濊瘉鏇茬嚎杩炶疮
       history: D.historyVals.map((v, i) => [allDates[i], v]),
       base: D.base.map((v, i) => [allDates[i + D.historyVals.length - 1], v]),
       bull: D.bull.map((v, i) => [allDates[i + D.historyVals.length - 1], v]),
       bear: D.bear.map((v, i) => [allDates[i + D.historyVals.length - 1], v]),
     };
-    const splitIdx = D.historyVals.length - 1;   // 历史与预测的分界
+    const splitIdx = D.historyVals.length - 1;   // 鍘嗗彶涓庨娴嬬殑鍒嗙晫
     chart.setOption({
       animation: false,
       grid: { left: 56, right: 24, top: 36, bottom: 64 },
@@ -1182,8 +1182,8 @@ function renderFx(){
           let html = `<div style="font-size:11px;color:#6b7280;margin-bottom:6px;font-weight:600">${date}</div>`;
           params.forEach(p => {
             const color = p.color;
-            const dash = p.seriesName.includes('悲') ? 'dashed' : (p.seriesName.includes('乐观') ? 'dashed' : 'solid');
-            const width = p.seriesName.includes('历史') ? '2.5' : '1.8';
+            const dash = p.seriesName.includes('鎮?) ? 'dashed' : (p.seriesName.includes('涔愯') ? 'dashed' : 'solid');
+            const width = p.seriesName.includes('鍘嗗彶') ? '2.5' : '1.8';
             html += `<div style="display:flex;justify-content:space-between;gap:14px;margin:2px 0;align-items:center">
               <span style="display:flex;align-items:center;gap:6px">
                 <span style="display:inline-block;width:18px;height:${width}px;background:${color};border-radius:2px"></span>
@@ -1213,7 +1213,7 @@ function renderFx(){
           rotate: 30,
           formatter: (val) => { const [_, m, d] = val.split('-'); return m + '/' + d; },
           interval: (idx, val) => {
-            // 8 个均匀分布标签
+            // 8 涓潎鍖€鍒嗗竷鏍囩
             const n = allDates.length;
             const target = [0, 6, 12, 18, 30, 42, 54, n-1];
             return target.includes(idx);
@@ -1226,7 +1226,7 @@ function renderFx(){
       yAxis: {
         type: 'value',
         scale: true,
-        name: '100日元兑人民币',
+        name: '100鏃ュ厓鍏戜汉姘戝竵',
         nameLocation: 'end',
         nameGap: 8,
         nameTextStyle: { color: '#5a738b', fontSize: 11, fontWeight: 600 },
@@ -1243,16 +1243,16 @@ function renderFx(){
           textStyle: { color: '#6b7280', fontSize: 10 } }
       ],
       series: [
-        { name: '历史月度均值', type: 'line', data: ctx.history, symbolSize: 5,
+        { name: '鍘嗗彶鏈堝害鍧囧€?, type: 'line', data: ctx.history, symbolSize: 5,
           itemStyle: { color: '#5a738b' }, lineStyle: { width: 2.4, color: '#5a738b' },
           smooth: false },
-        { name: '基准情景', type: 'line', data: ctx.base, symbolSize: 4,
+        { name: '鍩哄噯鎯呮櫙', type: 'line', data: ctx.base, symbolSize: 4,
           itemStyle: { color: '#c66b5f' }, lineStyle: { width: 1.8, color: '#c66b5f', type: 'dashed' } },
-        { name: '乐观(日元续强)', type: 'line', data: ctx.bull, symbolSize: 4,
+        { name: '涔愯(鏃ュ厓缁己)', type: 'line', data: ctx.bull, symbolSize: 4,
           itemStyle: { color: '#7a9b6b' }, lineStyle: { width: 1.8, color: '#7a9b6b', type: 'dashed' } },
-        { name: '悲观(日元回弱)', type: 'line', data: ctx.bear, symbolSize: 4,
+        { name: '鎮茶(鏃ュ厓鍥炲急)', type: 'line', data: ctx.bear, symbolSize: 4,
           itemStyle: { color: '#a55a4e' }, lineStyle: { width: 1.8, color: '#a55a4e', type: 'dashed' } },
-        { name: '历史/预测分界', type: 'line', data: ctx.history, markLine: {
+        { name: '鍘嗗彶/棰勬祴鍒嗙晫', type: 'line', data: ctx.history, markLine: {
           silent: true, symbol: 'none', label: { show: false },
           lineStyle: { color: '#7a9b6b', type: 'dashed', width: 1 },
           data: [{ xAxis: splitIdx }, { yAxis: 0 }]
@@ -1261,25 +1261,25 @@ function renderFx(){
     });
     chart.resize();
   } else {
-    // CDN 加载失败时 fallback：显示提示
-    chartEl.innerHTML = '<div style="padding:40px 20px;color:#888;text-align:center">图表加载失败（ECharts CDN 不可达），请检查网络后刷新</div>';
+    // CDN 鍔犺浇澶辫触鏃?fallback锛氭樉绀烘彁绀?
+    chartEl.innerHTML = '<div style="padding:40px 20px;color:#888;text-align:center">鍥捐〃鍔犺浇澶辫触锛圗Charts CDN 涓嶅彲杈撅級锛岃妫€鏌ョ綉缁滃悗鍒锋柊</div>';
   }
 
   document.getElementById('fx-scn').innerHTML=
-    '<table class="fx-scn"><tr><th>情景</th><th>USD/JPY</th><th>USD/CNY</th><th>100日元</th><th>概率</th><th>含义</th></tr>'+
+    '<table class="fx-scn"><tr><th>鎯呮櫙</th><th>USD/JPY</th><th>USD/CNY</th><th>100鏃ュ厓</th><th>姒傜巼</th><th>鍚箟</th></tr>'+
     D.scenario.map(s=>'<tr class="'+s.cls+'"><td><b>'+s.name+'</b></td><td>'+s.usdjpy+'</td><td>'+s.usdcny+'</td><td><b>'+s.jpy100+'</b></td><td>'+s.prob+'</td><td class="l">'+s.desc+'</td></tr>').join('')+'</table>';
   document.getElementById('fx-buy').innerHTML=D.buyHint;
   document.getElementById('fx-news').innerHTML=D.news.map(n=>
-    `<li><span class="when tag-头条">${n.tag}</span><span class="nb"><b>${n.t}</b>${n.d}</span></li>`).join('');
+    `<li><span class="when tag-澶存潯">${n.tag}</span><span class="nb"><b>${n.t}</b>${n.d}</span></li>`).join('');
   document.getElementById('fx-hist').innerHTML=
-    '<table class="fx-hist"><tr><th>月份</th><th>100日元(月度均值)</th><th>环比%</th></tr>'+
+    '<table class="fx-hist"><tr><th>鏈堜唤</th><th>100鏃ュ厓(鏈堝害鍧囧€?</th><th>鐜瘮%</th></tr>'+
     D.history.map(h=>'<tr class="'+(h.real?'real':'')+'"><td>'+h.m+'</td><td>'+h.v+'</td><td>'+h.p+'</td></tr>').join('')+'</table>';
   document.getElementById('fx-events').innerHTML=D.events.map(e=>
     '<li><span class="date">'+e.date+'</span><span class="ev"><b>'+e.t+'</b><br><span>'+e.d+'</span></span></li>').join('');
 }
 renderFx();
 
-/* ===== 汇总条更新 ===== */
+/* ===== 姹囨€绘潯鏇存柊 ===== */
 document.getElementById('sum-fx').innerHTML=FX_DATA.latest+' <small>CNY</small>';
 document.getElementById('sum-update').textContent=dataStamp(FX_DATA.updated);
 </script>
