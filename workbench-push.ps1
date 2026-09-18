@@ -79,6 +79,60 @@ function Invoke-Git([array]$Params) {
     & $GitPath @GitArgs @Params 2>&1
 }
 
+# --- 编码 / 结构守门（2026-09-18 新增）----------------------------------
+# 背景：2026-09-18 09:00 前后，某次自动化以「默认 ANSI(cp936) 读取 → UTF-8(带 BOM) 写回」
+#       的方式改写 index.html，导致全文中文变乱码（.NET 用 '?' 替换非法字节序列），
+#       内联 JS 出现 SyntaxError，线上页面打开一片空白。坏文件被连续推送了 2 次提交。
+# 本函数在 commit 之前做「fail-closed」校验：只要不合格，就回滚 index.html 并**拒绝推送**，
+#       确保损坏内容永远不会进入公开仓库 / CloudBase。
+function Test-HtmlSanity {
+    param([string]$Path, [ref]$Reason)
+    if (-not (Test-Path $Path)) { $Reason.Value = "index.html 不存在"; return $false }
+    $bytes = [System.IO.File]::ReadAllBytes($Path)
+    if ($bytes.Length -eq 0) { $Reason.Value = "index.html 为空"; return $false }
+    if ($bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
+        $Reason.Value = "文件头出现 UTF-8 BOM(EF BB BF)：典型「ANSI 误读 + UTF8 写回」损坏痕迹"
+        return $false
+    }
+    $strict = New-Object System.Text.UTF8Encoding($false, $true)
+    try { $text = $strict.GetString($bytes) }
+    catch { $Reason.Value = "不是合法 UTF-8 字节序列：$($_.Exception.Message)"; return $false }
+    if ($text.IndexOf([char]0xFFFD) -ge 0) { $Reason.Value = "含替换字符 U+FFFD：编码已损坏"; return $false }
+    if ($text -notmatch '<!DOCTYPE html>') { $Reason.Value = "缺少 <!DOCTYPE html>：结构损坏或被截断"; return $false }
+    $endIdx = $text.LastIndexOf('</html>')
+    if ($endIdx -lt 0) { $Reason.Value = "缺少收尾 </html>：尾部被污染或被截断"; return $false }
+    $tail = $text.Substring($endIdx + 7).Trim()
+    if ($tail -ne "" -and $tail -notmatch '^(//|<!--)') {
+        $Reason.Value = "</html> 之后残留非注释内容（可能是污染文本）：" + $tail.Substring(0, [Math]::Min(60, $tail.Length))
+        return $false
+    }
+    if ($text -notmatch '三丰')            { $Reason.Value = "检索不到必需中文串「三丰」：疑似全文乱码"; return $false }
+    $hit = 0
+    foreach ($kw in @('数据时点','市场行情','日币','行业增量')) { if ($text -match [regex]::Escape($kw)) { $hit++ } }
+    if ($hit -lt 2) { $Reason.Value = "必需中文串命中仅 $hit/4：疑似全文乱码"; return $false }
+    return $true
+}
+
+function Assert-HtmlSanity {
+    # 返回 $true 表示通过；不通过时：备份坏文件 -> 用 HEAD 回滚 -> 返回 $false
+    $reason = ""
+    if (Test-HtmlSanity -Path "$RepoDir\index.html" -Reason ([ref]$reason)) {
+        Write-Log "GUARD OK: index.html 编码/结构校验通过"
+        return $true
+    }
+    Write-Log "GUARD FAIL: index.html 未通过校验 -> $reason"
+    $badCopy = "$env:TEMP\index.html.bad-$(Get-Date -Format yyyyMMddHHmmss)"
+    try {
+        Copy-Item "$RepoDir\index.html" $badCopy -Force -ErrorAction Stop
+        Write-Log "GUARD: 坏文件已备份到 $badCopy"
+    } catch { Write-Log "GUARD: WARN 坏文件备份失败: $($_.Exception.Message)" }
+    Invoke-Git -Params @("-C",$RepoDir,"checkout","HEAD","--","index.html") | Out-Null
+    if ($LASTEXITCODE -eq 0) { Write-Log "GUARD: 已用 HEAD 版本回滚 index.html（防止损坏扩散到下一轮）" }
+    else { Write-Log "GUARD: WARN 回滚失败（exit $LASTEXITCODE），请人工检查 index.html" }
+    Write-Log "GUARD: 本轮拒绝推送（fail-closed）。请排查写入 index.html 的脚本：必须显式使用 UTF-8，禁止用 Get-Content/Set-Content 做整文件读改写。"
+    return $false
+}
+
 function Ensure-Repo {
     # .git 有效则直接返回；无效则先改名备份（绝不删除用户数据），再全新 clone
     $valid = $false
@@ -153,6 +207,12 @@ try {
         }
 
         $ts = Get-Date -Format "yyyy-MM-dd HH:mm"
+
+        # --- 0. 编码/结构守门：不合格则回滚并拒绝推送（2026-09-18 新增） ---
+        if (-not (Assert-HtmlSanity)) {
+            Write-Log "ABORT: 本轮未推送任何内容。index.html 已回滚到上一个正常版本。"
+            exit 1
+        }
 
         # --- 1. 只暂存白名单文件（绝不 add -A，防止临时脚本/隐私文件混入公开仓库） ---
         Invoke-Git -Params @("-C",$RepoDir,"add","--","index.html","README.md",".gitignore","workbench-push.ps1",".github","reports/fx","reports/news","reports/industries") | Out-Null
