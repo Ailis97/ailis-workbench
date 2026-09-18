@@ -1269,7 +1269,7 @@ function renderFx(){
 
   document.getElementById('fx-scn').innerHTML=
     '<table class="fx-scn"><tr><th>情景</th><th>USD/JPY</th><th>USD/CNY</th><th>100日元</th><th>概率</th><th>含义</th></tr>'+
-    D.scenario.map(s=>'<tr class="'+s.cls+'"><td><b>'+s.name+'</b></td><td>'+s.usdjpy+'</td><td>'+s.usdcny+'</td><td><b>'+s.jpy100+'</b></td><td>'+s.prob+'</td><td class="l">'+s.desc+'</td></tr>').join('')+'</table>';
+    D.scenario.map(s=>{const lb=s.name||s.cls||'';const k=/乐观|走强/.test(lb)?'up':(/悲观|走弱/.test(lb)?'down':'base');return '<tr class="'+k+'"><td><b>'+lb+'</b></td><td>'+s.usdjpy+'</td><td>'+s.usdcny+'</td><td><b>'+s.jpy100+'</b></td><td>'+s.prob+'</td><td class="l">'+s.desc+'</td></tr>';}).join('')+'</table>';
   document.getElementById('fx-buy').innerHTML=D.buyHint;
   document.getElementById('fx-news').innerHTML=D.news.map(n=>
     `<li><span class="when tag-头条">${n.tag}</span><span class="nb"><b>${n.t}</b>${n.d}</span></li>`).join('');
