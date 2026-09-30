@@ -119,6 +119,10 @@
   .news .when.tag-新品{background:var(--red)}
   .news .when.tag-展会{background:var(--amber)}
   .news .when.tag-头条{background:#7a6b9b}
+  .news .when.tag-日银{background:#3f7f9a}
+  .news .when.tag-美联储{background:#5a6fa8}
+  .news .when.tag-建行牌价{background:#7a9b8e}
+  .news .when.tag-美日关系{background:#8a6f9e}
   .news .nb{display:block;flex:1}
   .news .meta{display:block;font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}
   .news .meta a{color:var(--teal);text-decoration:none;font-weight:600}
@@ -174,15 +178,6 @@
   .fx-mini.blue .v{color:var(--blue)}
   .chartbox{margin:10px 0 6px;background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:8px;height:280px;position:relative;cursor:crosshair}
   #fxchart{width:100%;height:100%;display:block}
-  .fx-tooltip{position:absolute;pointer-events:none;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--ink);box-shadow:0 6px 24px rgba(16,24,40,.14);opacity:0;transition:opacity .12s;z-index:10;min-width:180px;backdrop-filter:blur(4px)}
-  .fx-tooltip .tip-date{font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:600}
-  .fx-tooltip .tip-row{display:flex;justify-content:space-between;gap:12px;margin:2px 0}
-  .fx-tooltip .tip-row span:first-child{display:flex;align-items:center;gap:6px}
-  .fx-tooltip .dot{display:inline-block;width:8px;height:8px;border-radius:50%}
-  .fx-legend{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;font-size:11px;color:var(--muted);margin:4px 0 8px;padding:0 12px}
-  .fx-legend span{display:flex;align-items:center;gap:5px;white-space:nowrap}
-  .fx-legend .line{width:18px;height:3px;border-radius:2px;display:inline-block;flex-shrink:0}
-  .fx-legend .dash{width:18px;height:3px;border-radius:2px;display:inline-block;background-image:linear-gradient(90deg,currentColor 50%,transparent 50%);background-size:8px 3px;flex-shrink:0}
   .fx-note{font-size:12px;color:var(--muted);margin:4px 0 12px}
   .events{list-style:none;margin:0;padding:0}
   .events li{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13px}
@@ -407,18 +402,17 @@ open workbuddy/workbench/index.html         # macOS</pre>
       <!-- ========== 模块 3：日币走势预估 ========== -->
       <section data-section="fx" class="section">
         <div class="card">
-          <h2>💴 日元兑人民币 · 实时 & 走势 <span class="tag" id="fx-date">每 1 小时自动更新</span></h2>
+          <h2>💴 日元兑人民币 · 行情 & 走势 <span class="tag" id="fx-date">每 1 小时自动更新</span></h2>
           <div class="update-info">📡 自动化：<b>日币走势预估-1小时更新</b> · 数据源：建行日元现汇牌价 / Yahoo Finance / 新浪财经 / 金十数据 / BoJ / Fed 公开信息 · 数据时点：<span id="fx-time">—</span></div>
           <div class="fx-alert" id="fx-alert"></div>
           <div class="fx-strip" id="fx-strip">
-            <div class="fx-mini red"><div class="k">100日元兑人民币(最新)</div><div class="v" id="fx-now">4.2867</div><div class="sub" id="fx-now-sub">—</div></div>
-            <div class="fx-mini teal"><div class="k">建行日元现汇卖出价</div><div class="v" id="fx-ccb">4.2977</div><div class="sub" id="fx-ccb-sub">100JPY(购汇参考)</div></div>
-            <div class="fx-mini blue"><div class="k">美元兑日元 USD/JPY</div><div class="v" id="fx-usd">157.430</div><div class="sub" id="fx-usd-sub">—</div></div>
-            <div class="fx-mini"><div class="k">美元兑人民币 USD/CNY</div><div class="v" id="fx-usdcny">6.7484</div><div class="sub" id="fx-usdcny-sub">新浪财经在岸</div></div>
+            <div class="fx-mini red"><div class="k">100日元兑人民币(中间价)</div><div class="v" id="fx-now">—</div><div class="sub" id="fx-now-sub">—</div></div>
+            <div class="fx-mini teal"><div class="k">建行日元现汇卖出价</div><div class="v" id="fx-ccb">—</div><div class="sub" id="fx-ccb-sub">100JPY(购汇参考)</div></div>
+            <div class="fx-mini blue"><div class="k">美元兑日元 USD/JPY</div><div class="v" id="fx-usd">—</div><div class="sub" id="fx-usd-sub">—</div></div>
+            <div class="fx-mini"><div class="k">美元兑人民币 USD/CNY</div><div class="v" id="fx-usdcny">—</div><div class="sub" id="fx-usdcny-sub">新浪财经在岸</div></div>
           </div>
           <div class="chartbox" id="fx-chartbox" style="height:340px">
             <div id="fxchart" style="width:100%;height:100%"></div>
-            <div class="fx-tooltip" id="fx-tip"></div>
           </div>
           <div class="fx-note" id="fx-note"></div>
           <ul class="events" id="fx-events"></ul>
@@ -703,7 +697,7 @@ function newsInRange(t){
   return d>=cut;
 }
 document.getElementById('news-list').innerHTML=NEWS.filter(n=>newsInRange(n.time)).map(n=>
-  `<li><span class="when tag-${n.tag}">${n.tag}</span><span class="nb"><b>${n.title}</b>：${n.desc}
+  `<li><span class="when tag-${String(n.tag || '').replace(/[^\u4e00-\u9fa5A-Za-z0-9]/g, '')}">${n.tag}</span><span class="nb"><b>${n.title}</b>：${n.desc}
    <span class="meta">🔗 <a href="${n.url}" target="_blank" rel="noopener">${n.src}</a> · 🕒 ${n.time}</span></span></li>`
 ).join('');
 setDataTime('news-time', latestDateIn(NEWS.filter(n=>newsInRange(n.time)).map(n=>n.time)), '最新动态发布日');
@@ -878,7 +872,7 @@ const FX_DATA = {"date":"2026-09-30","now":"2026-09-30 13:43","latest":4.2727,"c
 function renderFx(){
   const D=FX_DATA;
   document.getElementById('fx-date').textContent=D.date;
-  document.getElementById('fx-now').textContent=D.latest;
+  document.getElementById('fx-now').textContent=Number(D.latest).toFixed(4);
   // 相对「历史序列低位」的涨幅：低位取 historyVals 最小值，日期取同一索引的 allDates
   (function(){
     const hv=D.historyVals||[], ad=D.allDates||[], cur=parseFloat(D.latest);
@@ -890,9 +884,9 @@ function renderFx(){
       el.textContent='较 '+lo.d.slice(2)+' 低位 '+(pct>=0?'+':'')+pct.toFixed(2)+'%';
     } else { el.textContent='—'; }
   })();
-  document.getElementById('fx-ccb').textContent=D.ccbSell;
+  document.getElementById('fx-ccb').textContent=Number(D.ccbSell).toFixed(4);
   document.getElementById('fx-ccb-sub').textContent='100JPY(购汇参考)';
-  document.getElementById('fx-usd').textContent=D.usdjpy;
+  document.getElementById('fx-usd').textContent=Number(D.usdjpy).toFixed(3);
   // 交叉汇率校验：由 USD/JPY 与 USD/CNY 反推 100JPY，验证两条报价是否自洽
   (function(){
     const j=parseFloat(D.usdjpy), c=parseFloat(D.usdcny);
@@ -900,7 +894,7 @@ function renderFx(){
       (isFinite(j)&&isFinite(c)&&j>0) ? ('交叉推算 100JPY = '+(c/j*100).toFixed(4))
                                      : 'Yahoo / 新浪财经 多源';
   })();
-  document.getElementById('fx-usdcny').textContent=D.usdcny;
+  document.getElementById('fx-usdcny').textContent=Number(D.usdcny).toFixed(4);
   document.getElementById('fx-usdcny-sub').textContent='新浪财经在岸';
   if(D.alertOn){
     const a=document.getElementById('fx-alert');
@@ -914,7 +908,7 @@ function renderFx(){
   const _fxEndEl = document.getElementById('fx-scn-end');
   if (_fxEndEl && _endDate) _fxEndEl.textContent = _endDate;
   document.getElementById('fx-note').innerHTML=
-    '下图将 <b>历史月度均值</b>（'+_m0+' 至 '+D.date+'）与 <b>至 '+_endDate+' 的三情景预估</b> 绘制在同一坐标系：蓝色实线为历史月度均值，红/绿/红-虚线+空心圆点分别为基准/乐观/悲观情景。鼠标悬停查看具体数值，可拖动滑块局部放大。<b>非投资建议</b>。';
+    '下图将 <b>历史月度均值</b>（'+_m0+' 至 '+D.date+'）与 <b>至 '+_endDate+' 的三情景预估</b> 绘制在同一坐标系：深蓝灰实线为历史月度均值，蓝/绿/红虚线（空心圆点）分别为基准/乐观/悲观情景。鼠标悬停查看具体数值，可拖动滑块局部放大。<b>非投资建议</b>。';
 
   // ECharts 渲染：历史月度均值 + 三情景预估
   const chartEl = document.getElementById('fxchart');
@@ -946,11 +940,11 @@ function renderFx(){
           let html = `<div style="font-size:11px;color:#6b7280;margin-bottom:6px;font-weight:600">${date}</div>`;
           params.forEach(p => {
             const color = p.color;
-            const dash = p.seriesName.includes('悲') ? 'dashed' : (p.seriesName.includes('乐观') ? 'dashed' : 'solid');
+            const dash = p.seriesName.includes('历史') ? 'solid' : 'dashed';
             const width = p.seriesName.includes('历史') ? '2.5' : '1.8';
             html += `<div style="display:flex;justify-content:space-between;gap:14px;margin:2px 0;align-items:center">
               <span style="display:flex;align-items:center;gap:6px">
-                <span style="display:inline-block;width:18px;height:${width}px;background:${color};border-radius:2px"></span>
+                <span style="display:inline-block;width:18px;height:${width}px;border-radius:2px;background:${dash === 'dashed' ? 'repeating-linear-gradient(90deg,' + color + ' 0 5px,transparent 5px 9px)' : color}"></span>
                 <span>${p.seriesName}</span>
               </span>
               <b style="font-family:tabular-nums">${(p.value[1]).toFixed(4)}</b>
@@ -979,7 +973,7 @@ function renderFx(){
           interval: (idx, val) => {
             // 8 个均匀分布标签
             const n = allDates.length;
-            const target = [0, 6, 12, 18, 30, 42, 54, n-1];
+            const target = Array.from({ length: 8 }, (_, i) => Math.round(i * (n - 1) / 7));
             return target.includes(idx);
           }
         },
@@ -1011,19 +1005,27 @@ function renderFx(){
           itemStyle: { color: '#5a738b' }, lineStyle: { width: 2.4, color: '#5a738b' },
           smooth: false },
         { name: '基准情景', type: 'line', data: ctx.base, symbolSize: 4,
-          itemStyle: { color: '#c66b5f' }, lineStyle: { width: 1.8, color: '#c66b5f', type: 'dashed' } },
+          itemStyle: { color: '#7c95b3' }, symbol: 'emptyCircle', lineStyle: { width: 1.8, color: '#7c95b3', type: 'dashed' } },
         { name: '乐观(日元续强)', type: 'line', data: ctx.bull, symbolSize: 4,
-          itemStyle: { color: '#7a9b6b' }, lineStyle: { width: 1.8, color: '#7a9b6b', type: 'dashed' } },
+          itemStyle: { color: '#7a9b6b' }, symbol: 'emptyCircle', lineStyle: { width: 1.8, color: '#7a9b6b', type: 'dashed' } },
         { name: '悲观(日元回弱)', type: 'line', data: ctx.bear, symbolSize: 4,
-          itemStyle: { color: '#a55a4e' }, lineStyle: { width: 1.8, color: '#a55a4e', type: 'dashed' } },
+          itemStyle: { color: '#c66b5f' }, symbol: 'emptyCircle', lineStyle: { width: 1.8, color: '#c66b5f', type: 'dashed' } },
         { name: '历史/预测分界', type: 'line', data: ctx.history, markLine: {
           silent: true, symbol: 'none', label: { show: false },
           lineStyle: { color: '#7a9b6b', type: 'dashed', width: 1 },
-          data: [{ xAxis: splitIdx }, { yAxis: 0 }]
+          data: [{ xAxis: splitIdx }]
         }, lineStyle: { width: 0, color: 'transparent' }, tooltip: { show: false } }
       ]
     });
     chart.resize();
+    if (!window._fxRO && window.ResizeObserver) {
+      window._fxRO = new ResizeObserver(function () { if (window._fxChart) window._fxChart.resize(); });
+      window._fxRO.observe(chartEl);
+    }
+    if (!window._fxRH) {
+      window._fxRH = 1;
+      window.addEventListener('resize', function () { if (window._fxChart) window._fxChart.resize(); });
+    }
   } else {
     // CDN 加载失败时 fallback：显示提示
     chartEl.innerHTML = '<div style="padding:40px 20px;color:#888;text-align:center">图表加载失败（ECharts CDN 不可达），请检查网络后刷新</div>';
@@ -1034,7 +1036,7 @@ function renderFx(){
     D.scenario.map(s=>{const lb=s.name||s.cls||'';const k=/乐观|走强/.test(lb)?'up':(/悲观|走弱/.test(lb)?'down':'base');return '<tr class="'+k+'"><td><b>'+lb+'</b></td><td>'+s.usdjpy+'</td><td>'+s.usdcny+'</td><td><b>'+s.jpy100+'</b></td><td>'+s.prob+'</td><td class="l">'+s.desc+'</td></tr>';}).join('')+'</table>';
   document.getElementById('fx-buy').innerHTML=D.buyHint;
   document.getElementById('fx-news').innerHTML=D.news.map(n=>
-    `<li><span class="when tag-头条">${n.tag}</span><span class="nb"><b>${n.t}</b>${n.d}</span></li>`).join('');
+    `<li><span class="when tag-${String(n.tag || '').replace(/[^\u4e00-\u9fa5A-Za-z0-9]/g, '')}">${n.tag}</span><span class="nb"><b>${n.t}</b>${n.d}</span></li>`).join('');
   document.getElementById('fx-hist').innerHTML=
     '<table class="fx-hist"><tr><th>月份</th><th>100日元(月度均值)</th><th>环比%</th></tr>'+
     D.history.map(h=>'<tr class="'+(h.real?'real':'')+'"><td>'+h.m+'</td><td>'+h.v+'</td><td>'+h.p+'</td></tr>').join('')+'</table>';
@@ -1044,7 +1046,7 @@ function renderFx(){
 renderFx();
 
 /* ===== 汇总条更新 ===== */
-document.getElementById('sum-fx').innerHTML=FX_DATA.latest+' <small>CNY</small>';
+document.getElementById('sum-fx').innerHTML=Number(FX_DATA.latest).toFixed(4)+' <small>CNY</small>';
 document.getElementById('sum-update').textContent=dataStamp(FX_DATA.updated);
 </script>
 </body>
