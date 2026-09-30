@@ -425,7 +425,7 @@ open workbuddy/workbench/index.html         # macOS</pre>
         </div>
 
         <div class="card">
-          <h2>📊 情景预估（至 2026-09-25）· 低点买日元参考 <span class="tag">政策事件 + 利差情景</span></h2>
+          <h2>📊 情景预估（至 <span id="fx-scn-end">2026-10-25</span>）· 低点买日元参考 <span class="tag">政策事件 + 利差情景</span></h2>
           <div id="fx-scn"></div>
           <div class="fx-buy" id="fx-buy"></div>
         </div>
@@ -911,6 +911,8 @@ function renderFx(){
   setDataTime('fx-time', dataStamp(D.updated), '行情时点');
   const _m0 = (D.history && D.history.length) ? D.history[0].m : '';
   const _endDate = (D.allDates && D.allDates.length) ? D.allDates[D.allDates.length - 1] : '';
+  const _fxEndEl = document.getElementById('fx-scn-end');
+  if (_fxEndEl && _endDate) _fxEndEl.textContent = _endDate;
   document.getElementById('fx-note').innerHTML=
     '下图将 <b>历史月度均值</b>（'+_m0+' 至 '+D.date+'）与 <b>至 '+_endDate+' 的三情景预估</b> 绘制在同一坐标系：蓝色实线为历史月度均值，红/绿/红-虚线+空心圆点分别为基准/乐观/悲观情景。鼠标悬停查看具体数值，可拖动滑块局部放大。<b>非投资建议</b>。';
 
